@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Fundamentos contenedores Docker - CFL 410</title>
+		<link rel="icon" type="image/x-icon" href="/img/logos/cfl_logo.png">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="css/egg.css">
+		<script src="js/egg.js"></script>
+		
+	</head>
+	<body>
+
+		<!-- The EGG -->
+		<!-- NO egg for this class :( -->
+
+
+		<div class="reveal">
+			<div class="slides">
+
+			<section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+				
+				<h2>Fundamentos y usos prácticos de Docker</h2>
+				<h4>Clase 1 : Introducción al curso y contenedores</h4>
+
+			</section>
+			
+
+			<section>
+				<section id="intro" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Introducción al curso</h2>
+				</section>
+
+				<section id="intro-presentacion" data-state="no_footer">
+					<h3>Presentación</h3>
+					
+					<p>Instructor: Cristian O. Giambruni</p>
+					<p><small>Contacto: cgiambruni@gmail.com</small></p>
+					<p><small>APU. UNLP</small></p>
+                    <p><small>Docente CFL 410</small></p>
+					<p><small>Sysadmin Lotería BsAs</small></p>
+					<p><small>Programador y Sysadmin Startup</small></p>
+
+				</section>
+
+                <section id="intro-objetivos" data-state="no_footer">
+					<h3>Objetivos del curso</h3>
+					
+					<p>
+                        <ul>
+                            <li>Introducir y mostrar ventajas del uso de contenedores</li>
+                            <li>Prácticas sobre contenedores</li>
+                            <li>Mas y más</li>
+                        </ul>
+                    </p>
+
+				</section>
+            </section>
+
+
+            <section>
+				<section id="intro-container_t" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Introducción a contenedores</h2>
+				</section>
+
+                <section id="intro-container" data-state="no_footer">
+                    <h3>Contenedor</h3>
+                    
+                    <p><small>En informática, un contenedor o container, es una unidad ligera y <em>portátil</em> de software que <em>empaqueta</em> una aplicación y <em>todas sus dependencias</em>, permitiendo que se ejecute de manera consistente en <strong>cualquier entorno</strong>.</small></p>
+                    <div class="fade-img">
+                    <img src="img/clase1/ships.webp" width="450" >
+                    </div>
+                    
+                    <p class="fragment"><small>Entonces... <strong>¿Para qué vamos a usar contenedores?</strong>. Para poder portar nuestra aplicación y ejecutarla de la misma manera en nuestra PC que en cualquier ambiente de desarrollo.</small></p>
+    
+                </section>
+
+                <section id="intro-container2" data-state="no_footer">
+                    <h3>Un poco de historia</h3>
+
+                    <p><small>Años 1960-1970, se introduce la virtualización en los mainframes de IBM que permite ejecutar múltiples sistemas operativos en una sola máquina física.</small></p>
+                    <p><small>En 1992, el programador finlandés Linus Torvals publica bajo licencia GNU GPL2 la versión 0.12 del kernel de Linux. De ahí en más, Linux es <strong>software libre</strong>.</small></p>
+                    <p><small>En 2008 surge LinuX Containers, también conocido por su acrónimo LXC. Aprovechando las características del kernel de Linux como <strong>cgroups</strong> y <strong>namespaces</strong> disponibles a partir de la versión 2.6.29 del kernel, permite desarrollar una tecnología de <em>virtualización a nivel de sistema operativo</em>. LXC permite que un servidor físico ejecute múltiples instancias de espacios de usuario aislados dando origen al término container. </small></p>
+                    <p><small>En 2013 se libera <strong>Docker</strong> como código abierto inicialmente basado en LXC. Pero al año siguiente, con el lanzamiento de la versión de Docker 0.9 dejó de utilizar LXC para usar su propio engine llamado <strong>libcontainer</strong>, escrito en Go.</small></p>
+                    <p><small>Desde entonces Docker ha crecido en popularidad colocándose como los proyectos con mas estrellas de GitHub, mas forks y con miles de colaboradores.</small></p>
+    
+                </section>
+
+                <section id="intro-vm" data-state="no_footer">
+                    <h3>Máquinas virtuales</h3>
+                    <p><small>Muchas veces cuando introducimos al concepto de contenedor, viene la confusión si no es un tipo de <em>máquina virtual</em>. Repasemos conceptos de máquina virtual:</small></p>
+                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong>, permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. Para llevar a cabo estas tareas se requiere de un hypervisor.</small></p>
+                    <p><small>Cada máquina virtual necesitará de asignación de recursos: procesador, disco, memoria, red, etc y <strong>un sistema operativo</strong>.</small></p>
+                    <small>
+                        <ul>Hypervisores mas conocidos
+                            <li>VMware sShere/ESXi</li>
+                            <li>Hyper-V</li>
+                            <li><a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a></li>
+                            <li><a href="https://www.proxmox.com/en/proxmox-virtual-environment/overview" target="_blank">Proxmox VE</a></li>
+                        </ul>
+                    </small>
+                </section>
+
+                <section id="intro-vm2" data-state="no_footer">
+                    <h3>Arquitectura Máquinas virtuales</h3>
+                    <p><small>Cada máquina virtual necesitará de un sistema operativo completo (kernel, utilidades del sistema, interfaz de usuario, etc) para funcionar.</small></p>
+                    <img src="img/clase1/vm.svg">
+                    <p><small>Eso hace que, para correr solo una aplicación (o parte de una aplicación mas grande) sea necesario instalar y mantener un sistema opearativo completo por cada VM. Muchas veces, ocupa mas recursos el SO que la aplicación en sí.</small></p>
+                </section>
+
+                <section id="intro-container1" data-state="no_footer">
+                    <h3>Arquitectura Contenedores</h3>
+                    <p><small>Cada container, <strong>utiliza el kernel</strong> del sistema operativo del host. Solo contienen las aplicaciones y sus dependencias necesarias para funcionar.</small></p>
+                    <img src="img/clase1/container.svg">
+                    <p><small>Se benefician del aislamiento a nivel de proceso proporcionado por el kernel del host. Incluso entre dos containers pueden compartir sus dependencias.</small></p>
+                </section>
+
+                <section id="intro-vm-vs-container" data-state="no_footer">
+                    <h2>Containers vs. VM</h2>
+                    <p><small>Como resumen, podemos repasar con la siguiente tabla:</small></p>
+                    <small>
+                    <section data-markdown>
+                        <textarea data-template>
+                            |   Caracteristica   | VM                    | Container             |
+                            |--------------------|-----------------------|-----------------------|
+                            | Aislamiento        | Completo (a nivel hw) | Liviano (proceso)     |
+                            | Recursos           | Mas uso de recursos   | Menos uso de recursos |
+                            | Tiempo de inicio   | Lento                 | Rapido                |
+                            | Sistemas operativo | Multiples SO          | Mismo kernel host     |
+                            | Portabilidad       | Menor portabilidad    | Alta portabilidad     |
+                        </textarea>
+                      </section>
+                    </small>
+                    <p><small>Esto no quiere decir que las VM sean obsoletas frente a los contenedores. Algunas veces NO podremos usar contenedores. Por ejemplo, si se requiere de un sistema operativo Windows para una aplicación en particular.</small></p>
+                    <p><small>Existen varias tecnologías que utilizan contenedores: LXC, LXD, Docker, Podman, containerd, Kubernetes, OKD...</small></p>
+                    
+                </section>
+
+                <section id="ipreguntas1" data-state="no_footer">
+                    <h2>¿Preguntas?</h2>
+                </section>
+
+            </section>
+
+            <section>
+				<section id="intro-docker" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Introducción a Docker</h2>
+				</section>
+
+                <section id="docker1" data-state="no_footer">
+                    <h3>¿Qué es Docker?</h3>
+                    <p><small>Docker es una plataforma de código abierto que facilita la creación, despliegue y ejecución de aplicaciones dentro de contenedores. Docker permite a los desarrolladores empaquetar una aplicación con todas sus dependencias en un contenedor, asegurando que la aplicación se ejecute de manera consistente en cualquier entorno.</small></p>
+                    <small>
+                    <ul> <strong>¿Por qué Docker?</strong>
+                        <li>Comunidad: Existe una gran comunidad aportando tanto al desarrollo de Docker como <strong>imágenes</strong>. Foros, tutoriales, cursos online.</li>
+                        <li>En constante desarrollo</li>
+                        <li></li>
+                    </ul>
+                    </small>
+                </section>
+
+                <section id="docker2" data-state="no_footer">
+                    <h3>Componentes de Docker</h3>
+                    <p><small>Docker componentes</small></p>
+                    <small>
+                    <ul> 
+                        <li><strong>Docker engine:</strong> El motor de Docker es la parte central de Docker, que permite a los usuarios crear, ejecutar y gestionar contenedores.</li>
+                        <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son inmutables y se pueden versionar.</li>
+                        <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones.</li>
+                        <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li>
+                        <li><strong>Dockerfile:</strong> Un Dockerfile es un archivo de texto que contiene una serie de instrucciones sobre cómo construir una imagen Docker. Define el contenido de la imagen, incluyendo el sistema operativo base, las dependencias y las configuraciones de la aplicación./li>
+                    </ul>
+                    </small>
+                </section>
+
+
+            </section>
+
+
+
+            
+
+            <section>
+                <h3>Código</h3>
+                
+                <pre class="codigo_shadow" data-id="code-animation"><code class="python codigo-redondo" data-trim>
+                    Linea 1
+                    Linea 2
+                </code></pre>
+                <div class="fragment">
+                <h4>Output</h4>
+                <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                    Lalala
+                    Lala
+                </code></pre>
+            </div>
+
+            </section>
+
+        </section>
+						
+
+					
+    </div>
+</div>
+
+<footer>
+    <!-- Logos en el footer -->
+    <div id="logos-footer" class="footer">
+        <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
+        <span class="element"><img src="img/logos/idep_logo.png" class="foot-image-idep"></span>
+        <span class="element"><img src="img/logos/info_logo.png" class="foot-image"></span>
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener("load", function() {
+    
+            revealDiv = document.querySelector("body div.reveal")
+            footer = document.getElementById("logos-footer");
+            revealDiv.appendChild(footer);
+    
+        } );
+    </script>
+</footer>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/zoom/zoom.js"></script>
+
+
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+
+        // Para eventos personalizados. Indica que está en la presentación
+
+    Reveal.on( 'customevent', function() {
+        var element = document.getElementById("logos-footer");
+        element.style.display = "table";
+        element.style.opacity = "40%";
+
+    } );
+
+    Reveal.on( 'no_footer', function() {
+        var element = document.getElementById("logos-footer");
+        //element.style.display = "none";
+        // element.style.display = "table";
+        element.style.opacity = "15%";
+    } );
+    Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+    });
+</script>
+
+</body>
+</html>

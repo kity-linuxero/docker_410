@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Curso de Programación 2023 - CFL 410</title>
+		<link rel="icon" type="image/x-icon" href="/img/logos/cfl_logo.png">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../dist/reveal.css">
+		<link rel="stylesheet" href="../dist/theme/white.css" id="theme">
+		<!-- <link rel="stylesheet" href="../plugin/highlight/zenburn.css"> -->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<a href="/">
+					<h2>No se encontró la página</h2>
+					
+					<img id="err" src="img/td/technical_dif1.jpg" class="r-stretch" style="max-height: 380px;">
+					
+					<h4>Fijate si escribiste bien la URL ;)</h4>
+				</a>
+				</section>
+			</div>
+
+		</div>
+
+		<script>
+			// Elije al azar entre tres imágenes de error ;
+			var random_img = Math.random();
+			var base_url = window.location.origin;
+			if (random_img < 0.33){
+				document.getElementById("err").src = (base_url + "/img/td/technical_dif0.jpg");
+
+				}else if (random_img > 0.77){
+					document.getElementById("err").src = (base_url + "/img/td/technical_dif1.jpg");
+
+					}else{
+						document.getElementById("err").src = (base_url + "/img/td/technical_dif2.jpg");
+
+								}
+		</script>
+
+		<script src="../dist/reveal.js"></script>
+		<script src="../plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				center: true,
+				hash: true,
+				plugins: [ RevealHighlight ]
+			});
+		</script>
+
+	</body>
+</html>
