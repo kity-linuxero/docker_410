@@ -55,13 +55,14 @@
                 <section id="intro-objetivos" data-state="no_footer">
 					<h3>Objetivos del curso</h3>
 					
-					<p>
+					<small>
                         <ul>
-                            <li>Introducir y mostrar ventajas del uso de contenedores</li>
-                            <li>Prácticas sobre contenedores</li>
-                            <li>Mas y más</li>
+                            <li>Introducir concepto general de contenedores</li>
+                            <li>Introducir al uso de Docker para conteinerización</li>
+                            <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología</li>
+                            <li>En proceso...</li>
                         </ul>
-                    </p>
+                    </small>
 
 				</section>
             </section>
@@ -89,7 +90,7 @@
 
                     <p><small>Años 1960-1970, se introduce la virtualización en los mainframes de IBM que permite ejecutar múltiples sistemas operativos en una sola máquina física.</small></p>
                     <p><small>En 1992, el programador finlandés Linus Torvals publica bajo licencia GNU GPL2 la versión 0.12 del kernel de Linux. De ahí en más, Linux es <strong>software libre</strong>.</small></p>
-                    <p><small>En 2008 surge LinuX Containers, también conocido por su acrónimo LXC. Aprovechando las características del kernel de Linux como <strong>cgroups</strong> y <strong>namespaces</strong> disponibles a partir de la versión 2.6.29 del kernel, permite desarrollar una tecnología de <em>virtualización a nivel de sistema operativo</em>. LXC permite que un servidor físico ejecute múltiples instancias de espacios de usuario aislados dando origen al término container. </small></p>
+                    <p><small>En 2008 surge LinuX Containers, también conocido por su acrónimo LXC. Aprovechando las características como <strong>cgroups</strong> y <strong>namespaces</strong> disponibles a partir de la versión 2.6.29 del kernel de Linux, permite desarrollar una tecnología de <em>virtualización a nivel de sistema operativo</em>. LXC permite que una máquina que corre Linux ejecute múltiples instancias de espacios de usuario aislados dando origen al término container. </small></p>
                     <p><small>En 2013 se libera <strong>Docker</strong> como código abierto inicialmente basado en LXC. Pero al año siguiente, con el lanzamiento de la versión de Docker 0.9 dejó de utilizar LXC para usar su propio engine llamado <strong>libcontainer</strong>, escrito en Go.</small></p>
                     <p><small>Desde entonces Docker ha crecido en popularidad colocándose como los proyectos con mas estrellas de GitHub, mas forks y con miles de colaboradores.</small></p>
     
@@ -97,36 +98,48 @@
 
                 <section id="intro-vm" data-state="no_footer">
                     <h3>Máquinas virtuales</h3>
-                    <p><small>Muchas veces cuando introducimos al concepto de contenedor, viene la confusión si no es un tipo de <em>máquina virtual</em>. Repasemos conceptos de máquina virtual:</small></p>
+                    <p><small>Muchas veces cuando introducimos al concepto de contenedor, viene la confusión si se trata de un tipo de <em>máquina virtual</em>. Repasemos conceptos de máquina virtual:</small></p>
                     <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong>, permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. Para llevar a cabo estas tareas se requiere de un hypervisor.</small></p>
                     <p><small>Cada máquina virtual necesitará de asignación de recursos: procesador, disco, memoria, red, etc y <strong>un sistema operativo</strong>.</small></p>
                     <small>
                         <ul>Hypervisores mas conocidos
-                            <li>VMware sShere/ESXi</li>
+                            <li>VMware vShere/ESXi</li>
                             <li>Hyper-V</li>
                             <li><a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a></li>
-                            <li><a href="https://www.proxmox.com/en/proxmox-virtual-environment/overview" target="_blank">Proxmox VE</a></li>
+                            <li><a href="https://www.proxmox.com/en/proxmox-virtual-environment/overview" target="_blank">Proxmox VE</a> (KVM)</li>
                         </ul>
                     </small>
                 </section>
 
                 <section id="intro-vm2" data-state="no_footer">
                     <h3>Arquitectura Máquinas virtuales</h3>
-                    <p><small>Cada máquina virtual necesitará de un sistema operativo completo (kernel, utilidades del sistema, interfaz de usuario, etc) para funcionar.</small></p>
+                    <p><small>Cada máquina virtual requiere un sistema operativo completo (kernel, utilidades del sistema, interfaz de usuario, etc) para funcionar.</small>
                     <img src="img/clase1/vm.svg">
-                    <p><small>Eso hace que, para correr solo una aplicación (o parte de una aplicación mas grande) sea necesario instalar y mantener un sistema opearativo completo por cada VM. Muchas veces, ocupa mas recursos el SO que la aplicación en sí.</small></p>
+                    <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. A menudo, el SO consume más recursos que la propia aplicación.</small></p>
                 </section>
 
                 <section id="intro-container1" data-state="no_footer">
                     <h3>Arquitectura Contenedores</h3>
                     <p><small>Cada container, <strong>utiliza el kernel</strong> del sistema operativo del host. Solo contienen las aplicaciones y sus dependencias necesarias para funcionar.</small></p>
                     <img src="img/clase1/container.svg">
-                    <p><small>Se benefician del aislamiento a nivel de proceso proporcionado por el kernel del host. Incluso entre dos containers pueden compartir sus dependencias.</small></p>
+                    <p><small>Los contenedores utilizan aislación a nivel de proceso proporcionado por el kernel del host. Incluso entre dos o más containers pueden compartir sus dependencias y file system. También es posible limitar el uso de CPU y memoria a cada contenedor, tal cual como se haría en una VM.</small></p>
+                </section>
+
+                <section id="intro-casos_de_usos" data-state="no_footer">
+                    <h3>Casos de usos</h3>
+                    <small>
+                    <ul>
+                        <li><strong>Desarrollo de microservicios:</strong> Adecuados para arquitecturas de microservicios donde cada componente de la aplicación se despliega de manera independiente.</li>
+                        <li><strong>Integración Continua y Despliegue Continuo:</strong>Facilitan la creación de pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
+                        <li><strong></strong></li>
+                    </ul>
+                </small>
+                    
                 </section>
 
                 <section id="intro-vm-vs-container" data-state="no_footer">
                     <h2>Containers vs. VM</h2>
-                    <p><small>Como resumen, podemos repasar con la siguiente tabla:</small></p>
+                    
                     <small>
                     <section data-markdown>
                         <textarea data-template>
@@ -135,12 +148,14 @@
                             | Aislamiento        | Completo (a nivel hw) | Liviano (proceso)     |
                             | Recursos           | Mas uso de recursos   | Menos uso de recursos |
                             | Tiempo de inicio   | Lento                 | Rapido                |
-                            | Sistemas operativo | Multiples SO          | Mismo kernel host     |
-                            | Portabilidad       | Menor portabilidad    | Alta portabilidad     |
+                            | SO | Multiples SO          | Mismo kernel host     |
+                            | Portabilidad       | Limitada, depende del hipervisor    | Alta, ejecutable en cualquier entorno     |
+                            | Seguridad       | Fuerte aislamiento de seguridad    | Aislamiento a nivel de proceso    |
+
                         </textarea>
                       </section>
                     </small>
-                    <p><small>Esto no quiere decir que las VM sean obsoletas frente a los contenedores. Algunas veces NO podremos usar contenedores. Por ejemplo, si se requiere de un sistema operativo Windows para una aplicación en particular.</small></p>
+                    <p><small>Esto no quiere decir que las VM sean obsoletas frente a los contenedores. Algunas veces NO podremos usar contenedores. Por ejemplo, si se requiere de un SO Windows para una aplicación en particular.</small></p>
                     <p><small>Existen varias tecnologías que utilizan contenedores: LXC, LXD, Docker, Podman, containerd, Kubernetes, OKD...</small></p>
                     
                 </section>
@@ -159,29 +174,97 @@
                 <section id="docker1" data-state="no_footer">
                     <h3>¿Qué es Docker?</h3>
                     <p><small>Docker es una plataforma de código abierto que facilita la creación, despliegue y ejecución de aplicaciones dentro de contenedores. Docker permite a los desarrolladores empaquetar una aplicación con todas sus dependencias en un contenedor, asegurando que la aplicación se ejecute de manera consistente en cualquier entorno.</small></p>
+                    <img src="img/clase1/docker.png" width="350px">
+
+                    <p><small>Docker, es hoy en día la tecnología de contenedores mas utilizada y más popular.</small></p>
+
+
+                </section>
+
+                <section id="docker1-1" data-state="no_footer">
+
+                    <h3>¿Por qué Docker?</h3>
                     <small>
-                    <ul> <strong>¿Por qué Docker?</strong>
-                        <li>Comunidad: Existe una gran comunidad aportando tanto al desarrollo de Docker como <strong>imágenes</strong>. Foros, tutoriales, cursos online.</li>
-                        <li>En constante desarrollo</li>
-                        <li></li>
-                    </ul>
+                        <ul>
+                            <li><strong>Comunidad:</strong> Existe una gran comunidad aportando tanto al desarrollo de Docker como <em>imágenes</em> Docker. Foros, tutoriales, cursos online.</li>
+                            <li><strong>Facilidad de uso:</strong> Ofrece una interfaz de usuario sencilla y comandos intuitivos. Diversas herramientas gráficas.</li>
+                            <li><strong>Soporte empresarial:</strong> Muchas empresas ofrecen soporte y soluciones basadas en Docker para entorno empresariales.</li>
+                            <li><strong>Licencia:</strong> No requiere de licencia para usar.</li>
+                            <li><strong>Compatibilidad:</strong> Docker es compatible con diversas plataformas y sistemas operativos, lo que facilita su instalación e implementación.</li>
+                        </ul>
                     </small>
+                    <!-- <p><small>A continuación veremos conceptos básicos que reforzaremos a lo largo del curso</small></p> -->
+
                 </section>
 
                 <section id="docker2" data-state="no_footer">
                     <h3>Componentes de Docker</h3>
-                    <p><small>Docker componentes</small></p>
+           
                     <small>
                     <ul> 
                         <li><strong>Docker engine:</strong> El motor de Docker es la parte central de Docker, que permite a los usuarios crear, ejecutar y gestionar contenedores.</li>
                         <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son inmutables y se pueden versionar.</li>
-                        <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones.</li>
-                        <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li>
-                        <li><strong>Dockerfile:</strong> Un Dockerfile es un archivo de texto que contiene una serie de instrucciones sobre cómo construir una imagen Docker. Define el contenido de la imagen, incluyendo el sistema operativo base, las dependencias y las configuraciones de la aplicación./li>
+                        <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones. Un contenedor está asociado a un <em>estado</em>. Los estados de un contenedor pueden ser: <code>created</code>, <code>running</code>, <code>restarting</code>, <code>removing</code>, <code>paused</code>, <code>exited</code>, <code>dead</code>.</li>
+                        <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li>
+                        
                     </ul>
                     </small>
                 </section>
 
+                <section id="docker3" data-state="no_footer">
+                    <h3>Estados de un contenedor Docker</h3>
+           
+                    <small>
+                    <ul> 
+                        <li><strong>Created:</strong> El contenedor se creó sin errores pero no está en ejecución. Se usa cuando creamos el contenedor pero aún no utilizarlo.</li>
+                        <li><strong>Running:</strong> El contenedor está creado y corriendo. Puede ser también indicado como <code>Up</code> y el tiempo que hace que está corriendo.</li>
+
+                        <li><strong>Restarting:</strong> El contenedor se está reiniciando. Esto puede suceder si el contenedor está configurado para reiniciarse automáticamente en ciertos casos, como después de un fallo o bien por indicación del programador.</li>
+                        <li><strong>Removing:</strong> El contenedor está en proceso de ser eliminado.</li>
+                        <li><strong>Paused:</strong> El contenedor se encuentra pausado. Se puede acceder al contenedor pero no está corriendo.</li>
+                        <li><strong>Exited:</strong> El contenedor ha terminado su ejecución y ha salido con un código de salida específico. Esto puede ser el resultado de que el proceso principal dentro del contenedor ha terminado, ya sea exitosamente o con un error.</li>
+                        <li><strong>Dead:</strong> El contenedor se encuentra en un estado donde el demonio Docker no puede gestionarlo adecuadamente. Este es un estado anómalo y generalmente indica que algo ha fallado seriamente.</li>
+
+                        
+                    </ul>
+                    </small>
+                </section>
+
+                <section id="docker4" data-state="no_footer">
+
+                    <h3>Ver estado de contenedores</h3>
+
+                    <p>Se usa el comando <code>docker ps -a</code></p>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker ps -a
+                    </code></pre>
+
+                    <p>Resultado:</p>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        CONTAINER ID   IMAGE    CREATED          STATUS                       
+                        1a2b3c4d5e6f   nginx    2 minutes ago    Up 2 minutes                 
+                        7g8h9i0j1k2l   busybox  5 minutes ago    Exited (0) 3 minutes ago
+                        3m4n5o6p7q8r   ubuntu   10 minutes ago   Created
+
+                    </code></pre>
+
+                    <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
+
+                </section>
+
+                <section id="ipreguntas2" data-state="no_footer">
+                    <h2>¿Preguntas?</h2>
+                </section>
+
+
+            </section>
+
+            <section>
+				<section id="docker-install" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Instalando Docker</h2>
+				</section>
 
             </section>
 
@@ -218,7 +301,7 @@
     <div id="logos-footer" class="footer">
         <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
         <span class="element"><img src="img/logos/idep_logo.png" class="foot-image-idep"></span>
-        <span class="element"><img src="img/logos/info_logo.png" class="foot-image"></span>
+        <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
     </div>
 
     <script type="text/javascript">
