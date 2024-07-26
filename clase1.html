@@ -60,7 +60,8 @@
                             <li>Introducir concepto general de contenedores</li>
                             <li>Introducir al uso de Docker para conteinerización</li>
                             <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología</li>
-                            <li>En proceso...</li>
+                            <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT.</li>
+
                         </ul>
                     </small>
 
@@ -81,7 +82,7 @@
                     <img src="img/clase1/ships.webp" width="450" >
                     </div>
                     
-                    <p class="fragment"><small>Entonces... <strong>¿Para qué vamos a usar contenedores?</strong>. Para poder portar nuestra aplicación y ejecutarla de la misma manera en nuestra PC que en cualquier ambiente de desarrollo.</small></p>
+                    <p class="fragment"><small>Entonces... <strong>¿Para qué vamos a usar contenedores?</strong>. Básicamente, para portar nuestra aplicación y ejecutarla de la misma manera en nuestra PC que en cualquier ambiente de desarrollo.</small></p>
     
                 </section>
 
@@ -99,8 +100,8 @@
                 <section id="intro-vm" data-state="no_footer">
                     <h3>Máquinas virtuales</h3>
                     <p><small>Muchas veces cuando introducimos al concepto de contenedor, viene la confusión si se trata de un tipo de <em>máquina virtual</em>. Repasemos conceptos de máquina virtual:</small></p>
-                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong>, permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. Para llevar a cabo estas tareas se requiere de un hypervisor.</small></p>
-                    <p><small>Cada máquina virtual necesitará de asignación de recursos: procesador, disco, memoria, red, etc y <strong>un sistema operativo</strong>.</small></p>
+                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong> (hw), permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. </small></p>
+                    <p><small>Cada máquina virtual necesitará de asignación de recursos: procesador, disco, memoria, red, etc y <strong>un sistema operativo</strong>. Para llevar a cabo estas tareas se requiere de un <em>hypervisor</em>.</small></p>
                     <small>
                         <ul>Hypervisores mas conocidos
                             <li>VMware vShere/ESXi</li>
@@ -115,14 +116,19 @@
                     <h3>Arquitectura Máquinas virtuales</h3>
                     <p><small>Cada máquina virtual requiere un sistema operativo completo (kernel, utilidades del sistema, interfaz de usuario, etc) para funcionar.</small>
                     <img src="img/clase1/vm.svg">
-                    <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. A menudo, el SO consume más recursos que la propia aplicación.</small></p>
+                    <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. A menudo, el SO consume más recursos que la propia aplicación.</small>
+                    
+                        
+                </p>
                 </section>
 
                 <section id="intro-container1" data-state="no_footer">
                     <h3>Arquitectura Contenedores</h3>
                     <p><small>Cada container, <strong>utiliza el kernel</strong> del sistema operativo del host. Solo contienen las aplicaciones y sus dependencias necesarias para funcionar.</small></p>
                     <img src="img/clase1/container.svg">
-                    <p><small>Los contenedores utilizan aislación a nivel de proceso proporcionado por el kernel del host. Incluso entre dos o más containers pueden compartir sus dependencias y file system. También es posible limitar el uso de CPU y memoria a cada contenedor, tal cual como se haría en una VM.</small></p>
+                    <p><small>Los contenedores utilizan aislación a nivel de proceso proporcionado por el kernel del host. Incluso entre dos o más containers pueden compartir sus dependencias y file system. También es posible limitar el uso de CPU y memoria a cada contenedor, tal cual como se haría en una VM.</small>
+                        <small>A la arquitectura de contenedores se le suele decir como un tipo de <em>virtualización liviana</em>.</small>
+                    </p>
                 </section>
 
                 <section id="intro-casos_de_usos" data-state="no_footer">
@@ -155,8 +161,8 @@
                         </textarea>
                       </section>
                     </small>
-                    <p><small>Esto no quiere decir que las VM sean obsoletas frente a los contenedores. Algunas veces NO podremos usar contenedores. Por ejemplo, si se requiere de un SO Windows para una aplicación en particular.</small></p>
-                    <p><small>Existen varias tecnologías que utilizan contenedores: LXC, LXD, Docker, Podman, containerd, Kubernetes, OKD...</small></p>
+                    <p><small>Esto no quiere decir que las VM sean obsoletas frente a los contenedores. Algunas veces NO será posible usar contenedores. Por ejemplo, si se requieren sistemas operativos distintos para cada aplicación.</small></p>
+                    <p><small>Existen varias tecnologías que utilizan contenedores: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>, <a href="https://containerd.io/" target="_blank">containerd</a>, <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a> , <a href="https://okd.io/" target="_blank">OKD</a></small></p>
                     
                 </section>
 
@@ -243,10 +249,10 @@
                     <p>Resultado:</p>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        CONTAINER ID   IMAGE    CREATED          STATUS                       
-                        1a2b3c4d5e6f   nginx    2 minutes ago    Up 2 minutes                 
-                        7g8h9i0j1k2l   busybox  5 minutes ago    Exited (0) 3 minutes ago
-                        3m4n5o6p7q8r   ubuntu   10 minutes ago   Created
+                        CONTAINER ID  IMAGE    CREATED         STATUS                       
+                        1a2b3c4d5e6f  nginx    2 minutes ago   Up 2 minutes
+                        7g8h9i0j1k2l  busybox  5 minutes ago   Exited (0) 3 min ago
+                        3m4n5o6p7q8r  ubuntu   10 minutes ago  Created
 
                     </code></pre>
 
@@ -266,6 +272,158 @@
 					<h2>Instalando Docker</h2>
 				</section>
 
+
+                <section id="docker-install2" data-state="no_footer">
+                    <h3>Instalando Docker</h3>
+                    <small>
+                            <p>Docker está disponible para las plataformas mas populares; Windows, GNU/Linux y MacOS.</p>
+
+                            <ul>
+                                <li><strong>Docker Desktop:</strong> La aplicación oficial de Docker. Es una interface de usuario gráfica. A su vez contiene el Docker engine.
+                                </li>
+                                <ul>
+                                    <li><a href="https://docs.docker.com/desktop/install/windows-install/" target="_blank">Docker Desktop para Windows</a> (Minimo Win 10 Home o Pro 21H2 / WSL version 1.1.3.0)</li>
+                                    <li><a href="https://docs.docker.com/desktop/install/linux-install/" target="_blank">Docker Desktop para GNU/Linux</a></li>
+                                    <li><a href="https://docs.docker.com/desktop/install/mac-install/" target="_blank">Docker Desktop para MacOS</a></li>
+
+                                </ul>
+                                <li><strong>Docker engine:</strong> También llamado Docker-CE. Es el motor de docker. Lo básico para que Docker funcione. 
+                                    <ul>
+                                        <li><a href="https://docs.docker.com/engine/install/" target="_blank">Docker Engine Linux</a></li>
+                                        <li><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank">Docker Engine Ubuntu</a></li>
+                                        <li><a href="https://docs.docker.com/engine/install/debian/" target="_blank">Docker Engine Debian</a></li>
+                                        <li><a href="https://docs.docker.com/engine/install/centos/" target="_blank">Docker Engine CentOS</a></li>
+
+
+                                    </ul>
+                                    
+                                </li>
+                            </ul>
+
+                            <p>En el curso veremos el uso de <strong>Docker cli</strong>, ya que no siempre podemos contar con una interface gráfica, ejemplo cuando se corre en servidores.</p>
+                    
+                    
+                    
+                    
+                    </small>
+
+                </section>
+
+                <section id="docker-install_10" data-state="no_footer">
+                    <h4>Instalando DOcker Desktop en Windows</h4>
+                    <small><p>Una vez descargado el instalador, al instalar se verán las siguientes pantallas:</p></small>
+                    <img src="img/clase1/Docker_install.png">
+
+                </section>
+
+                <section id="docker-install_11" data-state="no_footer">
+                    <h4>Instalando DOcker Desktop en Windows</h4>
+                    <small><p>Debemos aceptar los términos.</p></small>
+                    <img src="img/clase1/Docker_install2.png">
+
+                </section>
+
+                <section id="docker-install_12" data-state="no_footer">
+                    <h4>Instalando DOcker Desktop en Windows</h4>
+                    <small><p>Elegimos una opción.</p></small>
+                    <img src="img/clase1/Docker_install3.png">
+
+                </section>
+
+                <section id="docker-install_13" data-state="no_footer">
+                    <h4>Instalando DOcker Desktop en Windows</h4>
+                    <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small>
+                    <img src="img/clase1/Docker_install4.png">
+
+                </section>
+
+                <section id="docker-install_14" data-state="no_footer">
+                    <h4>Instalando DOcker Desktop en Windows</h4>
+                    <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
+                    <img src="img/clase1/Docker_install5.png"  width="50%" height="50%">
+
+                </section>
+
+                <section id="docker-install_15" data-state="no_footer">
+                    <h4>Instalando DOcker Desktop en Windows</h4>
+                    <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
+                    <img src="img/clase1/Docker_install6.png" width="65%" height="65%">
+
+                </section>
+
+                <section id="docker-install_16" data-state="no_footer">
+                    <h4>Instalando DOcker Desktop en Windows</h4>
+                    <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
+                    <img src="img/clase1/Docker_install7.png" width="65%" height="65%">
+
+                </section>
+
+                <section id="docker-install_17" data-state="no_footer">
+                    <h4>Instalando DOcker Desktop en Windows</h4>
+                    <small><p>Una vez instalado y corriendo. Es posible desde una consola de PowerShell (PS) ejecutar comandos docker.</p></small>
+                    
+                    <img src="img/clase1/Docker_install8.png">
+                    <small><p>Para consultar la versión instalada ejecutamos: &emsp; <code>docker --version</code> </p></small>
+
+                </section>
+
+                <section id="docker-install_18" data-state="no_footer">
+                    <h4>Ejecutando nuestro primer contenedor</h4>
+                    <small><p><code>docker run hello-world</code></p></small>
+                    
+                    <img src="img/clase1/Docker_install9.png" width="75%" height="75%">
+                    
+
+                </section>
+
+                <section id="docker-install_19" data-state="no_footer">
+                    <h4>Ejecutando nuestro primer contenedor</h4>
+                    <small><p>Vista desde Docker Desktop. Containers:</p></small>
+                    
+                    <img src="img/clase1/Docker_install10.png" width="100%" height="100%">
+                    
+
+                </section>
+
+                <section id="docker-install_19" data-state="no_footer">
+                    <h4>Ejecutando nuestro primer contenedor</h4>
+                    <small><p>Vista desde Docker Desktop. Images:</p></small>
+                    
+                    <img src="img/clase1/Docker_install11.png" width="100%" height="100%">
+                    
+                </section>
+
+                <section id="docker-install_20" data-state="no_footer">
+                    <h4>Ejecutamos un contenedor Ubuntu</h4>
+                    <small><code>docker run -it ubuntu</code></small>
+                    
+                    <img src="img/clase1/docker_ubuntu1.png" width="100%" height="100%">
+                    
+                </section>
+
+                <section id="docker-install_21" data-state="no_footer">
+                    <h4>Ejecutamos un contenedor Ubuntu</h4>
+                    <small>¿Qué pasa si volvemos a ejecutar un contenedor Ubuntu?</small>
+                    
+                    <img src="img/clase1/docker_ubuntu2.png" width="100%" height="100%">
+                    <small>
+                        <ul>
+                            <li class="fragment">No fue necesario volver a descargar la imágen.</li>
+                            <li class="fragment">El contenedor NO es el mismo que se ejecutó la vez anterior.</li>
+
+                        </ul>
+
+                        <p class="fragment">En este caso se le agrega el comando bash para que se ejecute. Pero el resultado es el mismo.</p>
+
+
+                    </small>
+                    
+                </section>
+
+                <section id="ipreguntas3" data-state="no_footer">
+                    <h2>¿Preguntas?</h2>
+                </section>
+
             </section>
 
 
@@ -273,21 +431,23 @@
             
 
             <section>
-                <h3>Código</h3>
+                <h3>Ejercicio en clase:</h3>
+
+                <ul>
+                    <li>Instalar Docker en su PC</li>
+                    <li>Ejecutar la imágen hello-world</li>
+                    <li>Ejecutar en una sesión interactiva la imágen ubuntu</li>
+                </ul>
                 
-                <pre class="codigo_shadow" data-id="code-animation"><code class="python codigo-redondo" data-trim>
-                    Linea 1
-                    Linea 2
-                </code></pre>
-                <div class="fragment">
-                <h4>Output</h4>
-                <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                    Lalala
-                    Lala
-                </code></pre>
-            </div>
 
             </section>
+
+        </section>
+
+        <section id="fin" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+				
+            <img src="img/logos/idep_logo.png" width="40%" height="40%"
+            
 
         </section>
 						
