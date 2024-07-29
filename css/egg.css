@@ -138,6 +138,8 @@
     /* filter: drop-shadow(1px 1px 1px #222); */
   }
 
+
+
   .foot-image-idep-info{
     width: 100px;
     opacity: 30%;
@@ -151,6 +153,21 @@
     opacity: 40%;
     /* filter: drop-shadow(1px 1px 1px #222); */
   }
+
+
+  /* Estilos específicos para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
+  .foot-image {
+      width: 50px; /* Ajusta el tamaño según lo necesites */
+      opacity: 10%;
+  }
+
+  .foot-image-idep-info{
+    width: 50px;
+    opacity: 10%;
+    /* filter: drop-shadow(1px 1px 1px #222); */
+  }
+}
 
   .aspiradora{
     width: 300px;
