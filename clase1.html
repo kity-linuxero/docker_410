@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/white.css">
+        <!-- <link rel="stylesheet" href="plugin/copycode/copycode.css"> -->
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -495,6 +496,7 @@
 <script src="plugin/markdown/markdown.js"></script>
 <script src="plugin/highlight/highlight.js"></script>
 <script src="plugin/zoom/zoom.js"></script>
+<script src="plugin/copycode/copycode.js"></script>
 
 
 <script>
@@ -527,8 +529,38 @@
     Reveal.initialize({
         hash: true,
 
+        copycode: {
+        button: "hover",
+        display: "icons",
+        text: {
+            copy: "Copiar",
+            copied: "¡Copiado!",
+        },
+        plaintextonly: true,
+        timeout: 1000,
+        style: {
+            copybg: "gray",
+            copiedbg: "green",
+            copycolor: "black",
+            copiedcolor: "white",
+            copyborder: "",
+            copiedborder: "",
+            scale: 1,
+            offset: 0,
+            radius: 0.2
+        },
+        tooltip: true,
+        iconsvg: {
+            copy: '',
+            copied: ''
+        },
+        cssautoload: true,
+        csspath: "",
+        clipboardjspath: ""
+        },
+
         // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode ]
     });
 </script>
 
