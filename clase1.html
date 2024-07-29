@@ -57,10 +57,10 @@
 					
 					<small>
                         <ul>
-                            <li>Introducir concepto general de contenedores</li>
-                            <li>Introducir al uso de Docker para conteinerización</li>
-                            <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología</li>
-                            <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT.</li>
+                            <li>Introducir concepto general de contenedores.</li>
+                            <li>Introducir al uso de Docker para conteinerización.</li>
+                            <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología.</li>
+                            <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT, home labers.</li>
 
                         </ul>
                     </small>
@@ -131,18 +131,6 @@
                     </p>
                 </section>
 
-                <section id="intro-casos_de_usos" data-state="no_footer">
-                    <h3>Casos de usos</h3>
-                    <small>
-                    <ul>
-                        <li><strong>Desarrollo de microservicios:</strong> Adecuados para arquitecturas de microservicios donde cada componente de la aplicación se despliega de manera independiente.</li>
-                        <li><strong>Integración Continua y Despliegue Continuo:</strong>Facilitan la creación de pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
-                        <li><strong></strong></li>
-                    </ul>
-                </small>
-                    
-                </section>
-
                 <section id="intro-vm-vs-container" data-state="no_footer">
                     <h2>Containers vs. VM</h2>
                     
@@ -153,7 +141,7 @@
                             |--------------------|-----------------------|-----------------------|
                             | Aislamiento        | Completo (a nivel hw) | Liviano (proceso)     |
                             | Recursos           | Mas uso de recursos   | Menos uso de recursos |
-                            | Tiempo de inicio   | Lento                 | Rapido                |
+                            | Arranque   | Lento                 | Rapido                |
                             | SO | Multiples SO          | Mismo kernel host     |
                             | Portabilidad       | Limitada, depende del hipervisor    | Alta, ejecutable en cualquier entorno     |
                             | Seguridad       | Fuerte aislamiento de seguridad    | Aislamiento a nivel de proceso    |
@@ -161,10 +149,29 @@
                         </textarea>
                       </section>
                     </small>
-                    <p><small>Esto no quiere decir que las VM sean obsoletas frente a los contenedores. Algunas veces NO será posible usar contenedores. Por ejemplo, si se requieren sistemas operativos distintos para cada aplicación.</small></p>
-                    <p><small>Existen varias tecnologías que utilizan contenedores: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>, <a href="https://containerd.io/" target="_blank">containerd</a>, <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a> , <a href="https://okd.io/" target="_blank">OKD</a></small></p>
+                    <p><small>Esto no significa que las máquinas virtuales sean obsoletas en comparación con los contenedores. En algunas situaciones, el uso de contenedores no será posible. Por ejemplo, cuando se necesitan diferentes sistemas operativos para cada aplicación.</small></p>
+                    
                     
                 </section>
+
+                <section id="intro-casos_de_usos" data-state="no_footer">
+                    <h3>Casos de usos de contenedores</h3>
+                    <small>
+                    <ul>
+                        <li><strong>Desarrollo de microservicios:</strong> Adecuados para arquitecturas de microservicios donde cada componente de la aplicación se despliega de manera independiente.</li>
+                        <li><strong>Integración Continua y Despliegue Continuo:</strong>Facilitan la creación de pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
+                        <li><strong>Containerización de aplicaciones legacy</strong>: Se puede modernizar la infraestructura de aplicaciones no pensadas para contenedores. La conteinerización ayuda a la portabilidad y automatización de despliegues.</li>
+                        <li><strong>Despliegue sencillo de aplicaciones</strong>: Con solo copiar y pegar una instrucción o un archivo de texto es posible tener aplicaciones complejas deployadas para ambientes de prueba rápidamente.</li>
+                        <!-- <li><strong>a</strong>: a</li> -->
+
+                    </ul>
+
+                    <p>Existen varias tecnologías que utilizan contenedores, entre ellas: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>, <a href="https://containerd.io/" target="_blank">containerd</a>. Además, hay herramientas de orquestación y gestión de contenedores como <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a> , <a href="https://okd.io/" target="_blank">OKD</a>q</p>
+                </small>
+                    
+                </section>
+
+
 
                 <section id="ipreguntas1" data-state="no_footer">
                     <h2>¿Preguntas?</h2>
@@ -430,13 +437,26 @@
 
             
 
-            <section>
+            <section id="ejercicio_clase1" data-state="no_footer">
                 <h3>Ejercicio en clase:</h3>
 
                 <ul>
                     <li>Instalar Docker en su PC</li>
                     <li>Ejecutar la imágen hello-world</li>
-                    <li>Ejecutar en una sesión interactiva la imágen ubuntu</li>
+                    <li>Ejecutar en una sesión interactiva la imágen ubuntu
+                        <ul>
+                            <li>Ejecutar el siguiente comando para ver la memoria RAM libre.</li>
+
+                            <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                                free -h
+                            </code></pre>
+
+                            <li>¿Qué dato relevante ha mostrado?</li>
+
+                            
+                        </ul>
+                    </li>
+
                 </ul>
                 
 
