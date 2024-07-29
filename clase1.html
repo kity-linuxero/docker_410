@@ -20,10 +20,6 @@
 	</head>
 	<body>
 
-		<!-- The EGG -->
-		<!-- NO egg for this class :( -->
-
-
 		<div class="reveal">
 			<div class="slides">
 
@@ -61,6 +57,7 @@
                             <li>Introducir al uso de Docker para conteinerización.</li>
                             <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología.</li>
                             <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT, home labers.</li>
+                            
 
                         </ul>
                     </small>
@@ -115,11 +112,9 @@
                 <section id="intro-vm2" data-state="no_footer">
                     <h3>Arquitectura Máquinas virtuales</h3>
                     <p><small>Cada máquina virtual requiere un sistema operativo completo (kernel, utilidades del sistema, interfaz de usuario, etc) para funcionar.</small>
-                    <img src="img/clase1/vm.svg">
-                    <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. A menudo, el SO consume más recursos que la propia aplicación.</small>
-                    
-                        
-                </p>
+                        <img src="img/clase1/vm.svg">
+                        <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. A menudo, el SO consume más recursos que la propia aplicación.</small>
+                    </p>
                 </section>
 
                 <section id="intro-container1" data-state="no_footer">
@@ -464,9 +459,9 @@
 
         </section>
 
-        <section id="fin" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+        <section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
 				
-            <img src="img/logos/idep_logo.png" width="40%" height="40%"
+            <img src="img/logos/idep_logo.png" width="40%" height="40%">
             
 
         </section>
@@ -480,7 +475,7 @@
     <!-- Logos en el footer -->
     <div id="logos-footer" class="footer">
         <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
-        <span class="element"><img src="img/logos/idep_logo.png" class="foot-image-idep"></span>
+        <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
         <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
     </div>
 
@@ -513,6 +508,13 @@
         var element = document.getElementById("logos-footer");
         element.style.display = "table";
         element.style.opacity = "40%";
+
+    } );
+
+    Reveal.on( 'hide_footer', function() {
+        var element = document.getElementById("logos-footer");
+        element.style.display = "table";
+        element.style.opacity = "0%";
 
     } );
 

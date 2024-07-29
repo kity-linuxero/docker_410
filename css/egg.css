@@ -138,6 +138,12 @@
     /* filter: drop-shadow(1px 1px 1px #222); */
   }
 
+  .foot-image-idep-info{
+    width: 100px;
+    opacity: 30%;
+    /* filter: drop-shadow(1px 1px 1px #222); */
+  }
+
   .foot-image-idep{
     width: 125px;
     /* filtro para "Verde ATE" */
