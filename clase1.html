@@ -5,12 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<title>Fundamentos contenedores Docker - CFL 410</title>
-		<link rel="icon" type="image/x-icon" href="/img/logos/cfl_logo.png">
+		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
+        <link rel="icon" type="image/x-icon" href="/img/logos/page.svg">
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/white.css">
-        <!-- <link rel="stylesheet" href="plugin/copycode/copycode.css"> -->
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -41,12 +41,19 @@
 					<h3>Presentación</h3>
 					
 					<p>Instructor: Cristian O. Giambruni</p>
-					<p><small>Contacto: cgiambruni@gmail.com</small></p>
-					<p><small>APU. UNLP</small></p>
-                    <p><small>Docente CFL 410</small></p>
-					<p><small>Sysadmin Lotería BsAs</small></p>
-					<p><small>Programador y Sysadmin Startup</small></p>
-
+                    <small>
+                    <ul>
+                        <li>Contacto: cgiambruni@gmail.com</li>
+                        <li>APU. <a href="https://www.info.unlp.edu.ar/" target="_blank">Facultad de Informática</a>, UNLP</li>
+                        <li>Mat. <a href="https://www.cpciba.org.ar/" target="_blank">CPCIBA</a> 2402 </li>
+                        <li>Docente <a href="https://centro410laplata.edu.ar/" target="_blank">CFL 410</a>, Omar Nuñez</li>
+                        <li>Sysadmin Lotería BsAs</li>
+                        <li>Programador y Sysadmin Startup</li>
+                        <li>Coordinador IDEP Informática</li>
+                    </ul>
+                </small>
+                <p><small>Plataforma a usar: <a href="http://docker.idepba.com.ar/">http://docker.idepba.com.ar/</a></small></p>
+					
 				</section>
 
                 <section id="intro-objetivos" data-state="no_footer">
@@ -57,9 +64,10 @@
                             <li>Introducir concepto general de contenedores.</li>
                             <li>Introducir al uso de Docker para conteinerización.</li>
                             <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología.</li>
+                            <li>Uso práctico de Docker</li>
+                            <li>Introdocir al uso de bash para depuración de contenedores Docker</li>
                             <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT, home labers.</li>
                             
-
                         </ul>
                     </small>
 
@@ -170,7 +178,7 @@
 
 
                 <section id="ipreguntas1" data-state="no_footer">
-                    <h2>¿Preguntas?</h2>
+                    <h2>Consultas</h2>
                 </section>
 
             </section>
@@ -264,7 +272,7 @@
                 </section>
 
                 <section id="ipreguntas2" data-state="no_footer">
-                    <h2>¿Preguntas?</h2>
+                    <h2>Consultas</h2>
                 </section>
 
 
@@ -322,14 +330,14 @@
                 <section id="docker-install_11" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <small><p>Debemos aceptar los términos.</p></small>
-                    <img src="img/clase1/Docker_install2.png">
+                    <img src="img/clase1/Docker_install2.png" class="screenshot-borde">
 
                 </section>
 
                 <section id="docker-install_12" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <small><p>Elegimos una opción.</p></small>
-                    <img src="img/clase1/Docker_install3.png">
+                    <img src="img/clase1/Docker_install3.png" class="screenshot-borde">
 
                 </section>
 
@@ -350,31 +358,42 @@
                 <section id="docker-install_15" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
-                    <img src="img/clase1/Docker_install6.png" width="65%" height="65%">
+                    <img src="img/clase1/Docker_install6.png" width="65%" height="65%" class="screenshot-borde">
 
                 </section>
 
                 <section id="docker-install_16" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
-                    <img src="img/clase1/Docker_install7.png" width="65%" height="65%">
+                    <img src="img/clase1/Docker_install7.png" width="65%" height="65%" class="screenshot-borde">
 
                 </section>
 
                 <section id="docker-install_17" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Una vez instalado y corriendo. Es posible desde una consola de PowerShell (PS) ejecutar comandos docker.</p></small>
+                    <small><p>Una vez instalado y corriendo. Es posible ejecutar comandos docker desde una consola de PowerShell (PS).</p></small>
                     
                     <img src="img/clase1/Docker_install8.png">
-                    <small><p>Para consultar la versión instalada ejecutamos: &emsp; <code>docker --version</code> </p></small>
+                    <small>Para consultar la versión instalada ejecutamos:</small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker --version
+                    </code></pre>
+
 
                 </section>
 
                 <section id="docker-install_18" data-state="no_footer">
                     <h4>Ejecutando nuestro primer contenedor</h4>
-                    <small><p><code>docker run hello-world</code></p></small>
+
+
+
                     
                     <img src="img/clase1/Docker_install9.png" width="75%" height="75%">
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker run hello-world
+                    </code></pre>
                     
 
                 </section>
@@ -383,7 +402,7 @@
                     <h4>Ejecutando nuestro primer contenedor</h4>
                     <small><p>Vista desde Docker Desktop. Containers:</p></small>
                     
-                    <img src="img/clase1/Docker_install10.png" width="100%" height="100%">
+                    <img src="img/clase1/Docker_install10.png" class="screenshot-borde" width="100%" height="100%">
                     
 
                 </section>
@@ -392,15 +411,19 @@
                     <h4>Ejecutando nuestro primer contenedor</h4>
                     <small><p>Vista desde Docker Desktop. Images:</p></small>
                     
-                    <img src="img/clase1/Docker_install11.png" width="100%" height="100%">
+                    <img src="img/clase1/Docker_install11.png" class="screenshot-borde" width="100%" height="100%">
                     
                 </section>
 
                 <section id="docker-install_20" data-state="no_footer">
                     <h4>Ejecutamos un contenedor Ubuntu</h4>
-                    <small><code>docker run -it ubuntu</code></small>
+
                     
                     <img src="img/clase1/docker_ubuntu1.png" width="100%" height="100%">
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker run -it ubuntu
+                    </code></pre>
                     
                 </section>
 
@@ -424,7 +447,7 @@
                 </section>
 
                 <section id="ipreguntas3" data-state="no_footer">
-                    <h2>¿Preguntas?</h2>
+                    <h2>Consultas</h2>
                 </section>
 
             </section>

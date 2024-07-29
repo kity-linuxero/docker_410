@@ -169,6 +169,10 @@
   }
 }
 
+  .screenshot-borde{
+    border: 1px solid gray;
+  }
+
   .aspiradora{
     width: 300px;
   }
