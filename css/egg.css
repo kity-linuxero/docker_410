@@ -159,12 +159,12 @@
 @media only screen and (max-width: 600px) {
   .foot-image {
       width: 50px; /* Ajusta el tamaño según lo necesites */
-      opacity: 10%;
+      opacity: 25%;
   }
 
   .foot-image-idep-info{
     width: 50px;
-    opacity: 10%;
+    opacity: 25%;
     /* filter: drop-shadow(1px 1px 1px #222); */
   }
 }
