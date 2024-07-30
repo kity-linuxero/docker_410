@@ -52,7 +52,7 @@
                         <li>Coordinador IDEP Informática</li>
                     </ul>
                 </small>
-                <p><small>Plataforma a usar: <a href="http://docker.idepba.com.ar/">http://docker.idepba.com.ar/</a></small></p>
+                
 					
 				</section>
 
@@ -65,13 +65,45 @@
                             <li>Introducir al uso de Docker para conteinerización.</li>
                             <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología.</li>
                             <li>Uso práctico de Docker</li>
-                            <li>Introdocir al uso de bash para depuración de contenedores Docker</li>
+                            <li>Introdocir al uso de <a href="https://es.wikipedia.org/wiki/Bash" target="_blank">bash</a> para depuración de contenedores Docker</li>
                             <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT, home labers.</li>
                             
                         </ul>
                     </small>
 
+                    <h4>Organización del curso</h4>
+                    <small>
+                    <ul>
+                        <li>Apuntes de clases teóricas: <a href="https://docker.idepba.com.ar/">docker.idepba.com.ar</a></li>
+                        <li>Laboratorios y práctica</li>
+                    </ul>
+                    </small>
+
+                    
+
 				</section>
+
+                <section id="index" data-state="no_footer">
+                    <h2>Temas de clase 1</h2>
+                   
+                        <ul>
+                            <li><a href="#/intro-container">Introducción a contenedores</a></li>
+                            <li><a href="#/intro-vm">Repaso VM</a></li>
+                            <li><a href="#/intro-container1">Arquitectura contenedores</a></li>
+                            <li><a href="#/intro-usos">Casos de usos</a></li>
+                            <li><a href="#/docker1">Introducción a Docker</a></li>
+                            <li><a href="#/docker-install2">Instalación de Docker</a></li>
+                            <li><a href="#/ejercicio_clase1">Ejercicio práctico</a></li>
+                            
+
+
+                        </ul>
+                    
+
+
+                </section>
+
+
             </section>
 
 
@@ -139,7 +171,7 @@
                     <h2>Containers vs. VM</h2>
                     
                     <small>
-                    <section data-markdown>
+                    <!-- <section data-markdown>
                         <textarea data-template>
                             |   Caracteristica   | VM                    | Container             |
                             |--------------------|-----------------------|-----------------------|
@@ -151,27 +183,71 @@
                             | Seguridad       | Fuerte aislamiento de seguridad    | Aislamiento a nivel de proceso    |
 
                         </textarea>
-                      </section>
+                      </section> -->
+
+                      <table><thead>
+                        <tr>
+                          <th>Caracteristica</th>
+                          <th>VM</th>
+                          <th>Container</th>
+                        </tr></thead>
+                      <tbody>
+                        <tr>
+                          <td>Aislamiento</td>
+                          <td>Completo (a nivel hw)</td>
+                          <td>Liviano (proceso)</td>
+                        </tr>
+                        <tr>
+                          <td>Recursos</td>
+                          <td>Mas uso de recursos</td>
+                          <td>Menos uso de recursos</td>
+                        </tr>
+                        <tr>
+                          <td>Arranque</td>
+                          <td>Lento</td>
+                          <td>Rapido</td>
+                        </tr>
+                        <tr>
+                          <td>SO</td>
+                          <td>Multiples SO</td>
+                          <td>Mismo kernel host</td>
+                        </tr>
+                        <tr>
+                          <td>Portabilidad</td>
+                          <td>Limitada, depende del hipervisor</td>
+                          <td>Alta, ejecutable en cualquier entorno</td>
+                        </tr>
+                        <tr>
+                          <td>Seguridad</td>
+                          <td>Fuerte aislamiento de seguridad</td>
+                          <td>Aislamiento a nivel de proceso</td>
+                        </tr>
+                      </tbody>
+                      </table>
+
+
+                      
                     </small>
                     <p><small>Esto no significa que las máquinas virtuales sean obsoletas en comparación con los contenedores. En algunas situaciones, el uso de contenedores no será posible. Por ejemplo, cuando se necesitan diferentes sistemas operativos para cada aplicación.</small></p>
                     
                     
                 </section>
 
-                <section id="intro-casos_de_usos" data-state="no_footer">
+                <section id="intro-usos" data-state="no_footer">
                     <h3>Casos de usos de contenedores</h3>
+                    
                     <small>
                     <ul>
                         <li><strong>Desarrollo de microservicios:</strong> Adecuados para arquitecturas de microservicios donde cada componente de la aplicación se despliega de manera independiente.</li>
                         <li><strong>Integración Continua y Despliegue Continuo:</strong>Facilitan la creación de pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
                         <li><strong>Containerización de aplicaciones legacy</strong>: Se puede modernizar la infraestructura de aplicaciones no pensadas para contenedores. La conteinerización ayuda a la portabilidad y automatización de despliegues.</li>
                         <li><strong>Despliegue sencillo de aplicaciones</strong>: Con solo copiar y pegar una instrucción o un archivo de texto es posible tener aplicaciones complejas deployadas para ambientes de prueba rápidamente.</li>
-                        <!-- <li><strong>a</strong>: a</li> -->
+                    
 
                     </ul>
 
-                    <p>Existen varias tecnologías que utilizan contenedores, entre ellas: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>, <a href="https://containerd.io/" target="_blank">containerd</a>. Además, hay herramientas de orquestación y gestión de contenedores como <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a> , <a href="https://okd.io/" target="_blank">OKD</a>q</p>
-                </small>
+                    <p>Existen varias tecnologías que utilizan contenedores, entre ellas: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>, <a href="https://containerd.io/" target="_blank">containerd</a>. Además, hay herramientas de orquestación y gestión de contenedores como <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a>, <a href="https://okd.io/" target="_blank">OKD</a>.</p>
+                    </small>
                     
                 </section>
 
@@ -311,7 +387,7 @@
                                 </li>
                             </ul>
 
-                            <p>En el curso veremos el uso de <strong>Docker cli</strong>, ya que no siempre podemos contar con una interface gráfica, ejemplo cuando se corre en servidores.</p>
+                            <p>En el curso veremos el uso de <strong><a href="https://docs.docker.com/reference/cli/docker/" target="_blank">Docker CLI</a></strong>, ya que no siempre podemos contar con una interface gráfica, ejemplo cuando se corre en servidores.</p>
                     
                     
                     
@@ -323,14 +399,14 @@
                 <section id="docker-install_10" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <small><p>Una vez descargado el instalador, al instalar se verán las siguientes pantallas:</p></small>
-                    <img src="img/clase1/Docker_install.png">
+                    <img src="img/clase1/Docker_install.png" width="60%" height="60%">
 
                 </section>
 
                 <section id="docker-install_11" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <small><p>Debemos aceptar los términos.</p></small>
-                    <img src="img/clase1/Docker_install2.png" class="screenshot-borde">
+                    <img src="img/clase1/Docker_install2.png" class="screenshot-borde" width="80%" height="80%">
 
                 </section>
 
@@ -419,10 +495,10 @@
                     <h4>Ejecutamos un contenedor Ubuntu</h4>
 
                     
-                    <img src="img/clase1/docker_ubuntu1.png" width="100%" height="100%">
+                    <img src="img/clase1/docker_ubuntu1.png" >
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker run -it ubuntu
+                        docker run -it ubuntu bash
                     </code></pre>
                     
                 </section>
@@ -438,10 +514,6 @@
                             <li class="fragment">El contenedor NO es el mismo que se ejecutó la vez anterior.</li>
 
                         </ul>
-
-                        <p class="fragment">En este caso se le agrega el comando bash para que se ejecute. Pero el resultado es el mismo.</p>
-
-
                     </small>
                     
                 </section>
@@ -458,10 +530,10 @@
 
             <section id="ejercicio_clase1" data-state="no_footer">
                 <h3>Ejercicio en clase:</h3>
-
+            
                 <ul>
                     <li>Instalar Docker en su PC</li>
-                    <li>Ejecutar la imágen hello-world</li>
+                    <li>Ejecutar la imágen hello-world*</li>
                     <li>Ejecutar en una sesión interactiva la imágen ubuntu
                         <ul>
                             <li>Ejecutar el siguiente comando para ver la memoria RAM libre.</li>
@@ -477,6 +549,8 @@
                     </li>
 
                 </ul>
+                <p><small><em>* Importante:</em> Asegúrese que Docker Desktop esté iniciado.</small></p>
+            
                 
 
             </section>
