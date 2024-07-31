@@ -207,3 +207,18 @@
   -webkit-mask-image: radial-gradient(circle, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0) 100%);
   mask-image: radial-gradient(circle, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0) 100%);
 }
+
+.custom-container {
+  display: flex;
+  align-items: center;
+}
+
+.custom-text {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.custom-image img {
+  max-width: 300px;
+  height: auto;
+}
