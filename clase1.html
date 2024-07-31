@@ -101,6 +101,7 @@
                     <ul>
                         <li>Apuntes de clases teóricas: <a href="https://docker.idepba.com.ar/">docker.idepba.com.ar</a></li>
                         <li>Laboratorios y práctica</li>
+                        <li>Trabajo final para aprobación del curso</li>
                     </ul>
                     </small>
 
@@ -134,19 +135,19 @@
                 <section id="intro-container2" data-state="no_footer">
                     <h3>Un poco de historia</h3>
 
-                    <p><small>Años 1960-1970, se introduce la virtualización en los mainframes de IBM que permite ejecutar múltiples sistemas operativos en una sola máquina física.</small></p>
-                    <p><small>En 1992, el programador finlandés Linus Torvals publica bajo licencia GNU GPL2 la versión 0.12 del kernel de Linux. De ahí en más, Linux es <strong>software libre</strong>.</small></p>
-                    <p><small>En 2008 surge LinuX Containers, también conocido por su acrónimo LXC. Aprovechando las características como <strong>cgroups</strong> y <strong>namespaces</strong> disponibles a partir de la versión 2.6.29 del kernel de Linux, permite desarrollar una tecnología de <em>virtualización a nivel de sistema operativo</em>. LXC permite que una máquina que corre Linux ejecute múltiples instancias de espacios de usuario aislados dando origen al término container. </small></p>
-                    <p><small>En 2013 se libera <strong>Docker</strong> como código abierto inicialmente basado en LXC. Pero al año siguiente, con el lanzamiento de la versión de Docker 0.9 dejó de utilizar LXC para usar su propio engine llamado <strong>libcontainer</strong>, escrito en Go.</small></p>
-                    <p><small>Desde entonces Docker ha crecido en popularidad colocándose como los proyectos con mas estrellas de GitHub, mas forks y con miles de colaboradores.</small></p>
+                    <p><small>En los años 1960-1970, IBM introdujo la virtualización en los mainframes, lo que permitió ejecutar múltiples sistemas operativos en una sola máquina física.</small></p>
+                    <p><small>En 1992, el programador finlandés Linus Torvalds publicó bajo licencia GNU GPL2 la versión 0.12 del kernel de Linux. Desde entonces, Linux se considera <strong>software libre</strong>.</small></p>
+                    <p><small>En 2008 surgieron los Linux Containers, también conocidos por su acrónimo <strong>LXC</strong>. Aprovechando características como <em>cgroups</em> y <em>namespaces</em> disponibles a partir de la versión 2.6.24 del kernel de Linux, LXC permite desarrollar una tecnología de virtualización a nivel de sistema operativo. LXC permite que una máquina que ejecuta Linux corra múltiples instancias de espacios de usuario aislados, dando origen al término contenedor.</small></p>
+                    <p><small>En 2013 se liberó <strong>Docker</strong> como código abierto, inicialmente basado en LXC. Pero al año siguiente, con el lanzamiento de la versión 0.9 de Docker, dejó de utilizar LXC para usar su propio motor llamado libcontainer, escrito en Go.</small></p>
+                    <p><small>Desde entonces, Docker ha crecido en popularidad, convirtiéndose en uno de los proyectos con más estrellas en GitHub, más forks y con miles de colaboradores.</small></p>
     
                 </section>
 
                 <section id="intro-vm" data-state="no_footer">
                     <h3>Máquinas virtuales</h3>
-                    <p><small>Muchas veces cuando introducimos al concepto de contenedor, viene la confusión si se trata de un tipo de <em>máquina virtual</em>. Repasemos conceptos de máquina virtual:</small></p>
-                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong> (hw), permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. </small></p>
-                    <p><small>Cada máquina virtual necesitará de asignación de recursos: procesador, disco, memoria, red, etc y <strong>un sistema operativo</strong>. Para llevar a cabo estas tareas se requiere de un <em>hypervisor</em>.</small></p>
+                    <p><small>A menudo, al introducir el concepto de <em>contenedor</em>, surge la confusión sobre si se trata de un tipo de <em>máquina virtual</em>. Repasemos los conceptos de máquina virtual:</small></p>
+                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong> (a nivel hardware), permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. </small></p>
+                    <p><small>Cada máquina virtual requiere la asignación de recursos como procesador, disco, memoria, red, etc., y un <strong>sistema operativo</strong>. Para gestionar estas tareas se necesita un hipervisor.</small></p>
                     <small>
                         <ul>Hypervisores mas conocidos
                             <li>VMware vShere/ESXi</li>
@@ -286,10 +287,10 @@
                     <h3>¿Por qué Docker?</h3>
                     <small>
                         <ul>
-                            <li><strong>Comunidad:</strong> Existe una gran comunidad aportando tanto al desarrollo de Docker como <em>imágenes</em> Docker. Foros, tutoriales, cursos online.</li>
+                            <li><strong>Comunidad:</strong> Existe una gran comunidad aportando tanto al desarrollo de Docker como <em>imágenes</em> Docker. Hay numerosos foros, tutoriales y cursos en línea disponibles.</li>
                             <li><strong>Facilidad de uso:</strong> Ofrece una interfaz de usuario sencilla y comandos intuitivos. Diversas herramientas gráficas.</li>
                             <li><strong>Soporte empresarial:</strong> Muchas empresas ofrecen soporte y soluciones basadas en Docker para entorno empresariales.</li>
-                            <li><strong>Licencia:</strong> No requiere de licencia para usar.</li>
+                            <li><strong>Licencia:</strong> Docker no requiere una licencia para su uso.</li>
                             <li><strong>Compatibilidad:</strong> Docker es compatible con diversas plataformas y sistemas operativos, lo que facilita su instalación e implementación.</li>
                         </ul>
                     </small>
@@ -311,7 +312,8 @@
                     </small>
                 </section>
 
-                <section id="docker3" data-state="no_footer">
+
+                <!-- <section id="docker3" data-state="no_footer">
                     <h3>Estados de un contenedor Docker</h3>
            
                     <small>
@@ -352,7 +354,7 @@
 
                     <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
 
-                </section>
+                </section> -->
 
                 <section id="ipreguntas2" data-state="no_footer">
                     <h2>Consultas</h2>
@@ -550,14 +552,15 @@
             
 
             <section id="ejercicio_clase1" data-state="no_footer">
-                <h3>Ejercicio en clase:</h3>
+                <h3>Actividad práctica en clase:</h3>
             
                 <ul>
+                    
                     <li>Instale Docker en su PC o acceda al sitio <a href="https://labs.play-with-docker.com" target="_blank">PlayWithDocker</a></li>
                     <li>Ejecutar la imágen hello-world*</li>
                     <li>Ejecutar en una sesión interactiva la imágen ubuntu
                         <ul>
-                            <li>Ejecutar el siguiente comando para ver la memoria RAM libre.</li>
+                            <li>Ejecutar el siguiente comando para ver la memoria RAM libre en el host.</li>
 
                             <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                                 free -h
