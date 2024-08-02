@@ -58,7 +58,8 @@
 
 			<section>
 				<section id="images_1" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Concepto de imágen Docker</h2>
+					<h3>Conceptos básios de Docker:</h3>
+                    <h4>Imágen, registry y contenedor</h4>
 				</section>
 
 				<section id="images_2" data-state="no_footer">
@@ -70,10 +71,12 @@
                     <img src="img/clase2/diagram.png">
                     
                     
-                    </small>
                     
-					
+                    </small>
+
 				</section>
+
+                
 
                 <section id="images_registry" data-state="no_footer">
                     <h3>¿Qué es una registry?</h3>
@@ -110,6 +113,146 @@
 
 
 				</section>
+
+                <section id="images_tags" data-state="no_footer">
+                    <h3>Tags de las imágenes</h3>
+                    <small>
+                        Los tags en una imagen Docker son etiquetas que permiten identificar y versionar las imágenes. Cada tag se asocia a una versión específica de la imagen, 
+                        lo que facilita la gestión y despliegue de diferentes versiones de una aplicación. Por ejemplo, podemos tener una imagen con el tag <strong>latest</strong> para la versión 
+                        más reciente y otro tag como <strong>v1.0</strong> para una versión específica.
+                    </small>
+                    <p>
+
+                    </p>
+                    <small>
+                    <p>Los tags se identifican con un ":" después del nombre de una imágen. Por lo tanto tendrán el formato <code>IMAGEN:TAG</code>.
+                        <ul> Ejemplos:
+                            <li><code>ubuntu:latest</code></li>
+                            <li><code>python:3.9.19</code></li>
+                            <li><code>redis:7.4.0</code></li>
+                        </ul>
+                    </p>
+                    </small>
+
+                    <p><small>Si no se especifica el tag de la imágen, se descargará el tag "latest", que indica la mas reciente versión disponible.</small>
+                    
+                    
+                    </p>
+
+
+                </section>
+
+                <section id="images_tags2" data-state="no_footer">
+                    <h3>Tags de las imágenes</h3>
+                    <p><small>¿Dónde buscar los tags?, en la registry. Por ejemplo en <a href="https://hub.docker.com" target="_blank">Docker Hub</a>
+
+                    </small>
+                    <img src="img/clase2/docker_hub2.png">
+                </p>
+
+                </section>
+
+                <section id="images_tags3" data-state="no_footer">
+                    <h3>Tags de las imágenes</h3>
+
+                    <h4>Beneficios de usar tags</h4>
+                    <small>
+                        <ul>
+                            <li><strong>Versionado:</strong> Permiten llevar un control de las versiones de la aplicación.</li>
+                            <li><strong>Flexibilidad:</strong> Facilitan el despliegue de versiones específicas en diferentes entornos.</li>
+                            <li><strong>Organización:</strong> Ayudan a mantener un repositorio de imágenes bien organizado y comprensible.</li>
+                            <li><strong>Conocer imágen base:</strong> Es habitual encontrar en el tag la imágen base de la imágen.
+                                Por eso vamos a encontrar tags como: IMAGEN:v1.0-alpine (para referirse que está basada en Alpine Linux) o hagan referencia a la arquitectura, por ejemplo: amd64, arm64v8, etc.
+                            </li>
+                        </ul>
+                    </small>
+                    <p>
+                        <small>Para ambientes productivos, es <strong>altamente recomendable</strong> especificar la versión de la imágen y NO usar la :latest.</small>
+                    </p>
+                </section>
+
+                <section id="docker3" data-state="no_footer">
+                    <h3>Ejecución de contenedores</h3>
+                    <small>
+                        
+                        <ul>
+                            <li>Los contenedores se crean a partir de imágenes.</li>
+                            <li>De una misma imágen pueden crearse n contenedores y podrían estar corriendo todos a la vez.</li>
+                            <li>Los contenedores, en su ciclo de vida, van pasando por diferentes estados.</li>
+
+                        </ul>
+
+                        <img src="img/clase2/container.png">
+                        
+
+                    
+                    
+                    </small>
+                    <br>
+
+                    
+
+
+
+                </section>
+
+                
+
+                <section id="docker3" data-state="no_footer">
+                    <h3>Estados de un contenedor Docker</h3>
+           
+                    <small>
+                    <ul> 
+                        <li><strong>Created:</strong> El contenedor se creó sin errores pero no está en ejecución. Se usa cuando creamos el contenedor pero aún no utilizarlo.</li>
+                        <li><strong>Running:</strong> El contenedor está creado y corriendo. Puede ser también indicado como <code>Up</code> y el tiempo que hace que está corriendo.</li>
+
+                        <li><strong>Restarting:</strong> El contenedor se está reiniciando. Esto puede suceder si el contenedor está configurado para reiniciarse automáticamente en ciertos casos, como después de un fallo o bien por indicación del programador.</li>
+                        <li><strong>Removing:</strong> El contenedor está en proceso de ser eliminado.</li>
+                        <li><strong>Paused:</strong> El contenedor se encuentra pausado. Se puede acceder al contenedor pero no está corriendo.</li>
+                        <li><strong>Exited:</strong> El contenedor ha terminado su ejecución y ha salido con un código de salida específico. Esto puede ser el resultado de que el proceso principal dentro del contenedor ha terminado, ya sea exitosamente o con un error.</li>
+                        <li><strong>Dead:</strong> El contenedor se encuentra en un estado donde el demonio Docker no puede gestionarlo adecuadamente. Este es un estado anómalo y generalmente indica que algo ha fallado seriamente.</li>
+
+                        
+                    </ul>
+                    </small>
+                </section>
+
+
+
+
+
+                <section id="docker4" data-state="no_footer">
+
+                    <h3>Ver estado de contenedores</h3>
+
+                    <p>Se usa el comando <code>docker ps -a</code></p>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker ps -a
+                    </code></pre>
+
+                    <p>Resultado:</p>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        CONTAINER ID  IMAGE    CREATED         STATUS                       
+                        1a2b3c4d5e6f  nginx    2 minutes ago   Up 2 minutes
+                        7g8h9i0j1k2l  busybox  5 minutes ago   Exited (0) 3 min ago
+                        3m4n5o6p7q8r  ubuntu   10 minutes ago  Created
+
+                    </code></pre>
+
+                    <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
+
+                </section>
+
+                <section id="life_cycle" data-state="no_footer">
+                    <h3>Ciclo de vida de contenedores</h3>
+                    <small><p>Este ciclo de vida permite gestionar de forma efectiva la creación, ejecución y eliminación de contenedores.</p></small>
+                    <img src="img/clase2/cycle.png">
+                    <small class="fragment">Cada etapa del ciclo de vida se asocia a un comando que provocará el cambio de un estado a otro.</small>
+
+
+                </section>
 
                 <!-- <section id="images_container" data-state="no_footer">
 					<h3>Crear un contenedor a partir de una imáge</h3>
@@ -187,20 +330,22 @@
                     <h3>Comandos básicos</h3>
                     
                     <small>
-                        <p>La Docker CLI es la terminal de Docker donde podemos ejecutar comandos. Si Docker fue correctamente instalado, desde una terminal de su PC, por ejempo PowerShell o Bash podemos ejecutar los comandos para Docker.</p>
+                        <p>La Docker CLI es la terminal de Docker donde podemos ejecutar comandos. Una vez instalado, desde una terminal de PowerShell o Bash podemos ejecutar los comandos para Docker.</p>
                     </small>
 
-                    <h4>Iniciar un contenedor</h4>
+                    <p>Iniciar un contenedor</p>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker run &lt;opciones&gt; &lt;imagen&gt; &lt;comando&gt;
+                        docker run [opciones] [imagen] [comando]
                     </code></pre>
-                    <h4>Ejemplos</h4>
+                    <p>Ejemplos</p>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker run hello-world      # Iniciará el hello-world de Docker
                         docker run -it ubuntu bash  # Iniciará una bash interactiva
                     </code></pre>
+
+                    
 
 
 
@@ -209,10 +354,10 @@
                 </section>
 
                 <section id="docker_cli2" data-state="no_footer">
-                    <h3>Comandos básicos</h3>
+                    <h4>Comandos mas utilizados de Docker</h4>
 
 
-                    <h4>Listar contenedores</h4>
+                    <p>Listar contenedores</p>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker ps       # Contenedores en ejecución
@@ -230,7 +375,7 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                 </small>
 
                 <small class="fragment">Observar que tras la ejecución del comando <strong>docker ps -a</strong> se ven los estados de los contenedores. Uno está arriba y el otro Exited (0)</small>
-                <p class="fragment"><small >Si no es especificado el <strong>name</strong> del container, se creará un nombre random.</small></p>
+                <p class="fragment"><small >Si no es especificado el <strong>name</strong> al momento de correr el container, se creará un nombre aleatorio.</small></p>
 
 
 
@@ -238,421 +383,87 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
     
                 </section>
 
-                <section id="intro-vm" data-state="no_footer">
-                    <h3>Máquinas virtuales</h3>
-                    <p><small>Muchas veces cuando introducimos al concepto de contenedor, viene la confusión si se trata de un tipo de <em>máquina virtual</em>. Repasemos conceptos de máquina virtual:</small></p>
-                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong> (hw), permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. </small></p>
-                    <p><small>Cada máquina virtual necesitará de asignación de recursos: procesador, disco, memoria, red, etc y <strong>un sistema operativo</strong>. Para llevar a cabo estas tareas se requiere de un <em>hypervisor</em>.</small></p>
-                    <small>
-                        <ul>Hypervisores mas conocidos
-                            <li>VMware vShere/ESXi</li>
-                            <li>Hyper-V</li>
-                            <li><a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a></li>
-                            <li><a href="https://www.proxmox.com/en/proxmox-virtual-environment/overview" target="_blank">Proxmox VE</a> (KVM)</li>
-                        </ul>
-                    </small>
+                <section id="docker_cli3" data-state="no_footer">
+                    <h4>Comandos mas utilizados de Docker</h4>
+                    <p>Descargar una imágen</p>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker pull IMAGEN:TAG
+                    </code></pre>
+                    
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker pull python3:3.9.19-alpine3.20
+                    </code></pre>
+
+                    <p>Listar imágenes descargadas</p>
+             
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker images
+
+                        REPOSITORY  TAG                  IMAGE ID       CREATED      SIZE
+                        python      3.9.19-alpine3.20    f214f2d92214   3 weeks ago  47.7MB
+                        python      3.9.19-bullseye      4a17c44db219   3 weeks ago  905MB
+                        python      3.9.19-slim-bullseye b866cddbe1d1   3 weeks ago  123MB
+                        nginx       latest               a72860cb95fd   5 weeks ago  188MB
+                    </code></pre>
+                    <p><small>Observar la diferencia de tamaño de cada imágen Python. Se trata de la misma versión de Python 3.9.19 pero cambia la imágen base.</small></p>
+     
+
                 </section>
 
                 <section id="intro-vm2" data-state="no_footer">
-                    <h3>Arquitectura Máquinas virtuales</h3>
-                    <p><small>Cada máquina virtual requiere un sistema operativo completo (kernel, utilidades del sistema, interfaz de usuario, etc) para funcionar.</small>
-                        <img src="img/clase1/vm.svg">
-                        <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. A menudo, el SO consume más recursos que la propia aplicación.</small>
-                    </p>
-                </section>
-
-                <section id="intro-container1" data-state="no_footer">
-                    <h3>Arquitectura Contenedores</h3>
-                    <p><small>Cada container, <strong>utiliza el kernel</strong> del sistema operativo del host. Solo contienen las aplicaciones y sus dependencias necesarias para funcionar.</small></p>
-                    <img src="img/clase1/container.svg">
-                    <p><small>Los contenedores utilizan aislación a nivel de proceso proporcionado por el kernel del host. Incluso entre dos o más containers pueden compartir sus dependencias y file system. También es posible limitar el uso de CPU y memoria a cada contenedor, tal cual como se haría en una VM.</small>
-                        <small>A la arquitectura de contenedores se le suele decir como un tipo de <em>virtualización liviana</em>.</small>
-                    </p>
-                </section>
-
-                <section id="intro-vm-vs-container" data-state="no_footer">
-                    <h2>Containers vs. VM</h2>
-                    
-                    <small>
-                    <!-- <section data-markdown>
-                        <textarea data-template>
-                            |   Caracteristica   | VM                    | Container             |
-                            |--------------------|-----------------------|-----------------------|
-                            | Aislamiento        | Completo (a nivel hw) | Liviano (proceso)     |
-                            | Recursos           | Mas uso de recursos   | Menos uso de recursos |
-                            | Arranque   | Lento                 | Rapido                |
-                            | SO | Multiples SO          | Mismo kernel host     |
-                            | Portabilidad       | Limitada, depende del hipervisor    | Alta, ejecutable en cualquier entorno     |
-                            | Seguridad       | Fuerte aislamiento de seguridad    | Aislamiento a nivel de proceso    |
-
-                        </textarea>
-                      </section> -->
-
-                      <table><thead>
+                    <h3>Mas comandos</h3>
+                <small>
+                    <table><thead>
                         <tr>
-                          <th>Caracteristica</th>
-                          <th>VM</th>
-                          <th>Container</th>
+                          <th>Comando</th>
+                          <th>Descripción</th>
+                          <th>Uso</th>
                         </tr></thead>
                       <tbody>
                         <tr>
-                          <td>Aislamiento</td>
-                          <td>Completo (a nivel hw)</td>
-                          <td>Liviano (proceso)</td>
+                          <td><code>docker stop</code></td>
+                          <td>Detiene uno o varios contenedores</td>
+                          <td><code>docker stop CONTAINERS</code> (name o ID)</td>
                         </tr>
                         <tr>
-                          <td>Recursos</td>
-                          <td>Mas uso de recursos</td>
-                          <td>Menos uso de recursos</td>
+                          <td><code>docker restart</code></td>
+                          <td>Reinicia uno o mas contenedores</td>
+                          <td><code>docker stop CONTAINER</code></td>
                         </tr>
                         <tr>
-                          <td>Arranque</td>
-                          <td>Lento</td>
-                          <td>Rapido</td>
+                          <td><code>docker rename</code></td>
+                          <td>Renombra un contenedor</td>
+                          <td><code>docker rename CONTAINER NEW_NAME</code></td>
                         </tr>
                         <tr>
-                          <td>SO</td>
-                          <td>Multiples SO</td>
-                          <td>Mismo kernel host</td>
-                        </tr>
-                        <tr>
-                          <td>Portabilidad</td>
-                          <td>Limitada, depende del hipervisor</td>
-                          <td>Alta, ejecutable en cualquier entorno</td>
-                        </tr>
-                        <tr>
-                          <td>Seguridad</td>
-                          <td>Fuerte aislamiento de seguridad</td>
-                          <td>Aislamiento a nivel de proceso</td>
+                          <td><code>docker rm</code></td>
+                          <td>Elimina uno o mas contenedores</td>
+                          <td><code>docker rm [options] CONTAINER</code></td>
                         </tr>
                       </tbody>
                       </table>
-
-
-                      
+                    
+                    
                     </small>
-                    <p><small>Esto no significa que las máquinas virtuales sean obsoletas en comparación con los contenedores. En algunas situaciones, el uso de contenedores no será posible. Por ejemplo, cuando se necesitan diferentes sistemas operativos para cada aplicación.</small></p>
-                    
-                    
+                    <p><small>Consulte la <a href="https://docs.docker.com/reference/cli/docker/" target="_blank">Docker CLI Refence</a> para un listado completo.</small></p>
+
                 </section>
-
-                <section id="intro-usos" data-state="no_footer">
-                    <h3>Casos de usos de contenedores</h3>
-                    
-                    <small>
-                    <ul>
-                        <li><strong>Desarrollo de microservicios:</strong> Adecuados para arquitecturas de microservicios donde cada componente de la aplicación se despliega de manera independiente.</li>
-                        <li><strong>Integración Continua y Despliegue Continuo:</strong>Facilitan la creación de pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
-                        <li><strong>Containerización de aplicaciones legacy</strong>: Se puede modernizar la infraestructura de aplicaciones no pensadas para contenedores. La conteinerización ayuda a la portabilidad y automatización de despliegues.</li>
-                        <li><strong>Despliegue sencillo de aplicaciones</strong>: Con solo copiar y pegar una instrucción o un archivo de texto es posible tener aplicaciones complejas deployadas para ambientes de prueba rápidamente.</li>
-                    
-
-                    </ul>
-
-                    <p>Existen varias tecnologías que utilizan contenedores, entre ellas: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>, <a href="https://containerd.io/" target="_blank">containerd</a>. Además, hay herramientas de orquestación y gestión de contenedores como <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a>, <a href="https://okd.io/" target="_blank">OKD</a>.</p>
-                    </small>
-                    
-                </section>
-
-
 
                 <section id="ipreguntas1" data-state="no_footer">
                     <h2>Consultas</h2>
                 </section>
 
             </section>
-
-            <section>
-				<section id="intro-docker" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Introducción a Docker</h2>
-				</section>
-
-                <section id="docker1" data-state="no_footer">
-                    <h3>¿Qué es Docker?</h3>
-                    <p><small>Docker es una plataforma de código abierto que facilita la creación, despliegue y ejecución de aplicaciones dentro de contenedores. Docker permite a los desarrolladores empaquetar una aplicación con todas sus dependencias en un contenedor, asegurando que la aplicación se ejecute de manera consistente en cualquier entorno.</small></p>
-                    <img src="img/clase1/docker.png" width="350px">
-
-                    <p><small>Docker, es hoy en día la tecnología de contenedores mas utilizada y más popular.</small></p>
-
-
-                </section>
-
-                <section id="docker1-1" data-state="no_footer">
-
-                    <h3>¿Por qué Docker?</h3>
-                    <small>
-                        <ul>
-                            <li><strong>Comunidad:</strong> Existe una gran comunidad aportando tanto al desarrollo de Docker como <em>imágenes</em> Docker. Foros, tutoriales, cursos online.</li>
-                            <li><strong>Facilidad de uso:</strong> Ofrece una interfaz de usuario sencilla y comandos intuitivos. Diversas herramientas gráficas.</li>
-                            <li><strong>Soporte empresarial:</strong> Muchas empresas ofrecen soporte y soluciones basadas en Docker para entorno empresariales.</li>
-                            <li><strong>Licencia:</strong> No requiere de licencia para usar.</li>
-                            <li><strong>Compatibilidad:</strong> Docker es compatible con diversas plataformas y sistemas operativos, lo que facilita su instalación e implementación.</li>
-                        </ul>
-                    </small>
-                    <!-- <p><small>A continuación veremos conceptos básicos que reforzaremos a lo largo del curso</small></p> -->
-
-                </section>
-
-                <section id="docker2" data-state="no_footer">
-                    <h3>Componentes de Docker</h3>
            
-                    <small>
-                    <ul> 
-                        <li><strong>Docker engine:</strong> El motor de Docker es la parte central de Docker, que permite a los usuarios crear, ejecutar y gestionar contenedores.</li>
-                        <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son inmutables y se pueden versionar.</li>
-                        <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones. Un contenedor está asociado a un <em>estado</em>. Los estados de un contenedor pueden ser: <code>created</code>, <code>running</code>, <code>restarting</code>, <code>removing</code>, <code>paused</code>, <code>exited</code>, <code>dead</code>.</li>
-                        <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li>
-                        
-                    </ul>
-                    </small>
-                </section>
-
-                <section id="docker3" data-state="no_footer">
-                    <h3>Estados de un contenedor Docker</h3>
-           
-                    <small>
-                    <ul> 
-                        <li><strong>Created:</strong> El contenedor se creó sin errores pero no está en ejecución. Se usa cuando creamos el contenedor pero aún no utilizarlo.</li>
-                        <li><strong>Running:</strong> El contenedor está creado y corriendo. Puede ser también indicado como <code>Up</code> y el tiempo que hace que está corriendo.</li>
-
-                        <li><strong>Restarting:</strong> El contenedor se está reiniciando. Esto puede suceder si el contenedor está configurado para reiniciarse automáticamente en ciertos casos, como después de un fallo o bien por indicación del programador.</li>
-                        <li><strong>Removing:</strong> El contenedor está en proceso de ser eliminado.</li>
-                        <li><strong>Paused:</strong> El contenedor se encuentra pausado. Se puede acceder al contenedor pero no está corriendo.</li>
-                        <li><strong>Exited:</strong> El contenedor ha terminado su ejecución y ha salido con un código de salida específico. Esto puede ser el resultado de que el proceso principal dentro del contenedor ha terminado, ya sea exitosamente o con un error.</li>
-                        <li><strong>Dead:</strong> El contenedor se encuentra en un estado donde el demonio Docker no puede gestionarlo adecuadamente. Este es un estado anómalo y generalmente indica que algo ha fallado seriamente.</li>
-
-                        
-                    </ul>
-                    </small>
-                </section>
-
-                <section id="docker4" data-state="no_footer">
-
-                    <h3>Ver estado de contenedores</h3>
-
-                    <p>Se usa el comando <code>docker ps -a</code></p>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker ps -a
-                    </code></pre>
-
-                    <p>Resultado:</p>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        CONTAINER ID  IMAGE    CREATED         STATUS                       
-                        1a2b3c4d5e6f  nginx    2 minutes ago   Up 2 minutes
-                        7g8h9i0j1k2l  busybox  5 minutes ago   Exited (0) 3 min ago
-                        3m4n5o6p7q8r  ubuntu   10 minutes ago  Created
-
-                    </code></pre>
-
-                    <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
-
-                </section>
-
-                <section id="ipreguntas2" data-state="no_footer">
-                    <h2>Consultas</h2>
-                </section>
-
-
-            </section>
-
-            <section>
-				<section id="docker-install" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Instalando Docker</h2>
-				</section>
-
-
-                <section id="docker-install2" data-state="no_footer">
-                    <h3>Instalando Docker</h3>
-                    <small>
-                            <p>Docker está disponible para las plataformas mas populares; Windows, GNU/Linux y MacOS.</p>
-
-                            <ul>
-                                <li><strong>Docker Desktop:</strong> La aplicación oficial de Docker. Es una interface de usuario gráfica. A su vez contiene el Docker engine.
-                                </li>
-                                <ul>
-                                    <li><a href="https://docs.docker.com/desktop/install/windows-install/" target="_blank">Docker Desktop para Windows</a> (Minimo Win 10 Home o Pro 21H2 / WSL version 1.1.3.0)</li>
-                                    <li><a href="https://docs.docker.com/desktop/install/linux-install/" target="_blank">Docker Desktop para GNU/Linux</a></li>
-                                    <li><a href="https://docs.docker.com/desktop/install/mac-install/" target="_blank">Docker Desktop para MacOS</a></li>
-
-                                </ul>
-                                <li><strong>Docker engine:</strong> También llamado Docker-CE. Es el motor de docker. Lo básico para que Docker funcione. 
-                                    <ul>
-                                        <li><a href="https://docs.docker.com/engine/install/" target="_blank">Docker Engine Linux</a></li>
-                                        <li><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank">Docker Engine Ubuntu</a></li>
-                                        <li><a href="https://docs.docker.com/engine/install/debian/" target="_blank">Docker Engine Debian</a></li>
-                                        <li><a href="https://docs.docker.com/engine/install/centos/" target="_blank">Docker Engine CentOS</a></li>
-
-
-                                    </ul>
-                                    
-                                </li>
-                            </ul>
-
-                            <p>En el curso veremos el uso de <strong><a href="https://docs.docker.com/reference/cli/docker/" target="_blank">Docker CLI</a></strong>, ya que no siempre podemos contar con una interface gráfica, ejemplo cuando se corre en servidores.</p>
-                    
-                    
-                    
-                    
-                    </small>
-
-                </section>
-
-                <section id="docker-install_10" data-state="no_footer">
-                    <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Una vez descargado el instalador, al instalar se verán las siguientes pantallas:</p></small>
-                    <img src="img/clase1/Docker_install.png" width="60%" height="60%">
-
-                </section>
-
-                <section id="docker-install_11" data-state="no_footer">
-                    <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Debemos aceptar los términos.</p></small>
-                    <img src="img/clase1/Docker_install2.png" class="screenshot-borde" width="80%" height="80%">
-
-                </section>
-
-                <section id="docker-install_12" data-state="no_footer">
-                    <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Elegimos una opción.</p></small>
-                    <img src="img/clase1/Docker_install3.png" class="screenshot-borde">
-
-                </section>
-
-                <section id="docker-install_13" data-state="no_footer">
-                    <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small>
-                    <img src="img/clase1/Docker_install4.png">
-
-                </section>
-
-                <section id="docker-install_14" data-state="no_footer">
-                    <h4>Instalando DOcker Desktop en Windows</h4>
-                    <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
-                    <img src="img/clase1/Docker_install5.png"  width="50%" height="50%">
-
-                </section>
-
-                <section id="docker-install_15" data-state="no_footer">
-                    <h4>Instalando DOcker Desktop en Windows</h4>
-                    <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
-                    <img src="img/clase1/Docker_install6.png" width="65%" height="65%" class="screenshot-borde">
-
-                </section>
-
-                <section id="docker-install_16" data-state="no_footer">
-                    <h4>Instalando DOcker Desktop en Windows</h4>
-                    <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
-                    <img src="img/clase1/Docker_install7.png" width="65%" height="65%" class="screenshot-borde">
-
-                </section>
-
-                <section id="docker-install_17" data-state="no_footer">
-                    <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Una vez instalado y corriendo. Es posible ejecutar comandos docker desde una consola de PowerShell (PS).</p></small>
-                    
-                    <img src="img/clase1/Docker_install8.png">
-                    <small>Para consultar la versión instalada ejecutamos:</small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker --version
-                    </code></pre>
-
-
-                </section>
-
-                <section id="docker-install_18" data-state="no_footer">
-                    <h4>Ejecutando nuestro primer contenedor</h4>
-
-
-
-                    
-                    <img src="img/clase1/Docker_install9.png" width="75%" height="75%">
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker run hello-world
-                    </code></pre>
-                    
-
-                </section>
-
-                <section id="docker-install_19" data-state="no_footer">
-                    <h4>Ejecutando nuestro primer contenedor</h4>
-                    <small><p>Vista desde Docker Desktop. Containers:</p></small>
-                    
-                    <img src="img/clase1/Docker_install10.png" class="screenshot-borde" width="100%" height="100%">
-                    
-
-                </section>
-
-                <section id="docker-install_19" data-state="no_footer">
-                    <h4>Ejecutando nuestro primer contenedor</h4>
-                    <small><p>Vista desde Docker Desktop. Images:</p></small>
-                    
-                    <img src="img/clase1/Docker_install11.png" class="screenshot-borde" width="100%" height="100%">
-                    
-                </section>
-
-                <section id="docker-install_20" data-state="no_footer">
-                    <h4>Ejecutamos un contenedor Ubuntu</h4>
-
-                    
-                    <img src="img/clase1/docker_ubuntu1.png" >
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker run -it ubuntu bash
-                    </code></pre>
-                    
-                </section>
-
-                <section id="docker-install_21" data-state="no_footer">
-                    <h4>Ejecutamos un contenedor Ubuntu</h4>
-                    <small>¿Qué pasa si volvemos a ejecutar un contenedor Ubuntu?</small>
-                    
-                    <img src="img/clase1/docker_ubuntu2.png" width="100%" height="100%">
-                    <small>
-                        <ul>
-                            <li class="fragment">No fue necesario volver a descargar la imágen.</li>
-                            <li class="fragment">El contenedor NO es el mismo que se ejecutó la vez anterior.</li>
-
-                        </ul>
-                    </small>
-                    
-                </section>
-
-                <section id="ipreguntas3" data-state="no_footer">
-                    <h2>Consultas</h2>
-                </section>
-
-            </section>
-
-
-
-            
 
             <section id="ejercicio_clase1" data-state="no_footer">
-                <h3>Ejercicio en clase:</h3>
+                <h3>Actividad de clase:</h3>
             
                 <ul>
-                    <li>Instalar Docker en su PC</li>
-                    <li>Ejecutar la imágen hello-world*</li>
-                    <li>Ejecutar en una sesión interactiva la imágen ubuntu
-                        <ul>
-                            <li>Ejecutar el siguiente comando para ver la memoria RAM libre.</li>
-
-                            <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                                free -h
-                            </code></pre>
-
-                            <li>¿Qué dato relevante ha mostrado?</li>
-
-                            
-                        </ul>
-                    </li>
-
+                    <li><a href="" target="_blank">Laboratorio 2.1</a></li>
+                    
                 </ul>
-                <p><small><em>* Importante:</em> Asegúrese que Docker Desktop esté iniciado.</small></p>
+                
             
                 
 
