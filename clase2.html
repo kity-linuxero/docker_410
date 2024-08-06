@@ -28,13 +28,13 @@
                 <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
                     
                     <h3>Fundamentos y usos prácticos de Docker</h3>
-                    <h4>Clase 1 : Introducción a contenedores Docker</h4>
+                    <h4>Clase 2 : Conceptos básicos de Docker</h4>
 
                 </section>
 
                 <section id="index" data-state="no_footer">
                     <h3>Temas de clase 1</h3>
-                    <h4>Introducción a contenedores Docker</h4>
+                    <h4>Conceptos básicos de Docker</h4>
                     <small>
                 
                         <ul>
@@ -47,7 +47,6 @@
                             <li><a href="#/ejercicio_clase1">Ejercicio práctico</a></li>
                             
 
-
                         </ul>
 
                     </small>
@@ -58,56 +57,119 @@
 			
 
 			<section>
-				<section id="intro" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Introducción al curso</h2>
+				<section id="images_1" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Concepto de imágen Docker</h2>
 				</section>
 
-				<section id="intro-presentacion" data-state="no_footer">
-					<h3>Presentación</h3>
+				<section id="images_2" data-state="no_footer">
+					<h3>¿Qué es una imágen Docker?</h3>
 					
-					<p>Instructor: Cristian O. Giambruni</p>
                     <small>
-                    <ul>
-                        <li>Contacto: cgiambruni@gmail.com</li>
-                        <li>APU. <a href="https://www.info.unlp.edu.ar/" target="_blank">Facultad de Informática</a>, UNLP</li>
-                        <li>Mat. <a href="https://www.cpciba.org.ar/" target="_blank">CPCIBA</a> 2402 </li>
-                        <li>Docente <a href="https://centro410laplata.edu.ar/" target="_blank">CFL 410</a>, Omar Nuñez</li>
-                        <li>Sysadmin Lotería BsAs</li>
-                        <li>Programador y Sysadmin Startup</li>
-                        <li>Coordinador IDEP Informática</li>
-                    </ul>
-                </small>
-                
+                    <p>Una imágen de Docker es una plantilla <strong>inmutable</strong> que contiene <em>todo lo necesario para ejecutar un contenedor</em>, incluyendo el código de la aplicación, las bibliotecas, dependencias, y el entorno de ejecución. Las mismas se crean a partir <strong>Dockerfiles</strong>, que son archivos de texto con instrucciones para construir una imagen.</p>
+                    <p>Las imágenes están disponibles desde distintos repositorios públicos o privados. El más comúnmente usado es la <strong>registry</strong> oficial de Docker, <a href="https://hub.docker.com/" target="_blank">DockerHub</a>.</p>
+                    <img src="img/clase2/diagram.png">
+                    
+                    
+                    </small>
+                    
 					
 				</section>
 
-                <section id="intro-objetivos" data-state="no_footer">
-					<h3>Objetivos del curso</h3>
-					
-					<small>
-                        <ul>
-                            <li>Introducir concepto general de contenedores.</li>
-                            <li>Introducir al uso de Docker para conteinerización.</li>
-                            <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología.</li>
-                            <li>Uso práctico de Docker</li>
-                            <li>Introdocir al uso de <a href="https://es.wikipedia.org/wiki/Bash" target="_blank">bash</a> para depuración de contenedores Docker</li>
-                            <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT, home labers.</li>
+                <section id="images_registry" data-state="no_footer">
+                    <h3>¿Qué es una registry?</h3>
+                    <small>
+                    <p>Un Docker Registry es un servicio para almacenar y distribuir imágenes de Docker. <a href="https://hub.docker.com/" target="_blank">Docker Hub</a> es el registro público más conocido, aunque no es el único disponible.</p>
+                    <p>Los registros de Docker ofrecen un amplio catálogo de imágenes para descargar y la posibilidad de subir nuestras propias imágenes para compartirlas o usarlas posteriormente. Si deseamos mantener nuestras imágenes de manera privada, algunos registros pueden requerir suscripciones de pago.</p>
+                    <p>También es posible configurar registros privados, lo que nos permite tener nuestro propio registro interno y gestionar las imágenes de Docker de manera segura dentro de nuestra organización.</p>
+                    
+                    </small>
+                </section>
+
+                <section id="images_docker_hub" data-state="no_footer">
+					<h3>Registry: Dockerhub</h3>
+                    <small>Una búsqueda "Linux" trae muchos resultados. Estando <a href="https://hub.docker.com/_/alpine" target="_blank">Alpine</a>, <a href="https://hub.docker.com/_/ubuntu" target="_blank">Ubuntu</a>,
+                        <a href="https://hub.docker.com/_/debian" target="_blank">Debian</a> y <a href="https://hub.docker.com/_/rockylinux" target="_blank">RockyLinux</a> entre los mas populares.</small>
+
+                    <!-- <div class="custom-container">
+                        <div class="custom-text">
+                            <small>
+                            <p></p>
+                            </small>
+
+                        </div>
+
+                        <div class="custom-image">
                             
+
+                        </div>
+
+
+                    </div> -->
+					
+                    <a href="https://hub.docker.com/search?q=linux&type=image" target="_blank"><img src="img/clase2/docker_hub1.png" width="40%"></a>
+
+
+				</section>
+
+                <!-- <section id="images_container" data-state="no_footer">
+					<h3>Crear un contenedor a partir de una imáge</h3>
+                    <small>
+                        <a href="clase1.html#/docker-install_18" target="_blank">En la clase anterior</a> ejecutamos el contenedor <em>hello-world</em>. ¿Qué ha pasado cuando lo ejecutamos?:
+                        <ul>
+                            <li>1. El cliente Docker se conecta con el Docker daemon</li>
+                            <li>2. El Docker daemon descarga la imágen (si no se encuentra descargada) "hello-world" desde la registry (DockerHub)</li>
+                            <li>3. El Docker daemon crea un nuevo contenedor partiendo desde la imágen descargada y la ejecución de la imágen produce un texto que se muestra en pantalla.</li>
+                            <li>4. El contenedor termina su ejecución y finaliza con un estado <em>Exit (0)</em></li>
                         </ul>
                     </small>
+				</section> -->
 
-                    <h4>Organización del curso</h4>
+
+
+                <!-- PARA LA PRÓXIMA CLASE, MEJOR -->
+
+                <!-- <section id="images_container" data-state="no_footer">
+
+                    <h3>Imágenes y Dockerfile</h3>
+
                     <small>
-                    <ul>
-                        <li>Apuntes de clases teóricas: <a href="https://docker.idepba.com.ar/">docker.idepba.com.ar</a></li>
-                        <li>Laboratorios y práctica</li>
-                        <li>Trabajo final para aprobación del curso</li>
-                    </ul>
+                        <p>Un <code>Dockerfile</code> es un archivo de texto que contiene una serie de instrucciones que Docker utiliza para construir una imagen de Docker. Es la receta que define todo lo necesario para configurar y ejecutar una aplicación dentro de un contenedor.</p>
+                    </small>
+                        <h4>Archivo Dockerfile de ejemplo:</h4>
+
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                            FROM ubuntu:latest
+                            RUN apt-get update && apt-get install -y nginx
+                            COPY index.html /var/www/html/
+                            CMD ["nginx", "-g", "daemon off;"]
+                            EXPOSE 80
+                        </code></pre>
+
+                        <small class="fragment"><p>A continuación analizaremos los componentes de un Dockerfile</p></small>
+
+                </section>
+
+                <section id="dockerfile" data-state="no_footer">
+                    <h3>Estructura de un Dockerfile</h3>
+                    <small>
+                        <p></p>
+                        <ul>
+                            <li><strong><code>FROM</code>:</strong> Las imágenes arrancan siempre con el FROM. Es la base de la imágen. Por lo general indica la imágen de un sistema operativo o de una aplicación. Es una buena práctica usar una imágen ya pre-armada con todas las dependencias y no armarla a partir del SO si no es necesario.</li>
+                            <li><strong><code>RUN</code>:</strong> Ejecuta comandos en el contenedor durante la construcción de la imagen del FROM.</li>
+                            <li><strong><code>COPY/ADD</code>:</strong> Copia archivos y directorios desde el sistema de archivos del host al sistema de archivos del contenedor.</li>
+                            <li><strong><code>CMD/ENTRYPOINT</code>:</strong> Define el comando predeterminado que se ejecutará cuando se inicie un contenedor a partir de la imagen.</li>
+                            <li><strong><code>EXPOSE</code>:</strong> Indica el puerto en el que la aplicación dentro del contenedor estará escuchando.</li>
+
+                        </ul>
+
+                        <p>Consultar la <a href="https://docs.docker.com/reference/dockerfile/" target="_blank">referencia <code>Dockerfile</code></a> para ver todos los comandos disponibles.</p>
                     </small>
 
-                    
+                </section> -->
 
-				</section>
+                <section id="ipreguntas1" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
 
 
 
@@ -116,38 +178,71 @@
 
 
             <section>
-				<section id="intro-container_t" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Introducción a contenedores</h2>
+				<section id="docker_cli" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Docker CLI</h2>
+                    <h4>Comandos básicos</h4>
 				</section>
 
-                <section id="intro-container" data-state="no_footer">
-                    <h3>Contenedor</h3>
+                <section id="docker_cli1" data-state="no_footer">
+                    <h3>Comandos básicos</h3>
                     
-                    <p><small>En informática, un contenedor o container, es una unidad ligera y <em>portátil</em> de software que <em>empaqueta</em> una aplicación y <em>todas sus dependencias</em>, permitiendo que se ejecute de manera consistente en <strong>cualquier entorno</strong>.</small></p>
-                    <div class="fade-img">
-                    <img src="img/clase1/ships.webp" width="450" >
-                    </div>
-                    
-                    <p class="fragment"><small>Entonces... <strong>¿Para qué vamos a usar contenedores?</strong>. Básicamente, para portar nuestra aplicación y ejecutarla de la misma manera en nuestra PC que en cualquier ambiente de desarrollo.</small></p>
+                    <small>
+                        <p>La Docker CLI es la terminal de Docker donde podemos ejecutar comandos. Si Docker fue correctamente instalado, desde una terminal de su PC, por ejempo PowerShell o Bash podemos ejecutar los comandos para Docker.</p>
+                    </small>
+
+                    <h4>Iniciar un contenedor</h4>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker run &lt;opciones&gt; &lt;imagen&gt; &lt;comando&gt;
+                    </code></pre>
+                    <h4>Ejemplos</h4>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker run hello-world      # Iniciará el hello-world de Docker
+                        docker run -it ubuntu bash  # Iniciará una bash interactiva
+                    </code></pre>
+
+
+
+
     
                 </section>
 
-                <section id="intro-container2" data-state="no_footer">
-                    <h3>Un poco de historia</h3>
+                <section id="docker_cli2" data-state="no_footer">
+                    <h3>Comandos básicos</h3>
 
-                    <p><small>En los años 1960-1970, IBM introdujo la virtualización en los mainframes, lo que permitió ejecutar múltiples sistemas operativos en una sola máquina física.</small></p>
-                    <p><small>En 1992, el programador finlandés Linus Torvalds publicó bajo licencia GNU GPL2 la versión 0.12 del kernel de Linux. Desde entonces, Linux se considera <strong>software libre</strong>.</small></p>
-                    <p><small>En 2008 surgieron los Linux Containers, también conocidos por su acrónimo <strong>LXC</strong>. Aprovechando características como <em>cgroups</em> y <em>namespaces</em> disponibles a partir de la versión 2.6.24 del kernel de Linux, LXC permite desarrollar una tecnología de virtualización a nivel de sistema operativo. LXC permite que una máquina que ejecuta Linux corra múltiples instancias de espacios de usuario aislados, dando origen al término contenedor.</small></p>
-                    <p><small>En 2013 se liberó <strong>Docker</strong> como código abierto, inicialmente basado en LXC. Pero al año siguiente, con el lanzamiento de la versión 0.9 de Docker, dejó de utilizar LXC para usar su propio motor llamado libcontainer, escrito en Go.</small></p>
-                    <p><small>Desde entonces, Docker ha crecido en popularidad, convirtiéndose en uno de los proyectos con más estrellas en GitHub, más forks y con miles de colaboradores.</small></p>
+
+                    <h4>Listar contenedores</h4>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker ps       # Contenedores en ejecución
+                        docker ps -a    # Todos los contenedores
+                    </code></pre>
+
+                    <small>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+docker ps -a
+
+CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS                          NAMES
+397b24009eac   ubuntu       "bash"      6 seconds ago       Up 5 seconds                    infallible_jemison
+97476377f815   hello-world  "/hello"    About an hour ago   Exited (0) About an hour ago    bold_rosalind
+                    </code></pre>
+                </small>
+
+                <small class="fragment">Observar que tras la ejecución del comando <strong>docker ps -a</strong> se ven los estados de los contenedores. Uno está arriba y el otro Exited (0)</small>
+                <p class="fragment"><small >Si no es especificado el <strong>name</strong> del container, se creará un nombre random.</small></p>
+
+
+
+
     
                 </section>
 
                 <section id="intro-vm" data-state="no_footer">
                     <h3>Máquinas virtuales</h3>
-                    <p><small>A menudo, al introducir el concepto de <em>contenedor</em>, surge la confusión sobre si se trata de un tipo de <em>máquina virtual</em>. Repasemos los conceptos de máquina virtual:</small></p>
-                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong> (a nivel hardware), permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. </small></p>
-                    <p><small>Cada máquina virtual requiere la asignación de recursos como procesador, disco, memoria, red, etc., y un <strong>sistema operativo</strong>. Para gestionar estas tareas se necesita un hipervisor.</small></p>
+                    <p><small>Muchas veces cuando introducimos al concepto de contenedor, viene la confusión si se trata de un tipo de <em>máquina virtual</em>. Repasemos conceptos de máquina virtual:</small></p>
+                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong> (hw), permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. </small></p>
+                    <p><small>Cada máquina virtual necesitará de asignación de recursos: procesador, disco, memoria, red, etc y <strong>un sistema operativo</strong>. Para llevar a cabo estas tareas se requiere de un <em>hypervisor</em>.</small></p>
                     <small>
                         <ul>Hypervisores mas conocidos
                             <li>VMware vShere/ESXi</li>
@@ -287,10 +382,10 @@
                     <h3>¿Por qué Docker?</h3>
                     <small>
                         <ul>
-                            <li><strong>Comunidad:</strong> Existe una gran comunidad aportando tanto al desarrollo de Docker como <em>imágenes</em> Docker. Hay numerosos foros, tutoriales y cursos en línea disponibles.</li>
+                            <li><strong>Comunidad:</strong> Existe una gran comunidad aportando tanto al desarrollo de Docker como <em>imágenes</em> Docker. Foros, tutoriales, cursos online.</li>
                             <li><strong>Facilidad de uso:</strong> Ofrece una interfaz de usuario sencilla y comandos intuitivos. Diversas herramientas gráficas.</li>
                             <li><strong>Soporte empresarial:</strong> Muchas empresas ofrecen soporte y soluciones basadas en Docker para entorno empresariales.</li>
-                            <li><strong>Licencia:</strong> Docker no requiere una licencia para su uso.</li>
+                            <li><strong>Licencia:</strong> No requiere de licencia para usar.</li>
                             <li><strong>Compatibilidad:</strong> Docker es compatible con diversas plataformas y sistemas operativos, lo que facilita su instalación e implementación.</li>
                         </ul>
                     </small>
@@ -312,8 +407,7 @@
                     </small>
                 </section>
 
-
-                <!-- <section id="docker3" data-state="no_footer">
+                <section id="docker3" data-state="no_footer">
                     <h3>Estados de un contenedor Docker</h3>
            
                     <small>
@@ -354,7 +448,7 @@
 
                     <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
 
-                </section> -->
+                </section>
 
                 <section id="ipreguntas2" data-state="no_footer">
                     <h2>Consultas</h2>
@@ -365,12 +459,12 @@
 
             <section>
 				<section id="docker-install" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Instalación de Docker</h2>
+					<h2>Instalando Docker</h2>
 				</section>
 
 
                 <section id="docker-install2" data-state="no_footer">
-                    <h3>Instalación de Docker</h3>
+                    <h3>Instalando Docker</h3>
                     <small>
                             <p>Docker está disponible para las plataformas mas populares; Windows, GNU/Linux y MacOS.</p>
 
@@ -533,34 +627,19 @@
 
             </section>
 
-            <section>
-                <section id="docker-no-install" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Probando Docker sin instalar</h2>
-				</section>
-
-                <section id="play-with-docker" data-state="no_footer">
-                    <h3>Probando Docker sin instalar</h3>
-                    <small>Podemos usar y probar Docker sin instalarlo usando un navegador web desde el sitio <a href="https://labs.play-with-docker.com" target="_blank">PlayWithDocker</a>. Es necesario iniciar sesión. Luego tendremos 4 horas para poder probar.</small>
-                    <img src="img/clase1/play_with_docker.png" class="screenshot-borde">
-
-                </section>
-
-            </section>
-
 
 
             
 
             <section id="ejercicio_clase1" data-state="no_footer">
-                <h3>Actividad práctica en clase:</h3>
+                <h3>Ejercicio en clase:</h3>
             
                 <ul>
-                    
-                    <li>Instale Docker en su PC o acceda al sitio <a href="https://labs.play-with-docker.com" target="_blank">PlayWithDocker</a></li>
+                    <li>Instalar Docker en su PC</li>
                     <li>Ejecutar la imágen hello-world*</li>
                     <li>Ejecutar en una sesión interactiva la imágen ubuntu
                         <ul>
-                            <li>Ejecutar el siguiente comando para ver la memoria RAM libre en el host.</li>
+                            <li>Ejecutar el siguiente comando para ver la memoria RAM libre.</li>
 
                             <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                                 free -h
@@ -573,7 +652,7 @@
                     </li>
 
                 </ul>
-                <p><small><em>* Importante:</em> Si ha optado por la instalación de Docker en la PC, asegúrese que Docker Desktop esté iniciado.</small></p>
+                <p><small><em>* Importante:</em> Asegúrese que Docker Desktop esté iniciado.</small></p>
             
                 
 
