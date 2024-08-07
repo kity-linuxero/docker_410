@@ -49,6 +49,13 @@
 
 					</section>
 
+					<section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+				
+						<img src="img/logos/idep_logo.png" width="40%" height="40%">
+						
+			
+					</section>
+
 			</section>
 
 
@@ -94,6 +101,13 @@
 				var element = document.getElementById("logos-footer");
 				element.style.display = "table";
 				element.style.opacity = "40%";
+
+			} );
+
+			Reveal.on( 'hide_footer', function() {
+				var element = document.getElementById("logos-footer");
+				element.style.display = "table";
+				element.style.opacity = "0%";
 
 			} );
 
