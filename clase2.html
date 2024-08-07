@@ -149,6 +149,7 @@
                     </small>
                     <img src="img/clase2/docker_hub2.png">
                 </p>
+                
 
                 </section>
 
@@ -169,6 +170,8 @@
                     <p>
                         <small>Para ambientes productivos, es <strong>altamente recomendable</strong> especificar la versión de la imágen y NO usar la :latest.</small>
                     </p>
+
+                    <p><small>Ref: <a href="https://docs.docker.com/reference/cli/docker/image/tag/" target="_blank">Docker Docs Tags</a></small></p>
                 </section>
 
                 <section id="docker3" data-state="no_footer">
@@ -177,10 +180,16 @@
                         
                         <ul>
                             <li>Los contenedores se crean a partir de imágenes.</li>
-                            <li>De una misma imágen pueden crearse n contenedores y podrían estar corriendo todos a la vez.</li>
-                            <li>Los contenedores, en su ciclo de vida, van pasando por diferentes estados.</li>
+                            <li>De una misma imagen, se pueden crear múltiples contenedores que pueden ejecutarse simultáneamente.</li>
+                            <li>Durante su ciclo de vida, los contenedores pasan por diferentes estados.</li>
 
                         </ul>
+                        <br><br>
+
+
+                         
+                        
+
 
                         <img src="img/clase2/container.png">
                         
@@ -203,14 +212,13 @@
            
                     <small>
                     <ul> 
-                        <li><strong>Created:</strong> El contenedor se creó sin errores pero no está en ejecución. Se usa cuando creamos el contenedor pero aún no utilizarlo.</li>
-                        <li><strong>Running:</strong> El contenedor está creado y corriendo. Puede ser también indicado como <code>Up</code> y el tiempo que hace que está corriendo.</li>
-
+                        <li><strong>Created:</strong> El contenedor se ha creado pero no está en ejecución.</li>
+                        <li><strong>Running:</strong> El contenedor está en ejecución, también puede aparecer como Up seguido por el tiempo que hace que está ejecutándose.</li>
                         <li><strong>Restarting:</strong> El contenedor se está reiniciando. Esto puede suceder si el contenedor está configurado para reiniciarse automáticamente en ciertos casos, como después de un fallo o bien por indicación del programador.</li>
                         <li><strong>Removing:</strong> El contenedor está en proceso de ser eliminado.</li>
-                        <li><strong>Paused:</strong> El contenedor se encuentra pausado. Se puede acceder al contenedor pero no está corriendo.</li>
-                        <li><strong>Exited:</strong> El contenedor ha terminado su ejecución y ha salido con un código de salida específico. Esto puede ser el resultado de que el proceso principal dentro del contenedor ha terminado, ya sea exitosamente o con un error.</li>
-                        <li><strong>Dead:</strong> El contenedor se encuentra en un estado donde el demonio Docker no puede gestionarlo adecuadamente. Este es un estado anómalo y generalmente indica que algo ha fallado seriamente.</li>
+                        <li><strong>Paused:</strong> El contenedor está pausado; no ejecuta procesos pero sigue accesible.</li>
+                        <li><strong>Exited:</strong> El contenedor ha terminado su ejecución con un código de salida. Un código 0 indica que finalizó correctamente.</li>
+                        <li><strong>Dead:</strong> El contenedor no puede ser gestionado por Docker debido a un fallo grave.</li>
 
                         
                     </ul>
@@ -221,29 +229,7 @@
 
 
 
-                <section id="docker4" data-state="no_footer">
 
-                    <h3>Ver estado de contenedores</h3>
-
-                    <p>Se usa el comando <code>docker ps -a</code></p>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker ps -a
-                    </code></pre>
-
-                    <p>Resultado:</p>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        CONTAINER ID  IMAGE    CREATED         STATUS                       
-                        1a2b3c4d5e6f  nginx    2 minutes ago   Up 2 minutes
-                        7g8h9i0j1k2l  busybox  5 minutes ago   Exited (0) 3 min ago
-                        3m4n5o6p7q8r  ubuntu   10 minutes ago  Created
-
-                    </code></pre>
-
-                    <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
-
-                </section>
 
                 <section id="life_cycle" data-state="no_footer">
                     <h3>Ciclo de vida de contenedores</h3>
@@ -353,6 +339,30 @@
     
                 </section>
 
+                <!-- <section id="docker4" data-state="no_footer">
+
+                    <h3>Ver estado de contenedores</h3>
+
+                    <p>Se usa el comando <code>docker ps -a</code></p>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker ps -a
+                    </code></pre>
+
+                    <p>Resultado:</p>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        CONTAINER ID  IMAGE    CREATED         STATUS                       
+                        1a2b3c4d5e6f  nginx    2 minutes ago   Up 2 minutes
+                        7g8h9i0j1k2l  busybox  5 minutes ago   Exited (0) 3 min ago
+                        3m4n5o6p7q8r  ubuntu   10 minutes ago  Created
+
+                    </code></pre>
+
+                    <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
+
+                </section> -->
+
                 <section id="docker_cli2" data-state="no_footer">
                     <h4>Comandos mas utilizados de Docker</h4>
 
@@ -374,7 +384,7 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                     </code></pre>
                 </small>
 
-                <small class="fragment">Observar que tras la ejecución del comando <strong>docker ps -a</strong> se ven los estados de los contenedores. Uno está arriba y el otro Exited (0)</small>
+                <small class="fragment">Observar que tras la ejecución del comando <strong>docker ps -a</strong> se ven <strong>los estados</strong> de los contenedores. Uno está arriba y el otro Exited (0)</small>
                 <p class="fragment"><small >Si no es especificado el <strong>name</strong> al momento de correr el container, se creará un nombre aleatorio.</small></p>
 
 
