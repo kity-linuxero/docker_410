@@ -43,8 +43,9 @@
                             <li><a href="#/intro-container1">Arquitectura contenedores</a></li>
                             <li><a href="#/intro-usos">Casos de usos</a></li>
                             <li><a href="#/docker1">Introducción a Docker</a></li>
+                            <li><a href="#/tech_container1">Otras tecnologías de contenedores</a></li>
                             <li><a href="#/docker-install2">Instalación de Docker</a></li>
-                            <li><a href="#/ejercicio_clase1">Ejercicio práctico</a></li>
+                            <li><a href="#/labs">Laboratorios de actividades prácticas</a></li>
                             
 
 
@@ -179,19 +180,6 @@
                     <h2>Containers vs. VM</h2>
                     
                     <small>
-                    <!-- <section data-markdown>
-                        <textarea data-template>
-                            |   Caracteristica   | VM                    | Container             |
-                            |--------------------|-----------------------|-----------------------|
-                            | Aislamiento        | Completo (a nivel hw) | Liviano (proceso)     |
-                            | Recursos           | Mas uso de recursos   | Menos uso de recursos |
-                            | Arranque   | Lento                 | Rapido                |
-                            | SO | Multiples SO          | Mismo kernel host     |
-                            | Portabilidad       | Limitada, depende del hipervisor    | Alta, ejecutable en cualquier entorno     |
-                            | Seguridad       | Fuerte aislamiento de seguridad    | Aislamiento a nivel de proceso    |
-
-                        </textarea>
-                      </section> -->
 
                       <table><thead>
                         <tr>
@@ -304,9 +292,10 @@
                     <small>
                     <ul> 
                         <li><strong>Docker engine:</strong> El motor de Docker es la parte central de Docker, que permite a los usuarios crear, ejecutar y gestionar contenedores.</li>
-                        <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son inmutables y se pueden versionar.</li>
+                        <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son <em>inmutables</em> pero pueden versionar para hacer cambios.</li>
                         <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones. Un contenedor está asociado a un <em>estado</em>. Los estados de un contenedor pueden ser: <code>created</code>, <code>running</code>, <code>restarting</code>, <code>removing</code>, <code>paused</code>, <code>exited</code>, <code>dead</code>.</li>
                         <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li>
+                        <li><strong>Docker Desktop:</strong> Es una aplicación <em>todo-en-uno</em> que proporciona una interfaz gráfica y un entorno completo para trabajar con Docker. En sistemas Windows y MacOS incluye una máquina virtual liviana basada en Linux. Ya que, recordemos que los contenedores corren sobre Linux.</li>
                         
                     </ul>
                     </small>
@@ -364,55 +353,82 @@
 
                 </section>
 
-
-                <!-- <section id="docker3" data-state="no_footer">
-                    <h3>Estados de un contenedor Docker</h3>
-           
-                    <small>
-                    <ul> 
-                        <li><strong>Created:</strong> El contenedor se creó sin errores pero no está en ejecución. Se usa cuando creamos el contenedor pero aún no utilizarlo.</li>
-                        <li><strong>Running:</strong> El contenedor está creado y corriendo. Puede ser también indicado como <code>Up</code> y el tiempo que hace que está corriendo.</li>
-
-                        <li><strong>Restarting:</strong> El contenedor se está reiniciando. Esto puede suceder si el contenedor está configurado para reiniciarse automáticamente en ciertos casos, como después de un fallo o bien por indicación del programador.</li>
-                        <li><strong>Removing:</strong> El contenedor está en proceso de ser eliminado.</li>
-                        <li><strong>Paused:</strong> El contenedor se encuentra pausado. Se puede acceder al contenedor pero no está corriendo.</li>
-                        <li><strong>Exited:</strong> El contenedor ha terminado su ejecución y ha salido con un código de salida específico. Esto puede ser el resultado de que el proceso principal dentro del contenedor ha terminado, ya sea exitosamente o con un error.</li>
-                        <li><strong>Dead:</strong> El contenedor se encuentra en un estado donde el demonio Docker no puede gestionarlo adecuadamente. Este es un estado anómalo y generalmente indica que algo ha fallado seriamente.</li>
-
-                        
-                    </ul>
-                    </small>
-                </section>
-
-                <section id="docker4" data-state="no_footer">
-
-                    <h3>Ver estado de contenedores</h3>
-
-                    <p>Se usa el comando <code>docker ps -a</code></p>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker ps -a
-                    </code></pre>
-
-                    <p>Resultado:</p>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        CONTAINER ID  IMAGE    CREATED         STATUS                       
-                        1a2b3c4d5e6f  nginx    2 minutes ago   Up 2 minutes
-                        7g8h9i0j1k2l  busybox  5 minutes ago   Exited (0) 3 min ago
-                        3m4n5o6p7q8r  ubuntu   10 minutes ago  Created
-
-                    </code></pre>
-
-                    <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
-
-                </section> -->
-
                 <section id="ipreguntas2" data-state="no_footer">
                     <h2>Consultas</h2>
                 </section>
 
 
+            </section>
+
+            <section>
+
+                <section id="tech_container" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Tecnologías de contenedores</h2>
+				</section>
+
+
+                <section id="tech_container1" data-state="no_footer">
+                    <h4>Otras tecnologías de contenedores</h4>
+                    <p><small>Docker es actualmente el sistema de gestión de contenedores más popular, pero no el único.</small></p>
+                    <img src="img/clase1/drawio.png">
+                </section>
+
+                <section id="tech_container2" data-state="no_footer">
+                    <h3>LXC (LinuX Containers)</h3>
+                    <p><small>El objetivo de LXC es crear un entorno lo más parecido posible a una instalación estándar de Linux pero sin la necesidad de un kernel independiente. <a href="https://linuxcontainers.org/lxc/introduction/#features" target="_blank">[1]</a> </small></p>
+
+                    <div class="custom-container">
+                        <div class="custom-text">
+                            <small>
+                            <ul>
+                                <li>Está basado en la <em>liblxc</em> <a href="https://linuxcontainers.org/lxc/introduction/#components" target="_blank">[2]</a></li>
+                                <li>La versión 5.0 tiene soporte hasta Junio del 2027 <a href="https://linuxcontainers.org/lxc/introduction/#extended-support" target="_blank">[3]</a></li>
+                                <li>Muy utilizada en entornos de virtualización Proxmox VE <a href="https://pve.proxmox.com/wiki/Linux_Container" target="_blank">[4]</a>. ProxmoxVE ofrece una manera fácil e intuitiva de manejar containers LXC, casi como si de una máquina virtual se tratara.</li>
+                                
+                            </ul>
+                            </small>
+
+                        </div>
+
+                        <div class="custom-image">
+                            <img src="img/clase1/lxc-logo.png">
+
+                        </div>
+
+
+                    </div>
+
+                    
+                </section>
+
+                <section id="tech_container3" data-state="no_footer">
+                    <h3>Podman</h3>
+                    <p><small>Podman es una herramienta nativa de Linux, de código abierto y sin daemon, diseñada para facilitar la búsqueda, construcción, compartición y despliegue de aplicaciones utilizando contenedores.<a href="https://docs.podman.io/en/latest/index.html" target="_blank">[1]</a></small></p>
+
+                    <div class="custom-container">
+                        <div class="custom-text">
+                            <small>
+                            <ul>
+                                <li><strong>Daemonless:</strong> No requiere de un daemon centralizado como Docker, lo que mejora la seguridad al no necesitar ejecutarse con permisos de root y brinda un entorno más ligero.</li>
+                                <li><strong>Compatibilidad con Docker:</strong> Es compatible con Docker. Casi todos los comandos son idénticos y también es compatible a nivel de imágenes.</li>
+                                <li><strong>Ecosistema:</strong> Tiene un ecosistema más reducido en comparación con Docker y no es tan popular..</li>
+                                <li><strong>Open source:</strong> Código abierto. Licencia Apache</li>
+                                <li><strong>GUI:</strong> Cuenta con una aplicación de escritorio llamada <a href="https://podman-desktop.io/" target="_blank">Podman Desktop</a></li>
+                            </ul>
+                            </small>
+
+                        </div>
+
+                        <div class="custom-image">
+                            <img src="img/clase1/podman.png">
+
+                        </div>
+
+
+                    </div>
+
+                    
+                </section>
             </section>
 
             <section>
@@ -510,12 +526,12 @@
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <small><p>Una vez instalado y corriendo. Es posible ejecutar comandos docker desde una consola de PowerShell (PS).</p></small>
                     
-                    <img src="img/clase1/Docker_install8.png">
                     <small>Para consultar la versión instalada ejecutamos:</small>
-
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker --version
                     </code></pre>
+                    
+                    <img src="img/clase1/Docker_install8.png">
 
 
                 </section>
@@ -523,14 +539,13 @@
                 <section id="docker-install_18" data-state="no_footer">
                     <h4>Ejecutando nuestro primer contenedor</h4>
 
-
-
-                    
-                    <img src="img/clase1/Docker_install9.png" width="75%" height="75%">
-
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker run hello-world
                     </code></pre>
+
+                    <img src="img/clase1/Docker_install9.png" width="75%" height="75%">
+
+
                     
 
                 </section>
@@ -552,15 +567,17 @@
                     
                 </section>
 
-                <section id="docker-install_20" data-state="no_footer">
+                <!-- <section id="docker-install_20" data-state="no_footer">
                     <h4>Ejecutamos un contenedor Ubuntu</h4>
-
-                    
-                    <img src="img/clase1/docker_ubuntu1.png" >
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker run -it ubuntu bash
                     </code></pre>
+
+                    
+                    <img src="img/clase1/docker_ubuntu1.png" >
+
+
                     
                 </section>
 
@@ -577,7 +594,7 @@
                         </ul>
                     </small>
                     
-                </section>
+                </section> -->
 
                 <section id="ipreguntas3" data-state="no_footer">
                     <h2>Consultas</h2>
@@ -603,29 +620,18 @@
 
             
 
-            <section id="ejercicio_clase1" data-state="no_footer">
-                <h3>Actividad práctica en clase:</h3>
+            <section id="labs" data-state="no_footer">
+                <h3>Laboratorios de actividad práctica</h3>
+
+                <p><small>En estos laboratorios aprenderemos a instalar Docker y daremos los primeros pasos con una terminal de Docker y la terminal de bash sobre un GNU/Linux Ubuntu.</small></p>
             
                 <ul>
-                    
-                    <li>Instale Docker en su PC o acceda al sitio <a href="https://labs.play-with-docker.com" target="_blank">PlayWithDocker</a></li>
-                    <li>Ejecutar la imágen hello-world*</li>
-                    <li>Ejecutar en una sesión interactiva la imágen ubuntu
-                        <ul>
-                            <li>Ejecutar el siguiente comando para ver la memoria RAM libre en el host.</li>
 
-                            <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                                free -h
-                            </code></pre>
-
-                            <li>¿Qué dato relevante ha mostrado?</li>
-
-                            
-                        </ul>
-                    </li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/01-introduccion/instalacion.md" target="_blank">Lab 1.1</a> - Instalación de Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/01-introduccion/primeros-comandos.md" target="_blank">Lab 1.2</a> - Primeros comandos</li>
 
                 </ul>
-                <p><small><em>* Importante:</em> Si ha optado por la instalación de Docker en la PC, asegúrese que Docker Desktop esté iniciado.</small></p>
+                
             
                 
 
