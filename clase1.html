@@ -92,7 +92,7 @@
                             <li>Mostrar generalidades del uso de contenedores Docker y mencionar usos de dicha tecnología.</li>
                             <li>Uso práctico de Docker</li>
                             <li>Introdocir al uso de <a href="https://es.wikipedia.org/wiki/Bash" target="_blank">bash</a> para depuración de contenedores Docker</li>
-                            <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT, home labers.</li>
+                            <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT, home labbers.</li>
                             
                         </ul>
                     </small>
@@ -101,7 +101,7 @@
                     <small>
                     <ul>
                         <li>Apuntes de clases teóricas: <a href="https://docker.idepba.com.ar/">docker.idepba.com.ar</a></li>
-                        <li>Laboratorios y práctica</li>
+                        <li>Laboratorios</li>
                         <li>Trabajo final para aprobación del curso</li>
                     </ul>
                     </small>
@@ -129,7 +129,7 @@
                     <img src="img/clase1/ships.webp" width="450" >
                     </div>
                     
-                    <p class="fragment"><small>Entonces... <strong>¿Para qué vamos a usar contenedores?</strong>. Básicamente, para portar nuestra aplicación y ejecutarla de la misma manera en nuestra PC que en cualquier ambiente de desarrollo.</small></p>
+                    <p class="fragment"><small><strong>¿Por qué usar contenedores? </strong>. Principalmente, para portar nuestra aplicación y ejecutarla de manera consistente, ya sea en nuestra PC o en cualquier entorno de desarrollo. Además, permiten realizar despliegues de forma rápida y segura.</small></p>
     
                 </section>
 
@@ -169,10 +169,12 @@
 
                 <section id="intro-container1" data-state="no_footer">
                     <h3>Arquitectura Contenedores</h3>
-                    <p><small>Cada container, <strong>utiliza el kernel</strong> del sistema operativo del host. Solo contienen las aplicaciones y sus dependencias necesarias para funcionar.</small></p>
+                    <p><small>Cada container, <strong>utiliza el kernel</strong> del sistema operativo del host. Solo contienen las aplicaciones y sus dependencias necesarias para funcionar.</small>
                     <img src="img/clase1/container.svg">
-                    <p><small>Los contenedores utilizan aislación a nivel de proceso proporcionado por el kernel del host. Incluso entre dos o más containers pueden compartir sus dependencias y file system. También es posible limitar el uso de CPU y memoria a cada contenedor, tal cual como se haría en una VM.</small>
-                        <small>A la arquitectura de contenedores se le suele decir como un tipo de <em>virtualización liviana</em>.</small>
+                    
+                    <small>Los contenedores se aíslan a nivel de proceso, utilizando características del kernel del host para su funcionamiento. Es posible que entre contenedores compartan dependencias y sistemas de archivos si es necesario.
+                        Además, podemos limitar el uso de CPU y memoria para cada contenedor, de manera similar a una máquina virtual.</small>
+                        <small>Debido a su eficiencia, la arquitectura de contenedores se considera una forma de <em>virtualización liviana</em>.</small>
                     </p>
                 </section>
 
@@ -235,14 +237,14 @@
                     <small>
                     <ul>
                         <li><strong>Desarrollo de microservicios:</strong> Adecuados para arquitecturas de microservicios donde cada componente de la aplicación se despliega de manera independiente.</li>
-                        <li><strong>Integración Continua y Despliegue Continuo:</strong>Facilitan la creación de pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
-                        <li><strong>Containerización de aplicaciones legacy</strong>: Se puede modernizar la infraestructura de aplicaciones no pensadas para contenedores. La conteinerización ayuda a la portabilidad y automatización de despliegues.</li>
+                        <li><strong>Integración Continua y Despliegue Continuo:</strong> Facilitan la creación de pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
+                        <li><strong>Containerización de aplicaciones</strong>: Se puede modernizar la infraestructura de aplicaciones no pensadas para contenedores. La conteinerización ayuda a la portabilidad y automatización de despliegues.</li>
                         <li><strong>Despliegue sencillo de aplicaciones</strong>: Con solo copiar y pegar una instrucción o un archivo de texto es posible tener aplicaciones complejas deployadas para ambientes de prueba rápidamente.</li>
                     
 
                     </ul>
 
-                    <p>Existen varias tecnologías que utilizan contenedores, entre ellas: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>, <a href="https://containerd.io/" target="_blank">containerd</a>. Además, hay herramientas de orquestación y gestión de contenedores como <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a>, <a href="https://okd.io/" target="_blank">OKD</a>.</p>
+                    <p class="fragment">Existen varias tecnologías que utilizan contenedores, entre ellas: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>. Además, hay herramientas de orquestación y gestión de contenedores como <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a>, <a href="https://okd.io/" target="_blank">OKD</a>.</p>
                     </small>
                     
                 </section>
@@ -279,7 +281,7 @@
                             <li><strong>Facilidad de uso:</strong> Ofrece una interfaz de usuario sencilla y comandos intuitivos. Diversas herramientas gráficas.</li>
                             <li><strong>Soporte empresarial:</strong> Muchas empresas ofrecen soporte y soluciones basadas en Docker para entorno empresariales.</li>
                             <li><strong>Licencia:</strong> Docker no requiere una licencia para su uso.</li>
-                            <li><strong>Compatibilidad:</strong> Docker es compatible con diversas plataformas y sistemas operativos, lo que facilita su instalación e implementación.</li>
+                            <li><strong>Compatibilidad:</strong> Docker es compatible con diversas plataformas, sistemas operativos y arquitecturas, lo que facilita su instalación e implementación.</li>
                         </ul>
                     </small>
                     <!-- <p><small>A continuación veremos conceptos básicos que reforzaremos a lo largo del curso</small></p> -->
