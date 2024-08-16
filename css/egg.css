@@ -222,3 +222,7 @@
   max-width: 300px;
   height: auto;
 }
+
+.codigo_monospaced {
+  font-family: system-ui
+}
