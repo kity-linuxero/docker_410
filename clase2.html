@@ -66,8 +66,8 @@
 					<h3>¿Qué es una imágen Docker?</h3>
 					
                     <small>
-                    <p>Una imágen de Docker es una plantilla <strong>inmutable</strong> que contiene <em>todo lo necesario para ejecutar un contenedor</em>, incluyendo el código de la aplicación, las bibliotecas, dependencias, y el entorno de ejecución. Las mismas se crean a partir <strong>Dockerfiles</strong>, que son archivos de texto con instrucciones para construir una imagen.</p>
-                    <p>Las imágenes están disponibles desde distintos repositorios públicos o privados. El más comúnmente usado es la <strong>registry</strong> oficial de Docker, <a href="https://hub.docker.com/" target="_blank">DockerHub</a>.</p>
+                    <p>Una imágen de Docker es una plantilla <strong>inmutable</strong> que contiene <em>todo lo necesario para ejecutar un contenedor</em>. Esto incluye el código de la aplicación, bibliotecas, dependencias, y el entorno de ejecución necesario. Las imágenes se crean a partir <strong>Dockerfiles</strong>, que son archivos de texto con instrucciones específicas para construir una imagen.</p>
+                    <p>Las imágenes están disponibles en diferentes repositorios, tanto públicos como privados, siendo <a href="https://hub.docker.com/" target="_blank">DockerHub</a> la <strong>registry</strong> oficial y mas utilizada.</p>
                     <img src="img/clase2/diagram.png">
                     
                     
@@ -81,9 +81,9 @@
                 <section id="images_registry" data-state="no_footer">
                     <h3>¿Qué es una registry?</h3>
                     <small>
-                    <p>Un Docker Registry es un servicio para almacenar y distribuir imágenes de Docker. <a href="https://hub.docker.com/" target="_blank">Docker Hub</a> es el registro público más conocido, aunque no es el único disponible.</p>
-                    <p>Los registros de Docker ofrecen un amplio catálogo de imágenes para descargar y la posibilidad de subir nuestras propias imágenes para compartirlas o usarlas posteriormente. Si deseamos mantener nuestras imágenes de manera privada, algunos registros pueden requerir suscripciones de pago.</p>
-                    <p>También es posible configurar registros privados, lo que nos permite tener nuestro propio registro interno y gestionar las imágenes de Docker de manera segura dentro de nuestra organización.</p>
+                    <p>Un Docker Registry es un servicio que permite almacenar y distribuir imágenes de Docker. <a href="https://hub.docker.com/" target="_blank">Docker Hub</a> es el registro público más conocido, aunque no es el único disponible.</p>
+                    <p>Los registros de Docker ofrecen un amplio catálogo de imágenes listas para descargar y la opción de subir nuestras propias imágenes, ya sea para compartirlas o utilizarlas posteriormente. Si preferimos mantener nuestras imágenes de forma privada, algunos registros pueden requerir suscripciones de pago.</p>
+                    <p>Además, es posible configurar registros privados, lo que nos permite gestionar nuestras imágenes de Docker de manera segura dentro de nuestra organización.</p>
                     
                     </small>
                 </section>
@@ -109,7 +109,7 @@
 
                     </div> -->
 					
-                    <a href="https://hub.docker.com/search?q=linux&type=image" target="_blank"><img src="img/clase2/docker_hub1.png" width="40%"></a>
+                    <a href="https://hub.docker.com/search?q=linux&type=image" target="_blank"><img src="img/clase2/docker_hub1.png" width="80%"></a>
 
 
 				</section>
@@ -126,10 +126,11 @@
                     </p>
                     <small>
                     <p>Los tags se identifican con un ":" después del nombre de una imágen. Por lo tanto tendrán el formato <code>IMAGEN:TAG</code>.
-                        <ul> Ejemplos:
+                        <ul> Ejemplos de imágenes y tags:
                             <li><code>ubuntu:latest</code></li>
                             <li><code>python:3.9.19</code></li>
                             <li><code>redis:7.4.0</code></li>
+                            <li><code>python:3.9.19-slim-bullseye</code></li>
                         </ul>
                     </p>
                     </small>
@@ -180,8 +181,10 @@
                         
                         <ul>
                             <li>Los contenedores se crean a partir de imágenes.</li>
+                            <li>Si al intentar correr un contenedor, la imagen no está descargada, se descargará automáticamente de la registry</li>
                             <li>De una misma imagen, se pueden crear múltiples contenedores que pueden ejecutarse simultáneamente.</li>
-                            <li>Durante su ciclo de vida, los contenedores pasan por diferentes estados.</li>
+                            <li>Por defecto, los contenedores <strong>No son persistentes</strong> y la info guardada dentro de ellos se pierde al finalizar la ejecución.</li>
+                            <li>Durante su ciclo de vida, los contenedores pasan por diferentes <strong>estados</strong>.</li>
 
                         </ul>
                         <br><br>
@@ -207,7 +210,7 @@
 
                 
 
-                <section id="docker3" data-state="no_footer">
+                <section id="docker_status" data-state="no_footer">
                     <h3>Estados de un contenedor Docker</h3>
            
                     <small>
@@ -222,7 +225,9 @@
 
                         
                     </ul>
+                    
                     </small>
+                    <p><small><a href="https://docs.docker.com/reference/cli/docker/container/ls/#status" target="_blank">Ref Docker Docs Status</a></small></p>
                 </section>
 
 
@@ -316,7 +321,7 @@
                     <h3>Comandos básicos</h3>
                     
                     <small>
-                        <p>La Docker CLI es la terminal de Docker donde podemos ejecutar comandos. Una vez instalado, desde una terminal de PowerShell o Bash podemos ejecutar los comandos para Docker.</p>
+                        <p>La Docker CLI es la interfaz de línea de comandos de Docker, donde podemos ejecutar comandos para gestionar contenedores e imágenes. Una vez instalado Docker, podemos utilizar la CLI desde una terminal, como PowerShell o Bash, para interactuar con Docker.</p>
                     </small>
 
                     <p>Iniciar un contenedor</p>
@@ -385,12 +390,34 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                 </small>
 
                 <small class="fragment">Observar que tras la ejecución del comando <strong>docker ps -a</strong> se ven <strong>los estados</strong> de los contenedores. Uno está arriba y el otro Exited (0)</small>
+
                 <p class="fragment"><small >Si no es especificado el <strong>name</strong> al momento de correr el container, se creará un nombre aleatorio.</small></p>
+                <p class="fragment"><small>Ref Docker Docs: <a href="https://docs.docker.com/reference/cli/docker/container/ls" target="_blank">conainer ls</a> </small></p>
 
 
 
 
     
+                </section>
+
+                <section id="docker_ps" data-state="no_footer">
+
+                    <h4>Comandos mas utilizados de Docker</h4>
+                    <small>
+                    <p>El comando docker ps nos brindará la siguiente información relevante.</p></small>
+
+                    <small>
+                        <ul>
+                            <li><strong>CONTAINER ID</strong>: Es un identificador único (hash) asignado a cada contenedor, utilizado para diferenciarlo de otros contenedores en el sistema.</li>
+                            <li><strong>IMAGE</strong>: Muestra el nombre de la imagen desde la cual se ha creado y está corriendo el contenedor.</li>
+                            <li><strong>COMMAND</strong>: Indica el comando que se ejecutó dentro del contenedor al iniciarlo.</li>
+                            <li><strong>CREATED</strong>: Indica el tiempo transcurrido desde que el contenedor fue creado.</li>
+                            <li><strong>STATUS</strong>: Refleja el estado actual del contenedor, como si está en ejecución, detenido, o en otro estado.</li>
+                            <li><strong>PORTS</strong>: Lista los puertos que el contenedor está escuchando y aquellos en el host que están redirigidos al contenedor. Este concepto se explicará más a fondo al trabajar con contenedores que interactúan mediante la red.</li>
+                            <li><strong>NAMES</strong>: Muestra el nombre asignado al contenedor. Si no se especifica un nombre al crear el contenedor, Docker le asigna uno de forma aleatoria, lo que permite una identificación alternativa además del ID.</li>
+                        </ul>
+                    </small>
+
                 </section>
 
                 <section id="docker_cli3" data-state="no_footer">
@@ -471,8 +498,10 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                 <small>
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/lab21.md" target="_blank">Lab 2.1</a> Imágenes, registry y contenedores</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/lab22.md" target="_blank">Lab 2.2</a> Gestión de imágenes y versiones en Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/21-images-registry-container.md" target="_blank">Lab 2.1</a> Imágenes, registry y contenedores</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/22-images-tags.md" target="_blank">Lab 2.2</a> Gestión de imágenes y versiones en Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/23-images-push.md" target="_blank">Lab 2.3</a> Guardando imágenes en DockerHub</li>
+                    
 
                     
                 </ul>
