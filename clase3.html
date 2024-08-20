@@ -110,33 +110,30 @@
                     
                     <small>
                         <p>Con este archivo Dockerfile podríamos correr una app simple escrita en Nodejs.</p>
-
+                    </small>
                     <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                         # Usa la imagen oficial de Node.js como base
                         FROM node:14
-
                         # Establece el directorio de trabajo en el contenedor
                         WORKDIR /app
-                        
                         # Copia el archivo package.json y package-lock.json (si existe)
                         COPY package*.json ./
-                        
                         # Instala las dependencias del proyecto
                         RUN npm install
-                        
                         # Copia el resto del código de la aplicación al contenedor
                         COPY . .
-                        
                         # Expone el puerto en el que la aplicación estará escuchando
                         EXPOSE 3000
-                        
                         # Comando para ejecutar la aplicación
                         CMD ["npm", "start"]
                     </code></pre>
-                    
-                    <p>Un Dockerfile se compone por instrucciones (FROM, COPY, etc). Cada línea formará <em>una capa</em> de la imágen docker.</p>
 
-                    <p><a href="./files/node-app.zip" download>Descargar ejemplo</a></p>
+
+                    <small>
+                    
+                    <p>Un Dockerfile se compone por instrucciones (FROM, COPY, etc). Cada línea formará <em>una capa</em> de la imágen docker. <a href="./files/node-app.zip" download>Descargar ejemplo</a></p>
+
+                    
 
                 </small>
 
@@ -146,7 +143,7 @@
 
                 </section>
 
-                <section id="dockerfile_example2" data-state="no_footer">
+                <!-- <section id="dockerfile_example2" data-state="no_footer">
                     <h3>Ejemplo de Dockerfile</h3>
 
                     <small><p>Los Dockerfiles se componen por <em>INSTRUCCIONES</em>.</p></small>
@@ -168,7 +165,7 @@
      
                 
 
-                </section>
+                </section> -->
 
 
 
@@ -198,36 +195,40 @@
                     <h3>Dockerfile: estructura básica</h3>
                     <small>
                         <p>Un Dockerfile se compone de varias <em>instrucciones</em> que se ejecutan en secuencia para construir una imagen de Docker. A continuación, las mas comunes:</p>
+                    </small>
+
+                    <small>
 
                         <ul>
-                            <li><strong>FROM:</strong> Define la imagen base a partir de la cual se construirá la nueva imagen. Esta es siempre la primera instrucción en un Dockerfile.
-                            
-                                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
-                                    # Ejemplo de FROM
-                                    FROM ubuntu:24.04
-                                </code></pre>
-                            
-                            </li>
+                            <li><strong>FROM:</strong> Define la imagen base a partir de la cual se construirá la nueva imagen. Esta es siempre la primera instrucción en un Dockerfile.</li>
+                        </ul>
+                    </small>
+
+                            <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                                # Ejemplo de FROM
+                                FROM ubuntu:24.04
+                            </code></pre>
+
+                    <small>
+
+                        <ul>
                             <li><strong>WORKDIR:</strong> Establece el directorio de trabajo dentro del contenedor. Todas las instrucciones posteriores que utilicen rutas relativas se basarán en este directorio.
 
-                                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
-                                    # Ejemplo de WORKDIR
-                                    WORKDIR /usr/src/app
-                                </code></pre>
+
                             
                             </li>
 
-                            <li><strong>RUN:</strong> Ejecuta un comando en el contenedor durante la construcción de la imagen. Es comúnmente utilizado para instalar paquetes, configurar el entorno, o realizar cualquier otra tarea necesaria para preparar la aplicación.
-                            
-                                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
-                                    # Ejemplo de RUN
-                                    RUN apt-get update && apt-get install -y curl
-                                </code></pre>
-                            
-                            </li>
 
                         </ul>
                     </small>
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                            # Ejemplo de WORKDIR
+                            WORKDIR /usr/src/app
+                        </code></pre>
+
+
+
+
                     <p>
                         <small>Continúa...</small>
                     </p>
@@ -235,39 +236,97 @@
                 </section>
 
                 <section id="dockerfile_instrucciones2" data-state="no_footer">
+
                     <h3>Dockerfile: estructura básica</h3>
-                    <small>
+
+                <small>
+
+                    <ul>
+
+                        <li><strong>RUN:</strong> Ejecuta un comando en el contenedor durante la construcción de la imagen. Es comúnmente utilizado para instalar paquetes, configurar el entorno, o realizar cualquier otra tarea necesaria para preparar la aplicación.
+                        
+
+                        
+                        </li>
+
+                    </ul>
+                </small>
+                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                    # Ejemplo de RUN
+                    RUN apt-get update && apt-get install -y curl
+                </code></pre>
+
+                <small>
+                    <ul>
+                        <li><strong>ENV:</strong> Establece variables de entorno dentro del contenedor. Estas variables pueden ser utilizadas por la aplicación en ejecución.</li>
+                    </ul>
+                </small>
+
+                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                    # Ejemplo de ENV
+                    ENV NODE_ENV=production
+                </code></pre>
+
+                <p>
+                    <small>Continúa...</small>
+                </p>
+
+
+
+                </section>
+
+
+
+                <section id="dockerfile_instrucciones3" data-state="no_footer">
+                    <h3>Dockerfile: estructura básica</h3>
+
                         
                         <ul>
+                            <small>
                             <li><strong>COPY y ADD:</strong> Ambas instrucciones se utilizan para copiar archivos desde el host al contenedor, pero con algunas diferencias:
                                 <ul>
                                     <li><strong>COPY:</strong> Copia archivos o directorios desde el sistema de archivos del host al contenedor.</li>
                                     <li><strong>ADD:</strong> Es similar a COPY, pero también puede descomprimir archivos y obtener archivos desde una URL remota.</li>
                                 </ul>
 
-                                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
-                                    COPY . /usr/src/app
-                                    ADD https://ejemplo.com/archivo.tar.gz /usr/src/app/                                
-                                </code></pre>
+
                             </li>
+                        </small>
+                        </ul>
 
-                            <li><strong>CMD:</strong> Especifica el comando por defecto que se ejecutará cuando se inicie un contenedor creado a partir de la imagen.
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                        COPY . /usr/src/app
+                        ADD https://ejemplo.com/archivo.tar.gz /usr/src/app/                                
+                        </code></pre>
 
-                                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
-                                    CMD ["node", "app.js"]                               
-                                </code></pre>
-
-                                <ul>
-                                    <li>Los parámetros son separados por comas.</li>
-                                    <li>Si se proporcionan argumentos en el <code>docker run</code>, estos <em>sobrescriben</em> el CMD.</li>
-                                </ul>
+                        <ul>
                             
-                            </li>
+
+                        <small><li><strong>CMD:</strong> Especifica el comando por defecto que se ejecutará cuando se inicie un contenedor creado a partir de la imagen.
+
+                            <ul>
+                                <li>Los parámetros son separados por comas.</li>
+                                <li>Si se proporcionan argumentos en el <code>docker run</code>, estos <em>sobrescriben</em> el CMD.</li>
+                            </ul>
+                        
+                        
+                        </li>
+                        </ul></small>
+
+                            <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                                CMD ["node", "app.js"]                               
+                            </code></pre>
+                            <small>
+                            <ul>
                             <li><strong>ENTRYPOINT</strong>: Similar a CMD pero NO es sobrescrito por los argumentos pasados a <code>docker run</code></li>
+                        </ul>
+                        </small>
 
                         </ul>
+                        <small>
                         <p>Listado completo de instrucciones en <a href="https://docs.docker.com/reference/dockerfile/" target="_blank">Dockerfile reference</a>.</p>
-                    </small>                
+                    </small>
+         
                 </section>
 
                 
@@ -275,7 +334,7 @@
                 <section id="dockerfile_capas" data-state="no_footer">
                     <h3>Optimización de Capas:</h3>
 
-                    <small>Las imágenes de Docker se construyen en capas, donde cada instrucción en el Dockerfile crea una nueva capa. Para optimizar la construcción de imágenes y reducir su tamaño, es importante agrupar las instrucciones RUN y minimizar las capas innecesarias. Por ejemplo:</small>
+                    <small>Las imágenes de Docker se construyen en <strong>capas</strong>, donde cada instrucción en el Dockerfile crea una nueva capa. Para optimizar la construcción de imágenes y reducir su tamaño, es importante agrupar las instrucciones RUN y minimizar las capas innecesarias. Por ejemplo:</small>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                         RUN apt-get update
@@ -501,9 +560,9 @@
                 <small>
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/21-images-registry-container.md" target="_blank">Lab 3.1</a> Imágenes, registry y contenedores</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/22-images-tags.md" target="_blank">Lab 3.2</a> Gestión de imágenes y versiones en Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/23-images-push.md" target="_blank">Lab 3.3</a> Guardando imágenes en DockerHub</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/31-holamundo/README.md" target="_blank">Lab 3.1</a> Nuestro primer Dockerfile: Hola Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/32-cow/README.md" target="_blank">Lab 3.2</a> Dockerizando una app Python: Una vaca te saluda</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/33-best-page/README.md" target="_blank">Lab 3.3</a> Dockerizando una web estática: La mejor página del mundo</li>
                     
 
                     
