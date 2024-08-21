@@ -1,0 +1,614 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Fundamentos contenedores Docker - CFL 410</title>
+		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
+        <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="css/egg.css">
+		
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+            <section>
+
+                <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    
+                    <h3>Fundamentos y usos prácticos de Docker</h3>
+                    <h4>Clase 4 : Redes y Volúmenes en Docker</h4>
+
+                </section>
+
+                <section id="index" data-state="no_footer">
+                    <h3>Temas de clase 4</h3>
+                    <h4>Redes y Volúmenes en Docker</h4>
+                    <small>
+                
+                        <ul>
+                            <li><a href="#/dockerfile_def">Introducción a Redes en Docker</a></li>
+                            <li><a href="#/dockerfile_instrucciones1">Estructura Básica de un Dockerfile</a></li>
+                            <li><a href="#/dockerfile_capas">Capas en Dockerfile</a></li>
+                            <li><a href="#/docker_build2">Construcción de Imágenes</a></li>
+                            <li><a href="#/dockerfile_buenas_practicas">Buenas Prácticas al Escribir un Dockerfile</a></li>
+                            <li><a href="#/labs_clase">Laboratorios</a></li>
+                            
+
+                        </ul>
+
+                    </small>
+                    
+                </section>
+
+            </section>
+			
+
+			<section>
+				<section id="networking" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Introducción a redes en Docker</h3>
+                    
+				</section>
+
+				<section id="networking_1" data-state="no_footer">
+					<h3>Redes en Docker</h3>
+					
+                    <small>
+                    <p>Docker proporciona un sistema de redes virtuales que permite conectar contenedores entre sí, al host, y con el mundo exterior. Al utilizar Docker, es esencial comprender cómo funcionan las redes dentro de su ecosistema, ya que esto impacta directamente en la conectividad, la seguridad, y el comportamiento de las aplicaciones distribuidas.</p>
+                   
+                    <img src="img/clase4/img1.png" width="50%">
+                    
+                    
+                    
+                    </small>
+
+				</section>
+
+                
+
+                <section id="dockerfile_proposito" data-state="no_footer">
+                    <h3>Redes en Docker</h3>
+                    <small>
+                        <p>Dentro del sistema de redes virtuales que proporciona Docker, existen diferentes <em>drivers</em> que podemos usar según la necesidad de nuestra aplicación. Estos drivers son:</p>
+                    <ul>
+                        <li>Bridge</li>
+                        <li>Host</li>
+                        <li>None</li>
+                        <li>Overlay</li>
+                        <li>IPvlan</li>
+                        <li>Macvlan</li>
+                    </ul>
+                    
+                    </small>
+                    <p><small>Se detallarán a continuación</small></p>
+                </section>
+
+                <section id="net_bridge" data-state="no_footer">
+					<h3>Redes Bridge</h3>
+
+                    <small>
+                        <p>Es la red por defecto que Docker crea en un host cuando se instala. Los contenedores que se inician sin especificar una red se conectan automáticamente a esta red. Actúa como un switch virtual dentro del host y permite la comunicación entre los contenedores que están en la misma red bridge, utilizando nombres de host o direcciones IP internas.</p>
+
+                        
+                        <!-- <ul>
+                            <li><strong>Consistencia:</strong> Un Dockerfile asegura que el entorno en el que se ejecuta tu aplicación es siempre el mismo, independientemente de dónde se despliegue. </li>
+                            <li><strong>Versionado:</strong> Al igual que el código fuente, los Dockerfiles pueden versionarse y almacenarse en sistemas de control de versiones como Git.</li>
+                            <li><strong>Eficiencia:</strong> A través de la reutilización de capas y la minimización de dependencias, las imágenes pueden ser construidas rápidamente y con un uso mínimo de recursos.</li>
+                            <li><strong>Escalabilidad:*</strong> Al definir cómo se construye una imagen, puedes escalar fácilmente tu aplicación en diferentes entornos y con diferentes configuraciones sin cambiar el código base.</li>
+                        </ul> -->
+                        
+                    </small>
+
+                    <img src="./img/clase4/bridge.png">
+
+                    
+                    
+
+				</section>
+
+                <section id="net_bridge2" data-state="no_footer">
+                    <h3>Custom bridge vs default bridge</h3>
+                    
+                    <small>
+                        <p>Al iniciar Docker, se crea una red predeterminada utilizando el driver bridge, denominada simplemente <strong>bridge</strong>. Todos los contenedores se conectarán a esta red de manera predeterminada, a menos que se especifique otra red al momento de su creación.</p>
+
+                        <p>Es posible también crear nuestras propias redes del tipo <strong>bridge</strong>, conocidas como "User-defined bridge" o "custom bridge". Estas redes ofrecen capacidades superiores, como la inclusión de un <strong>DNS interno</strong> automático que permite <em>resolver la IP interna de un contenedor</em> utilizando su nombre.</p>
+                    </small>
+
+                    <!-- <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                        docker network ls
+                        
+                        NETWORK ID     NAME      DRIVER    SCOPE
+                        cfd3f0bf25fc   bridge    bridge    local
+                        abd3e7e42462   host      host      local
+                        c1d27506736c   none      null      local
+                    </code></pre> -->
+
+                    <small>
+                        <p>
+                        <ul>
+                            <li><a href="https://docs.docker.com/engine/network/drivers/bridge/" target="_blank">Docker docs: Bridge network driver</a></li>
+                            <li><a href="https://docs.docker.com/engine/network/drivers/bridge/#differences-between-user-defined-bridges-and-the-default-bridge" target="_blank">Docker docs: Differences between user-defined bridges and the default bridge</a></li>
+                        </ul>
+                    </p>
+                    </small>
+
+
+                
+
+
+
+                </section>
+
+                <section id="net_host1" data-state="no_footer">
+                    <h3>Redes Host</h3>
+
+                    <small><p>Con esta red, el contenedor comparte la pila de red del host, es decir, los servicios que se ejecutan en el contenedor escucharán en la misma dirección IP que el host. </p>
+                    <p>Los contenedores que ejecuten este driver no tendrán direcciones IP propias y los puertos estarán mapeados 1:1 con los puertos de escucha del host.</p>
+
+                    <img src="./img/clase4/host.png">
+                    
+                    </small>
+                    
+                </section>
+
+
+
+                <section id="net_host2" data-state="no_footer">
+                    <h3>Redes Host</h3>
+                    <small>
+                        <p>En este driver, no hace falta publicar los puertos del contenedor, ya que se abrirán los mismos puertos de escucha del contenedor al host. Esto se debe a que no requiere traducción de direcciones de red (NAT) y no se crea ningún "proxy de usuario" para cada puerto.</p>
+                        <p> Por lo general, es util en los siguientes casos:</p>
+                            <ul>
+                                <li>Optimizar la performance de red</li>
+                                <li>El contenedor necesita manegar un rango de puertos amplio</li>
+                            </ul>
+
+                            <p>El driver Host está solo funciona para hosts Linux, pero está disponible como Beta en Docker Desktop a partir de la versión 4.29.</p>
+
+
+        
+                            <p><a href="https://docs.docker.com/engine/network/drivers/host/" target="_blank">Docker Docs: Driver Host</a></p>
+
+
+                    </small>
+
+                </section>
+
+                <section id="net_none" data-state="no_footer">
+                    <h3>Redes NONE</h3>
+                    <small>
+                        <p>Este tipo de red deshabilita todas las capacidades de red del contenedor. Útil en casos donde se necesita un entorno de ejecución totalmente aislado sin acceso a la red.</p>
+                    </small>
+
+                    <img src="img/clase4/none.png">
+
+                    <br>
+
+                    <small>
+                        <p><a href="https://docs.docker.com/engine/network/drivers/none/" target="_blank">Docker Docs: Driver None</a></p>
+                    </small>
+
+                    
+
+                </section>
+
+                <section id="net_ipvlan" data-state="no_footer">
+
+                    <h3>Redes IPvlan</h3>
+                    
+
+                    <small>
+                        <p><em>IPvlan</em> es un driver avanzado que nos brindan control sobre las direcciones IPs de los contenedores. También maneja el tag o trunk y enrutamiento de las vlan en capa 2 y 3 respectivamente.</p>
+                        <p>Cada contenedor puede tener su propia dirección IP de la subred del host <em>compartiendo la MAC</em> del host. Es posible manejar ipvlan en L2 y L3.</p>
+
+                    </small>
+
+                    <img src="./img/clase4/ipvlan.png">
+                    <small><a href="https://docs.docker.com/engine/network/drivers/ipvlan/" target="_blank">Docker Docs: Driver IPvlan</a></small>
+
+
+
+
+                </section>
+
+
+
+                <section id="net_macvlan" data-state="no_footer">
+                    <h3>Redes macvlan</h3>
+
+                    <small>
+                        <p>Similar a ipvlan, pero la diferencia es que asigna una dirección MAC única a cada contenedor, lo que permite que cada uno se comporte como un dispositivo físico en la red. Es ideal cuando se requiere que los contenedores se integren directamente con la red física existente y sean accesibles desde fuera del host Docker.</p>
+                        <p>Tener en cuenta:</p>
+                        <ul>
+                            <li>El host necesita ser capaz de manegar el "modo promiscuo" donde una única interfaz física puede tener asignada múltiples direcciones MAC.</li>
+                            <li>Si la aplicación puede funcionar en modo <em>bridge</em> es posible que sea mejor solución que macvlan.</li>
+                            <li>Puede ser util cuando necesitamos que un contenedor atienda en un puerto ya utilizado por el host.</li>
+                        </ul>
+
+                        <p><a href="https://docs.docker.com/engine/network/drivers/macvlan/" target="_blank">Docker Docs: Driver Macvlan</a></p>
+
+                    </small>
+
+         
+                </section>
+
+                
+
+                <section id="dockerfile_capas" data-state="no_footer">
+                    <h3>Redes Overlay</h3>
+
+                    <small>
+                        <p>Permite la creación de redes distribuídas que abarcan múltiples hosts, permitiendo que los contenedores que se ejecutan en diferentes hosts puedan comunicarse entre sí como si estuvieran en la misma red local sin que el sistema operativo del host intervenga en el ruteo. Estas redes se usan en clústeres <a href="https://docs.docker.com/engine/swarm/" target="_blank"><strong>Docker Swarm</strong></a> pero es posible usarlas en instancias de Docker Engine separadas de manera de crear un entorno similar a Docker Swarm.</p>
+
+
+                        
+                    </small>
+
+                    <img src="./img/clase4/overlay.png" width="60%">
+
+                    <p>
+                    <small>
+                        <a href="https://docs.docker.com/engine/network/drivers/overlay/" target="_blank">Docker Docs: Driver Overlay</a></small>
+                    </p>
+                    
+                </section>
+
+
+                <section id="ipreguntas1" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+
+
+
+            </section>
+
+
+            <section>
+				<section id="gestion_network" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Gestión de redes Docker</h3>
+                    <h4>Comandos básicos</h4>
+				</section>
+
+                <section id="gestion_network1" data-state="no_footer">
+                    <h3>Gestión de redes Docker</h3>
+                    
+                    <small>
+                        <p>Desde Docker CLI podremos realizar operaciones sobre redes. Con el comando <code>docker network</code> seguido de la instrucción:</p>
+                        <ul>
+                            <li><code>connect:</code> Conecta un container a una red.</li>
+                            <li><code>create:</code> Crea una red.</li>
+                            <li><code>disconnect:</code> Desconecta un container de una red.</li>
+                            <li><code>inspect:</code> Muestra información detallada de ona o mas redes.</li>
+                            <li><code>ls:</code> Lista las redes</li>
+                            <li><code>prune:</code> Borra todas las redes sin uso.</li>
+                            <li><code>rm:</code> Borra una o mas redes</li>
+                        </ul>
+                    </small>
+
+                    <small>
+                        <p>Para mas detalles ejecutar el comando:</p>
+                        <!-- <p><code>docker network COMMAND --help</code></p> -->
+                    
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker network COMMAND --help
+                    </code></pre>
+
+           
+    
+                </section>
+
+
+                <section id="network_create" data-state="no_footer">
+                    <h3>Crear redes Docker</h3>
+
+
+                    <small><p>Supongamos que deseamos crear una red modo bridge.</p></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker network create -d bridge mi_red_bridge
+                        # O mas simple sin ponerle el driver. Ya que bridge es por defecto.
+                        docker network create mi_red_bridge
+                    </code></pre>
+
+                    <small><p>Ahora crearemos dos contenedores y conectaremos a esa red.</p></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker run -dit --name contenedor1 --network mi_red_bridge alpine sh
+                        docker run -dit --name contenedor2 --network mi_red_bridge alpine sh
+                    </code></pre>
+
+                    <small><p>Ejecute el siguiente comando:</p></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker exec contenedor1 ping -c 3 contenedor2
+                    </code></pre>
+
+
+
+
+
+
+                    <small><a href="https://docs.docker.com/reference/cli/docker/network/create/" target="_blank">Docker Docs: docker network create</a></small>
+
+
+
+    
+                </section>
+
+                <section id="network_ls" data-state="no_footer">
+
+                    <h3>Listar redes Docker</h3>
+                    <small><p>Usamos el comando <code>docker network ls</code></p></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker network ls
+
+                        NETWORK ID      NAME                DRIVER      SCOPE
+                        cfd3f0bf25fc    bridge              bridge      local
+                        abd3e7e42462    host                host        local
+                        c1d27506736c    none                null        local
+                        c8f2c9e43721    mi_red_bridge       bridge      local
+
+                    </code></pre>
+
+                    <small><p>Observar las columnas. ID, NAME, DRIVER, SCOPE.</p></small>
+
+                        <p><small>
+                        <a href="https://docs.docker.com/reference/cli/docker/network/ls/" target="_blank">Docker Docs: docker network ls</a>
+                    </small>
+                        </p>
+
+                </section>
+
+                <section id="network_rm" data-state="no_footer">
+                    <h3>Eliminar redes Docker</h3>
+                    <small>
+                        <p>Utilizaremos el comando <code>docker network rm NETWORK_ID | NETWORK_NAME </code></p>
+                        
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker network rm mi_red_bridge
+
+                        nueva_red_bridge # Retorna nombre o hash de la red eliminada
+                    </code></pre>
+                    <small><a href="https://docs.docker.com/reference/cli/docker/network/rm/" target="_blank">Docker Docs: docker network rm</a></small>
+                    <div class="fragment">
+                      
+                            <h4>Inspeccionar redes</h4>
+                            <small>
+                                Se usa el comando <code>docker network inspect NETWORK_ID | NETWORK_NAME</code>
+                            </small>
+
+                            <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                                docker network inspect bridge
+                            </code></pre>
+                            <small>¿Qué ha pasado luego de ejecutar ese comando?</small>
+                            <p>
+                            <small><a href="https://docs.docker.com/reference/cli/docker/network/inspect/" target="_blank">Docker Docs: docker network disconnect</a></small>
+                            </p>
+        
+                    </div>
+
+
+
+
+
+                </section>
+
+                <section id="network_prune" data-state="no_footer">
+                    <h3>Eliminar redes Docker sin uso</h3>
+                    <small>
+                        <p>Utilizaremos el comando <code>docker network prune</code></p>
+                        
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker network prune
+
+                        WARNING! This will remove all custom networks not
+                        used by at least one container.
+
+                        Are you sure you want to continue? [y/N] y
+                        Deleted Networks:
+                        red_sin_usar1   # Ejemplo de una red creada pero no usada
+                        red_sin_usar2   # Ejemplo de una red creada pero no usada
+
+                    </code></pre>
+
+                    <small><a href="https://docs.docker.com/reference/cli/docker/network/prune/" target="_blank">Docker Docs: docker network prune</a></small>
+
+
+                </section>
+
+                <section id="network_connect" data-state="no_footer">
+                    <h3>Conectar a redes Docker</h3>
+                    <small>
+                        <p>Utilizaremos el comando <code>docker network connect NETWORK CONTAINER</code></p>
+                        
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker network create red1 # Creamos una red
+                        docker run -dit --name container1 alpine sh # Corremos un contenedor
+                        # Por defecto estará conectado a la red "bridge"
+                        docker network connect red1 container1
+                        docker inspect container1 # ¿Ha cambiado de red?
+                    </code></pre>
+
+                    <small><a href="https://docs.docker.com/reference/cli/docker/network/connect/" target="_blank">Docker Docs: docker network connect</a></small>
+
+
+                </section>
+
+                <section id="network_disconnect" data-state="no_footer">
+                    <h3>Desconectar de redes Docker</h3>
+                    <small>
+                        <p>Utilizaremos el comando <code>docker network disconnect NETWORK CONTAINER</code></p>
+                        
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker network disconnect red1 container1
+                        docker inspect container1 # ¿Se ha desconectado de de red?
+                    </code></pre>
+                    <small><p>Por defecto volverá a la red bridge.</p></small>
+                    <p>
+
+                    <small><a href="https://docs.docker.com/reference/cli/docker/network/disconnect/" target="_blank">Docker Docs: docker network connect</a></small>
+                    </p>
+
+
+                </section>
+              
+
+                <section id="ipreguntas1" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+            </section>
+           
+
+            <section id="labs_clase" data-state="no_footer">
+                <h3>Actividad de práctica:</h3>
+                <small>
+                <ul>
+
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/31-holamundo/README.md" target="_blank">Lab 3.1</a> Nuestro primer Dockerfile: Hola Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/32-cow/README.md" target="_blank">Lab 3.2</a> Dockerizando una app Python: Una vaca te saluda</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/33-best-page/README.md" target="_blank">Lab 3.3</a> Dockerizando una web estática: La mejor página del mundo</li>
+                    
+
+                    
+                </ul>
+
+                </small>
+                
+            
+                
+
+            </section>
+
+        </section>
+
+        <section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+				
+            <img src="img/logos/idep_logo.png" width="40%" height="40%">
+            
+
+        </section>
+						
+
+					
+    </div>
+</div>
+
+<footer>
+    <!-- Logos en el footer -->
+    <div id="logos-footer" class="footer">
+        <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
+        <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
+        <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener("load", function() {
+    
+            revealDiv = document.querySelector("body div.reveal")
+            footer = document.getElementById("logos-footer");
+            revealDiv.appendChild(footer);
+    
+        } );
+    </script>
+</footer>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/zoom/zoom.js"></script>
+<script src="plugin/copycode/copycode.js"></script>
+
+
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+
+        // Para eventos personalizados. Indica que está en la presentación
+
+    Reveal.on( 'customevent', function() {
+        var element = document.getElementById("logos-footer");
+        element.style.display = "table";
+        element.style.opacity = "40%";
+
+    } );
+
+    Reveal.on( 'hide_footer', function() {
+        var element = document.getElementById("logos-footer");
+        element.style.display = "table";
+        element.style.opacity = "0%";
+
+    } );
+
+    Reveal.on( 'no_footer', function() {
+        var element = document.getElementById("logos-footer");
+        //element.style.display = "none";
+        // element.style.display = "table";
+        element.style.opacity = "15%";
+    } );
+    Reveal.initialize({
+        hash: true,
+
+        copycode: {
+        button: "hover",
+        display: "icons",
+        text: {
+            copy: "Copiar",
+            copied: "¡Copiado!",
+        },
+        plaintextonly: true,
+        timeout: 1000,
+        style: {
+            copybg: "gray",
+            copiedbg: "green",
+            copycolor: "black",
+            copiedcolor: "white",
+            copyborder: "",
+            copiedborder: "",
+            scale: 1,
+            offset: 0,
+            radius: 0.2
+        },
+        tooltip: true,
+        iconsvg: {
+            copy: '',
+            copied: ''
+        },
+        cssautoload: true,
+        csspath: "",
+        clipboardjspath: ""
+        },
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode ]
+    });
+</script>
+
+</body>
+</html>
