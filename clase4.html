@@ -286,7 +286,7 @@
                 </section>
 
 
-                <section id="ipreguntas1" data-state="no_footer">
+                <section id="ipreguntas2" data-state="no_footer">
                     <h2>Consultas</h2>
                 </section>
 
@@ -502,6 +502,164 @@
                 </section>
 
             </section>
+
+            <section>
+				<section id="volumenes" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Administrar datos en Docker</h3>
+                    <h4>Volúmenes y persistencia de datos</h4>
+				</section>
+
+                <section id="intro_mounts" data-state="no_footer">
+                    <h3>Administrar datos en Docker</h3>
+                    <small>
+                        <p>En Docker, el manejo del almacenamiento es crucial para persistir datos más allá del ciclo de vida de un contenedor. Dado que los contenedores son efímeros y todos los cambios de archivos dentro de un contenedor se eliminan cuando el contenedor se detiene o se elimina, Docker ofrece varias opciones para persistir estos datos de manera segura. La Doc los llama de forma abarcativa como <em>mounts</em>.</p>
+                    </small>
+                    <img src="./img/clase4/persistence.png" width="70%">
+                </section>
+
+                <section id="claves_mounts" data-state="no_footer">
+                    <h3>Conceptos clave</h3>
+                    <small>
+                        <ul>
+                            <li><strong>Persistencia de datos:</strong> Los datos almacenados en un contenedor desaparecen cuando el contenedor es eliminado. Docker nos provee mecanismos mediante mounts que permiten que los datos sobrevivan a estos eventos.</li>
+                            <li><strong>Compartición de datos:</strong> Los mounts pueden ser compartidos entre múltiples contenedores, facilitando la comunicación y la gestión de datos compartidos.</li>
+                            <li><strong>Desacoplamiento de datos:</strong> Los mounts nos permite separar la gestión de datos de la lógica de la aplicación, facilitando el mantenimiento y escalabilidad de las aplicaciones.</li>
+                        </ul>
+                    </small>
+                </section>
+
+                <section id="mounts_types" data-state="no_footer">
+                    <h3>Tipos de mounts en Docker</h3>
+                    <small>
+                        <p>Docker soporta varios tipos de mounts, cada uno adecuado para diferentes casos de uso:</p>
+
+                        <ul>
+                            <li>Volumes</li>
+                            <li>Bind Mounts</li>
+                            <li>tmpfs mounts</li>
+                        </ul>
+                        
+                        </small>
+
+                        <p><img src="./img/clase4/mounts.png" width="50%"></p>
+                        
+                        <small><a href="https://docs.docker.com/engine/storage/" target="_blank">Docker Docs: Manage data in Docker</a></small>
+
+                </section>
+
+                <section id="volumes" data-state="no_footer">
+                    <h3>Volumes</h3>
+                    <small>
+                        <p>Los volúmenes son el mecanismo preferido para conservar los datos generados y utilizados por los contenedores Docker *<a href="https://docs.docker.com/engine/storage/volumes/" target="_blank">[1]</a>.</p>
+                        
+                    <ul>
+                        <li>Son gestionados completamente por Docker</li>
+                        <li>Se almacenan en una ubicación específica en el host <code>/var/lib/docker/volumes/</code></li>
+                        <li>Pueden ser creados explícitamente o al momento de crear un contenedor.</li>             
+                    </ul>
+                    
+
+                    </small>
+                    <img src="./img/clase4/volumes1.png">
+                </section>
+
+                <section id="volumes_ventajas" data-state="no_footer">
+
+                    <h3>Volumes: Ventajas</h3>
+                    <small>
+                        <ul>
+                            <li>Es mas fácil realizar copias de seguridad o migrar volúmenes respecto a otro tipo de mounts.</li>
+                            <li>Podemos administrar volúmenes utilizando los comandos de Docker CLI o la API de Docker.</li>
+                            <li>Funciona en contenedores Linux y Windows</li>
+                            <li>Los volúmenes se pueden compartir de forma más segura entre varios contenedores.</li>
+                            <li>Los volumes permiten almacenarse en hosts remotos o proveedores de nube, cifrar el contenido de los volúmenes o agregar otras funciones. (CIFS/Samba, NFS, Block devices, etc)</li>
+                            <li>Los volumes en Docker Desktop tiene una muy mejor performance en host Windows y Mac.</li>
+    
+                        </ul>
+                    </small>
+
+                    <p><small><a href="https://docs.docker.com/engine/storage/volumes/" target="_blank">Docker Docs: Volumes</a></small></p>
+    
+                </section>
+
+                <section id="bind_mounts" data-state="no_footer">
+
+                    <h3>Bind Mounts</h3>
+                    <small>
+                        <!-- <p></p> -->
+                        <ul>
+                            <li>Montan un directorio específico del host en un contenedor.</li>
+                            <li>Se definen con rutas absolutas (o relativas) del sistema de archivos del host.</li>
+                            <li>Ofrecen más flexibilidad pero menos aislamiento, ya que exponen directorios específicos del host al contenedor.</li>
+                            <li>Datos fácilmente accesible, pero menor seguridad.</li>
+                            <li>No hace falta crear volumenes, simplemente toma los datos del filesystem del host.</li>
+    
+                        </ul>
+                    </small>
+                    <img src="./img/clase4/bind_mounts.png">
+
+                    <p><small><a href="https://docs.docker.com/engine/storage/bind-mounts/" target="_blank">Docker Docs: Bind mounts</a></small></p>
+    
+                </section>
+
+                <section id="tmpfs_mounts" data-state="no_footer">
+
+                    <h3>tmpfs Mounts</h3>
+                    <small>
+                        <!-- <p></p> -->
+                        <ul>
+                            <li>Montan un sistema de archivos en memoria.</li>
+                            <li>Son útiles para datos temporales que no deben persistir entre reinicios del contenedor.</li>
+                        </ul>
+                        <p>Limitaciones:</p>
+                        <ul>
+                            <li>No es posible compartir tmpfs mounts entre contenedores</li>
+                            <li>Solo está disponible en host Linux</li>
+                            
+                        </ul>
+                    </small>
+                    <img src="./img/clase4/mounts.png" width="50%">
+
+                    <p><small><a href="https://docs.docker.com/engine/storage/tmpfs/" target="_blank">Docker Docs: tmpfs mounts</a></small></p>
+    
+                </section>
+
+                <section id="ipreguntas3" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+            </section> <!-- Fin Sección-->
+
+            <section>
+				<section id="volumenes" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Gestión de volumenes Docker</h3>
+				</section>
+
+                <section id="volume_create" data-state="no_footer">
+                    <h3>Crear volumenes</h3>
+                    <small>
+                        <p>Docker nos provee mecanismos desde la Docker CLI para gestionar volúmenes. Vamos a crear un volumen llamado "my_volume".</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker volume create my_volume
+                    </code></pre>
+
+                    <h4>Listar volumenes</h4>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker volume ls
+                    </code></pre>
+
+
+                </section>
+
+                <section id="ipreguntas4" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+            </section> <!-- Fin sección-->
+
+
            
 
             <section id="labs_clase" data-state="no_footer">
