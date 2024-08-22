@@ -117,6 +117,26 @@
 
 				</section>
 
+                <section id="net_bridge1" data-state="no_footer">
+                    <h3>Puertos y redirecciones</h3>
+                    <small>
+                        <p>Los puertos son esenciales para permitir que los contenedores interactúen con el mundo exterior o con otros contenedores. Cuando un contenedor se ejecuta, puede exponer ciertos puertos para que otros servicios puedan comunicarse con él. Sin embargo, exponer un puerto dentro del contenedor no lo hace automáticamente accesible desde fuera del host; para ello es necesario "publicar" el puerto.</p>
+                        <p>Para publicar el puerto se hace con <code>-p P_HOST:P_CONTAINER</code></p>
+                        <!-- <code><strong>docker run -p 8080:80 nginx</strong></code> -->
+                    </small>
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                            docker run -d -p 8080:80 docker/welcome-to-docker
+                        </code></pre>
+                    <small>
+                        <p>Estas redirecciones se utilizan principalmente cuando estamos trabajando sobre redes <strong>bridge</strong>.</p>
+
+                        <a href="https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/" target="_blank">Docker docs: Publishing and exposing ports</a>
+
+                        
+                    </small>
+
+                </section>
+
                 <section id="net_bridge2" data-state="no_footer">
                     <h3>Custom bridge vs default bridge</h3>
                     
