@@ -633,6 +633,7 @@
             <section>
 				<section id="volumenes" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
 					<h3>Gestión de volumenes Docker</h3>
+                    <h4>Comandos básicos</h4>
 				</section>
 
                 <section id="volume_create" data-state="no_footer">
@@ -650,6 +651,75 @@
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker volume ls
                     </code></pre>
+
+
+                </section>
+
+                <section id="volume_mount" data-state="no_footer">
+                    <h3>Montar un volumen a contenedor</h3>
+                    <small>
+                        Vamos a montar el volumen <strong>my_volume</strong> en un contenedor.
+                    </small>
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                            docker run --rm -it -v my_volume:/home alpine sh
+                        </code></pre>
+                    <small>
+                        Ahora hagamos un cambio en el volumen y salimos del contenedor
+                    </small>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        touch /home/mensaje.txt # Creamos un archivo vacío mensaje.txt
+                        exit # Salimos del contenedor. Se borrará --rm
+                    </code></pre>
+                    <small>Ejecutamos un contenedor completamente diferente con el mismo volumen montado.</small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker run --rm -it -v my_volume:/home ubuntu bash
+                        ls -l /home
+                    </code></pre>
+
+                    <div class="fragment">
+                        <small>¿Qué ha ocurrido?<span class="fragment"> Hemos logrado persistir datos y montar el volumen en otro contenedor completamente diferente.</span></small>
+                    </div>
+                    
+                    
+                </section>
+
+                <section id="volume_rm" data-state="no_footer">
+                    <h3>eliminar volumen</h3>
+                    <small>
+                        <p>No debe haber ningún contenedor utilizando el volumen. Antes de eliminar el volumen, probablemente tengamos que eliminar los contenedores que lo tengan montado aunque no estén corriendo.</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker volume rm VOLUME_NAME
+                    </code></pre>
+
+
+                    <p><small><a href="https://docs.docker.com/reference/cli/docker/volume/rm/" target="_blank">Docker Docs: volume rm</a></small></p>
+
+
+
+                </section>
+
+                <section id="volume_inspect" data-state="no_footer">
+
+                    <h3>Inspeccionar volumen</h3>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker volume inspect VOLUME_NAME
+                    </code></pre>
+                    <small>Info brindada:</small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                                "CreatedAt": "2024-08-23T09:49:48-03:00",
+                                "Driver": "local",
+                                "Labels": null,
+                                "Mountpoint": "/var/lib/docker/volumes/my_volume/_data",
+                                "Name": "my_volume",
+                                "Options": null,
+                                "Scope": "local"
+                    </code></pre>
+
 
 
                 </section>
