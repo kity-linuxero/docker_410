@@ -65,9 +65,9 @@
 					<h3>¿Qué es un Dockerfile?</h3>
 					
                     <small>
-                    <p>Un Dockerfile es un archivo de texto simple, llamado "Dockerfile" que contiene una serie de instrucciones que se ejecutan de manera secuencial para construir una imagen de Docker. Cada línea del Dockerfile corresponde a una instrucción específica que define cómo se debe configurar el entorno del contenedor que se creará a partir de la imagen.</p>
+                    <p>Un Dockerfile es un archivo de texto plano, llamado simplemente <strong>Dockerfile</strong> que contiene una serie de instrucciones que se ejecutan de manera secuencial para construir una imagen de Docker. Cada línea del Dockerfile corresponde a una instrucción específica que define cómo se debe configurar el entorno del contenedor que se creará a partir de la imagen.</p>
                    
-                    <img src="img/clase3/img2.png">
+                    <img src="img/clase3/dockerfile.png">
                     
                     
                     
@@ -81,8 +81,8 @@
                     <h3>Propósito del Dockerfile</h3>
                     <small>
                     <ul>
-                        <li><strong>Automatización:</strong> Dockerfile permite automatizar la construcción de imágenes, lo que es esencial para asegurar la consistencia entre entornos de desarrollo, prueba, y producción. Una vez que el Dockerfile está definido, cualquier desarrollador puede generar la misma imagen y, por lo tanto, el mismo entorno, simplemente ejecutando un comando.</li>
-                        <li><strong>Portabilidad:</strong> Con Dockerfile, puedes empaquetar tu aplicación junto con todas sus dependencias, garantizando que funcionará de la misma manera en cualquier sistema que soporte Docker. Esto resuelve el problema clásico de "funciona en mi máquina" al hacer el entorno de desarrollo reproducible.</li>
+                        <li><strong>Automatización:</strong> Dockerfile permite automatizar la construcción de imágenes, lo que es esencial para asegurar la consistencia entre entornos de desarrollo, test, y producción. Una vez que el Dockerfile está definido, cualquier desarrollador puede generar la misma imagen y, por lo tanto, el mismo entorno, simplemente ejecutando un comando.</li>
+                        <li><strong>Portabilidad:</strong> Con Dockerfile, podemos empaquetar la aplicación junto con todas sus dependencias, garantizando que funcionará de la misma manera en cualquier sistema que soporte Docker. Esto resuelve el problema clásico de "funciona en mi máquina" al hacer el entorno de desarrollo reproducible.</li>
                     </ul>
                     
                     </small>
@@ -200,7 +200,7 @@
                     <small>
 
                         <ul>
-                            <li><strong>FROM:</strong> Define la imagen base a partir de la cual se construirá la nueva imagen. Esta es siempre la primera instrucción en un Dockerfile.</li>
+                            <li><strong><a href="https://docs.docker.com/reference/dockerfile/#from" target="_blank">FROM:</a></strong> Define la imagen base a partir de la cual se construirá la nueva imagen. Esta es siempre la primera instrucción en un Dockerfile.</li>
                         </ul>
                     </small>
 
@@ -212,7 +212,7 @@
                     <small>
 
                         <ul>
-                            <li><strong>WORKDIR:</strong> Establece el directorio de trabajo dentro del contenedor. Todas las instrucciones posteriores que utilicen rutas relativas se basarán en este directorio.
+                            <li><strong><a href="https://docs.docker.com/reference/dockerfile/#workdir" target="_blank">WORKDIR:</a></strong> Establece el directorio de trabajo dentro del contenedor. Todas las instrucciones posteriores que utilicen rutas relativas se basarán en este directorio.
 
 
                             
@@ -243,7 +243,7 @@
 
                     <ul>
 
-                        <li><strong>RUN:</strong> Ejecuta un comando en el contenedor durante la construcción de la imagen. Es comúnmente utilizado para instalar paquetes, configurar el entorno, o realizar cualquier otra tarea necesaria para preparar la aplicación.
+                        <li><a href="https://docs.docker.com/reference/dockerfile/#run" target="_blank"><strong>RUN:</strong></a> Ejecuta un comando en el contenedor durante la construcción de la imagen. Es comúnmente utilizado para instalar paquetes, configurar el entorno, o realizar cualquier otra tarea necesaria para preparar la aplicación.
                         
 
                         
@@ -258,7 +258,7 @@
 
                 <small>
                     <ul>
-                        <li><strong>ENV:</strong> Establece variables de entorno dentro del contenedor. Estas variables pueden ser utilizadas por la aplicación en ejecución.</li>
+                        <li><a href="https://docs.docker.com/reference/dockerfile/#env" target="_blank"><strong>ENV:</strong></a> Establece variables de entorno dentro del contenedor. Estas variables pueden ser utilizadas por la aplicación en ejecución.</li>
                     </ul>
                 </small>
 
@@ -285,8 +285,8 @@
                             <small>
                             <li><strong>COPY y ADD:</strong> Ambas instrucciones se utilizan para copiar archivos desde el host al contenedor, pero con algunas diferencias:
                                 <ul>
-                                    <li><strong>COPY:</strong> Copia archivos o directorios desde el sistema de archivos del host al contenedor.</li>
-                                    <li><strong>ADD:</strong> Es similar a COPY, pero también puede descomprimir archivos y obtener archivos desde una URL remota.</li>
+                                    <li><a href="https://docs.docker.com/reference/dockerfile/#copy" target="_blank"><strong>COPY:</strong></a> Copia archivos o directorios desde el sistema de archivos del host al contenedor.</li>
+                                    <li><a href="https://docs.docker.com/reference/dockerfile/#add" target="_blank"><strong>ADD:</strong></a> Es similar a COPY, pero también puede descomprimir archivos y obtener archivos desde una URL remota, por ejemplo un repositorio Git.</li>
                                 </ul>
 
 
@@ -302,7 +302,7 @@
                         <ul>
                             
 
-                        <small><li><strong>CMD:</strong> Especifica el comando por defecto que se ejecutará cuando se inicie un contenedor creado a partir de la imagen.
+                        <small><li><a href="https://docs.docker.com/reference/dockerfile/#cmd" target="_blank"><strong>CMD:</strong></a> Especifica el comando por defecto que se ejecutará cuando se inicie un contenedor creado a partir de la imagen.
 
                             <ul>
                                 <li>Los parámetros son separados por comas.</li>
@@ -318,7 +318,7 @@
                             </code></pre>
                             <small>
                             <ul>
-                            <li><strong>ENTRYPOINT</strong>: Similar a CMD pero NO es sobrescrito por los argumentos pasados a <code>docker run</code></li>
+                            <li><a href="https://docs.docker.com/reference/dockerfile/#entrypoint" target="_blank"><strong>ENTRYPOINT</strong></a>: Similar a CMD pero NO es sobrescrito por los argumentos pasados a <code>docker run</code></li>
                         </ul>
                         </small>
 
@@ -345,10 +345,7 @@
                     <h4>Optimizado:</h4>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
-                        RUN apt-get update && \
-                            apt-get install -y \
-                            curl \
-                            vim                    
+                        RUN apt-get update && apt-get install -y curl vim                    
                     </code></pre>
 
                 </section>
@@ -362,7 +359,7 @@
                 <section id="docker_cache" data-state="no_footer">
                     <h3>Caché de construcción</h3>
                     <small>
-                        <p>Docker utiliza un sistema de caché para acelerar la construcción de imágenes. Si una capa no ha cambiado, Docker reutiliza la capa en lugar de reconstruirla. Esto hace que el orden de las instrucciones sea importante; cambios en las primeras instrucciones pueden invalidar la caché de todas las capas siguientes.</p>
+                        <p>Docker utiliza un sistema de caché para acelerar la construcción de imágenes. Si una capa no ha cambiado, Docker reutiliza la capa en lugar de reconstruirla. Esto hace que el orden de las instrucciones sea muy importante; cambios en las primeras instrucciones pueden invalidar la caché de todas las capas siguientes.</p>
                         <p>Esto es notorio cuando estamos <em>buildeando</em> imágenes haciendo pruebas. O hacemos un cambio en el código de la app y necesitamos reconstruir la imágen.</p>
                     
                     </small>
@@ -471,7 +468,7 @@
 
 
                 <section id="docker_build3" data-state="no_footer">
-                    <h4>Construcción de imágenes</h4>
+                    <h3>Construcción de imágenes</h3>
 
 
                     <p><small>Supongamos que tenemos un Dockerfile en el directorio actual y queremos construir una imagen llamada <code>mi-app</code>.</small></p>
@@ -482,8 +479,8 @@
 
                     <small>
                         <ul>
-                            <li><code>-t mi-app:v0.1</code>: asigna un nombre y una etiqueta (tag) a la imagen creada.</li>
-                            <li><code>.</code>: indica que el contexto de construcción es el directorio actual.</li>
+                            <li><code><strong>-t mi-app</strong></code>: asigna un nombre y una etiqueta (tag) a la imagen creada.</li>
+                            <li><code><strong>.</strong></code>: indica que el contexto de construcción es el directorio actual.</li>
                         </ul>
                     </small>
 
@@ -501,7 +498,7 @@
 
                 <section id="docker_build4" data-state="no_footer">
 
-                    <h4>Opciones comunes de docker build</h4>
+                    <h3>Opciones comunes de docker build</h3>
 
                     
                         <ul>
