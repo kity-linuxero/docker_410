@@ -28,27 +28,39 @@
                 <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
                     
                     <h3>Fundamentos y usos prácticos de Docker</h3>
-                    <h4>Clase 4 : Redes y Volúmenes en Docker</h4>
+                    <h4>Clase 4 : Redes y datos en Docker</h4>
 
                 </section>
 
                 <section id="index" data-state="no_footer">
-                    <h3>Temas de clase 4</h3>
-                    <h4>Redes y Volúmenes en Docker</h4>
+                    <h3>Temas de clase 4: Redes y datos</h3>
+                    <h4>Redes</h4>
                     <small>
-                
                         <ul>
-                            <li><a href="#/dockerfile_def">Introducción a Redes en Docker</a></li>
-                            <li><a href="#/dockerfile_instrucciones1">Estructura Básica de un Dockerfile</a></li>
-                            <li><a href="#/dockerfile_capas">Capas en Dockerfile</a></li>
-                            <li><a href="#/docker_build2">Construcción de Imágenes</a></li>
-                            <li><a href="#/dockerfile_buenas_practicas">Buenas Prácticas al Escribir un Dockerfile</a></li>
-                            <li><a href="#/labs_clase">Laboratorios</a></li>
-                            
+                            <li><a href="#/networking_1">Redes en Docker</a></li>
+                            <li><a href="#/net_bridge">Redes bridge</a></li>
+                            <li><a href="#/net_bridge1">Puertos y redirecciones</a></li>
+                            <li><a href="#/gestion_network1">Gestión de redes</a></li>
 
                         </ul>
 
                     </small>
+
+                    <p>
+
+                    <h4>Persistencia de datos</h4>
+                    <small>
+                        <ul>
+                            <li><a href="#/intro_mounts">Administrar datos en Docker</a></li>
+                            <li><a href="#/mounts_types">Tipos de montaje</a></li>
+                            <li><a href="#/volumes">Volumenes</a></li>
+                            <li><a href="#/bind_mounts">Bind mounts</a></li>
+                            <li><a href="#/volumenes">Gestión de volumenes</a></li>
+                            <li><a href="#/volumenes">Gestión de volumenes</a></li>                            
+                        </ul>
+                    </small>
+                    </p>
+                    <a href="#/labs_clase">Laboratorios</a>
                     
                 </section>
 
@@ -67,7 +79,7 @@
                     <small>
                     <p>Docker proporciona un sistema de redes virtuales que permite conectar contenedores entre sí, al host, y con el mundo exterior. Al utilizar Docker, es esencial comprender cómo funcionan las redes dentro de su ecosistema, ya que esto impacta directamente en la conectividad, la seguridad, y el comportamiento de las aplicaciones distribuidas.</p>
                    
-                    <img src="img/clase4/img1.png" width="50%">
+                    <img src="img/clase4/network1.png" width="90%">
                     
                     
                     
@@ -652,6 +664,11 @@
                         docker volume ls
                     </code></pre>
 
+                    <small>
+                        <p><a href="https://docs.docker.com/reference/cli/docker/volume/create/" target="_blank">Docker Docs: volume create</a></p>
+                        <p><a href="https://docs.docker.com/reference/cli/docker/volume/ls/" target="_blank">Docker Docs: volume ls</a></p>
+                    </small>
+
 
                 </section>
 
@@ -679,6 +696,7 @@
 
                     <div class="fragment">
                         <small>¿Qué ha ocurrido?<span class="fragment"> Hemos logrado persistir datos y montar el volumen en otro contenedor completamente diferente.</span></small>
+                        <small class="fragment"><p><a href="https://docs.docker.com/engine/storage/volumes/#choose-the--v-or---mount-flag" target="_blank">Docker Docs: mount</a></p></small>
                     </div>
                     
                     
@@ -696,6 +714,14 @@
 
 
                     <p><small><a href="https://docs.docker.com/reference/cli/docker/volume/rm/" target="_blank">Docker Docs: volume rm</a></small></p>
+
+                    <h4>Eliminar volumenes utilizados</h4>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker volume prune
+                    </code></pre>
+
+                    <p><small><a href="https://docs.docker.com/reference/cli/docker/volume/prune/" target="_blank">Docker Docs: volume prune</a></small></p>
 
 
 
@@ -720,7 +746,31 @@
                                 "Scope": "local"
                     </code></pre>
 
+                    <p><small><a href="https://docs.docker.com/reference/cli/docker/volume/inspect/" target="_blank">Docker Docs: volume inspect</a></small></p>
 
+
+
+                </section>
+
+                <section id="docker_cp" data-state="no_footer">
+
+                    <h3>Copiar archivos a contenedores</h3>
+
+                    <small><p>Podemos copiar contenido de nuestro host hacia un contenedor con el comando <code>docker cp [OPTIONS] [PATH] CONTAINER:/[DESTINATION]</code></p></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker cp config.json contenedor_prueba:/mnt
+                    </code></pre>
+
+                    <small><p>O a la inversa, copiar desde el contenedor hacia el host invirtiendo los paths</p></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker cp contenedor_prueba:/mnt/config.json .
+                    </code></pre>
+
+                    <small><p>Esto no es exclusivo de los volúmenes. Se pueden copiar a cualquier path del contenedor por mas que no tenga un volumen montado.</p></small>
+
+                    <p><small><a href="https://docs.docker.com/reference/cli/docker/container/cp/" target="_blank">Docker Docs: container cp</a></small></p>
 
                 </section>
 
@@ -737,9 +787,10 @@
                 <small>
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/31-holamundo/README.md" target="_blank">Lab 3.1</a> Nuestro primer Dockerfile: Hola Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/32-cow/README.md" target="_blank">Lab 3.2</a> Dockerizando una app Python: Una vaca te saluda</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/03-dockerfiles/33-best-page/README.md" target="_blank">Lab 3.3</a> Dockerizando una web estática: La mejor página del mundo</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/04-redes_volumes/41-holamundo/README.md" target="_blank">Lab 4.1</a> Nuestro primer Dockerfile: Hola Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/04-redes_volumes/42-cow/README.md" target="_blank">Lab 4.2</a> Dockerizando una app Python: Una vaca te saluda</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/04-redes_volumes/43-best-page/README.md" target="_blank">Lab 4.3</a> Dockerizando una web estática: La mejor página del mundo</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/04-redes_volumes/44-best-page/README.md" target="_blank">Lab 4.4</a> Dockerizando una web estática: La mejor página del mundo</li>
                     
 
                     
@@ -755,10 +806,7 @@
         </section>
 
         <section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-				
-            <img src="img/logos/idep_logo.png" width="40%" height="40%">
-            
-
+			<a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
         </section>
 						
 
