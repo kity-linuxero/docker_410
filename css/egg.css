@@ -226,3 +226,8 @@
 .codigo_monospaced {
   font-family: system-ui
 }
+
+.sub_titulo {
+  font-size: 125%;
+  font-weight: bold;
+}

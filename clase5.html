@@ -1,0 +1,601 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Fundamentos contenedores Docker - CFL 410</title>
+		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
+        <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="css/egg.css">
+		
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+            <section>
+
+                <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    
+                    <h3>Fundamentos y usos prácticos de Docker</h3>
+                    <h4>Clase 5 : Docker compose</h4>
+
+                </section>
+
+                <section id="index" data-state="no_footer">
+                    <h3>Temas de clase 5:</h3>
+                    <h4>Introducción a docker compsoe</h4>
+                    <small>
+                        <ul>
+                            <li><a href="#/compose_1">Introducción a Docker Compose</a></li>
+                            <li><a href="#/compose_2">Archivo Compose</a></li>
+                            <li><a href="#/compose_4">Compose CLI</a></li>
+                            <li><a href="#/compose_5">Corriendo nuestro primer compose</a></li>
+                            <li><a href="#/compose_6">Web estática</a></li>
+                            
+                            <li><a href="#/compose_multi_container_1">Compose multi-contenedores</a></li>
+                            <li><a href="#/dockerfile_compose">Dockerfile + Compose</a></li>
+
+
+                        </ul>
+
+                    </small>
+
+                    <p>
+                        <a href="#/labs_clase">Laboratorios</a>
+                    </p>
+                </section>
+
+            </section>
+			
+
+			<section>
+				<section id="compose_" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Introducción a docker compose</h3>
+                    
+				</section>
+
+				<section id="compose_1" data-state="no_footer">
+					<h3>Docker compose</h3>
+					
+                    <small>
+                    <p>Docker Compose es una herramienta que permite definir y gestionar aplicaciones multi-contenedor. En lugar de ejecutar manualmente cada contenedor con múltiples comandos <code>docker run</code>.</p>
+                    <p>Docker Compose utiliza un archivo YAML que define los servicios que componen la aplicación, sus redes, volúmenes, y otras configuraciones.</p>
+                   
+                    <img src="img/clase5/compose1.png" width="65%">
+                    
+                    
+                    
+                    </small>
+
+				</section>
+
+                <section id="compose_11" data-state="no_footer">
+                    <h3>¿Por qué usar Docker Compose?</h3>
+                    <small>
+                        <ul>
+                            <li><strong>Simplificación de la gestión:</strong> Docker Compose facilita la ejecución de aplicaciones que requieren múltiples contenedores. Sin Compose, tendrías que iniciar cada contenedor manualmente con comandos docker run, lo que puede ser complejo y propenso a errores.</li>
+                            <li><strong>Configuración declarativa:</strong> Toda la configuración de la aplicación, incluidos los servicios, redes y volúmenes, se describe en un solo archivo yaml. Esto hace que la aplicación sea fácilmente replicable y portátil.</li>
+                        </ul>
+                        <p><a href="https://docs.docker.com/compose/" target="_blank">Docker Docs: Docker Compose</a></p>
+                    </small>
+                </section>
+
+                <section id="compose_12" data-state="no_footer">
+                    <h3>¿Cómo funciona Docker Compose?</h3>
+                    <small>
+                        <p>Docker Compose se basa en la definición de los contenedores en un archivo YAML (compose.yaml). Este archivo describe cada servicio necesario, las imágenes que se usarán, las redes para la comunicación interna, los volúmenes para la persistencia de datos, y otras configuraciones específicas.</p>
+                        <p class="sub_titulo">Componentes clave de Docker compose:</p>
+                        <ul>
+                            <li><strong>Servicios (Services): </strong>Representan a cada contenedor que forma parte de la aplicación. Por ejemplo, un servicio web puede estar basado en una imagen de Nginx, y otro servicio de base de datos en MySQL.</li>
+                            <li><strong>Redes (Networks): </strong>Facilitan la comunicación entre los servicios definidos, permitiendo que los contenedores se comuniquen entre sí por nombre de servicio.</li>
+                            <li><strong>Volúmenes (Volumes): </strong>Proveen persistencia de datos, permitiendo que los datos de los contenedores persistan aunque estos sean eliminados.</li>
+                        </ul>
+                        <p></p>
+                    </small>
+
+                </section>
+
+                
+
+                <section id="compose_2" data-state="no_footer">
+                    <h3>Archivo compose</h3>
+                    <small>
+
+                    <p>El fomato YAML usa la sangría o identación para su estructura, por eso es importante que seamos consistentes con dicha identación. Es decir, si usamos espacios o tabulación.</p>
+                    
+                    <p>En Docker compose, el archivo compose puede tener alguno de los siguientes nombres.</p>
+
+                    <p class="sub_titulo">Nombres estándares de compose</p>
+                    <ul>
+                        <!-- <li><code>compose.yaml</code></li>
+                        <li><code>compose.yml</code></li>
+                        <li><code>docker-compose.yaml</code></li>
+                        <li><code>docker-compose.yml</code></li> -->
+                        <li><code>compose.yaml/yml</code></li>
+                        <li><code>docker-compose.yaml/yml</code></li>
+                    </ul>
+
+                    <p>Si el archivo compose tiene otro nombre, hay que indicarselo a la CLI con <code>--file</code></p>
+
+                    
+                    <a href="https://docs.docker.com/compose/compose-application-model/#the-compose-file" target="_blank">Docker Docs: The compose file</a>
+                    </small>
+
+                </section>
+
+                <section id="compose_file1" data-state="no_footer">
+                    <h3>Archivo compose</h3>
+                    <small>
+                        <p>El archivo compose se compone de instrucciones o directivas. Como las siguientes:</p>
+                        <ul>
+                            <li><strong><code>image:</code></strong> Especifica qué imagen Docker se va a utilizar para crear el contenedor. Puede ser una imagen local o descargada de Docker Hub.</li>
+                            <li><strong><code>ports:</code></strong> Mapea puertos del contenedor a puertos del host, permitiendo el acceso externo al contenedor desde el sistema anfitrión.
+                                <ul>
+                                    <li><code>P_HOST:P_CONTAINER</code></li>
+                                </ul>
+                            </li>
+                            <li><strong><code>expose:</code></strong> Expone puertos dentro del contenedor sin hacerlos accesibles fuera del host. Solo permite la comunicación interna entre contenedores.</li>
+                            <li><strong><code>environment:</code></strong> Permite pasar variables de entorno al contenedor.</li>
+
+                            <li><strong><code>restart</code></strong> Define la política de reinicio del contenedor en caso de fallo o salida. Puede tener valores como:</li>
+                            <ul>
+                                <li><code>no</code>: No reiniciar</li>
+                                <li><code>always</code>: Reinicia siempre</li>
+                                <li><code>on-failure</code>: reiniciar si solo falla</li>
+                                <li><code>unless-stopped</code>: Reiniciar a menos que el contenedor sea detenido manualmente</li>
+                            </ul>
+                        </ul>
+                    </small>
+                    
+                </section>
+
+                <section id="compose_3" data-state="no_footer">
+					<h3>Ejemplo archivo compose</h3>
+
+                    <small>
+                        <p>Ejemplo básico de un archivo <code>compose.yaml</code></p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        version: '3'        # Obsoleta en Compose V2
+                        services:
+                          web:              # Nombre del servicio
+                            image: nginx:latest
+                            ports:          # Publish ports
+                              - "80:80"
+                          database:         # Nombre del servicio
+                            image: mysql:5.7
+                            environment:    # Variables de entorno
+                              MYSQL_ROOT_PASSWORD: example
+
+                    </code></pre>
+
+                    <small><p>En este ejemplo, se definen dos servicios: web, que usa la imagen de Nginx, y database, que utiliza MySQL.</p></small>
+				</section>
+
+
+
+                <section id="compose_4" data-state="no_footer">
+                    <h3>Compose CLI</h3>
+                    <small>
+                        <p>La CLI de Docker nos ayuda a interactuar con compose mediante el comando <code>docker compose</code>.</p>
+                        <p class="sub_titulo">Comandos básicos:</p>
+                        <ul>
+                            <li><code><strong>docker compose up</strong></code>: Inicia todos los servicios definidos en el archivo compose.</li>
+                            <li><code><strong>docker compose down</strong></code>: Detiene y elimina los servicios que están corriendo según el archivo compose.</li>
+                            <li><code><strong>docker compose logs</strong></code>: Nos muestra los ouputs de los contenedores. Útil para hacer debug.</li>
+                            <li><code><strong>docker compose ps</strong></code>: Lista los servicios junto a su estado actual.</li>
+                        </ul>
+                    </small>
+
+                    <small>
+                        <br>
+                        
+
+                        <a href="https://docs.docker.com/reference/cli/docker/compose/#subcommands" target="_blank">Docker docs: Compose CLI commands</a>
+
+                        
+                    </small>
+
+                </section>
+
+                <section id="compose_5" data-state="no_footer">
+                    <h3>Iniciando nuestro primer compose</h3>
+                    
+                    <small>
+                        <p>Unas de las mejores caracteristicas de docker y compose, es que se pueden deployar aplicaciones rápidamente. En este ejemplo levantaremos un servidor web en segundos.</p>
+                        <p>Empezaremos por un servidor web Nginx. Copiamos el siguiente texto a un archivo llamado <code>compose.yaml</code> en una carpeta nueva.</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          web:
+                            image: nginx:alpine-slim
+                            ports:
+                              - "80:80"
+                    </code></pre>
+                    <small>Luego ejecutamos en la misma carpeta:</small>
+
+            
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker compose up
+                    </code></pre>
+                    <small class="fragment">
+                        <p>Abrimos <a href="http://localhost" target="_blank">http://localhost</a> y analizamos. <span class="fragment">Salimos con Control+C</span></p>
+                    </small>
+
+
+                </section>
+
+                <section id="compose_6" data-state="no_footer">
+                    <h3>Web estática con compose</h3>
+
+                    <small>
+                        <p>Vamos a modificar el compose para que no solo muestre la página de bienvenida de Nginx, sino para que sirva una web propia. Creamos una carpeta nueva llamada web.</p>
+                        <p>Luego, descargamos el siguiente archivo <a href="https://codeload.github.com/thiagodnf/funny-eyes/zip/refs/heads/master" download>funny-eyes</a>. Descomprimimos el ZIP y renombramos la carpeta <strong>funny-eyes-master</strong> a <strong>html</strong>.</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        web/
+                        ├─ html/
+                        │  ├─ js/
+                        │  ├─ css/
+                        │  ├─ index.html
+                        ├─ compose.yaml
+                        
+                    </code></pre>
+
+
+                    
+                </section>
+
+
+
+                <section id="compose_7" data-state="no_footer">
+                    <h3>Web estática con compose</h3>
+                    <small>
+                        <p>Una vez que tengamos la estructura de directorios indicados, creamos un archivo <strong>compose.yaml</strong> con el siguiente contenido:</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          web:
+                            image: nginx:alpine-slim
+                            ports:
+                              - "80:80"
+                            volumes:
+                              - ./html:/usr/share/nginx/html    # bind mount!
+                    </code></pre>
+
+                    <small>
+                        Luego ejecutamos:
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker compose up -d
+                    </code></pre>
+
+                    <small>El -d adicional indica que se ejecutará como "daemon".</small>
+
+                </section>
+
+                <section id="compose_8" data-state="no_footer">
+                    <h3>Detener docker compose</h3>
+                    <small>
+                        <p>Cuando ejecutamos el compose en modo daemon (-d) para detener podemos hacer lo siguiente:</p>
+
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker compose stop # Detiene los contenedores
+                        docker compose down # Detiene y elimina contenedores y redes
+                        docker stop [CONTAINER_ID | NAME] # Usando docker CLI (sin compose)
+                    </code></pre>
+
+                </section>
+
+                <section id="compose_9" data-state="no_footer">
+
+                    <h3>Ambito de compose</h3>
+                    
+
+                    <small>
+                        <p>Es importante remarcar que el <em>ámbito</em> del compose es por directorio/carpeta.</p>
+                        <p>Es decir, si ejecutamos un <strong>docker compose stop</strong> para detener contenedores que levantamos pero estamos ubicados en otra carpeta, la CLI buscará un archivo compose dentro del directorio actual. Si no lo encuentra dará un mensaje <strong>no configuration file provided: not found</strong></p>
+                        <p>Por lo tanto, podremos tener tantos <strong>composes</strong> como queramos pero siempre respetando por carpetas o bien, podemos en la misma carpeta tener varios composes, pero tendremos que hacer explícito (con -f o --file) a qué archivo nos estamos refiriendo.</p>
+                    </small>
+
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                            docker compose --file otro-compose.yml up -d
+                        </code></pre>
+
+                        
+                    
+
+                </section>
+
+                <section id="ipreguntas2" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+
+
+
+            </section>
+
+
+
+            <section>
+				<section id="compose_multi_container" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Docker compose</h3>
+                    <h4>Composes multi-contenedor</h4>
+				</section>
+
+                <section id="compose_multi_container_1" data-state="no_footer">
+                    <h3>Composes multi-contenedor</h3>
+                    
+                    <small>
+                        <p>Gestionar diversos conenedores utilizando la Docker CLI requiere de varios pasos que tienen que ejecutarse uno tras otro y es propenso a errores.</p>
+                        <p>Una de las cualidades de Docker Compose es la fácil gestión de aplicaciones multi-contenedor. Muchas veces las aplicaciones se componen de varios contenedores. Naturalmente, esos contenedores deberán poder comunicarse entre sí.</p>
+                        
+                    </small>
+
+                    <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*HKf_ZCMcge8srjcP.png" width="60%">
+          
+    
+                </section>
+
+
+                <section id="compose_multi_container_2" data-state="no_footer">
+                    <h3>Composes multi-contenedor</h3>
+
+
+                    <small><p>Para indicar que queremos tener otro contenedor en el compose simplemente declaramos otro servicio:</p></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          web:
+                            image: "httpd:latest"
+                            ports:
+                              - "8000:80"
+
+                          redis:
+                            image: "redis:alpine"
+                    </code></pre>
+
+                    <small><p>En este ejemplo, se tienen dos contenedores; uno con el servidor web Apache y otro con la BD Redis. Al levantarlos con <strong>docker compose up</strong> se levantarán los dos contenedores.</p></small>
+
+    
+                </section>
+
+                <section id="compose_multi_container_3" data-state="no_footer">
+
+                    <h3>Composes multi-contenedor</h3>
+                   <small>
+                        <p>Vamos a comprobar que es muy sencillo tener aplicaciones mas complejas deployadas en segundos. En este ejemplo levantaremos un Wordpress.</p>
+                        <p>WordPress es un sistema de gestión de contenido (CMS) de código abierto que permite crear y administrar sitios web y blogs de manera fácil, sin necesidad de saber programar. Es altamente personalizable mediante temas y plugins, lo que lo hace ideal para sitios web de todo tipo, desde blogs personales hasta tiendas en línea.</p>
+                        <p>Para eso descargaremos el <a href="./files/compose/compose-wp.yaml" download>compose-wp.yaml</a></p>
+                        <p>Luego nos ubicamos en una carpeta nueva y ejecutamos:</p>
+                   </small>
+
+                   <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                    docker compose --file compose-wp.yaml up -d
+                </code></pre>
+
+                <small>
+                    Abriremos <a href="http://localhost" target="_blank">http://localhost</a>
+                    <p class="fragment">Analicemos el <a href="./files/compose/compose-wp.yaml" target="_blank">archivo compose</a>.</p>
+                </small>
+
+
+                </section>
+
+             
+
+                <section id="ipreguntas1" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+            </section>
+
+            <section>
+				<section id="dockerfile_compose" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Compose + Dockerfile</h3>
+                    <h4>Construyendo la imágen y correrla</h4>
+				</section>
+
+                <section id="dockerfile_compose1" data-state="no_footer">
+                    <h3>Compose + Dockerfile</h3>
+                    <small>
+                        <p>Docker Compose NO reemplaza Dockerfile. Ya que tienen propósitos diferentes: Mientras que Dockerfile nos ayuda a personalizar nuestras imágenes, Compose es una herramienta para definir la relación entre cada servicio (contenedores) del arhivo Compose.</p>
+                        
+                    </small>
+                    <img src="./img/clase5/dockerfile_compose.png">
+                </section>
+
+                <section id="dockerfile_compose2" data-state="no_footer">
+                    <h3>Archivo compose + build</h3>
+                    <small>
+                        <p>Para indicar que nuestra imágen se construye a partir de un Dockerfile, la instrucción <strong>image</strong> se reemplaza por <strong>build</strong>.</p>
+                        <p class="sub_titulo"> Funciones de build:</p>
+                        <ul>
+                            <li><strong>Especificar el contexto de construcción:</strong> Define la ubicación de los archivos que Docker necesita para construir la imagen (normalmente, el directorio que contiene el Dockerfile).</li>
+                            <li><strong>Dockerfile personalizado:</strong> Podemos especificar un Dockerfile diferente si no está en el directorio por defecto o si deseas personalizarlo.</li>
+                        </ul>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          app:
+                            build:
+                              context: ./app
+                              dockerfile: Dockerfile.custom
+                            ports:
+                              - "8080:8080"
+                    </code></pre>
+
+
+                </section>
+
+                <section id="dockerfile_compose3" data-state="no_footer">
+                    <h3>Construir imágenes</h3>
+                    <small>
+                        <p>Para buildear imágenes de Dockerfile ha sido explicado mas en detalle en <a href="https://docker.idepba.com.ar/clase3.html#/docker_build2" target="_blank">otra clase</a>. Sin embargo en Docker Compose tenemos dos opciones:</p>
+                        <ul>
+                            <li>Buildear la imágen como lo visto antes con <code>docker build</code></li>
+                            <li>Encargarle a compose que haga el build</li>
+                        </ul>
+
+                        <p>Para la segunda opción simplemente basta con agregar un parámetro mas a <code>docker compose</code></p>
+                        
+                        </small>
+
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                            docker compose --build  # Solo buildea las imágenes
+                            docker compose up -d --build # Buildea las imágenes y corre los servicios
+                        </code></pre>
+
+                        
+
+                </section>
+
+                <section id="ipreguntas3" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+            </section> <!-- Fin Sección-->
+
+            <section id="labs_clase" data-state="no_footer">
+                <h3>Actividad de práctica:</h3>
+                <small>
+                <ul>
+
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/05-compose/51-intro.compose.md" target="_blank">Lab 5.1</a> Deployar un contenedor web sencillo con Docker Compose</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/05-compose/redes/52-multicontainer.md" target="_blank">Lab 5.2</a> Aplicaciones multicontenedor</li>
+                  
+                    
+                </ul>
+
+                </small>
+                
+            
+                
+
+            </section>
+
+
+
+        <section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+			<a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
+        </section>
+						
+
+					
+    </div>
+</div>
+
+<footer>
+    <!-- Logos en el footer -->
+    <div id="logos-footer" class="footer">
+        <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
+        <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
+        <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener("load", function() {
+    
+            revealDiv = document.querySelector("body div.reveal")
+            footer = document.getElementById("logos-footer");
+            revealDiv.appendChild(footer);
+    
+        } );
+    </script>
+</footer>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/zoom/zoom.js"></script>
+<script src="plugin/copycode/copycode.js"></script>
+
+
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+
+        // Para eventos personalizados. Indica que está en la presentación
+
+    Reveal.on( 'customevent', function() {
+        var element = document.getElementById("logos-footer");
+        element.style.display = "table";
+        element.style.opacity = "40%";
+
+    } );
+
+    Reveal.on( 'hide_footer', function() {
+        var element = document.getElementById("logos-footer");
+        element.style.display = "table";
+        element.style.opacity = "0%";
+
+    } );
+
+    Reveal.on( 'no_footer', function() {
+        var element = document.getElementById("logos-footer");
+        //element.style.display = "none";
+        // element.style.display = "table";
+        element.style.opacity = "15%";
+    } );
+    Reveal.initialize({
+        hash: true,
+
+        copycode: {
+        button: "hover",
+        display: "icons",
+        text: {
+            copy: "Copiar",
+            copied: "¡Copiado!",
+        },
+        plaintextonly: true,
+        timeout: 1000,
+        style: {
+            copybg: "gray",
+            copiedbg: "green",
+            copycolor: "black",
+            copiedcolor: "white",
+            copyborder: "",
+            copiedborder: "",
+            scale: 1,
+            offset: 0,
+            radius: 0.2
+        },
+        tooltip: true,
+        iconsvg: {
+            copy: '',
+            copied: ''
+        },
+        cssautoload: true,
+        csspath: "",
+        clipboardjspath: ""
+        },
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode ]
+    });
+</script>
+
+</body>
+</html>
