@@ -1,0 +1,469 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Fundamentos contenedores Docker - CFL 410</title>
+		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
+        <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="css/egg.css">
+		
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+            <section>
+
+                <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    
+                    <h3>Fundamentos y usos prácticos de Docker</h3>
+                    <h4>Clase 7 :<br>Composes Geniales</h4>
+
+                </section>
+
+                <section id="index" data-state="no_footer">
+                    <h3>Temas de clase 7:</h3>
+                    <h4>Docker compose parte II</h4>
+                    <small>
+                        <ul>
+                            <li><a href="#/top_level_compose_1">Docker Compose Parte II</a></li>
+                            <li><a href="#/compose_environment">Compose environment</a></li>
+                            <li><a href="#/restart">Restart policy</a></li>
+                            <li><a href="#/resources_1">Recursos</a></li>
+                            <li><a href="#/debug_1">Container debug</a></li>
+
+                        </ul>
+
+                    </small>
+
+                    <p>
+                        <a href="#/labs_clase">Laboratorios</a>
+                    </p>
+                </section>
+
+            </section>
+
+            <section>
+                <section id="Awesome_compose" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Awesome Compose</h3>
+
+				</section>
+
+                <section id="Awesome_compose_1" data-state="no_footer">
+                    <h3>Awesome Compose</h3>
+                    <small>
+                    <p>Docker Compose permite que tengamos aplicaciones complejas desplegadas en pocos minutos. A continuación se mostrarán algunos ejemplos y "composes" que sirven como punto de partida sobre cómo integrar diferentes servicios mediante un archivo Compose. No se recomienda su implementación en ambientes productivos críticos. <a href="https://github.com/docker/awesome-compose?tab=readme-ov-file#awesome-compose-" target="_blank">*</a></p>
+                    
+
+                    </small>
+
+                    <img src="https://github.com/docker/awesome-compose/raw/master/awesome-compose.jpg">
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="docker_managers" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Administración de contenedores</h3>
+
+				</section>
+
+                <section id="portainer" data-state="no_footer">
+                    <h3>Portainer</h3>
+                    <small>
+                        <strong>Portainer</strong> es una interfaz gráfica web open source para la gestión de contenedores Docker, Docker Swarm, Kubernetes y otras plataformas de orquestación de contenedores. Portainer CE (Community Edition) es la versión gratuita sin soporte mantenido por la comunidad. Portainer dispone de una versión BE (Business Edition).
+
+                    </small>
+
+
+                    <p><img src="https://cdn.shopify.com/s/files/1/0546/6174/2777/files/portainer_a4cb95cd-4727-43b9-bbcf-7d094abf5454_600x600.png?v=1665007155" width="60%"></p>
+                    
+                  <small>
+                    <a href="https://github.com/portainer/portainer" target="_blank">Portainer GitHub Repository</a>
+                  </small>
+
+
+
+                </section>
+
+                <section id="portainer_2" data-state="no_footer">
+                    <h3>Portainer</h3>
+                    <small>
+                        <!-- <p>Portainer nos permite, entre otras cosas:</p> -->
+                        <ul>Portainer nos permite, entre otras cosas:
+                            <li>Administrar contenedores, imágenes, volúmenes y redes.</li>
+                            <li>Soporte para múltiples nodos Docker</li>
+                            <li>Monitoreo en tiempo real de los recursos</li>
+                            <li>Una GUI intuitiva para crear, gestionar y monitorear contenedores</li>
+                        </ul>
+
+
+                    </small>
+
+                    <p><img src="https://www.zdnet.com/a/img/resize/31b8e24bc38c52162692f819ccabab431d92a632/2023/03/22/67ce06e2-d486-4b79-8ae2-9e26c14790a4/portainer1.jpg?auto=webp&width=1280" width="50%"></p>
+
+                    <small>
+                    
+                    <a href="https://github.com/Haxxnet/Compose-Examples/blob/main/examples/portainer/docker-compose.yml" target="_blank">Portainer Compose Sample</a>
+                    
+                    </small>
+                   
+                </section>
+
+                <section id="Yacht_1" data-state="no_footer">
+                    <h3>Yacht</h3>
+                    <small>
+                        <p><a href="https://yacht.sh/" target="_blank">Yach</a> es otra interfaz gráfica para administrar Docker.</p>
+               
+                        <ul>
+                            <li>Templates compatibles con Portainer</li>
+                            <li>Gestión básica de contenedores</li>
+                            <li>Implementación guiada de contenedores</li>
+                            <li>Panel de control para monitorear contenedores</li>
+                            <li>Compatibilidad y editor para Docker Compose</li>
+                        </ul>
+
+                    </small>
+                    <p>
+
+                        <img src="./img/clase7/Yacht-Demo.gif" width="60%">
+                    </p>
+                    
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="development" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Composes para desarrollo</h3>
+                </section>
+
+                <section id="code" data-state="no_footer">
+                    <h3>code-server</h3>
+                    <small>
+                        <p><a href="https://docs.linuxserver.io/images/docker-code-server/" target="_blank">code-server</a> es un VSCode que corre en un servidor remoto accesible vía web.</p>
+
+                    </small>
+
+                    <img src="img/clase7/code-server-banner.png" width="50%">
+
+                </section>
+
+
+
+                <section id="gitea" data-state="no_footer">
+                    <h3>Gitea</h3>
+                    <small>
+                        <p><a href="https://about.gitea.com/" target="_blank">Gitea</a> plataforma de DevOps privada opensource (<a href="https://github.com/go-gitea/gitea/graphs/contributors" target="_blank">+1380 contrib</a>) soporte empresarial opcional. Git, CI/CD, etc. Puede correr en <a href="https://github.com/Haxxnet/Compose-Examples/tree/main/examples/gitea" target="_blank">Docker</a>.</p>
+                    </small>
+
+                    <img src="img/clase7/gitea-screenshot.png" width="80%">
+
+                </section>
+
+                <section id="fastapi" data-state="no_footer">
+
+                    <h3>Fastapi</h3>
+                    <small>
+                        <p><a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI</a> es un framework (muy performante, simple, y production-ready) para construir APIs con Python.</p>
+                    </small>
+
+                    <!-- <img src="img/clase7/logo-fastapi.png" width="50%"> -->
+                    <img src="img/clase7/fastapi-1.png" width="60%">
+                    
+
+                </section>
+
+                <section id="onedev" data-state="no_footer">
+
+                    <h3>Onedev</h3>
+                    <small>
+                        <p><a href="https://github.com/theonedev/onedev" target="_blank">Onedev</a> es un Git Server con CI/CD, Kanban y packages. <a href="https://code.onedev.io/" target="_blank">Demo Online</a></p>
+                    </small>
+
+                    <!-- <img src="img/clase7/logo-fastapi.png" width="50%"> -->
+                    <img src="img/clase7/onedev.png" width="80%">
+                    
+
+                </section>
+
+
+            
+            </section>
+
+            <section>
+
+                <section id="infra" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Composes para Infra</h3>
+                </section>
+
+                <section id="nginx-proxy" data-state="no_footer">
+
+                    <h3>Nginx Proxy Manager</h3>
+                    <small>
+                        <p><a href="https://github.com/NginxProxyManager/nginx-proxy-manager" target="_blank">Nginx Proxy Manager</a> es un <a href="https://en.wikipedia.org/wiki/Reverse_proxy" target="_blank">proxy reverso</a> basado en Nginx. Con capacidad de generar certificados SSL/TLS con <a href="https://letsencrypt.org/es/" target="_blank">Let's Encrypt</a> para exponer nuestras aplicaciones web de manera segura. Dispone de una amigable interfaz de usuario. Obviamene corre sobre <a href="https://nginxproxymanager.com/setup/#running-the-app" target="_blank">Docker</a>.</p>
+
+                        
+                    </small>
+
+                    <img src="img/clase7/dashboard.png" width="45%">
+                    <img src="img/clase7/proxy-hosts.png" width="45%">
+
+                </section>
+
+                <section id="wireguard_easy" data-state="no_footer">
+
+                    <h3>WireGuard Easy</h3>
+                    <small>
+                        <p><a href="https://github.com/wg-easy/wg-easy" target="_blank">WireGuard</a> es una VPN simple, rápida y moderna para cifrar conexiones. Wireguard Easy, hace que sea mas simple administrar esta VPN mediante una GUI web.</p>
+                    </small>
+
+                    <!-- <img src="img/clase7/logo-fastapi.png" width="50%"> -->
+                    <img src="img/clase7/screenshot-wg.png" width="70%">
+                    
+
+                </section>
+
+                <section id="nextcloud" data-state="no_footer">
+
+                    <h3>Nextcloud</h3>
+                    <small>
+                        <p><a href="https://nextcloud.com/" target="_blank">Nextcloud</a> es una plataforma open-source que permite a los usuarios almacenar, sincronizar y compartir archivos de manera segura en su propio servidor, proporcionando una alternativa privada a servicios en la nube como Google Drive o Dropbox. Ofrece características como edición colaborativa de documentos, mensajería y gestión de calendarios, todo bajo el control del usuario o de la organización.</p>
+                    </small>
+
+                    <img src="img/clase7/nextcloud-hub.webp" width="60%">
+
+                </section>
+
+                <section id="duplicati" data-state="no_footer">
+
+                    <h3>Duplicati</h3>
+                    <small>
+                        <p><a href="https://github.com/duplicati/duplicati" target="_blank">Duplicati</a> es un software de backup open-source que permite realizar copias de seguridad cifradas y comprimidas de archivos y enviarlas a diversos servicios de almacenamiento en la nube, como Google Drive, Amazon S3, entre otros, como también local o en red.</p>
+                    </small>
+
+                    <img src="img/clase7/Duplicati_001.webp" width="55%">
+                    <img src="img/clase7/Duplicati_002.webp" width="40%">
+
+                </section>
+                
+                <section id="vault_warden" data-state="no_footer">
+
+                    <h3>Vaultwarden</h3>
+                    <small>
+                        <p><a href="https://github.com/dani-garcia/vaultwarden" target="_blank">Vaultwarden</a> es una alternativa compatible a <a href="https://bitwarden.com/download/" target="_blank">Bitwarden</a> open source escrita en Rust para gestionar nuestras contraseñas y secretos. Deployable en <a href="https://github.com/dani-garcia/vaultwarden?tab=readme-ov-file#installation" target="">Docker</a>.</p>
+                        <p>Requiere de certificados SSL para funcionar.</p>
+                    </small>
+
+                    <img src="img/clase7/vault_screen.jpg" width="60%">
+
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="home_labs" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Composes para HomeLab</h3>
+                </section>
+
+                <section id="immich" data-state="no_footer">
+
+                    <h3>immich</h3>
+                    <small>
+                        <p><a href="https://github.com/immich-app/immich" target="_blank">immich</a> es "un clon" self-hosted de Google Photos open source con mas de <a href="https://github.com/immich-app/immich/graphs/contributors" target="_blank">700 desarrolladores</a>.</p>
+                        <p>Dispone de una <a href="https://demo.immich.app/" target="_blank">demo online.</a> User: demo@immich.app | pass: demo</p>
+                    </small>
+
+                    <img src="img/clase7/immich-logo-stacked-light.svg" width="40%">
+                    <img src="img/clase7/immich_folder_view2.jpg" width="40%">
+
+                </section>
+
+                <section id="pihole" data-state="no_footer">
+
+                    <h3>pi-hole</h3>
+                    <small>
+                        <p><a href="https://pi-hole.net/" target="_blank">Pi-Hole</a> se define como un "agujero negro" para los anuncios de internet. Es un Ad block por DNS. Es <a href="https://github.com/pi-hole/docker-pi-hole/?tab=readme-ov-file#quick-start" target="_blank">deployable</a> vía Docker Compose pero requiere cierta configuración básica en el DHCP de la red; asignar como DNS la IP que tendrá el Pi-Hole.</p>
+                    </small>
+
+                    <img src="img/clase7/Dashboard-pihole.png" width="90%">
+                    
+
+                </section>
+
+                <section id="adguard" data-state="no_footer">
+
+                    <h3>Adguard Home</h3>
+                    <small>
+                        <p><a href="https://github.com/AdguardTeam/AdGuardHome" target="_blank">Adguard</a> es una alternativa a Pi-Hole.</p>
+                    </small>
+
+                    <img src="img/clase7/adguard.gif" width="80%">
+                    
+
+                </section>
+
+                <section id="home_assintant" data-state="no_footer">
+
+                    <h3>Home Assistant</h3>
+                    <small>
+                        <p><a href="https://github.com/AdguardTeam/AdGuardHome" target="_blank">Home Assistant</a> es domótica de código abierto que prioriza el control local y la privacidad. Impulsado por una gran comunidad de entusiastas DIY. Ideal para correr sobre una Raspberry Pi o un server local.</p>
+                    </small>
+
+                    <img src="img/clase7/home-assistant-edit-dashboard.webp" width="75%">
+                    
+
+                </section>
+
+                <section id="plex" data-state="no_footer">
+
+                    <h3>Plex Media Server</h3>
+                    <small>
+                        <p><a href="https://hub.docker.com/r/plexinc/pms-docker" target="_blank">Plex</a> es una aplicación que permite a los usuarios organizar, gestionar y transmitir su colección de medios digitales, como películas, música, fotos y programas de televisión, a través de diferentes dispositivos conectados a la red.</p>
+                    </small>
+
+                    <img src="img/clase7/plex.png" width="85%">
+                    
+
+                </section>
+
+
+
+            </section> <!-- Fin sección -->
+			
+
+            <section id="labs_clase" data-state="no_footer">
+                <h3>Actividad de práctica:</h3>
+                <small>
+                <ul>
+
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/07-awesome-compose/71-awesome-compose.md" target="_blank">Lab 7</a> Awesome Compose</li>
+                    
+                </ul>
+
+                </small>
+                
+            
+                
+
+            </section>
+
+
+
+        <section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+			<a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
+        </section>
+						
+
+					
+    </div>
+</div>
+
+<footer>
+    <!-- Logos en el footer -->
+    <div id="logos-footer" class="footer">
+        <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
+        <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
+        <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener("load", function() {
+    
+            revealDiv = document.querySelector("body div.reveal")
+            footer = document.getElementById("logos-footer");
+            revealDiv.appendChild(footer);
+    
+        } );
+    </script>
+</footer>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/zoom/zoom.js"></script>
+<script src="plugin/copycode/copycode.js"></script>
+
+
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+
+        // Para eventos personalizados. Indica que está en la presentación
+
+    Reveal.on( 'customevent', function() {
+        var element = document.getElementById("logos-footer");
+        element.style.display = "table";
+        element.style.opacity = "40%";
+
+    } );
+
+    Reveal.on( 'hide_footer', function() {
+        var element = document.getElementById("logos-footer");
+        element.style.display = "table";
+        element.style.opacity = "0%";
+
+    } );
+
+    Reveal.on( 'no_footer', function() {
+        var element = document.getElementById("logos-footer");
+        //element.style.display = "none";
+        // element.style.display = "table";
+        element.style.opacity = "15%";
+    } );
+    Reveal.initialize({
+        hash: true,
+
+        copycode: {
+        button: "hover",
+        display: "icons",
+        text: {
+            copy: "Copiar",
+            copied: "¡Copiado!",
+        },
+        plaintextonly: true,
+        timeout: 1000,
+        style: {
+            copybg: "gray",
+            copiedbg: "green",
+            copycolor: "black",
+            copiedcolor: "white",
+            copyborder: "",
+            copiedborder: "",
+            scale: 1,
+            offset: 0,
+            radius: 0.2
+        },
+        tooltip: true,
+        iconsvg: {
+            copy: '',
+            copied: ''
+        },
+        cssautoload: true,
+        csspath: "",
+        clipboardjspath: ""
+        },
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode ]
+    });
+</script>
+
+</body>
+</html>
