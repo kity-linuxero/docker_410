@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Fundamentos contenedores Docker - CFL 410</title>
+		<title>Fundamentos contenedores Docker - CFL 410 - Clase 1</title>
 		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
         <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
 
@@ -48,8 +48,9 @@
                             <li><a href="#/labs">Laboratorios de actividades prácticas</a></li>
                             
 
-
                         </ul>
+                        <p><a href="?print-pdf">Exportar clase</a></p>
+
 
                     </small>
                     
@@ -110,6 +111,23 @@
 
 				</section>
 
+                <section id="contenidos" data-state="no_footer">
+                    <h3>Contenidos del curso</h3>
+                    <small>
+                        <ul>
+                            <li>Introducción a contenedores Docker</li>
+                            <li>Conceptos básicos de imágenes Docker</li>
+                            <li>Dockerfile</li>
+                            <li>Redes en Docker</li>
+                            <li>Volúmenes y persistencia en Docker</li>
+                            <li>Docker Compose</li>
+                            <li>Composes útiles</li>
+                            <li>TP Final integrador</li>
+                        </ul>
+                    </small>
+                
+                </section>
+
                 <section id="requisitos" data-state="no_footer">
                     <h3>Requisitos inscripción</h3>
                     <p><small>Requisitos para la inscripción formal en el CFL 410</small></p>
@@ -118,6 +136,7 @@
                             <li>Dos fotocopias  del DNI</li>
                             <li>Certificado de estudios secundarios o superior</li>
                             <li>Constancia de CUIL (en caso que el CUIL no esté en el DNI)</li>
+                            <li>Inscripción en la <a href="https://cursosipfl.trabajo.gba.gob.ar" target="_blank">plataforma del IPFL</a></li>
                         </ul>
                     </small>
 
@@ -310,7 +329,7 @@
                         <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son <em>inmutables</em> pero pueden versionar para hacer cambios.</li>
                         <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones. Un contenedor está asociado a un <em>estado</em>. Los estados de un contenedor pueden ser: <code>created</code>, <code>running</code>, <code>restarting</code>, <code>removing</code>, <code>paused</code>, <code>exited</code>, <code>dead</code>.</li>
                         <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li>
-                        <li><strong>Docker Desktop:</strong> Es una aplicación <em>todo-en-uno</em> que proporciona una interfaz gráfica y un entorno completo para trabajar con Docker. En sistemas Windows y MacOS incluye una máquina virtual liviana basada en Linux. Ya que, recordemos que los contenedores corren sobre Linux.</li>
+                        <li><strong>Docker Desktop:</strong> Es una aplicación <em>todo-en-uno</em> que proporciona una interfaz gráfica y un entorno completo para trabajar con Docker. En sistemas Windows y MacOS incluye una máquina virtual liviana basada en Linux. Ya que, recordemos que los contenedores corren sobre Linux. Existen GUI alternativas a Docker Desktop como <a href="https://rancherdesktop.io/" target="_blank">Rancher Desktop</a>.</li>
                         
                     </ul>
                     </small>
@@ -638,7 +657,9 @@
             <section id="labs" data-state="no_footer">
                 <h3>Laboratorios de actividad práctica</h3>
 
-                <p><small>En estos laboratorios aprenderemos a instalar Docker y daremos los primeros pasos con una terminal de Docker y la terminal de bash sobre un GNU/Linux Ubuntu.</small></p>
+                <small>
+                
+                <p>En estos laboratorios aprenderemos a instalar Docker y daremos los primeros pasos con una terminal de Docker y la terminal de bash sobre un GNU/Linux Ubuntu.</p>
             
                 <ul>
 
@@ -646,6 +667,9 @@
                     <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/01-introduccion/primeros-comandos.md" target="_blank">Lab 1.2</a> - Primeros comandos</li>
 
                 </ul>
+                </small>
+
+                
                 
             
                 
