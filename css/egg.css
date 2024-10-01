@@ -231,3 +231,9 @@
   font-size: 125%;
   font-weight: bold;
 }
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: #707070;
+}
