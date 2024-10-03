@@ -329,32 +329,49 @@
 
                 <section id="docker2" data-state="no_footer">
                     <h4>Componentes principales de Docker</h4>
+
+                    <div class="custom-container">
+                        
+                        <div class="custom-text">
            
-                    <small>
-                    <ul> 
-                        <!-- <li><strong>Docker engine:</strong> El motor de Docker es la parte central de Docker, que permite a los usuarios crear, ejecutar y gestionar contenedores mediante la <a href="https://docs.docker.com/reference/api/engine/" target="_blank">Docker Engine API</a>.</li> -->
-                        <li><strong>Docker engine:</strong> Docker engine actúa como una aplicación cliente-servidor con:
-                            <ul>
-                                <li><strong><a href="https://docs.docker.com/reference/cli/dockerd/" target="_blank">Docker Daemon</a></strong>: Llamado <code>dockerd</code> es el daemon o servicio de Docker.</li>
-                                <li><strong><a href="https://docs.docker.com/reference/api/engine/" target="_blank">Docker API</a> </strong> Es la api RESTful que permite la interacción entre las interfaces de usuario con el Docker engine.</li>
-                                <li><strong>Interfaz de usuario:</strong>
+                            <small>
+                                <strong>Docker engine:</strong> Docker engine actúa como una aplicación cliente-servidor con:
+                             
+                                <!-- <li><strong>Docker engine:</strong> El motor de Docker es la parte central de Docker, que permite a los usuarios crear, ejecutar y gestionar contenedores mediante la <a href="https://docs.docker.com/reference/api/engine/" target="_blank">Docker Engine API</a>.</li> -->
+                                
                                     <ul>
-                                        <li><strong><a href="https://www.docker.com/products/cli/" target="_blank">Docker CLI</a>:</strong> Es la línea de comandos de Docker. Donde nos centraremos en este curso. <a href="https://docs.docker.com/get-started/docker_cheatsheet.pdf" target="_blank">CLI Cheat Sheet</a>.</li>
-                                        <li><strong><a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop</a>:</strong> Es una aplicación <em>todo-en-uno</em> que proporciona una interfaz gráfica y un entorno completo para trabajar con Docker. En sistemas Windows y MacOS incluye una máquina virtual liviana basada en Linux. Existen GUI alternativas a Docker Desktop como <a href="https://rancherdesktop.io/" target="_blank">Rancher Desktop</a>.</li>
+                                        <li><strong><a href="https://docs.docker.com/reference/cli/dockerd/" target="_blank">Docker Daemon</a></strong>: Llamado <code>dockerd</code> es el daemon o servicio de Docker.</li>
+                                        <li><strong><a href="https://docs.docker.com/reference/api/engine/" target="_blank">Docker API</a> </strong> Es una api REST que permite la interacción entre la cli con el Docker engine.</li>
+                                        <li><strong>Interfaz de usuario:</strong>
+                                            <ul>
+                                                <li><strong><a href="https://www.docker.com/products/cli/" target="_blank">Docker CLI</a>:</strong> Es la línea de comandos de Docker. <a href="https://docs.docker.com/get-started/docker_cheatsheet.pdf" target="_blank">CLI Cheat Sheet</a>.</li>
+                                                <li><strong><a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop</a>:</strong> Es una app <em>todo-en-uno</em> que proporciona una interfaz gráfica y un entorno completo para trabajar con Docker. En Windows y MacOS incluye una VM liviana basada en Linux. Existen alternativas como <a href="https://rancherdesktop.io/" target="_blank">Rancher Desktop</a>.</li>
+                                            </ul>
+                                        
+                                        </li>
                                     </ul>
                                 
-                                </li>
-                            </ul>
-                        
-                        </li>
-                        <!-- <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son <em>inmutables</em> pero pueden versionar para hacer cambios.</li>
-                        <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones.</li>
-                        <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li> -->
+                                
+                                <!-- <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son <em>inmutables</em> pero pueden versionar para hacer cambios.</li>
+                                <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones.</li>
+                                <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li> -->
+
+                                
+
+                                
+                                
+                            
+                            </small>
+                        </div>
+
+
+
+                    </div>
+                    <img src="./img/clase1/schema1.png" width="300">
 
                         
-                        
-                    </ul>
-                    </small>
+
+
                 </section>
 
                 <section id="docker2-2" data-state="no_footer">
@@ -366,6 +383,8 @@
                             <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li>
                         </ul>
                     </small>
+
+                    <img src="./img/clase1/schema.png" width="520">
 
                 </section>
 
@@ -697,8 +716,8 @@
             
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/01-introduccion/instalacion.md" target="_blank">Lab 1.1</a> - Instalación de Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/01-introduccion/primeros-comandos.md" target="_blank">Lab 1.2</a> - Primeros comandos</li>
+                    <li><a href="https://gist.github.com/kity-linuxero/6f684c5fe5f67ed84ee322a4bebffd64#file-lab1-1-md" target="_blank">Lab 1.1</a> - Instalación de Docker</li>
+                    <li><a href="https://gist.github.com/kity-linuxero/caf6bb6a57422bb7d925c89e07955bdb#file-lab1-2-md" target="_blank">Lab 1.2</a> - Primeros contenedores y comandos Linux</li>
 
                 </ul>
                 </small>
