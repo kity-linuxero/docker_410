@@ -18,15 +18,15 @@
 		<link rel="stylesheet" href="css/egg.css">
 
         <!-- CLASE AUN NO DISPONIBLE-->
-        <meta http-equiv="refresh" content="0; url=./404.html">
+        <!-- <meta http-equiv="refresh" content="0; url=./404.html"> -->
 		
 	</head>
 	<body>
         
         <!-- CLASE AUN NO DISPONIBLE-->
-        <script>
+        <!-- <script>
             window.location.href = "/404.html";
-        </script>
+        </script> -->
 
 		<div class="reveal">
 			<div class="slides">
@@ -75,13 +75,33 @@
 					<h3>¿Qué es una imágen Docker?</h3>
 					
                     <small>
-                    <p>Una imágen de Docker es una plantilla <strong>inmutable</strong> que contiene <em>todo lo necesario para ejecutar un contenedor</em>. Esto incluye el código de la aplicación, bibliotecas, dependencias, y el entorno de ejecución necesario. Las imágenes se crean a partir <strong>Dockerfiles</strong>, que son archivos de texto con instrucciones específicas para construir una imagen.</p>
-                    <p>Las imágenes están disponibles en diferentes repositorios, tanto públicos como privados, siendo <a href="https://hub.docker.com/" target="_blank">DockerHub</a> la <strong>registry</strong> oficial y mas utilizada.</p>
-                    <img src="img/clase2/diagram.png">
+
+                    <!-- <p>Una imágen de Docker es una plantilla <strong>inmutable</strong> que contiene <em>todo lo necesario para ejecutar un contenedor</em>. Esto puede incluir el código de la aplicación, bibliotecas, dependencias, y el entorno de ejecución necesario. Las imágenes se crean a partir <strong>Dockerfiles</strong>, que son archivos de texto con instrucciones específicas para construir una imagen.</p> -->
                     
-                    
+                    <!-- <p>Una imágen de Docker es una plantilla <strong>inmutable</strong> que contiene <em>todo lo necesario para ejecutar un contenedor</em>. Esto puede incluir el código de la aplicación, bibliotecas, dependencias, y el entorno de ejecución necesario. Las imágenes se crean a partir <strong>Dockerfiles</strong>, que son archivos de texto con instrucciones específicas para construir una imagen.</p> -->
+                    <p>Una imagen de Docker es un paquete estandarizado que incluye todos los archivos, binarios, bibliotecas y configuraciones para ejecutar un contenedor. Se construyen a partir de un archivo llamado <strong>Dockerfile</strong>.</p>
+                    <p>Hay dos cosas importantes a tener en cuenta sobre las imágenes:</p>
+                    <ul>
+                        <li><strong>Son inmutables:</strong> Una vez que una imágen es creada NO es posible modificarlas. Solo podemos crear una nueva imágen o agregar cambios a partir de dicha imágen en una nueva.</li>
+                        <li><strong>Están compuestas por capas:</strong> Cada capa representaba un conjunto de cambios en el sistema de archivos que agregan, eliminan o modifican archivos.</li>
+                    </ul>
+                 
+                 
+                    <!-- <p>Las imágenes están disponibles en diferentes repositorios, tanto públicos como privados, siendo <a href="https://hub.docker.com/" target="_blank">DockerHub</a> la <strong>registry</strong> oficial y mas utilizada.</p> -->
+                 
+                 
+                    <!-- <img src="img/clase2/diagram.png"> -->
                     
                     </small>
+
+                    <img src="./img/clase2/docker-image.png" width="90%">
+
+                    <small>
+
+                    <small>
+                    <a href="https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/" target="_blank">Ref: Docker Docs, what is an image</a>
+                    </small>
+                </small>
 
 				</section>
 
@@ -93,8 +113,12 @@
                     <p>Un Docker Registry es un servicio que permite almacenar y distribuir imágenes de Docker. <a href="https://hub.docker.com/" target="_blank">Docker Hub</a> es el registro público más conocido, aunque no es el único disponible.</p>
                     <p>Los registros de Docker ofrecen un amplio catálogo de imágenes listas para descargar y la opción de subir nuestras propias imágenes, ya sea para compartirlas o utilizarlas posteriormente. Si preferimos mantener nuestras imágenes de forma privada, algunos registros pueden requerir suscripciones de pago.</p>
                     <p>Además, es posible configurar registros privados, lo que nos permite gestionar nuestras imágenes de Docker de manera segura dentro de nuestra organización.</p>
+
+                    <small><p><a href="https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-registry/" target="_blank">Docker Docs: What is a registry</a></p></small>
                     
-                    </small>
+                    
+                </small>
+                    
                 </section>
 
                 <section id="images_docker_hub" data-state="no_footer">
@@ -185,7 +209,7 @@
                 </section>
 
                 <section id="docker3" data-state="no_footer">
-                    <h3>Ejecución de contenedores</h3>
+                    <h3>Contenedores: generalidades</h3>
                     <small>
                         
                         <ul>
@@ -245,14 +269,14 @@
 
 
 
-                <section id="life_cycle" data-state="no_footer">
+                <!-- <section id="life_cycle" data-state="no_footer">
                     <h3>Ciclo de vida de contenedores</h3>
                     <small><p>Este ciclo de vida permite gestionar de forma efectiva la creación, ejecución y eliminación de contenedores.</p></small>
                     <img src="img/clase2/cycle.png">
                     <small class="fragment">Cada etapa del ciclo de vida se asocia a un comando que provocará el cambio de un estado a otro.</small>
 
 
-                </section>
+                </section> -->
 
                 <!-- <section id="images_container" data-state="no_footer">
 					<h3>Crear un contenedor a partir de una imáge</h3>
@@ -330,10 +354,18 @@
                     <h3>Comandos básicos</h3>
                     
                     <small>
-                        <p>La Docker CLI es la interfaz de línea de comandos de Docker, donde podemos ejecutar comandos para gestionar contenedores e imágenes. Una vez instalado Docker, podemos utilizar la CLI desde una terminal, como PowerShell o Bash, para interactuar con Docker.</p>
+                        <p>La Docker CLI es la interfaz de línea de comandos de Docker, donde podemos ejecutar comandos para gestionar contenedores e imágenes. Una vez instalado Docker, podemos utilizar la CLI desde una terminal, como PowerShell o Bash para interactuar con Docker.</p>
                     </small>
 
-                    <p>Iniciar un contenedor</p>
+                    <img src="./img/clase2/container-cli.png">
+                    
+                    <small>
+
+                    <p><a href="https://docs.docker.com/get-started/docker_cheatsheet.pdf" target="_blank">CLI Cheat Sheet</a></li></p>
+
+                    </small>
+
+                    
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker run [opciones] [imagen] [comando]
@@ -353,29 +385,41 @@
     
                 </section>
 
-                <!-- <section id="docker4" data-state="no_footer">
+                <section id="docker_cli1-2" data-state="no_footer">
 
-                    <h3>Ver estado de contenedores</h3>
+                    <h3>Iniciar un contenedor</h3>
 
-                    <p>Se usa el comando <code>docker ps -a</code></p>
+                    <small>
 
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker ps -a
+                    <p>El comando <code>docker run</code> corre un nuevo contenedor. Descargando la imágen (pull) si no se encuentra previamente descargada.</p>
+
+                    </small>
+
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker run [opciones] [imagen] [comando]
+                    </code></pre>
+                    <p>Ejemplos</p>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker run hello-world      # Iniciará el hello-world de Docker
+                        docker run -it ubuntu bash  # Iniciará una bash interactiva
                     </code></pre>
 
-                    <p>Resultado:</p>
+                    <small>
+                        <p>Como se puede ver en el segundo ejemplo, el último parámetro es el comando que ejecutará un contenedor. ¿Qué pasa si ejecutamos el siguiente comando?</p>
+                    </small>
 
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        CONTAINER ID  IMAGE    CREATED         STATUS                       
-                        1a2b3c4d5e6f  nginx    2 minutes ago   Up 2 minutes
-                        7g8h9i0j1k2l  busybox  5 minutes ago   Exited (0) 3 min ago
-                        3m4n5o6p7q8r  ubuntu   10 minutes ago  Created
-
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker run ubuntu ls /
                     </code></pre>
 
-                    <p><small>Mas adelante en el curso profundizaremos en las diferentes interacciones con contenedores.</small></p>
 
-                </section> -->
+                    <small>
+                        <a href="https://docs.docker.com/reference/cli/docker/container/run/" target="_blank">Docker Docs: docker run</a>
+                    </small>
+
+                </section>
 
                 <section id="docker_cli2" data-state="no_footer">
                     <h4>Comandos mas utilizados de Docker</h4>
@@ -452,6 +496,7 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                         nginx       latest               a72860cb95fd   5 weeks ago  188MB
                     </code></pre>
                     <p><small>Observar la diferencia de tamaño de cada imágen Python. Se trata de la misma versión de Python 3.9.19 pero cambia la imágen base.</small></p>
+                    <small>Docker Docs: <a href="https://docs.docker.com/reference/cli/docker/image/pull/" target="_blank">image pull</a> | <a href="https://docs.docker.com/reference/cli/docker/image/ls/">Image ls</a></small>
      
 
                 </section>
@@ -467,25 +512,30 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                         </tr></thead>
                       <tbody>
                         <tr>
-                          <td><code>docker stop</code></td>
+                          <td><code><a href="https://docs.docker.com/reference/cli/docker/container/stop/" target="_blank">docker stop</a></code></td>
                           <td>Detiene uno o varios contenedores</td>
                           <td><code>docker stop CONTAINERS</code> (name o ID)</td>
                         </tr>
                         <tr>
-                          <td><code>docker restart</code></td>
+                          <td><code><a href="https://docs.docker.com/reference/cli/docker/container/restart/" target="_blank">docker restart</a></code></td>
                           <td>Reinicia uno o mas contenedores</td>
                           <td><code>docker stop CONTAINER</code></td>
                         </tr>
                         <tr>
-                          <td><code>docker rename</code></td>
+                          <td><code><a href="https://docs.docker.com/reference/cli/docker/container/rename/" target="_blank">docker rename</a></code></td>
                           <td>Renombra un contenedor</td>
                           <td><code>docker rename CONTAINER NEW_NAME</code></td>
                         </tr>
                         <tr>
-                          <td><code>docker rm</code></td>
+                          <td><code><a href="https://docs.docker.com/reference/cli/docker/container/rm/" target="_blank">docker start</a></code></td>
                           <td>Elimina uno o mas contenedores</td>
                           <td><code>docker rm [options] CONTAINER</code></td>
                         </tr>
+                        <tr>
+                            <td><code><a href="https://docs.docker.com/reference/cli/docker/container/start/" target="_blank">docker start</a></code></td>
+                            <td>Inicia un contenedor</td>
+                            <td><code>docker start [options] CONTAINER</code></td>
+                          </tr>
                       </tbody>
                       </table>
                     
@@ -507,6 +557,7 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                 <small>
                 <ul>
 
+                    <li><a href="https://gist.github.com/kity-linuxero/5741cc0baaf7da501d25824bb42f4085#file-lab2-1-md" target="_blank">Lab 2.1</a> Docker CLI: Primeros comandos</li>
                     <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/21-images-registry-container.md" target="_blank">Lab 2.1</a> Imágenes, registry y contenedores</li>
                     <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/22-images-tags.md" target="_blank">Lab 2.2</a> Gestión de imágenes y versiones en Docker</li>
                     <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/main/labs/02-conceptos-basicos/23-images-push.md" target="_blank">Lab 2.3</a> Guardando imágenes en DockerHub</li>
