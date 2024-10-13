@@ -36,13 +36,13 @@
                 <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
                     
                     <h3>Fundamentos y usos prácticos de Docker</h3>
-                    <h4>Clase 3 : Imágenes y Dockerfile</h4>
+                    <h4>Clase 3 : Uso de Dockerfile</h4>
 
                 </section>
 
                 <section id="index" data-state="no_footer">
                     <h3>Temas de clase 3</h3>
-                    <h4>Imágenes y Dockerfiles</h4>
+                    <h4>Uso de Dockerfile</h4>
                     <small>
                 
                         <ul>
@@ -67,7 +67,7 @@
 
 			<section>
 				<section id="dockerfile1" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Imágenes y Dockerfile:</h3>
+					<h3>Uso de Dockerfile:</h3>
                     <h4>Conceptos de Dockerfile</h4>
 				</section>
 
@@ -238,11 +238,12 @@
 
 
 
+                    <small>
+                        <p>Continúa...</p>
+                        <p><a href="https://docs.docker.com/build/building/base-images/" target="_blank">Docker Docs: Base images</a></p>
 
-                    <p>
-                        <small>Continúa...</small>
-                    </p>
-
+                    </small>
+                    
                 </section>
 
                 <section id="dockerfile_instrucciones2" data-state="no_footer">
@@ -353,8 +354,32 @@
 
                 
 
+
+
+
+
+
+
+
+
+                <section id="docker_cache" data-state="no_footer">
+                    <h3>Build Cache</h3>
+                    <small>
+                        <p>Docker utiliza un sistema de caché para acelerar la construcción de imágenes. Si una capa no ha cambiado, Docker reutiliza la capa en lugar de reconstruirla. Esto hace que el orden de las instrucciones sea muy importante; cambios en las primeras instrucciones pueden invalidar la caché de todas las capas siguientes.</p>
+                        
+                    
+                    </small>
+
+                    <img src="./img/clase3/dockerfile-change-cache.png">
+
+                    <small><a href="https://docs.docker.com/build/cache/" target="_blank">Docker Docs: Build Cache</a> | <a href="https://docs.docker.com/build/cache/invalidation/" target="_blank">Docker Docs: Build Cache Invalidation</a></small>
+
+
+
+                </section>
+
                 <section id="dockerfile_optimizacion_capas" data-state="no_footer">
-                    <h3>Optimización de Capas:</h3>
+                    <h3>Optimización de la build cache:</h3>
 
                     <small>Las imágenes de Docker se construyen en <strong>capas</strong>, donde cada instrucción en el Dockerfile crea una nueva capa. Para optimizar la construcción de imágenes y reducir su tamaño, es importante agrupar las instrucciones RUN y minimizar las capas innecesarias. Por ejemplo:</small>
 
@@ -370,27 +395,11 @@
                         RUN apt-get update && apt-get install -y curl vim
                     </code></pre>
 
-                    <small>Tener en cuenta que NO siempre es mejor u optimizar reducir la cantidad de capas.</small>
+                    <small>Tener en cuenta que NO siempre es mejor u optimizar reducir la cantidad de capas. Hay diversas formas de optimizar la caché de construcción de Docker, puede ver un listado mas completo en la doc al pie de la presentación:
 
-                </section>
+                    <p><a href="https://docs.docker.com/build/cache/optimize/" target="_blank">Docker Docs: Optimize Cache</a> </p>
 
-
-
-
-
-
-
-                <section id="docker_cache" data-state="no_footer">
-                    <h3>Caché de construcción</h3>
-                    <small>
-                        <p>Docker utiliza un sistema de caché para acelerar la construcción de imágenes. Si una capa no ha cambiado, Docker reutiliza la capa en lugar de reconstruirla. Esto hace que el orden de las instrucciones sea muy importante; cambios en las primeras instrucciones pueden invalidar la caché de todas las capas siguientes.</p>
-                        <p>Esto es notorio cuando estamos <em>buildeando</em> imágenes haciendo pruebas. O hacemos un cambio en el código de la app y necesitamos reconstruir la imágen.</p>
-                    
-                    </small>
-
-                    <img src="./img/clase3/dockerfile-change-cache.png">
-
-
+                </small>
 
                 </section>
 
@@ -507,7 +516,7 @@
                     <small>
                         <ul>
                             <li><code><strong>-t mi-app</strong></code>: asigna un nombre y una etiqueta (tag) a la imagen creada.</li>
-                            <li><code><strong>.</strong></code>: indica que el contexto de construcción es el directorio actual.</li>
+                            <li><code><strong>.</strong></code>: indica que el contexto de construcción <strong>(context build)</strong> es el directorio actual.</li>
                         </ul>
                     </small>
 
@@ -517,6 +526,8 @@
                         docker build -t mi-app:v0.1 .
                         docker build -t mi-app:latest .
                     </code></pre>
+
+                    <small><p><a href="https://docs.docker.com/build/concepts/context/" target="_blank">Docker Docs: Build context</a></p></small>
 
 
 
@@ -549,6 +560,10 @@
                             
                         </ul>
 
+                        <small>
+
+                        </small>
+
 
                 </section>
 
@@ -557,12 +572,14 @@
                     <small>
                         <ul>
                             <li><strong>Evitar instrucciones redundantes:</strong> Es importante no duplicar instrucciones o comandos que no sean necesarios, lo que podría llevar a la creación de capas adicionales e innecesarias.</li>
-                            <li><strong>Utilizar imágenes livianas:</strong> Seleccionar imágenes base ligeras basadas en <em>Alpine</em> o <em>Debian-slim</em> puede reducir significativamente el tamaño de la imagen final y acelerar los tiempos de construcción y despliegue.</li>
+                            <li><strong>Utilizar la imágen correcta:</strong> Al elegir una imagen, hay que asegurarse que esté creada a partir de una fuente confiable. Imágenes <a href="https://hub.docker.com/search?image_filter=official" target="_blank">oficiales</a>, <a href="https://hub.docker.com/search?image_filter=store" target="_blank">verificadas</a> o <a href="https://hub.docker.com/search?image_filter=open_source">sponsoreadas por Docker OpenSource</a>. <a href="https://docs.docker.com/build/building/best-practices/#choose-the-right-base-image" target="_blank">[1]</a></li>
                             <li><strong>Usar imágenes ya construidas con las dependencias incluídas:</strong> Siempre que sea posible, usar imágenes que tengan los paquetes y dependencias necesarios.</li>
                             <li><strong>No incluir en las imágenes información sensible:</strong> Evita incluir secretos, contraseñas o claves privadas directamente en el Dockerfile. Utiliza variables de entorno o archivos de configuración que puedan ser montados en el contenedor en tiempo de ejecución.</li>
-                            <li><strong>Minimizar los archivos copiados al contenedor:</strong> Es muy útil el uso del archivo <a href="https://docs.docker.com/build/building/best-practices/#exclude-with-dockerignore" target="_blank"><code>.dockerignore</code></a> . Similar al <em>.gitignore</em> que evita que se copien dichos archivos o directorios al contenedor.</li>
-                            <li><strong>Uso de multi-stage builds</strong>: Usa la técnica de construcción en múltiples etapas para crear imágenes más ligeras. La primera etapa se utiliza para compilar la aplicación, y la última etapa solo contiene los artefactos necesarios para ejecutar la aplicación. Lo veremos mas adelante en el curso.</li>
+                            <li><strong>Minimizar los archivos copiados al contenedor:</strong> Es muy útil el uso del archivo <a href="https://docs.docker.com/build/building/best-practices/#exclude-with-dockerignore" target="_blank"><code>.dockerignore</code></a> . Similar al <em>.gitignore</em> que evita que se copien dichos archivos o directorios al contenedor. <a href="https://docs.docker.com/build/building/best-practices/#exclude-with-dockerignore" target="_blank">[2]</a></li>
+                            <li><strong>Uso de multi-stage builds</strong>: Usa la técnica de construcción en múltiples etapas para crear imágenes más ligeras. La primera etapa se utiliza para compilar la aplicación, y la última etapa solo contiene los artefactos necesarios para ejecutar la aplicación. <a href="https://docs.docker.com/build/building/best-practices/#use-multi-stage-builds" target="_blank">[3]</a></li>
                         </ul>
+
+                        <p><a href="https://docs.docker.com/build/building/best-practices/" target="_blank">Docker Docs: Building best practices</a></p>
                         
                     
                     </small>
