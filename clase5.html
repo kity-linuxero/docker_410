@@ -83,7 +83,7 @@
                     <small>
                     <p>Docker Compose es una herramienta que permite definir y gestionar contenedores. Es muy utilizado en aplicaciones multicontenedor.</p>
                     <p>Docker Compose utiliza un archivo YAML que define los servicios que componen la aplicación, sus redes, volúmenes, y otras configuraciones de manera sencilla y eficiente. Y luego con un solo comando podremos iniciar todos los servicios.</p>
-                    <p>Docker Compose se compone por <strong>servicios</strong> que no son mas que contenedores.</p>
+                    <p>Docker Compose se compone por <strong>servicios</strong> que no son mas que contenedores. En las versiones recientes de Docker, se incluye Compose V2.</p>
                    
                     <img src="img/clase5/compose1.png" width="65%">
                     
@@ -227,7 +227,7 @@
 
 
                     <small class="fragment">
-                        <p>Abrimos <a href="http://localhost" target="_blank">http://localhost</a> y analizamos. <span class="fragment">Salimos con Control+C</span>.</p>
+                        <p>Abrimos <a href="http://localhost" target="_blank">http://localhost</a> y analizamos. <span class="fragment">Salimos con Control+C.</span></p>
                         <p class="fragment">Por defecto, Compose crea una nueva red tipo bridge derivada de su <strong><a href="https://docs.docker.com/compose/how-tos/project-name/" target="_blank">project name</a></strong>. Si no se especifica, el project-name se deriva de la carpeta que contiene el archivo compose.</p>
 
                     </small>
@@ -488,6 +488,10 @@
                             docker compose --build          # Solo buildea las imágenes
                             docker compose up -d --build    # Buildea y ejecuta los servicios
                         </code></pre>
+
+                        <small>
+                            <p><a href="https://docs.docker.com/reference/compose-file/build/" target="_blank">Compose Build Specification</a></p>
+                        </small>
 
                         
 
