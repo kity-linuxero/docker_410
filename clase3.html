@@ -18,15 +18,15 @@
 		<link rel="stylesheet" href="css/egg.css">
 
         <!-- CLASE AUN NO DISPONIBLE-->
-        <meta http-equiv="refresh" content="0; url=./404.html">
+        <!-- <meta http-equiv="refresh" content="0; url=./404.html"> -->
 		
 	</head>
 	<body>
 
         <!-- CLASE AUN NO DISPONIBLE-->
-        <script>
+        <!-- <script>
             window.location.href = "/404.html";
-        </script>
+        </script> -->
 
 		<div class="reveal">
 			<div class="slides">
@@ -75,7 +75,7 @@
 					<h3>¿Qué es un Dockerfile?</h3>
 					
                     <small>
-                    <p>Un Dockerfile es un archivo de texto plano, llamado simplemente <strong>Dockerfile</strong> que contiene una serie de instrucciones que se ejecutan de manera secuencial para construir una imagen de Docker. Cada línea del Dockerfile corresponde a una instrucción específica que define cómo se debe configurar el entorno del contenedor que se creará a partir de la imagen.</p>
+                    <p>Un Dockerfile es un archivo de texto plano, llamado (por lo general) simplemente <strong>Dockerfile</strong> que contiene una serie de instrucciones que se ejecutan de manera secuencial para construir una imagen de Docker. Cada línea del Dockerfile corresponde a una instrucción específica que define cómo se debe configurar el entorno del contenedor que se creará a partir de la imagen.</p>
                    
                     <img src="img/clase3/dockerfile.png">
                     
@@ -589,9 +589,82 @@
                 </section>
               
 
-                <section id="ipreguntas1" data-state="no_footer">
+                <section id="ipreguntas2" data-state="no_footer">
                     <h2>Consultas</h2>
                 </section>
+
+            </section>
+
+            <section>
+				<section id="multi-stage" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Multi-stage builds</h3>
+				</section>
+
+                <section id="multi-stage-1" data-state="no_footer">
+                    <h3>Multi-stage builds</h3>
+                    <small>
+                        Las Multi-stage builds es una técnica que permite construir imágenes más pequeñas y eficientes al separar las etapas de construcción y ejecución. Esto es particularmente útil cuando el entorno de compilación requiere herramientas adicionales que no son necesarias en el entorno de ejecución, ayudando a reducir el tamaño final de la imagen y a minimizar su superficie de ataque. Utilizando multi-stage builds podemos intercambiar archivos entre una imágen a otra.
+                        
+                    </small>
+
+                    <img src="./img/clase3/multitage-2.png" width="90%">
+
+                    
+
+                </section>
+
+                <section id="multi-stage-2" data-state="no_footer">
+                    <h3>Multi-stage builds</h3>
+                    <small>
+                        En la práctica, veremos un Dockerfile con mas de una instrucción <strong>FROM</strong>. Es posible nombrar internamente las etapas con la palabra <strong>AS</strong>. 
+                    </small>
+                    <small>
+                        Una técnica que se suele hacer es, utilizar una imágen con mas herramientas para la primer etapa de compilación y luego para levantar el contenedor para ejecución utilizar una imágen mas liviana, basada por ejemplo en Alpine Linux.
+                    </small>
+
+                    <img src="./img/clase3/multistage.png" width="50%">
+                    
+
+
+                </section>
+
+                <section id="multi-stage-3" data-state="no_footer">
+                    <h3>Multi-stage builds</h3>
+
+                    <small>Ejemplo de app en Node con Multi-stage build.</small>
+
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                        # Etapa 1: Construcción
+                        FROM node:14 AS build
+                        WORKDIR /app
+                        COPY package*.json ./
+                        RUN npm install
+                        COPY . .
+                        
+                        # Etapa 2: Producción
+                        FROM node:14-alpine AS production
+                        WORKDIR /app
+                        COPY --from=build /app /app
+                        # Exponer el puerto y definir el comando de inicio
+                        EXPOSE 3000
+                        CMD ["npm", "start"]
+                    </code></pre>
+
+                    <small><a href="./files/node-app.zip" download>Descargar ejemplo</a> | </small>
+
+
+                    <small><a href="https://docs.docker.com/build/building/multi-stage/">Docker Docs: Multi-stage</a> </small>
+
+
+
+                </section>
+
+                <section id="ipreguntas3" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+
 
             </section>
            
