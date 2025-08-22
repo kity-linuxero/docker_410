@@ -139,10 +139,10 @@
                             <li>Dos fotocopias  del DNI</li>
                             <li>Certificado de estudios secundarios o superior</li>
                             <li>Constancia de CUIL (en caso que el CUIL no esté en el DNI)</li>
-                            <li>Formulario: <a href="./files/FormularioInscripcion2024.pdf" download>Solicitud de inscripción - Año lectivo 2024</a></li>
+                            <li>Formulario: <a href="./files/FormularioInscripcion2024.pdf" download>Solicitud de inscripción - Año lectivo 2025</a></li>
                             <li>Inscripción en la <a href="https://cursosipfl.trabajo.gba.gob.ar" target="_blank">plataforma del IPFL</a>
                             <ul>
-                                <li>-Operadora/or en Contenedores Docker- - N° <strong>26829</strong></li>
+                                <li>-Operadora/or en Contenedores Docker- - N° <strong>35622</strong></li>
                                 <li>Centro 410 - La Plata | ATE</li>
                             </ul>
                             </li>
@@ -153,6 +153,26 @@
                 </section>
 
 
+
+
+            </section>
+
+            <section>
+
+                <section id="objetivos_clase_title" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Objetivos clase de hoy</h2>
+				</section>
+
+                <section id="objetivos_clase_title" data-state="no_footer">
+                    <h3>Objetivos clase de hoy</h3>
+
+                    <ul>
+                        <li>Comprender el concepto de contenedor.</li>
+                        <li>Identificar las ventajas de utilizar contenedores en comparación con otras tecnologías de virtualización.</li>
+                        <li>Instalar Docker y crear un contenedor básico.</li>
+                        
+                    </ul>
+                </section>
 
 
             </section>
@@ -173,7 +193,7 @@
                     <img src="img/clase1/docker-explained-1.png" width="750"></p>
                     
                     <p class="fragment"><small><strong>¿Por qué usar contenedores? </strong>. Principalmente, para portar nuestra aplicación y ejecutarla de manera consistente, ya sea en nuestra PC o en cualquier entorno de desarrollo. Además, permiten realizar despliegues de forma rápida y segura.</small></p>
-    
+                    <p class="fragment"><small>Puede ser una posible solución, al típico problema de <strong><em>EN MI MÁQUINA FUNCIONA</em></strong>.</small></p>    
                 </section>
 
                 <section id="intro-container2" data-state="no_footer">
@@ -181,7 +201,7 @@
 
                     <p><small>En los años 1960-1970, IBM introdujo la virtualización en los mainframes, lo que permitió ejecutar múltiples sistemas operativos en una sola máquina física.</small></p>
                     <p><small>En 1992, el programador finlandés <a href="https://es.wikipedia.org/wiki/Linus_Torvalds" target="_blank">Linus Torvalds</a> publicó bajo licencia <a href="https://es.wikipedia.org/wiki/GNU_General_Public_License" target="_blank">GNU GPL</a> la versión 0.12 del kernel de Linux. Desde entonces, Linux se considera <strong>software libre</strong>.</small></p>
-                    <p><small>En 2008 surgieron los <a href="https://es.wikipedia.org/wiki/LXC" target="_blank">LinuX Containers</a> , también conocidos por su acrónimo <strong>LXC</strong>. Aprovechando características como <em>cgroups</em> y <em>namespaces</em> disponibles a partir de la versión 2.6.29 del kernel de Linux, LXC permite desarrollar una tecnología de virtualización a nivel de sistema operativo. LXC permite que una máquina que ejecuta Linux corra múltiples instancias de espacios de usuario aislados, dando origen al término contenedor.</small></p>
+                    <p><small>En 2008 surgieron los <a href="https://es.wikipedia.org/wiki/LXC" target="_blank">LinuX Containers</a> , también conocidos por su acrónimo <strong>LXC</strong>. Utilizando características como <em>cgroups</em> y <em>namespaces</em> que ya estaban disponibles a partir de la versión 2.6.29 del kernel de Linux, LXC permite desarrollar una tecnología de virtualización a nivel de sistema operativo. LXC permite que una máquina que ejecuta Linux corra múltiples instancias de espacios de usuario aislados, dando origen al término <em>contenedor</em>.</small></p>
                     <p><small>En 2013 se liberó <strong><a href="https://es.wikipedia.org/wiki/Docker_(software)" target="_blank">Docker</a></strong> como código abierto, inicialmente basado en LXC. Pero al año siguiente, con el lanzamiento de la versión 0.9 de Docker, dejó de utilizar LXC para usar su propio motor llamado libcontainer, escrito en Go.</small></p>
                     <p><small>Desde entonces, Docker ha crecido en popularidad, convirtiéndose en uno de los proyectos con más estrellas en GitHub, más forks y con miles de colaboradores.</small></p>
     
@@ -206,7 +226,7 @@
                     <h3>Arquitectura Máquinas virtuales</h3>
                     <p><small>Cada máquina virtual requiere un sistema operativo completo (kernel, utilidades del sistema, interfaz de usuario, etc) para funcionar.</small>
                         <img src="img/clase1/vm.svg">
-                        <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. A menudo, el SO consume más recursos que la propia aplicación.</small>
+                        <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. <em>A menudo, el SO consume más recursos que la propia aplicación</em>.</small>
                     </p>
                 </section>
 
@@ -603,6 +623,12 @@
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
                     <img src="img/clase1/Docker_install6.png" width="65%" height="65%" class="screenshot-borde">
+                    <small>Es importante arrancar el Docker Engine antes de usar Docker. Sino dará un error:</small>
+                    
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        DesktopLinuxEngine: The system cannot find the file specified.
+                    </code></pre>
+
 
                 </section>
 
