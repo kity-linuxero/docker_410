@@ -18,15 +18,15 @@
 		<link rel="stylesheet" href="css/egg.css">
 
         <!-- CLASE AUN NO DISPONIBLE-->
-        <meta http-equiv="refresh" content="0; url=./404.html">
+        <!-- <meta http-equiv="refresh" content="0; url=./404.html"> -->
 		
 	</head>
 	<body>
         
         <!-- CLASE AUN NO DISPONIBLE-->
-        <script>
+        <!-- <script>
             window.location.href = "/404.html";
-        </script>
+        </script> -->
 
 		<div class="reveal">
 			<div class="slides">
@@ -63,6 +63,21 @@
                 </section>
 
             </section>
+
+                <section id="objetivos_clase_title" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h2>Objetivos clase de hoy</h2>
+				</section>
+
+                <section id="objetivos_clase_title" data-state="no_footer">
+                    <h3>Objetivos clase de hoy</h3>
+
+                    <ul>
+                        <li>Comprender que es una imágen</li>
+                        <li>Saber diferenciar contenedores e imágenes.</li>
+                        <li>Interactuar con la CLI de Docker y usar comandos básicos</li>
+                        
+                    </ul>
+                </section>
 			
 
 			<section>
@@ -387,9 +402,69 @@
     
                 </section>
 
+                <section id="docker_cli1-1" data-state="no_footer">
+
+                    <h3>Descargar imágen</h3>
+
+                    <small>
+
+                    <p>Con el comando <code>docker pull</code> descargamos una imágen de la registry que tenemos configurada. Por defecto irá a buscar la imágen a Docker Hub.</p>
+
+                    </small>
+
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker pull IMAGE:TAG
+                    </code></pre>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker pull alpine
+                    </code></pre>
+                    
+                    <p>Salida del comando</p>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        $ docker pull alpine
+                        Using default tag: latest
+                        latest: Pulling from library/alpine
+                        Digest: sha256:4bcff63911fcb4448bd4fdacec207030997caf25e9bea4045fa6c8c44
+                        Status: Downloaded newer image for alpine:latest
+                        docker.io/library/alpine:latest
+                    </code></pre>
+
+
+                    <small>
+                        <a href="https://docs.docker.com/reference/cli/docker/image/pull/" target="_blank">Docker Docs: docker pull</a>
+                    </small>
+
+                </section>
+
+                <section id="docker_cli1-12" data-state="no_footer">
+                    <h3>Listar imágenes</h3>
+                    
+                    
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker images
+                    </code></pre>
+
+                    <p>Imágenes descargadas</p>
+             
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker images
+                        REPOSITORY   TAG               IMAGE ID       CREATED       SIZE
+                        nginx        1.29.1-bookworm   33e0bbc7ca9e   2 weeks ago   279MB
+                        nginx        1.29.1-alpine     42a516af16b8   2 weeks ago   79.3MB
+                        alpine       latest            4bcff63911fc   6 weeks ago   12.8MB
+                    </code></pre>
+                    <p><small>Observar la diferencia de tamaño de cada imágen de nginx. Se trata de la misma versión de nginx 1.29.1 pero cambia la <strong>imágen base</strong>, una está basada en Alpine Linux y la otra en Debian 12 (Bookworm).</small></p>
+                    <small>Docker Docs: <a href="https://docs.docker.com/reference/cli/docker/image/ls/">Image ls</a></small>
+     
+
+                </section>
+
                 <section id="docker_cli1-2" data-state="no_footer">
 
-                    <h3>Crear un contenedor</h3>
+                    <h3>Ejecutar un contenedor</h3>
 
                     <small>
 
@@ -478,33 +553,7 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
 
                 </section>
 
-                <section id="docker_cli3" data-state="no_footer">
-                    <h4>Comandos mas utilizados de Docker</h4>
-                    <p>Descargar una imágen</p>
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker pull IMAGEN:TAG
-                    </code></pre>
-                    
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker pull python3:3.9.19-alpine3.20
-                    </code></pre>
 
-                    <p>Listar imágenes descargadas</p>
-             
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker images
-
-                        REPOSITORY  TAG                  IMAGE ID       CREATED      SIZE
-                        python      3.9.19-alpine3.20    f214f2d92214   3 weeks ago  47.7MB
-                        python      3.9.19-bullseye      4a17c44db219   3 weeks ago  905MB
-                        python      3.9.19-slim-bullseye b866cddbe1d1   3 weeks ago  123MB
-                        nginx       latest               a72860cb95fd   5 weeks ago  188MB
-                    </code></pre>
-                    <p><small>Observar la diferencia de tamaño de cada imágen Python. Se trata de la misma versión de Python 3.9.19 pero cambia la imágen base.</small></p>
-                    <small>Docker Docs: <a href="https://docs.docker.com/reference/cli/docker/image/pull/" target="_blank">image pull</a> | <a href="https://docs.docker.com/reference/cli/docker/image/ls/">Image ls</a></small>
-     
-
-                </section>
 
                 <section id="intro-vm2" data-state="no_footer">
                     <h3>Mas comandos</h3>
@@ -521,6 +570,11 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                           <td>Detiene uno o varios contenedores</td>
                           <td><code>docker stop CONTAINERS</code> (name o ID)</td>
                         </tr>
+                                                <tr>
+                            <td><code><a href="https://docs.docker.com/reference/cli/docker/container/start/" target="_blank">docker start</a></code></td>
+                            <td>Inicia un contenedor</td>
+                            <td><code>docker start [options] CONTAINER</code></td>
+                          </tr>
                         <tr>
                           <td><code><a href="https://docs.docker.com/reference/cli/docker/container/restart/" target="_blank">docker restart</a></code></td>
                           <td>Reinicia uno o mas contenedores</td>
@@ -536,11 +590,7 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                           <td>Elimina uno o mas contenedores</td>
                           <td><code>docker rm [options] CONTAINER</code></td>
                         </tr>
-                        <tr>
-                            <td><code><a href="https://docs.docker.com/reference/cli/docker/container/start/" target="_blank">docker start</a></code></td>
-                            <td>Inicia un contenedor</td>
-                            <td><code>docker start [options] CONTAINER</code></td>
-                          </tr>
+
                       </tbody>
                       </table>
                     
@@ -562,10 +612,10 @@ CONTAINER ID   IMAGE        COMMAND     CREATED             STATUS              
                 <small>
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/02-conceptos-basicos/21-cli-primeros-comandos.md" target="_blank">Lab 2.1</a> Docker CLI: Primeros comandos</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/02-conceptos-basicos/22-images-registry-container.md" target="_blank">Lab 2.2</a> Imágenes, registry y contenedores</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/02-conceptos-basicos/23-images-tags.md" target="_blank">Lab 2.3</a> Gestión de imágenes y versiones en Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/02-conceptos-basicos/24-images-push.md" target="_blank">Lab 2.4</a> Guardando imágenes en DockerHub</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.3/labs/02-conceptos-basicos/21-cli-primeros-comandos.md" target="_blank">Lab 2.1</a> Docker CLI: Primeros comandos</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.3/labs/02-conceptos-basicos/22-images-registry-container.md" target="_blank">Lab 2.2</a> Imágenes, registry y contenedores</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.3/labs/02-conceptos-basicos/23-images-tags.md" target="_blank">Lab 2.3</a> Gestión de imágenes y versiones en Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.3/labs/02-conceptos-basicos/24-images-push.md" target="_blank">Lab 2.4</a> Guardando imágenes en DockerHub</li>
                     
 
                     
