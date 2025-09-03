@@ -18,15 +18,15 @@
 		<link rel="stylesheet" href="css/egg.css">
 
         <!-- CLASE AUN NO DISPONIBLE-->
-        <meta http-equiv="refresh" content="0; url=./404.html">
+        <!-- <meta http-equiv="refresh" content="0; url=./404.html"> -->
 		
 	</head>
 	<body>
 
         <!-- CLASE AUN NO DISPONIBLE-->
-        <script>
+        <!-- <script>
             window.location.href = "/404.html";
-        </script>
+        </script> -->
 
 		<div class="reveal">
 			<div class="slides">
@@ -91,7 +91,7 @@
                     <img src="img/clase4/network1.png" width="90%">
                     
                     
-                    
+                    <p><a href="https://docs.docker.com/engine/network/" target="_blank">Docker Docs: Networking Overview</a> </p>
                     </small>
 
 				</section>
@@ -99,9 +99,9 @@
                 
 
                 <section id="dockerfile_proposito" data-state="no_footer">
-                    <h3>Redes en Docker</h3>
+                    <h3>Network Drivers</h3>
                     <small>
-                        <p>Dentro del sistema de redes virtuales que proporciona Docker, existen diferentes <em>drivers</em> que podemos usar según la necesidad de nuestra aplicación. Estos drivers son:</p>
+                        <p>El subsistema de redes de Docker utiliza un conjunto de <em>drivers</em> para proveer de conectividad a los contenedores. Los drivers son:</p>
                     <ul>
                         <li>Bridge</li>
                         <li>Host</li>
@@ -113,22 +113,15 @@
                     
                     </small>
                     <p><small>Se detallarán a continuación</small></p>
+                    <small><p><a href="https://docs.docker.com/engine/network/drivers/" target="_blank">Docker Docs: Network Drivers</a></p></small>
                 </section>
 
                 <section id="net_bridge" data-state="no_footer">
 					<h3>Redes Bridge</h3>
 
                     <small>
-                        Es la red por defecto que Docker crea en un host cuando se instala. Los contenedores que se inician sin especificar una red se conectan automáticamente a esta red. Actúa como un switch virtual dentro del host y permite la comunicación entre los contenedores que están en la misma red bridge a su vez que provee aislamiento a los contenedores que están en redes bridge separadas. La red bridge por defecto arranca en <strong>172.17.0.0/16</strong> y a medida que se van creando redes va cambiando la red incrementando el segundo octeto <strong>172.x.0.0/16</strong>
-
-                        
-                        <!-- <ul>
-                            <li><strong>Consistencia:</strong> Un Dockerfile asegura que el entorno en el que se ejecuta tu aplicación es siempre el mismo, independientemente de dónde se despliegue. </li>
-                            <li><strong>Versionado:</strong> Al igual que el código fuente, los Dockerfiles pueden versionarse y almacenarse en sistemas de control de versiones como Git.</li>
-                            <li><strong>Eficiencia:</strong> A través de la reutilización de capas y la minimización de dependencias, las imágenes pueden ser construidas rápidamente y con un uso mínimo de recursos.</li>
-                            <li><strong>Escalabilidad:*</strong> Al definir cómo se construye una imagen, puedes escalar fácilmente tu aplicación en diferentes entornos y con diferentes configuraciones sin cambiar el código base.</li>
-                        </ul> -->
-                        
+                         Actúa como un switch virtual dentro del host y permite la comunicación entre los contenedores que están en la misma red bridge a su vez que provee aislamiento a los contenedores que están en redes bridge separadas. La red bridge por defecto arranca en <strong>172.17.0.0/16</strong> y a medida que se van creando redes <em>bridge</em> va cambiando la red incrementando el segundo octeto <strong>172.x.0.0/16</strong>
+                       
                     </small>
 
                     <img src="./img/clase4/bridge.png">
@@ -139,6 +132,15 @@
                     
 
 				</section>
+
+                <section id="net_bridge0" data-state="no_footer">
+
+                    <h3>Redes bridge</h3>
+                    <small>
+                        Además de las redes "del tipo" <em>bridge</em> existe una red ya creada homónima llamada <em>bridge</em>. Es la red por defecto que Docker crea en un host cuando se instala. Los contenedores que se inician sin especificar una red se conectan automáticamente a esta red.
+
+                    </small>
+                </section>
 
                 <section id="net_bridge1" data-state="no_footer">
                     <h3>Puertos y redirecciones</h3>
