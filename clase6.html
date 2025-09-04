@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Fundamentos contenedores Docker - CFL 410 - Clase 6</title>
+		<title>Fundamentos contenedores Docker - CFL 410 - Clase 5</title>
 		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
         <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
 
@@ -36,22 +36,28 @@
                 <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
                     
                     <h3>Fundamentos y usos prácticos de Docker</h3>
-                    <h4>Clase 6 :<br>Docker Compose - Parte II<br>Depuración de contenedores</h4>
+                    <h4>Clase 5 : Docker compose</h4>
 
                 </section>
 
                 <section id="index" data-state="no_footer">
-                    <h3>Temas de clase 6:</h3>
-                    <h4>Docker compose parte II</h4>
+                    <h3>Temas de clase 5:</h3>
+                    <h4>Introducción a docker compose</h4>
                     <small>
                         <ul>
-                            <li><a href="#/top_level_compose_1">Docker Compose Parte II</a></li>
-                            <li><a href="#/compose_environment">Compose environment</a></li>
-                            <li><a href="#/restart">Restart policy</a></li>
-                            <li><a href="#/resources_1">Recursos</a></li>
-                            <li><a href="#/debug_1">Container debug</a></li>
+                            <li><a href="#/compose_1">Introducción a Docker Compose</a></li>
+                            <li><a href="#/compose_2">Archivo Compose</a></li>
+                            <li><a href="#/compose_4">Compose CLI</a></li>
+                            <li><a href="#/compose_5">Corriendo nuestro primer compose</a></li>
+                            <li><a href="#/compose_6">Web estática</a></li>
+                            
+                            <li><a href="#/compose_multi_container_1">Compose multi-contenedores</a></li>
+                            <li><a href="#/dockerfile_compose">Dockerfile + Compose</a></li>
+
 
                         </ul>
+
+                        
 
                     </small>
 
@@ -63,412 +69,263 @@
                 </section>
 
             </section>
-
-            <section>
-                <section id="top_level_compose" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Docker Compose</h3>
-                    <h4>Parte II</h4>
-				</section>
-
-                <section id="top_level_compose_1" data-state="no_footer">
-                    <h3>Docker compose : Parte II</h3>
-                    <small>
-                    <p>Docker compose tiene un gran número de atributos que pueden configurarse. Se pueden ver todas las disponibles <strong>para servicios</strong> hasta el momento en <a href="https://docs.docker.com/reference/compose-file/services/" target="_blank">Docker Docs: Services top-level elements</a>. A continuación veremos solo algunas a modo de ejemplo.</p>
-
-                    </small>
-
-                    <img src="./img/clase6/docker_adv2.png">
-                </section>
-
-                <section id="container_name" data-state="no_footer">
-                    <h3>container_name</h3>
-                    <small>
-                        <p>De la misma manera que hacíamos con <code>docker run --name</code> podemos asignar un nombre a nuestros servicios para que no asigne el nombre por defecto establecido por Docker Compose.</p>
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        service:
-                          web:
-                            container_name: mi-contenedor-web
-                  </code></pre>
-
-                  <small>
-                    <p>De esa manera podemos setear <code>mi-contenedor-web</code> como nombre. De lo contrario el nombre que se asigna es <code>[NOMBRE_CARPETA]-[NOMBRE_SERVICIO]-N</code></p>
-                  </small>
-
-                  <small>
-                    <p><a href="https://docs.docker.com/reference/compose-file/services/#container_name" target="_blank">Docker Docs: container_name</a></p>
-                  </small>
-
-
-
-                </section>
-
-                <section id="compose_environment" data-state="no_footer">
-                    <h3>Environment</h3>
-                    <small>
-                        <p>El campo environment en Docker Compose permite definir variables de entorno que un contenedor utilizará durante su ejecución. </p>
-                        <p class="sub_titulo">¿Por qué es importante?</p>
-                        <p>Las variables de entorno son una buena práctica para manejar configuraciones, como nombre de servidores que el contenedor debe establecer conexiones, puertos, contraseñas*, API keys*, etc., fuera del código fuente.</p>
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                          services:
-                            app:
-                              image: "mi-app:latest"
-                              environment:
-                                - DB_HOST=db
-                                - DB_PORT=3306
-                    </code></pre>
-
-                    <small><a href="https://docs.docker.com/compose/environment-variables/set-environment-variables/" target="_blank">Docker Docs: Set environment variables</a></small>
-                    <small>* En algunos casos puede ser deseable usar secrets | <a href="https://docs.docker.com/compose/use-secrets/" target="_blank">Docs: How to use secrets in Docker Compose</a></small>
-                </section>
-
-                <section id="compose_environment_file" data-state="no_footer">
-                    <h3>Environment file</h3>
-                    <small>
-                        <p>Una mejor opción es tener las variables de entorno en un archivo separado del archivo compose. De manera que podríamos compartir o subir a un repositorio nuestro archivo compose sin compartir información sensible.</p>
-                        <p>Por lo general se usa un archivo <code>.env</code> pero es posible también especificarlo en el compose.</p>
-
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        services:
-                          app:
-                            env_file: "webapp.env"
-                  </code></pre>
-
-                  <small>
-                    <p>El formato del archivo env debe ser:</p>
-                  </small>
-
-                  <pre class="codigo_shadow" data-id="code-animation"><code class="env codigo-redondo" data-trim>
-                    POSTGRES_VERSION=14
-                    PG_HOST=db
-                </code></pre>
-
-                <small><a href="https://docs.docker.com/reference/compose-file/services/#env_file-format" target="_blank">Docker Docs: Env_file format</a></small>
-
-
-                </section>
-
-                <section id="compose_interpolation" data-state="no_footer">
-                    <h3>Interpolation</h3>
-                    <small>
-                        <p>Los valores en un archivo compose pueden ser seteados por variables de entorno e <em>interpoladas</em> en tiempo de ejecución.</p>
-                        <p>Los archivos compose usan una sintaxis <em>Bash-like</em>: <code>${VARIABLE}</code> y <code>$VARIABLE</code>.
-                            Supongamos que tenemos un archivo <code>.env</code> con el siguiente contenido:</p>
-                        
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="env codigo-redondo" data-trim>
-                        TAG=v1.5
-                    </code></pre>
-                    <small>Podemos hacer uso de la interpolación de la siguiente manera en el archivo compose:</small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        services:
-                          web:
-                            image: "webapp:${TAG}" # webapp:v1.5
-                    </code></pre>
-
-                    
-
-                    <small>
-                        <p>Docker compose puede obtener variables interpoladas desde: la shell local o archivos .env</p>
-                        <a href="https://docs.docker.com/reference/compose-file/interpolation/" target="_blank">Docker Docs: Compose Interpolation</a>
-                    </small>
-                </section>
-
-                <section id="compose_healthcheck" data-state="no_footer">
-                    <h3>healthcheck</h3>
-                    <small>
-                        <p>El atributo <strong>healthcheck</strong> declara una comprobación que se ejeuta para determinar si los contenedores están "en buen estado" o no.</p>
-                        <p>De la siguiente manera podríamos comprobar si un contenedor web está OK.</p>
-
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        healthcheck:
-                          test: ["CMD", "curl", "-f", "http://localhost"]
-                          interval: 1m30s
-                          timeout: 10s
-                          retries: 3
-                          start_period: 40s
-                          start_interval: 5s
-                  </code></pre>
-
-                  <small>
-                    <a href="https://docs.docker.com/reference/compose-file/services/#healthcheck" target="_blank">Docker Docs: healthcheck</a>
-                  </small>
-
-
-                </section>
-
-                <section id="compose_depends_on" data-state="no_footer">
-
-                    <h3>Depends_on</h3>
-                    <small>
-                        <p>El campo <strong>depends_on</strong> define las dependencias entre servicios en Docker Compose, especificando el orden en el que se inician los servicios.</p>
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                          services:
-                            web:
-                              image: "nginx:alpine"
-                              depends_on:
-                                - db
-                            db:
-                              image: "postgres:alpine"
-                        
-                    </code></pre>
-
-                    <small>
-                        <p>En este ejemplo, el servicio web depende de que el servicio db (PostgreSQL) se inicie primero. Esto asegura que la base de datos esté en marcha antes de intentar iniciar el servidor web.</p>
-                        <il><strong>Limitaciones:</strong> solo controla el orden de inicio, no garantiza que el servicio esté listo. </il>
-                        <p>
-                            <a href="https://docs.docker.com/reference/compose-file/services/#depends_on" target="_blank">Docker Docs: depends_on</a>
-                        </p>
-                    </small>
-
-                </section>
-
-
-
-                <section id="compose_healthcheck_depends_on" data-state="no_footer">
-
-                    <h3>Depends_on healthy</h3>
-                    <small>
-                        <p>La dependencia de un contenedor de otro, puede combinarse con el estado de salud de otro. Para aceptar que se inicie solo si ya el servicio se encuentra OK.</p>
-
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-  services:
-    web:
-      build: .
-      depends_on:
-        db:
-          condition: service_healthy
-
-    db:
-      image: posgres
-      healthcheck:
-        ....
-                            
-                  </code></pre>
-
-                  <small><a href="https://docs.docker.com/reference/compose-file/services/#long-syntax-1" target="_blank">Docker Docs: depends_on - Long syntax</a></small>
-
-
-                </section>
-
-                <section id="ipreguntas2" data-state="no_footer">
-                    <h2>Consultas</h2>
-                </section>
-
-
-
-
-            </section> <!-- Fin sección -->
 			
 
 			<section>
 				<section id="compose_" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Docker Compose</h3>
-                    <h4>Compose Deploy Specification</h4>
+					<h3>Introducción a docker compose</h3>
                     
 				</section>
 
-				<section id="deploy_specification" data-state="no_footer">
-					<h3>Compose Deploy Specification</h3>
+				<section id="compose_1" data-state="no_footer">
+					<h3>Docker compose</h3>
 					
                     <small>
-                    <p>La <a href="https://docs.docker.com/reference/compose-file/deploy/" target="_blank">Compose Deploy Specification</a> se refiere a cómo se pueden especificar configuraciones avanzadas de despliegue de servicios en un archivo <strong>compose</strong> usando la clave deploy.</p>
-                    <p>Hay multiples opciones que nos permiten administrar los recursos que tendrá nuestra aplicación y políticas de reinicio.</p>
+                    <p>Docker Compose es una herramienta que permite definir y gestionar contenedores. Es muy utilizado en aplicaciones multicontenedor.</p>
+                    <p>Docker Compose utiliza un archivo YAML que define los servicios que componen la aplicación, sus redes, volúmenes, y otras configuraciones de manera sencilla y eficiente. Y luego con un solo comando podremos iniciar todos los servicios.</p>
+                    <p>Docker Compose se compone por <strong>servicios</strong> que no son mas que contenedores. En las versiones recientes de Docker, se incluye Compose V2.</p>
+                   
+                    <img src="img/clase5/compose1.png" width="65%">
                     
+                    
+                    <p><a href="https://docs.docker.com/compose/" target="_blank">Docker Docs: Docker Compose</a></p>
+
                     </small>
-                    <img src="./img/clase6/deploy1.png">
 
 				</section>
 
-                <section id="restart" data-state="no_footer">
-                    <h3>Restart policy</h3>
+                <section id="compose_11" data-state="no_footer">
+                    <h3>¿Por qué usar Docker Compose?</h3>
                     <small>
-                        
-                        <p>La restart policy, define bajo qué circunstancias un contenedor debe reiniciarse, lo que es crucial para mantener la disponibilidad y estabilidad de los servicios. A diferencia de lo visto <a href="https://docker.idepba.com.ar/clase5.html#/compose_file1" target="_blank">en la clase anterior</a>, la restart_policy de la deploy specification difiere levemente.</p>
-                        <p class="sub_titulo">Condiciones:</p>
                         <ul>
-                            <li><strong><code>none</code>:</strong> Los contenedores no se reinician automáticamente independientemente del estado de salida.</li>
-                            <li><strong><code>on-failure</code>:</strong> El contenedor se reinicia si sale debido a un error. El código de salida es distinto que cero.</li>
-                            <li><strong><code>any</code>:</strong> Los contenedores se reinician independientemente del estado de salida.</li>
+                            <li><strong>Simplificación de la gestión:</strong> Docker Compose facilita la ejecución de aplicaciones que requieren múltiples contenedores. Sin Compose, tendrías que iniciar cada contenedor manualmente con comandos <strong><code-mono>docker run</code-mono></strong>, lo que puede ser complejo y propenso a errores.</li>
+                            <li><strong>Configuración declarativa:</strong> Toda la configuración de la aplicación, incluidos los servicios, redes y volúmenes, se describe en un solo archivo yaml. Esto hace que la aplicación sea fácilmente replicable y portátil.</li>
+                            <li><strong>Fácil interpretación de relaciones:</strong> Simplemente analizando el archivo YAML podemos tener una noción de como se organizan los contenedores y la relación entre ellos.</li>
+                            <li><strong>Amplia comunidad y soporte:</strong>  Docker Compose, se apoya en una gran comunidad muy activa donde se proveen diversos recursos, tutoriales e instructivos.</li>
                         </ul>
-
-                        <p>Todas estas opciones pueden incluirse en el archivo compose para facilitar el deploy de la aplicación.</p>
+                        <p><a href="https://docs.docker.com/compose/intro/features-uses/" target="_blank">Docker Docs: Why use Compose?</a></p>
                     </small>
-
                 </section>
 
-                <section id="restart_2" data-state="no_footer">
-                    <h3>Restart policy p2</h3>
+                <section id="compose_12" data-state="no_footer">
+                    <h3>¿Cómo funciona Docker Compose?</h3>
                     <small>
-                        <p>Utilizando las opciones de deploy, podemos especificar con mas detalle la política de reinicio.</p>
+                        <p>Docker Compose se basa en la definición de los contenedores en un archivo YAML (compose.yaml). Este archivo describe cada servicio necesario, las imágenes que se usarán, las redes para la comunicación interna, los volúmenes para la persistencia de datos, y otras configuraciones específicas.</p>
+                        <p class="sub_titulo">Componentes clave de Docker compose:</p>
                         <ul>
-                            <li><strong><code>condition</code>:</strong> En cuál de las condiciones indicadas debe actuar.</li>
-                            <li><strong><code>delay</code>:</strong> Cuanto tiempo debe esperar entre intentos de reinicio. El valor predeterminado es 0.</li>
-                            <li><strong><code>max_attempts</code>:</strong> Este parámetro especifica el número máximo de veces que Docker intentará reiniciar un contenedor que ha fallado. Una vez que el contenedor ha fallado y se ha alcanzado el número máximo de intentos definido por max_attempts, Docker deja de intentar reiniciarlo.</li>
+                            <li><strong>Servicios (Services): </strong>Representan a cada contenedor que forma parte de la aplicación. Por ejemplo, un servicio web puede estar basado en una imagen de Nginx, y otro servicio de base de datos en MySQL.</li>
+                            <li><strong>Redes (Networks): </strong>Facilitan la comunicación entre los servicios definidos, permitiendo que los contenedores se comuniquen entre sí por nombre de servicio.</li>
+                            <li><strong>Volúmenes (Volumes): </strong>Proveen persistencia de datos, permitiendo que los datos de los contenedores persistan aunque estos sean eliminados.</li>
                         </ul>
                         <p></p>
                     </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        deploy:
-                          restart_policy:
-                            condition: on-failure
-                            delay: 5s
-                            max_attempts: 3                      
-                    </code></pre>
-
-                    <small><a href="https://docs.docker.com/reference/compose-file/deploy/#restart_policy" target="_blank">Docker Docs: Deploy restart_policy</a></small>
 
                 </section>
 
                 
 
-                <section id="resources_1" data-state="no_footer">
-                    <h3>resources</h3>
+                <section id="compose_2" data-state="no_footer">
+                    <h3>Archivo compose</h3>
                     <small>
 
-                    <p>Permite definir límites y reservas de recursos para los contenedores. Estos recursos generalmente incluyen CPU y memoria, asegurando que los contenedores no sobrepasen ciertos límites o que tengan una cantidad mínima de recursos garantizados. Las restricciones se puede configurar como:</p>
+                    <p>El fomato YAML usa la sangría o identación para su estructura, por eso es importante que seamos consistentes con dicha identación. Es decir, si usamos espacios o tabulación.</p>
+                    
+                    <p>En Docker compose, el archivo compose puede tener alguno de los siguientes nombres.</p>
+
+                    <p class="sub_titulo">Nombres estándares de compose</p>
                     <ul>
-                        <li><strong><code>limits</code></strong>: Define los recursos máximos que un contenedor puede utilizar.</li>
-                        <li><strong><code>reservations</code></strong>: Especifica la cantidad mínima de recursos que debe estar garantizada para el contenedor. Estos recursos son "reservados" para el contenedor y no pueden ser usados por otros contenedores.</li>
+                        <!-- <li><code>compose.yaml</code></li>
+                        <li><code>compose.yml</code></li>
+                        <li><code>docker-compose.yaml</code></li>
+                        <li><code>docker-compose.yml</code></li> -->
+                        <li><code>compose.yaml/yml</code></li>
+                        <li><code>docker-compose.yaml/yml</code></li>
                     </ul>
 
-                    <p>Por lo general los recursos administrados son <strong>CPU</strong> y <strong>memory</strong>. El límite o reserva de CPU se hace en fracciones de CPU siendo 1 para reservar 1 CPU. En memoria, se reservan o limitan en unidades de memorias como megas, gigas, etc.</p>
+                    <p>Si el archivo compose tiene otro nombre, hay que indicarselo a la CLI con <code>--file</code></p>
 
                     
-                    <a href="https://docs.docker.com/reference/compose-file/deploy/#resources" target="_blank">Docker Docs: Deploy Resources</a>
+                    <a href="https://docs.docker.com/compose/compose-application-model/#the-compose-file" target="_blank">Docker Docs: The compose file</a>
                     </small>
 
                 </section>
 
-                <section id="resources_limits" data-state="no_footer">
-                    <h3>resources: limits</h3>
+                <section id="compose_file1" data-state="no_footer">
+                    <h3>Archivo compose</h3>
                     <small>
-                        <p>Si queremos limitar a un 50% de un CPU y 512M de RAM la configuración es la siguiente:</p>
+                        El archivo compose se compone de instrucciones o directivas:
+                        <ul>
+                            <li><strong><code>service:</code></strong> Especifica el nombre del servicio, un servicio es un contenedor. Para cada servicio, podemos especificar, entre otras configuraciones:</li>
+                            <ul>
+                            <li><strong><code>image:</code></strong> Especifica qué imagen Docker se va a utilizar para crear el contenedor. Puede ser una imagen local o descargada de Docker Hub.</li>
+                            <li><strong><code>ports:</code></strong> Mapea puertos del contenedor a puertos del host, permitiendo el acceso externo al contenedor desde el sistema anfitrión.
+                                <ul>
+                                    <li><code>P_HOST:P_CONTAINER</code></li>
+                                </ul>
+                            </li>
+                            <li><strong><code>expose:</code></strong> Indica los puertos abiertos dentro del contenedor sin hacerlos accesibles fuera del host. Serán accesibles desde la misma red interna.</li>
+                            <li><strong><code>environment:</code></strong> Permite pasar variables de entorno al contenedor.</li>
 
+                            <li><strong><code>restart</code></strong> Define la política de reinicio del contenedor en caso de fallo o salida. Puede tener valores como:</li>
+                            <ul>
+                                <li><strong><code>no</code></strong>: No reiniciar</li>
+                                <li><strong><code>always</code></strong>: Reinicia siempre</li>
+                                <li><strong><code>on-failure</code></strong>: reiniciar si solo falla</li>
+                                <li><strong><code>unless-stopped</code></strong>: Reiniciar a menos que el contenedor sea detenido manualmente.</li>
+                            </ul>
+                        </ul>
+                        </ul>
                     </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        resources:
-                          limits:
-                            cpus: '0.50'
-                            memory: 512M          
-                    </code></pre>
-
-                    <small>En cambio, si queremos limitar a un máximo de 2 CPUs y 1G de RAM, la config sería:</small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        resources:
-                          limits:
-                            cpus: '2.0'
-                            memory: 1G          
-                    </code></pre>
-
-
                     
                 </section>
 
-                <section id="resources_reservations" data-state="no_footer">
-					<h3>resources: reservations</h3>
 
+
+
+
+                <section id="compose_4" data-state="no_footer">
+                    <h3>Compose CLI</h3>
                     <small>
-                        <p>Para reservar un 25% de un CPU y 256M de memoria, la configuración es:</p>
+                        <p>La CLI de Docker nos ayuda a interactuar con compose mediante el comando <code>docker compose</code>.</p>
+                        <p class="sub_titulo">Comandos básicos:</p>
+                        <ul>
+                            <li><code><strong>docker compose up</strong></code>: Inicia todos los servicios definidos en el archivo compose.</li>
+                            <li><code><strong>docker compose down</strong></code>: Detiene y elimina los servicios que están corriendo según el archivo compose.</li>
+                            <li><code><strong>docker compose logs</strong></code>: Nos muestra los ouputs de los contenedores. Útil para hacer debug.</li>
+                            <li><code><strong>docker compose ps</strong></code>: Lista los servicios junto a su estado actual.</li>
+                        </ul>
                     </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        resources:
-                          reservations:
-                            cpus: '0.25'
-                            memory: 256M
-                    </code></pre>
-
-                    
-				</section>
-
-
-
-                <section id="resources_2" data-state="no_footer">
-                    <h3>Resources</h3>
-                    <small>
-                        <p>Podemos combinar ambas opciones de recursos, reservas y límites. </p>
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
-                        services:
-                          frontend:
-                            image: example/webapp
-                            deploy:
-                              resources:
-                                limits:
-                                  cpus: '0.50'
-                                  memory: 50M
-                                reservations:
-                                  cpus: '0.25'
-                                  memory: 20M
-                    </code></pre>
-
-
 
                     <small>
                         <br>
                         
 
-                        Existen más capacidades de límites y reservas para contenedores: <a href="https://docs.docker.com/reference/compose-file/deploy/#resources" target="_blank">Docker docs: Deploy resources</a>
+                        <a href="https://docs.docker.com/reference/cli/docker/compose/#subcommands" target="_blank">Docker docs: Compose CLI commands</a>
 
                         
                     </small>
 
                 </section>
 
-                <!-- <section id="compose_develop_1" data-state="no_footer">
-                    <h3>Compose Watch</h3>
+                <section id="compose_5" data-state="no_footer">
+                    <h3>Iniciando nuestro primer compose</h3>
                     
                     <small>
-                        <p>El atributo watch actualiza y previsualiza automáticamente lso servicios de Compose en ejecución a medida que se cambia el código fuente. Nos es útil cuando estamos en etapa de desarrollo y a medida que vamos haciendo cambios, es necesario rebuildear la imágen o actualizar el contenido de los volumenes en tiempo de ejecución.</p>
-                        
-                        <ul>
-                        <li><strong><code>watch</code></strong>: Este atributo define una lista de reglas que controla automáticamente las actualizaciones del servicio (contenedor) basado en cambios en determinados paths. En base a esos cambios podemos definir qué acciones docker debe tomar.</li>
-
-                        <ul>
-                            <li><strong><code>action</code></strong>: Define qué acción deben tomarse cuando se detecta un cambio
-                                <ul>
-                                    <li><strong>rebuild</strong></li>
-                                    <li><strong>sync</strong></li>
-                                    <li><strong>sync+restart</strong></li>
-                                </ul>
-                            </li>
-                            <li><strong><code>path</code></strong>: Define la ruta relativa donde se esperan los cambios.
-                            <li><strong><code>target</code></strong>: Aplica solo si la configuración es <em>sync</em>. Define la ruta del contenedor que se sincronizarán los datos de manera que tendrá la última versión de los mismos.
-                            <li><strong><code>ignore</code></strong>: Especifica los archivos que deben ser ignorados por watch.</li>
-                        </ul>
-                    </ul>
-                        
-
-                    <a href="https://docs.docker.com/compose/file-watch/" target="_blank">Docker Docs: Use Compose Watch</a>
+                        <p>Unas de las mejores caracteristicas de docker y compose, es que se pueden deployar aplicaciones rápidamente. Empezaremos por un servidor web Nginx. Copiamos el siguiente texto a un archivo llamado <code>compose.yaml</code> en una carpeta nueva.</p>
                         
                     </small>
 
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          web:
+                            image: nginx:alpine-slim
+                            ports:
+                              - "80:80"
+                    </code></pre>
+                    <small>Luego ejecutamos en la misma carpeta:</small>
 
-          
-    
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker compose up
+                    </code></pre>
+
+
+                    <small class="fragment">
+                        <p>Abrimos <a href="http://localhost" target="_blank">http://localhost</a> y analizamos. <span class="fragment">Salimos con Control+C.</span></p>
+                        <p class="fragment">Por defecto, Compose crea una nueva red tipo bridge derivada de su <strong><a href="https://docs.docker.com/compose/how-tos/project-name/" target="_blank">project name</a></strong>. Si no se especifica, el project-name se deriva de la carpeta que contiene el archivo compose.</p>
+
+                    </small>
+
+
+
+
                 </section>
 
-                <section id="compose_develop_2" data-state="no_footer">
+                <section id="compose_6" data-state="no_footer">
+                    <h3>Web estática con compose</h3>
 
-                </section> -->
+                    <small>
+                        <p>Vamos a modificar el compose para que no solo muestre la página de bienvenida de Nginx, sino para que sirva una web propia. Creamos una carpeta nueva llamada web.</p>
+                        <p>Luego, descargamos el siguiente archivo <a href="https://codeload.github.com/thiagodnf/funny-eyes/zip/refs/heads/master" download>funny-eyes</a>. Descomprimimos el ZIP y renombramos la carpeta <strong>funny-eyes-master</strong> a <strong>html</strong>.</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        web/
+                        ├─ html/
+                        │  ├─ js/
+                        │  ├─ css/
+                        │  ├─ index.html
+                        ├─ compose.yaml
+                        
+                    </code></pre>
+
+
+                    
+                </section>
+
+
+
+                <section id="compose_7" data-state="no_footer">
+                    <h3>Web estática con compose</h3>
+                    <small>
+                        <p>Una vez que tengamos la estructura de directorios indicados, creamos un archivo <strong>compose.yaml</strong> con el siguiente contenido:</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          web:
+                            image: nginx:alpine-slim
+                            ports:
+                              - "80:80"
+                            volumes:
+                              - ./html:/usr/share/nginx/html    # bind mount!
+                    </code></pre>
+
+                    <small>
+                        Luego ejecutamos:
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker compose up -d
+                    </code></pre>
+
+                    <small>El -d adicional indica que se ejecutará como "daemon".</small>
+
+                </section>
+
+                <section id="compose_8" data-state="no_footer">
+                    <h3>Detener docker compose</h3>
+                    <small>
+                        <p>Cuando ejecutamos el compose en modo daemon (-d) para detener podemos hacer lo siguiente:</p>
+
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        docker compose stop # Detiene los contenedores
+                        docker compose down # Detiene y elimina contenedores y redes
+                        docker stop [CONTAINER_ID | NAME] # Usando docker CLI (sin compose)
+                    </code></pre>
+
+                </section>
+
+                <section id="compose_9" data-state="no_footer">
+
+                    <h3>Ambito de compose</h3>
+                    
+
+                    <small>
+                        <p>Es importante remarcar que el <em>ámbito</em> del compose es por directorio/carpeta.</p>
+                        <p>Es decir, si ejecutamos un <strong>docker compose stop</strong> para detener contenedores que levantamos pero estamos ubicados en otra carpeta, la CLI buscará un archivo compose dentro del directorio actual. Si no lo encuentra dará un mensaje <strong>no configuration file provided: not found</strong></p>
+                        <p>Por lo tanto, podremos tener tantos <strong>composes</strong> como queramos pero siempre respetando por carpetas o bien, podemos en la misma carpeta tener varios composes, pero tendremos que hacer explícito (con -f o --file) a qué archivo nos estamos refiriendo.</p>
+                    </small>
+
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                            docker compose --file otro-compose.yml up -d
+                        </code></pre>
+
+                        
+                    
+
+                </section>
 
                 <section id="ipreguntas2" data-state="no_footer">
                     <h2>Consultas</h2>
@@ -481,129 +338,171 @@
 
 
 
-
-
             <section>
-				<section id="debug" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Containers Debug</h3>
-                    
+				<section id="compose_multi_container" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Docker compose</h3>
+                    <h4>Composes multi-contenedor</h4>
 				</section>
 
-                <section id="debug_1" data-state="no_footer">
-                    <h3>Containers Debug</h3>
+                <section id="compose_multi_container_1" data-state="no_footer">
+                    <h3>Composes multi-contenedor</h3>
+                    
                     <small>
-                        <p>Saber qué pasa en nuestros contenedores es crucial para que podamos hacer debug o troubleshooting de nuestras aplicaciones.</p>
-                        <p>Existen distintas técnicas para realizar debug en nuestros contenedores. Listaremos a continuación alguna de ellas:</p>
+                        <p>Gestionar diversos conenedores utilizando la Docker CLI requiere de varios pasos que tienen que ejecutarse uno tras otro y es propenso a errores.</p>
+                        <p>Una de las cualidades de Docker Compose es la fácil gestión de aplicaciones multi-contenedor. Muchas veces las aplicaciones se componen de varios contenedores. Naturalmente, esos contenedores deberán poder comunicarse entre sí.</p>
                         
                     </small>
-                    <img src="./img/clase6/dead_docker.png">
+
+                    <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*HKf_ZCMcge8srjcP.png" width="60%">
+          
+    
                 </section>
 
-                <section id="container_logs" data-state="no_footer">
-                    <h3>Ver logs de un contenedor</h3>
+                <section id="compose_multi_container_1_2" data-state="no_footer">
+					<h3>Composes multi-contenedor</h3>
+
                     <small>
-                        <p>Ver los logs de un contenedor nos permite obtener información de salida generada por la aplicación que está corriendo dentro del contenedor. Podemos revisar los mensajes de error, advertencias o cualquier información que el contenedor imprima en su consola.</p>
-                        <p>La sintaxis es <strong><code>docker logs [OPTIONS] CONTAINER</code></strong></p>
-
-                    <p class="sub_titulo">OPTIONS:</p>
-                    
-                    <ul>
-                        <li><strong><code>--details</code></strong>: Muestra detalles adicionales provistos por los logs.</li>
-                        <li><strong><code>-f, --follow</code></strong>: Sigue el log en tiempo real.</li>
-                        <li><strong><code>-n, --tail</code></strong>: Número de líneas que se mostrará el log desde el final.</li>
-                        <li><strong><code>-t, --timestamps</code></strong>: Muestra el timestamp de los registros.</li>
-                        <li><strong><code>--since</code></strong>: Muestra los logs desde de un momento determinado. (timestamp, o relativo; 42m para 42 minutos)</li>
-                        <li><strong><code>--until</code></strong>: Muestra los logs antes de un momento determinado. (timestamp, o relativo; 42m para 42 minutos)</li>
-
-                    </ul>
-
-                    <a href="https://docs.docker.com/reference/cli/docker/container/logs/" target="_blank">docker container logs</a>
-                    
+                        <p>Ejemplo básico de un archivo <code>compose.yaml</code> multicontainer. Simplemente declaramos otro servicio.</p>
                     </small>
 
-                    
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        version: '3'        # Obsoleta en Compose V2
+                        services:
+                          web:              # Nombre del servicio
+                            image: nginx:latest
+                            ports:          # Publish ports
+                              - "80:80"
+                          database:         # Nombre del servicio
+                            image: mysql:5.7
+                            environment:    # Variables de entorno
+                              MYSQL_ROOT_PASSWORD: example
 
-
-                </section>
-
-                <section id="container_exec" data-state="no_footer">
-                    <h4>Ejecutar comandos dentro de un contenedor</h4>
-                    <small>
-                        <p>El comando <code>docker exec</code> corre un nuevo comando en un contenedor que está corriendo. Se usa de la siguiente manera:</p>
-                        <p><code><strong>docker exec [OPTIONS] CONTAINER COMMAND [ARG...]</strong></code></p>
-
-                        <p class="sub_titulo">OPTIONS:</p>
-
-                        <ul>
-                            <li><strong><code>-d, --detach</code>:</strong> Corre un comando en background.</li>
-                            <li><strong><code>-i, --interactive</code>:</strong> Mantiene la STDIN abierto</li>
-                            <li><strong><code>-t, --tty</code>:</strong> Aloca una pseudo TTY.</li>
-                        </ul>
-
-                        <p class="sub_titulo">Ejemplos mas utilizados:</p>
-
-                        <ul>
-                            <li><strong><code>docker exec -it CONTENEDOR bash|sh</code>:</strong> Inicia un bash o sh en modo tty interactivo</li>
-                        </ul>
-                        <a href="https://docs.docker.com/reference/cli/docker/container/exec/" target="_blank">Docker Docs: Docker container exec</a>
-                    </small>
-
-                    
-
-                        
-
-                </section>
-
-                <section id="stats" data-state="no_footer">
-                    <h3>Estadísticas de contenedores</h3>
-                    <small>
-                        <p>Para monitorear el uso de recursos (CPU, memoria, red, etc.) de un contenedor en tiempo real, podemos usar <code><strong>docker stats</strong></code>. Esto es útil para identificar problemas de rendimiento o visualizar los recursos del contenedor.</p>
-
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        CONTAINER ID  NAME        CPU %  MEM USAGE / LIMIT    MEM %  NET I/O     BLOCK I/O       
-                        a857cf776355  contenedor  0.00%  544KiB / 15.51GiB    0.00%  23.5kB / 0B 8.19kB / 4.1kB
-                        1e61070d0209  hola-web-1  0.00%  4.289MiB / 15.51GiB  0.03%  3.1kB / 0B  0B / 4.1kB
                     </code></pre>
-                    
-                    <small>
-                        <p>Adicionalmente, los datos pueden ser mostrado de diversas maneras, por ejemplo en un formato json para ser consumido por una aplicación.</p>
-                        <a href="https://docs.docker.com/reference/cli/docker/container/stats/" target="_blank">Docker Docs: docker container stats</a>
-                    </small>
+
+                    <small><p>En este ejemplo, se definen dos servicios: <strong>web</strong>, que usa la imagen de Nginx, y <strong>database</strong>, que utiliza MySQL. Con el comando <code>docker compose up</code> se iniciarán automáticamente ambos contenedores.</p></small>
+				</section>
+
+
+                <!-- <section id="compose_multi_container_2" data-state="no_footer">
+                    <h3>Composes multi-contenedor</h3>
+
+
+                    <small><p>Para indicar que queremos tener otro contenedor en el compose simplemente declaramos otro servicio:</p></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          web:
+                            image: "httpd:latest"
+                            ports:
+                              - "8000:80"
+
+                          redis:
+                            image: "redis:alpine"
+                    </code></pre>
+
+                    <small><p>En este ejemplo, se tienen dos contenedores; uno con el servidor web Apache y otro con la BD Redis. Al levantarlos con <strong>docker compose up</strong> se levantarán los dos contenedores.</p></small>
+
+    
+                </section> -->
+
+                <section id="compose_multi_container_3" data-state="no_footer">
+
+                    <h3>Composes multi-contenedor</h3>
+                   <small>
+                        <p>Vamos a comprobar que es muy sencillo tener aplicaciones mas complejas deployadas en segundos. En este ejemplo levantaremos un Wordpress.</p>
+                        <p>WordPress es un sistema de gestión de contenido (CMS) de código abierto que permite crear y administrar sitios web y blogs de manera fácil, sin necesidad de saber programar. Es altamente personalizable mediante temas y plugins, lo que lo hace ideal para sitios web de todo tipo, desde blogs personales hasta tiendas en línea.</p>
+                        <p>Para eso descargaremos el <a href="./files/compose/compose-wp.yaml" download>compose-wp.yaml</a></p>
+                        <p>Luego nos ubicamos en una carpeta nueva y ejecutamos:</p>
+                   </small>
+
+                   <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                    docker compose --file compose-wp.yaml up -d
+                </code></pre>
+
+                <small>
+                    Abriremos <a href="http://localhost" target="_blank">http://localhost</a>
+                    <p class="fragment">Analicemos el <a href="./files/compose/compose-wp.yaml" target="_blank">archivo compose</a>.</p>
+                </small>
+
 
                 </section>
 
-                <section id="inspect" data-state="no_footer">
-                    <h4>Inspeccionar el estado del contenedor</h4>
-                    <small>
-                        <p>Con el comando <code><strong>docker inspect</strong></code> nos permite obtener información detallada sobre la configuración y el estado de un contenedor. Puedes usarlo para verificar los volúmenes montados, las redes, variables de entorno, etc. Uso:</p>
-                        <p><strong><code>docker inspect [OPTIONS] CONTAINERS</code></strong></p>
-                        <p>Por defecto devuelve un formato JSON con información del contenedor, como: ID (hash completo), restart_policy, configuración de red, mounts, limits, entre muchos otros.</p>
+             
 
-                        <a href="https://docs.docker.com/reference/cli/docker/container/inspect/" target="_blank">Docker docs: docker container inspect</a>
-                    </small>
-
-
-                </section>
-
-                <section id="docker_debug" data-state="no_footer">
-                    <h3>docker debug</h3>
-                    <small>
-                        <p>La documentación lo describe una shell en cualquier contenedor o imagen. Una alternativa a depurar con docker exec.</p>
-                        <p>Docker Debug es un comando CLI que nos ayuda a seguir las mejores prácticas manteniendo las imágenes pequeñas y seguras. Con Docker Debug, se puede depurar las imágenes mientras contienen el mínimo indispensable para ejecutar tu aplicación.</p>
-                        <p><strong>Requiere de una suscripción PRO, Team o Business</strong>.</p>
-                        <a href="https://docs.docker.com/reference/cli/docker/debug/" target="_blank">Docker docs: docker debug</a>
-                    </small>
-
-
-                </section>
-
-
-                <section id="ipreguntas2" data-state="no_footer">
+                <section id="ipreguntas1" data-state="no_footer">
                     <h2>Consultas</h2>
                 </section>
 
+            </section>
+
+            <section>
+				<section id="dockerfile_compose" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Compose + Dockerfile</h3>
+                    <h4>Construyendo la imágen y correrla</h4>
+				</section>
+
+                <section id="dockerfile_compose1" data-state="no_footer">
+                    <h3>Compose + Dockerfile</h3>
+                    <small>
+                        <p>Docker Compose NO reemplaza Dockerfile. Ya que tienen propósitos diferentes: Mientras que Dockerfile nos ayuda a personalizar nuestras imágenes, Compose es una herramienta para definir la relación entre cada servicio (contenedores) del arhivo Compose.</p>
+                        
+                    </small>
+                    <img src="./img/clase5/dockerfile_compose.png">
+                </section>
+
+                <section id="dockerfile_compose2" data-state="no_footer">
+                    <h3>Archivo compose + build</h3>
+                    <small>
+                        <p>Para indicar que nuestra imágen se construye a partir de un Dockerfile, la instrucción <strong>image</strong> se reemplaza por <strong>build</strong>.</p>
+                        <p class="sub_titulo"> Funciones de build:</p>
+                        <ul>
+                            <li><strong>Especificar el contexto de construcción:</strong> Define la ubicación de los archivos que Docker necesita para construir la imagen (normalmente, el directorio que contiene el Dockerfile).</li>
+                            <li><strong>Dockerfile personalizado:</strong> Podemos especificar un Dockerfile diferente si no está en el directorio por defecto o si deseas personalizarlo.</li>
+                        </ul>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          app:
+                            build:
+                              context: ./app
+                              dockerfile: Dockerfile.custom
+                            ports:
+                              - "8080:8080"
+                    </code></pre>
+
+
+                </section>
+
+                <section id="dockerfile_compose3" data-state="no_footer">
+                    <h3>Construir imágenes</h3>
+                    <small>
+                        <p>Para buildear imágenes de Dockerfile ha sido explicado mas en detalle en <a href="https://docker.idepba.com.ar/clase3.html#/docker_build2" target="_blank">otra clase</a>. Sin embargo en Docker Compose tenemos dos opciones:</p>
+                        <ul>
+                            <li>Buildear la imágen como lo visto antes con <code>docker build</code></li>
+                            <li>Encargarle a compose que haga el build</li>
+                        </ul>
+
+                        <p>Para la segunda opción simplemente basta con agregar un parámetro mas a <code>docker compose</code></p>
+                        
+                        </small>
+
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                            docker compose --build          # Solo buildea las imágenes
+                            docker compose up -d --build    # Buildea y ejecuta los servicios
+                        </code></pre>
+
+                        <small>
+                            <p><a href="https://docs.docker.com/reference/compose-file/build/" target="_blank">Compose Build Specification</a></p>
+                        </small>
+
+                        
+
+                </section>
+
+                <section id="ipreguntas3" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
 
             </section> <!-- Fin Sección-->
 
@@ -612,9 +511,8 @@
                 <small>
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/06-compose-debug/61-compose2.md" target="_blank">Lab 6.1</a> Docker Compose | Parte II</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/06-compose-debug/62-compose-resources.md" target="_blank">Lab 6.2</a> Verificación de recursos</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/06-compose-debug/63-debug.md" target="_blank">Lab 6.3</a> Depuración de contenedores</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/05-compose/51-intro.compose.md" target="_blank">Lab 5.1</a> Deployar un contenedor web sencillo con Docker Compose</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/05-compose/52-multicontainer.md" target="_blank">Lab 5.2</a> Aplicaciones multicontenedor</li>
                   
                     
                 </ul>

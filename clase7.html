@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Fundamentos contenedores Docker - CFL 410 - Clase 7</title>
+		<title>Fundamentos contenedores Docker - CFL 410 - Clase 6</title>
 		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
         <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
 
@@ -36,20 +36,20 @@
                 <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
                     
                     <h3>Fundamentos y usos prácticos de Docker</h3>
-                    <h4>Clase 7 :<br>Composes Geniales</h4>
+                    <h4>Clase 6 :<br>Docker Compose - Parte II<br>Depuración de contenedores</h4>
 
                 </section>
 
                 <section id="index" data-state="no_footer">
-                    <h3>Temas de clase 7:</h3>
-                    <h4>Composes Geniales</h4>
+                    <h3>Temas de clase 6:</h3>
+                    <h4>Docker compose parte II</h4>
                     <small>
                         <ul>
-                            <li><a href="#/Awesome_compose_1">Awesome Compose</a></li>
-                            <li><a href="#/docker_managers">Administración de contenedores</a></li>
-                            <li><a href="#/development">Composes para desarrollo</a></li>
-                            <li><a href="#/infra">Composes para infra</a></li>
-                            <li><a href="#/home_labs">Composes para HomeLabs</a></li>
+                            <li><a href="#/top_level_compose_1">Docker Compose Parte II</a></li>
+                            <li><a href="#/compose_environment">Compose environment</a></li>
+                            <li><a href="#/restart">Restart policy</a></li>
+                            <li><a href="#/resources_1">Recursos</a></li>
+                            <li><a href="#/debug_1">Container debug</a></li>
 
                         </ul>
 
@@ -65,290 +65,557 @@
             </section>
 
             <section>
-                <section id="Awesome_compose" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Awesome Compose</h3>
-
+                <section id="top_level_compose" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Docker Compose</h3>
+                    <h4>Parte II</h4>
 				</section>
 
-                <section id="Awesome_compose_1" data-state="no_footer">
-                    <h3>Awesome Compose</h3>
+                <section id="top_level_compose_1" data-state="no_footer">
+                    <h3>Docker compose : Parte II</h3>
                     <small>
-                    <p>Docker Compose permite que tengamos aplicaciones complejas desplegadas en pocos minutos. A continuación se mostrarán algunos ejemplos y "composes" que sirven como punto de partida sobre cómo integrar diferentes servicios mediante un archivo Compose. No se recomienda su implementación en ambientes productivos críticos. <a href="https://github.com/docker/awesome-compose?tab=readme-ov-file#awesome-compose-" target="_blank">*</a></p>
-                    
+                    <p>Docker compose tiene un gran número de atributos que pueden configurarse. Se pueden ver todas las disponibles <strong>para servicios</strong> hasta el momento en <a href="https://docs.docker.com/reference/compose-file/services/" target="_blank">Docker Docs: Services top-level elements</a>. A continuación veremos solo algunas a modo de ejemplo.</p>
 
                     </small>
 
-                    <img src="https://github.com/docker/awesome-compose/raw/master/awesome-compose.jpg">
+                    <img src="./img/clase6/docker_adv2.png">
                 </section>
 
-            </section>
-
-            <section>
-
-                <section id="docker_managers" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Administración de contenedores</h3>
-
-				</section>
-
-                <section id="portainer" data-state="no_footer">
-                    <h3>Portainer</h3>
+                <section id="container_name" data-state="no_footer">
+                    <h3>container_name</h3>
                     <small>
-                        <strong>Portainer</strong> es una interfaz gráfica web open source para la gestión de contenedores Docker, Docker Swarm, Kubernetes y otras plataformas de orquestación de contenedores. Portainer CE (Community Edition) es la versión gratuita sin soporte mantenido por la comunidad. Portainer dispone de una versión BE (Business Edition).
-
+                        <p>De la misma manera que hacíamos con <code>docker run --name</code> podemos asignar un nombre a nuestros servicios para que no asigne el nombre por defecto establecido por Docker Compose.</p>
                     </small>
 
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        service:
+                          web:
+                            container_name: mi-contenedor-web
+                  </code></pre>
 
-                    <p><img src="https://cdn.shopify.com/s/files/1/0546/6174/2777/files/portainer_a4cb95cd-4727-43b9-bbcf-7d094abf5454_600x600.png?v=1665007155" width="60%"></p>
-                    
                   <small>
-                    <a href="https://github.com/portainer/portainer" target="_blank">Portainer GitHub Repository</a>
+                    <p>De esa manera podemos setear <code>mi-contenedor-web</code> como nombre. De lo contrario el nombre que se asigna es <code>[NOMBRE_CARPETA]-[NOMBRE_SERVICIO]-N</code></p>
+                  </small>
+
+                  <small>
+                    <p><a href="https://docs.docker.com/reference/compose-file/services/#container_name" target="_blank">Docker Docs: container_name</a></p>
                   </small>
 
 
 
                 </section>
 
-                <section id="portainer_2" data-state="no_footer">
-                    <h3>Portainer</h3>
+                <section id="compose_environment" data-state="no_footer">
+                    <h3>Environment</h3>
                     <small>
-                        <!-- <p>Portainer nos permite, entre otras cosas:</p> -->
-                        <ul>Portainer nos permite, entre otras cosas:
-                            <li>Administrar contenedores, imágenes, volúmenes y redes.</li>
-                            <li>Soporte para múltiples nodos Docker</li>
-                            <li>Monitoreo en tiempo real de los recursos</li>
-                            <li>Una GUI intuitiva para crear, gestionar y monitorear contenedores</li>
-                        </ul>
+                        <p>El campo environment en Docker Compose permite definir variables de entorno que un contenedor utilizará durante su ejecución. </p>
+                        <p class="sub_titulo">¿Por qué es importante?</p>
+                        <p>Las variables de entorno son una buena práctica para manejar configuraciones, como nombre de servidores que el contenedor debe establecer conexiones, puertos, contraseñas*, API keys*, etc., fuera del código fuente.</p>
+                    </small>
 
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                          services:
+                            app:
+                              image: "mi-app:latest"
+                              environment:
+                                - DB_HOST=db
+                                - DB_PORT=3306
+                    </code></pre>
+
+                    <small><a href="https://docs.docker.com/compose/environment-variables/set-environment-variables/" target="_blank">Docker Docs: Set environment variables</a></small>
+                    <small>* En algunos casos puede ser deseable usar secrets | <a href="https://docs.docker.com/compose/use-secrets/" target="_blank">Docs: How to use secrets in Docker Compose</a></small>
+                </section>
+
+                <section id="compose_environment_file" data-state="no_footer">
+                    <h3>Environment file</h3>
+                    <small>
+                        <p>Una mejor opción es tener las variables de entorno en un archivo separado del archivo compose. De manera que podríamos compartir o subir a un repositorio nuestro archivo compose sin compartir información sensible.</p>
+                        <p>Por lo general se usa un archivo <code>.env</code> pero es posible también especificarlo en el compose.</p>
 
                     </small>
 
-                    <p><img src="https://www.zdnet.com/a/img/resize/31b8e24bc38c52162692f819ccabab431d92a632/2023/03/22/67ce06e2-d486-4b79-8ae2-9e26c14790a4/portainer1.jpg?auto=webp&width=1280" width="50%"></p>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          app:
+                            env_file: "webapp.env"
+                  </code></pre>
 
+                  <small>
+                    <p>El formato del archivo env debe ser:</p>
+                  </small>
+
+                  <pre class="codigo_shadow" data-id="code-animation"><code class="env codigo-redondo" data-trim>
+                    POSTGRES_VERSION=14
+                    PG_HOST=db
+                </code></pre>
+
+                <small><a href="https://docs.docker.com/reference/compose-file/services/#env_file-format" target="_blank">Docker Docs: Env_file format</a></small>
+
+
+                </section>
+
+                <section id="compose_interpolation" data-state="no_footer">
+                    <h3>Interpolation</h3>
                     <small>
-                    
-                    <a href="https://github.com/Haxxnet/Compose-Examples/blob/main/examples/portainer/docker-compose.yml" target="_blank">Portainer Compose Sample</a>
-                    
-                    </small>
-                   
-                </section>
-
-                <section id="Yacht_1" data-state="no_footer">
-                    <h3>Yacht</h3>
-                    <small>
-                        <p><a href="https://yacht.sh/" target="_blank">Yach</a> es otra interfaz gráfica para administrar Docker.</p>
-               
-                        <ul>
-                            <li>Templates compatibles con Portainer</li>
-                            <li>Gestión básica de contenedores</li>
-                            <li>Implementación guiada de contenedores</li>
-                            <li>Panel de control para monitorear contenedores</li>
-                            <li>Compatibilidad y editor para Docker Compose</li>
-                        </ul>
-
-                    </small>
-                    <p>
-
-                        <img src="./img/clase7/Yacht-Demo.gif" width="60%">
-                    </p>
-                    
-                </section>
-
-            </section>
-
-            <section>
-
-                <section id="development" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-                    <h3>Composes para desarrollo</h3>
-                </section>
-
-                <section id="code" data-state="no_footer">
-                    <h3>code-server</h3>
-                    <small>
-                        <p><a href="https://docs.linuxserver.io/images/docker-code-server/" target="_blank">code-server</a> es un VSCode que corre en un servidor remoto accesible vía web.</p>
-
-                    </small>
-
-                    <img src="img/clase7/code-server-banner.png" width="50%">
-
-                </section>
-
-
-
-                <section id="gitea" data-state="no_footer">
-                    <h3>Gitea</h3>
-                    <small>
-                        <p><a href="https://about.gitea.com/" target="_blank">Gitea</a> plataforma de DevOps privada opensource (<a href="https://github.com/go-gitea/gitea/graphs/contributors" target="_blank">+1380 contrib</a>) soporte empresarial opcional. Git, CI/CD, etc. Puede correr en <a href="https://github.com/Haxxnet/Compose-Examples/tree/main/examples/gitea" target="_blank">Docker</a>.</p>
-                    </small>
-
-                    <img src="img/clase7/gitea-screenshot.png" width="80%">
-
-                </section>
-
-                <section id="onedev" data-state="no_footer">
-
-                    <h3>Onedev</h3>
-                    <small>
-                        <p><a href="https://github.com/theonedev/onedev" target="_blank">Onedev</a> es un Git Server con CI/CD, Kanban y packages. <a href="https://code.onedev.io/" target="_blank">Demo Online</a></p>
-                    </small>
-
-                    <!-- <img src="img/clase7/logo-fastapi.png" width="50%"> -->
-                    <img src="img/clase7/onedev.png" width="80%">
-                    
-
-                </section>
-
-
-            
-            </section>
-
-            <section>
-
-                <section id="infra" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-                    <h3>Composes para Infra</h3>
-                </section>
-
-                <section id="nginx-proxy" data-state="no_footer">
-
-                    <h3>Nginx Proxy Manager</h3>
-                    <small>
-                        <p><a href="https://github.com/NginxProxyManager/nginx-proxy-manager" target="_blank">Nginx Proxy Manager</a> es un <a href="https://en.wikipedia.org/wiki/Reverse_proxy" target="_blank">proxy reverso</a> basado en Nginx. Con capacidad de generar certificados SSL/TLS con <a href="https://letsencrypt.org/es/" target="_blank">Let's Encrypt</a> para exponer nuestras aplicaciones web de manera segura. Dispone de una amigable interfaz de usuario. Obviamene corre sobre <a href="https://nginxproxymanager.com/setup/#running-the-app" target="_blank">Docker</a>.</p>
-
+                        <p>Los valores en un archivo compose pueden ser seteados por variables de entorno e <em>interpoladas</em> en tiempo de ejecución.</p>
+                        <p>Los archivos compose usan una sintaxis <em>Bash-like</em>: <code>${VARIABLE}</code> y <code>$VARIABLE</code>.
+                            Supongamos que tenemos un archivo <code>.env</code> con el siguiente contenido:</p>
                         
                     </small>
 
-                    <img src="img/clase7/dashboard.png" width="45%">
-                    <img src="img/clase7/proxy-hosts.png" width="45%">
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="env codigo-redondo" data-trim>
+                        TAG=v1.5
+                    </code></pre>
+                    <small>Podemos hacer uso de la interpolación de la siguiente manera en el archivo compose:</small>
 
-                </section>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          web:
+                            image: "webapp:${TAG}" # webapp:v1.5
+                    </code></pre>
 
-                <section id="wireguard_easy" data-state="no_footer">
-
-                    <h3>WireGuard Easy</h3>
-                    <small>
-                        <p><a href="https://github.com/wg-easy/wg-easy" target="_blank">WireGuard</a> es una VPN simple, rápida y moderna para cifrar conexiones. Wireguard Easy, hace que sea mas simple administrar esta VPN mediante una GUI web.</p>
-                    </small>
-
-                    <!-- <img src="img/clase7/logo-fastapi.png" width="50%"> -->
-                    <img src="img/clase7/screenshot-wg.png" width="70%">
                     
 
+                    <small>
+                        <p>Docker compose puede obtener variables interpoladas desde: la shell local o archivos .env</p>
+                        <a href="https://docs.docker.com/reference/compose-file/interpolation/" target="_blank">Docker Docs: Compose Interpolation</a>
+                    </small>
                 </section>
 
-                <section id="nextcloud" data-state="no_footer">
-
-                    <h3>Nextcloud</h3>
+                <section id="compose_healthcheck" data-state="no_footer">
+                    <h3>healthcheck</h3>
                     <small>
-                        <p><a href="https://nextcloud.com/" target="_blank">Nextcloud</a> es una plataforma open-source que permite a los usuarios almacenar, sincronizar y compartir archivos de manera segura en su propio servidor, proporcionando una alternativa privada a servicios en la nube como Google Drive o Dropbox. Ofrece características como edición colaborativa de documentos, mensajería y gestión de calendarios, todo bajo el control del usuario o de la organización.</p>
+                        <p>El atributo <strong>healthcheck</strong> declara una comprobación que se ejeuta para determinar si los contenedores están "en buen estado" o no.</p>
+                        <p>De la siguiente manera podríamos comprobar si un contenedor web está OK.</p>
+
                     </small>
 
-                    <img src="img/clase7/nextcloud-hub.webp" width="60%">
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        healthcheck:
+                          test: ["CMD", "curl", "-f", "http://localhost"]
+                          interval: 1m30s
+                          timeout: 10s
+                          retries: 3
+                          start_period: 40s
+                          start_interval: 5s
+                  </code></pre>
+
+                  <small>
+                    <a href="https://docs.docker.com/reference/compose-file/services/#healthcheck" target="_blank">Docker Docs: healthcheck</a>
+                  </small>
+
 
                 </section>
 
-                <section id="duplicati" data-state="no_footer">
+                <section id="compose_depends_on" data-state="no_footer">
 
-                    <h3>Duplicati</h3>
+                    <h3>Depends_on</h3>
                     <small>
-                        <p><a href="https://github.com/duplicati/duplicati" target="_blank">Duplicati</a> es un software de backup open-source que permite realizar copias de seguridad cifradas y comprimidas de archivos y enviarlas a diversos servicios de almacenamiento en la nube, como Google Drive, Amazon S3, entre otros, como también local o en red.</p>
+                        <p>El campo <strong>depends_on</strong> define las dependencias entre servicios en Docker Compose, especificando el orden en el que se inician los servicios.</p>
                     </small>
 
-                    <img src="img/clase7/Duplicati_001.webp" width="55%">
-                    <img src="img/clase7/Duplicati_002.webp" width="40%">
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                          services:
+                            web:
+                              image: "nginx:alpine"
+                              depends_on:
+                                - db
+                            db:
+                              image: "postgres:alpine"
+                        
+                    </code></pre>
 
-                </section>
-                
-                <section id="vault_warden" data-state="no_footer">
-
-                    <h3>Vaultwarden</h3>
                     <small>
-                        <p><a href="https://github.com/dani-garcia/vaultwarden" target="_blank">Vaultwarden</a> es una alternativa compatible a <a href="https://bitwarden.com/download/" target="_blank">Bitwarden</a> open source escrita en Rust para gestionar nuestras contraseñas y secretos. Deployable en <a href="https://github.com/dani-garcia/vaultwarden?tab=readme-ov-file#installation" target="">Docker</a>.</p>
-                        <p>Requiere de certificados SSL para funcionar.</p>
+                        <p>En este ejemplo, el servicio web depende de que el servicio db (PostgreSQL) se inicie primero. Esto asegura que la base de datos esté en marcha antes de intentar iniciar el servidor web.</p>
+                        <il><strong>Limitaciones:</strong> solo controla el orden de inicio, no garantiza que el servicio esté listo. </il>
+                        <p>
+                            <a href="https://docs.docker.com/reference/compose-file/services/#depends_on" target="_blank">Docker Docs: depends_on</a>
+                        </p>
                     </small>
 
-                    <img src="img/clase7/vault_screen.jpg" width="60%">
-
                 </section>
 
-            </section>
 
-            <section>
 
-                <section id="home_labs" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-                    <h3>Composes para HomeLab</h3>
-                </section>
+                <section id="compose_healthcheck_depends_on" data-state="no_footer">
 
-                <section id="immich" data-state="no_footer">
-
-                    <h3>immich</h3>
+                    <h3>Depends_on healthy</h3>
                     <small>
-                        <p><a href="https://github.com/immich-app/immich" target="_blank">immich</a> es "un clon" self-hosted de Google Photos open source con mas de <a href="https://github.com/immich-app/immich/graphs/contributors" target="_blank">700 desarrolladores</a>.</p>
-                        <p>Dispone de una <a href="https://demo.immich.app/" target="_blank">demo online.</a> User: demo@immich.app | pass: demo</p>
+                        <p>La dependencia de un contenedor de otro, puede combinarse con el estado de salud de otro. Para aceptar que se inicie solo si ya el servicio se encuentra OK.</p>
+
                     </small>
 
-                    <img src="img/clase7/immich-logo-stacked-light.svg" width="40%">
-                    <img src="img/clase7/immich_folder_view2.jpg" width="40%">
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+  services:
+    web:
+      build: .
+      depends_on:
+        db:
+          condition: service_healthy
+
+    db:
+      image: posgres
+      healthcheck:
+        ....
+                            
+                  </code></pre>
+
+                  <small><a href="https://docs.docker.com/reference/compose-file/services/#long-syntax-1" target="_blank">Docker Docs: depends_on - Long syntax</a></small>
+
 
                 </section>
 
-                <section id="pihole" data-state="no_footer">
-
-                    <h3>pi-hole</h3>
-                    <small>
-                        <p><a href="https://pi-hole.net/" target="_blank">Pi-Hole</a> se define como un "agujero negro" para los anuncios de internet. Es un Ad block por DNS. Es <a href="https://github.com/pi-hole/docker-pi-hole/?tab=readme-ov-file#quick-start" target="_blank">deployable</a> vía Docker Compose pero requiere cierta configuración básica en el DHCP de la red; asignar como DNS la IP que tendrá el Pi-Hole.</p>
-                    </small>
-
-                    <img src="img/clase7/Dashboard-pihole.png" width="90%">
-                    
-
+                <section id="ipreguntas2" data-state="no_footer">
+                    <h2>Consultas</h2>
                 </section>
 
-                <section id="adguard" data-state="no_footer">
-
-                    <h3>Adguard Home</h3>
-                    <small>
-                        <p><a href="https://github.com/AdguardTeam/AdGuardHome" target="_blank">Adguard</a> es una alternativa a Pi-Hole.</p>
-                    </small>
-
-                    <img src="img/clase7/adguard.gif" width="80%">
-                    
-
-                </section>
-
-                <section id="home_assintant" data-state="no_footer">
-
-                    <h3>Home Assistant</h3>
-                    <small>
-                        <p><a href="https://github.com/AdguardTeam/AdGuardHome" target="_blank">Home Assistant</a> es domótica de código abierto que prioriza el control local y la privacidad. Impulsado por una gran comunidad de entusiastas DIY. Ideal para correr sobre una Raspberry Pi o un server local.</p>
-                    </small>
-
-                    <img src="img/clase7/home-assistant-edit-dashboard.webp" width="75%">
-                    
-
-                </section>
-
-                <section id="plex" data-state="no_footer">
-
-                    <h3>Plex Media Server</h3>
-                    <small>
-                        <p><a href="https://hub.docker.com/r/plexinc/pms-docker" target="_blank">Plex</a> es una aplicación que permite a los usuarios organizar, gestionar y transmitir su colección de medios digitales, como películas, música, fotos y programas de televisión, a través de diferentes dispositivos conectados a la red.</p>
-                    </small>
-
-                    <img src="img/clase7/plex.png" width="85%">
-                    
-
-                </section>
 
 
 
             </section> <!-- Fin sección -->
 			
 
+			<section>
+				<section id="compose_" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Docker Compose</h3>
+                    <h4>Compose Deploy Specification</h4>
+                    
+				</section>
+
+				<section id="deploy_specification" data-state="no_footer">
+					<h3>Compose Deploy Specification</h3>
+					
+                    <small>
+                    <p>La <a href="https://docs.docker.com/reference/compose-file/deploy/" target="_blank">Compose Deploy Specification</a> se refiere a cómo se pueden especificar configuraciones avanzadas de despliegue de servicios en un archivo <strong>compose</strong> usando la clave deploy.</p>
+                    <p>Hay multiples opciones que nos permiten administrar los recursos que tendrá nuestra aplicación y políticas de reinicio.</p>
+                    
+                    </small>
+                    <img src="./img/clase6/deploy1.png">
+
+				</section>
+
+                <section id="restart" data-state="no_footer">
+                    <h3>Restart policy</h3>
+                    <small>
+                        
+                        <p>La restart policy, define bajo qué circunstancias un contenedor debe reiniciarse, lo que es crucial para mantener la disponibilidad y estabilidad de los servicios. A diferencia de lo visto <a href="https://docker.idepba.com.ar/clase5.html#/compose_file1" target="_blank">en la clase anterior</a>, la restart_policy de la deploy specification difiere levemente.</p>
+                        <p class="sub_titulo">Condiciones:</p>
+                        <ul>
+                            <li><strong><code>none</code>:</strong> Los contenedores no se reinician automáticamente independientemente del estado de salida.</li>
+                            <li><strong><code>on-failure</code>:</strong> El contenedor se reinicia si sale debido a un error. El código de salida es distinto que cero.</li>
+                            <li><strong><code>any</code>:</strong> Los contenedores se reinician independientemente del estado de salida.</li>
+                        </ul>
+
+                        <p>Todas estas opciones pueden incluirse en el archivo compose para facilitar el deploy de la aplicación.</p>
+                    </small>
+
+                </section>
+
+                <section id="restart_2" data-state="no_footer">
+                    <h3>Restart policy p2</h3>
+                    <small>
+                        <p>Utilizando las opciones de deploy, podemos especificar con mas detalle la política de reinicio.</p>
+                        <ul>
+                            <li><strong><code>condition</code>:</strong> En cuál de las condiciones indicadas debe actuar.</li>
+                            <li><strong><code>delay</code>:</strong> Cuanto tiempo debe esperar entre intentos de reinicio. El valor predeterminado es 0.</li>
+                            <li><strong><code>max_attempts</code>:</strong> Este parámetro especifica el número máximo de veces que Docker intentará reiniciar un contenedor que ha fallado. Una vez que el contenedor ha fallado y se ha alcanzado el número máximo de intentos definido por max_attempts, Docker deja de intentar reiniciarlo.</li>
+                        </ul>
+                        <p></p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        deploy:
+                          restart_policy:
+                            condition: on-failure
+                            delay: 5s
+                            max_attempts: 3                      
+                    </code></pre>
+
+                    <small><a href="https://docs.docker.com/reference/compose-file/deploy/#restart_policy" target="_blank">Docker Docs: Deploy restart_policy</a></small>
+
+                </section>
+
+                
+
+                <section id="resources_1" data-state="no_footer">
+                    <h3>resources</h3>
+                    <small>
+
+                    <p>Permite definir límites y reservas de recursos para los contenedores. Estos recursos generalmente incluyen CPU y memoria, asegurando que los contenedores no sobrepasen ciertos límites o que tengan una cantidad mínima de recursos garantizados. Las restricciones se puede configurar como:</p>
+                    <ul>
+                        <li><strong><code>limits</code></strong>: Define los recursos máximos que un contenedor puede utilizar.</li>
+                        <li><strong><code>reservations</code></strong>: Especifica la cantidad mínima de recursos que debe estar garantizada para el contenedor. Estos recursos son "reservados" para el contenedor y no pueden ser usados por otros contenedores.</li>
+                    </ul>
+
+                    <p>Por lo general los recursos administrados son <strong>CPU</strong> y <strong>memory</strong>. El límite o reserva de CPU se hace en fracciones de CPU siendo 1 para reservar 1 CPU. En memoria, se reservan o limitan en unidades de memorias como megas, gigas, etc.</p>
+
+                    
+                    <a href="https://docs.docker.com/reference/compose-file/deploy/#resources" target="_blank">Docker Docs: Deploy Resources</a>
+                    </small>
+
+                </section>
+
+                <section id="resources_limits" data-state="no_footer">
+                    <h3>resources: limits</h3>
+                    <small>
+                        <p>Si queremos limitar a un 50% de un CPU y 512M de RAM la configuración es la siguiente:</p>
+
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        resources:
+                          limits:
+                            cpus: '0.50'
+                            memory: 512M          
+                    </code></pre>
+
+                    <small>En cambio, si queremos limitar a un máximo de 2 CPUs y 1G de RAM, la config sería:</small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        resources:
+                          limits:
+                            cpus: '2.0'
+                            memory: 1G          
+                    </code></pre>
+
+
+                    
+                </section>
+
+                <section id="resources_reservations" data-state="no_footer">
+					<h3>resources: reservations</h3>
+
+                    <small>
+                        <p>Para reservar un 25% de un CPU y 256M de memoria, la configuración es:</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        resources:
+                          reservations:
+                            cpus: '0.25'
+                            memory: 256M
+                    </code></pre>
+
+                    
+				</section>
+
+
+
+                <section id="resources_2" data-state="no_footer">
+                    <h3>Resources</h3>
+                    <small>
+                        <p>Podemos combinar ambas opciones de recursos, reservas y límites. </p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
+                        services:
+                          frontend:
+                            image: example/webapp
+                            deploy:
+                              resources:
+                                limits:
+                                  cpus: '0.50'
+                                  memory: 50M
+                                reservations:
+                                  cpus: '0.25'
+                                  memory: 20M
+                    </code></pre>
+
+
+
+                    <small>
+                        <br>
+                        
+
+                        Existen más capacidades de límites y reservas para contenedores: <a href="https://docs.docker.com/reference/compose-file/deploy/#resources" target="_blank">Docker docs: Deploy resources</a>
+
+                        
+                    </small>
+
+                </section>
+
+                <!-- <section id="compose_develop_1" data-state="no_footer">
+                    <h3>Compose Watch</h3>
+                    
+                    <small>
+                        <p>El atributo watch actualiza y previsualiza automáticamente lso servicios de Compose en ejecución a medida que se cambia el código fuente. Nos es útil cuando estamos en etapa de desarrollo y a medida que vamos haciendo cambios, es necesario rebuildear la imágen o actualizar el contenido de los volumenes en tiempo de ejecución.</p>
+                        
+                        <ul>
+                        <li><strong><code>watch</code></strong>: Este atributo define una lista de reglas que controla automáticamente las actualizaciones del servicio (contenedor) basado en cambios en determinados paths. En base a esos cambios podemos definir qué acciones docker debe tomar.</li>
+
+                        <ul>
+                            <li><strong><code>action</code></strong>: Define qué acción deben tomarse cuando se detecta un cambio
+                                <ul>
+                                    <li><strong>rebuild</strong></li>
+                                    <li><strong>sync</strong></li>
+                                    <li><strong>sync+restart</strong></li>
+                                </ul>
+                            </li>
+                            <li><strong><code>path</code></strong>: Define la ruta relativa donde se esperan los cambios.
+                            <li><strong><code>target</code></strong>: Aplica solo si la configuración es <em>sync</em>. Define la ruta del contenedor que se sincronizarán los datos de manera que tendrá la última versión de los mismos.
+                            <li><strong><code>ignore</code></strong>: Especifica los archivos que deben ser ignorados por watch.</li>
+                        </ul>
+                    </ul>
+                        
+
+                    <a href="https://docs.docker.com/compose/file-watch/" target="_blank">Docker Docs: Use Compose Watch</a>
+                        
+                    </small>
+
+
+          
+    
+                </section>
+
+                <section id="compose_develop_2" data-state="no_footer">
+
+                </section> -->
+
+                <section id="ipreguntas2" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+
+
+
+            </section>
+
+
+
+
+
+            <section>
+				<section id="debug" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Containers Debug</h3>
+                    
+				</section>
+
+                <section id="debug_1" data-state="no_footer">
+                    <h3>Containers Debug</h3>
+                    <small>
+                        <p>Saber qué pasa en nuestros contenedores es crucial para que podamos hacer debug o troubleshooting de nuestras aplicaciones.</p>
+                        <p>Existen distintas técnicas para realizar debug en nuestros contenedores. Listaremos a continuación alguna de ellas:</p>
+                        
+                    </small>
+                    <img src="./img/clase6/dead_docker.png">
+                </section>
+
+                <section id="container_logs" data-state="no_footer">
+                    <h3>Ver logs de un contenedor</h3>
+                    <small>
+                        <p>Ver los logs de un contenedor nos permite obtener información de salida generada por la aplicación que está corriendo dentro del contenedor. Podemos revisar los mensajes de error, advertencias o cualquier información que el contenedor imprima en su consola.</p>
+                        <p>La sintaxis es <strong><code>docker logs [OPTIONS] CONTAINER</code></strong></p>
+
+                    <p class="sub_titulo">OPTIONS:</p>
+                    
+                    <ul>
+                        <li><strong><code>--details</code></strong>: Muestra detalles adicionales provistos por los logs.</li>
+                        <li><strong><code>-f, --follow</code></strong>: Sigue el log en tiempo real.</li>
+                        <li><strong><code>-n, --tail</code></strong>: Número de líneas que se mostrará el log desde el final.</li>
+                        <li><strong><code>-t, --timestamps</code></strong>: Muestra el timestamp de los registros.</li>
+                        <li><strong><code>--since</code></strong>: Muestra los logs desde de un momento determinado. (timestamp, o relativo; 42m para 42 minutos)</li>
+                        <li><strong><code>--until</code></strong>: Muestra los logs antes de un momento determinado. (timestamp, o relativo; 42m para 42 minutos)</li>
+
+                    </ul>
+
+                    <a href="https://docs.docker.com/reference/cli/docker/container/logs/" target="_blank">docker container logs</a>
+                    
+                    </small>
+
+                    
+
+
+                </section>
+
+                <section id="container_exec" data-state="no_footer">
+                    <h4>Ejecutar comandos dentro de un contenedor</h4>
+                    <small>
+                        <p>El comando <code>docker exec</code> corre un nuevo comando en un contenedor que está corriendo. Se usa de la siguiente manera:</p>
+                        <p><code><strong>docker exec [OPTIONS] CONTAINER COMMAND [ARG...]</strong></code></p>
+
+                        <p class="sub_titulo">OPTIONS:</p>
+
+                        <ul>
+                            <li><strong><code>-d, --detach</code>:</strong> Corre un comando en background.</li>
+                            <li><strong><code>-i, --interactive</code>:</strong> Mantiene la STDIN abierto</li>
+                            <li><strong><code>-t, --tty</code>:</strong> Aloca una pseudo TTY.</li>
+                        </ul>
+
+                        <p class="sub_titulo">Ejemplos mas utilizados:</p>
+
+                        <ul>
+                            <li><strong><code>docker exec -it CONTENEDOR bash|sh</code>:</strong> Inicia un bash o sh en modo tty interactivo</li>
+                        </ul>
+                        <a href="https://docs.docker.com/reference/cli/docker/container/exec/" target="_blank">Docker Docs: Docker container exec</a>
+                    </small>
+
+                    
+
+                        
+
+                </section>
+
+                <section id="stats" data-state="no_footer">
+                    <h3>Estadísticas de contenedores</h3>
+                    <small>
+                        <p>Para monitorear el uso de recursos (CPU, memoria, red, etc.) de un contenedor en tiempo real, podemos usar <code><strong>docker stats</strong></code>. Esto es útil para identificar problemas de rendimiento o visualizar los recursos del contenedor.</p>
+
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                        CONTAINER ID  NAME        CPU %  MEM USAGE / LIMIT    MEM %  NET I/O     BLOCK I/O       
+                        a857cf776355  contenedor  0.00%  544KiB / 15.51GiB    0.00%  23.5kB / 0B 8.19kB / 4.1kB
+                        1e61070d0209  hola-web-1  0.00%  4.289MiB / 15.51GiB  0.03%  3.1kB / 0B  0B / 4.1kB
+                    </code></pre>
+                    
+                    <small>
+                        <p>Adicionalmente, los datos pueden ser mostrado de diversas maneras, por ejemplo en un formato json para ser consumido por una aplicación.</p>
+                        <a href="https://docs.docker.com/reference/cli/docker/container/stats/" target="_blank">Docker Docs: docker container stats</a>
+                    </small>
+
+                </section>
+
+                <section id="inspect" data-state="no_footer">
+                    <h4>Inspeccionar el estado del contenedor</h4>
+                    <small>
+                        <p>Con el comando <code><strong>docker inspect</strong></code> nos permite obtener información detallada sobre la configuración y el estado de un contenedor. Puedes usarlo para verificar los volúmenes montados, las redes, variables de entorno, etc. Uso:</p>
+                        <p><strong><code>docker inspect [OPTIONS] CONTAINERS</code></strong></p>
+                        <p>Por defecto devuelve un formato JSON con información del contenedor, como: ID (hash completo), restart_policy, configuración de red, mounts, limits, entre muchos otros.</p>
+
+                        <a href="https://docs.docker.com/reference/cli/docker/container/inspect/" target="_blank">Docker docs: docker container inspect</a>
+                    </small>
+
+
+                </section>
+
+                <section id="docker_debug" data-state="no_footer">
+                    <h3>docker debug</h3>
+                    <small>
+                        <p>La documentación lo describe una shell en cualquier contenedor o imagen. Una alternativa a depurar con docker exec.</p>
+                        <p>Docker Debug es un comando CLI que nos ayuda a seguir las mejores prácticas manteniendo las imágenes pequeñas y seguras. Con Docker Debug, se puede depurar las imágenes mientras contienen el mínimo indispensable para ejecutar tu aplicación.</p>
+                        <p><strong>Requiere de una suscripción PRO, Team o Business</strong>.</p>
+                        <a href="https://docs.docker.com/reference/cli/docker/debug/" target="_blank">Docker docs: docker debug</a>
+                    </small>
+
+
+                </section>
+
+
+                <section id="ipreguntas2" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+
+            </section> <!-- Fin Sección-->
+
             <section id="labs_clase" data-state="no_footer">
                 <h3>Actividad de práctica:</h3>
                 <small>
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/07-awesome-compose/71-awesome-compose.md" target="_blank">Lab 7</a> Awesome Compose</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/06-compose-debug/61-compose2.md" target="_blank">Lab 6.1</a> Docker Compose | Parte II</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/06-compose-debug/62-compose-resources.md" target="_blank">Lab 6.2</a> Verificación de recursos</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/06-compose-debug/63-debug.md" target="_blank">Lab 6.3</a> Depuración de contenedores</li>
+                  
                     
                 </ul>
 

@@ -36,42 +36,70 @@
                 <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
                     
                     <h3>Fundamentos y usos prácticos de Docker</h3>
-                    <h4>Clase 4 : Redes y persistencia de datos</h4>
+                    <h4>Clase 4 : Redes en Docker</h4>
 
                 </section>
 
+                
                 <section id="index" data-state="no_footer">
-                    <h3>Temas de clase 4:</h3>
-                    <h4>Redes</h4>
+                    <h3>Temas de clase 4</h3>
+                    <h4>Redes en Docker</h4>
                     <small>
+                
                         <ul>
-                            <li><a href="#/networking_1">Redes en Docker</a></li>
+                            <li><a href="#/networking_1">Introducción a redes en Docker</a></li>
                             <li><a href="#/net_bridge">Redes bridge</a></li>
                             <li><a href="#/net_bridge1">Puertos y redirecciones</a></li>
                             <li><a href="#/gestion_network1">Gestión de redes</a></li>
+                            
 
                         </ul>
+
+
+
 
                     </small>
 
-                    <p>
-
-                    <h4>Persistencia de datos</h4>
-                    <small>
-                        <ul>
-                            <li><a href="#/intro_mounts">Administrar datos en Docker</a></li>
-                            <li><a href="#/mounts_types">Tipos de montaje</a></li>
-                            <li><a href="#/volumes">Volumenes</a></li>
-                            <li><a href="#/bind_mounts">Bind mounts</a></li>
-                            <li><a href="#/volumenes">Gestión de volumenes</a></li>                      
-                        </ul>
+                        
                     
-                    </p>
-                    <a href="#/labs_clase">Laboratorios</a>
-                    <p><a href="?print-pdf">Exportar clase</a></p>
-                </small>
+                    <p><a href="#/labs_clase">Laboratorios</a></p>
+                            
+
+                        
+
+                        <p><a href="?print-pdf">Exportar clase</a></p>
+
+                        
+
                     
                 </section>
+
+            </section>
+
+
+			<section>
+				<section id="networking" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+					<h3>Introducción a redes en Docker</h3>
+
+				</section>
+
+				<section id="networking_1" data-state="no_footer">
+					<h3>Redes en Docker</h3>
+
+					<small>
+					<p>Docker proporciona un sistema de redes virtuales que permite conectar contenedores entre sí, al host, y con el mundo exterior. Al utilizar Docker, es esencial comprender cómo funcionan las redes dentro de su ecosistema, ya que esto impacta directamente en la conectividad, la seguridad, y el comportamiento de las aplicaciones distribuidas.</p>
+
+					<img src="img/clase4/network1.png" width="90%">
+
+
+					<p><a href="https://docs.docker.com/engine/network/" target="_blank">Docker Docs: Networking Overview</a> </p>
+					</small>
+
+				</section>
+
+
+
+
 
             </section>
 			
@@ -133,36 +161,7 @@
 
 				</section>
 
-                <section id="net_bridge0" data-state="no_footer">
-
-                    <h3>Redes bridge</h3>
-                    <small>
-                        Además de las redes "del tipo" <em>bridge</em> existe una red ya creada homónima llamada <em>bridge</em>. Es la red por defecto que Docker crea en un host cuando se instala. Los contenedores que se inician sin especificar una red se conectan automáticamente a esta red.
-
-                    </small>
-                </section>
-
-                <section id="net_bridge1" data-state="no_footer">
-                    <h3>Puertos y redirecciones</h3>
-                    <small>
-                        <p>Los puertos son esenciales para permitir que los contenedores interactúen con el mundo exterior o con otros contenedores. Cuando un contenedor se ejecuta, puede exponer ciertos puertos para que otros servicios puedan comunicarse con él. Sin embargo, exponer un puerto del contenedor no lo hace automáticamente accesible desde fuera del host y es necesario <strong>publicar</strong> el puerto para que sea accesible.</p>
-                        <p>Para publicar el puerto se hace con <code>-p P_HOST:P_CONTAINER</code></p>
-                        <!-- <code><strong>docker run -p 8080:80 nginx</strong></code> -->
-                    </small>
-                        <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                            docker run -d -p 8080:80 docker/welcome-to-docker
-                        </code></pre>
-                    <small>
-                        <p>Estas redirecciones se utilizan principalmente cuando estamos trabajando sobre redes <strong>bridge</strong>.</p>
-
-                        <a href="https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/" target="_blank">Docker docs: Publishing and exposing ports</a>
-
-                        
-                    </small>
-
-                </section>
-
-                <section id="net_bridge2" data-state="no_footer">
+                                <section id="net_bridge2" data-state="no_footer">
                     <h3>Custom bridge vs default bridge</h3>
                     
                     <small>
@@ -195,6 +194,28 @@
 
                 </section>
 
+                <section id="net_bridge1" data-state="no_footer">
+                    <h3>Puertos y redirecciones</h3>
+                    <small>
+                        <p>Los puertos son esenciales para permitir que los contenedores interactúen con el mundo exterior o con otros contenedores. Cuando un contenedor se ejecuta, puede exponer ciertos puertos para que otros servicios puedan comunicarse con él. Sin embargo, exponer un puerto del contenedor no lo hace automáticamente accesible desde fuera del host y es necesario <strong>publicar</strong> el puerto para que sea accesible.</p>
+                        <p>Para publicar el puerto se hace con <code>-p P_HOST:P_CONTAINER</code></p>
+                        <!-- <code><strong>docker run -p 8080:80 nginx</strong></code> -->
+                    </small>
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                            docker run -d -p 8080:80 docker/welcome-to-docker
+                        </code></pre>
+                    <small>
+                        <p>Estas redirecciones se utilizan principalmente cuando estamos trabajando sobre redes <strong>bridge</strong>.</p>
+
+                        <a href="https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/" target="_blank">Docker docs: Publishing and exposing ports</a>
+
+                        
+                    </small>
+
+                </section>
+
+
+
                 <section id="net_host1" data-state="no_footer">
                     <h3>Redes Host</h3>
 
@@ -219,14 +240,43 @@
                                 <li>El contenedor necesita manegar un rango de puertos amplio</li>
                             </ul>
 
-                            <p>El driver Host está solo disponible en Docker Engine (Solo en hosts Linux) y en Docker Desktop a partir de la versión 4.34.</p>
-
+                            <p>Está disponible en Docker Desktop a partir de la versión 4.34 pero no viene habilitado por defecto. Para habilitarlo: </p>
+                            <ul>
+                                <li>Settings</li>
+                                <li>Resources/Network</li>
+                                <li>Habilitar la opción "Enable Host Networking"</li>
+                                <li>Aplicar y reiniciar</li>
+                            </ul>
 
         
                             <p><a href="https://docs.docker.com/engine/network/drivers/host/" target="_blank">Docker Docs: Driver Host</a></p>
 
 
                     </small>
+
+                </section>
+
+                <section id="net_host3" data-state="no_footer">
+                    <h3>Redes Host</h3>
+                    <small>
+                        <p>Cuando se levanta un contenedor en <strong>modo host</strong>, los puertos que expone el contenedor son los mismos que los del host. Esto significa que no es necesario publicar los puertos del contenedor, ya que se abrirán los mismos puertos de escucha del contenedor al host.</p>
+                        <p>Ejemplo:</p>
+                    </small>
+                        
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                            docker run --rm -d --name web --network host nginx
+                    </code></pre>
+
+                    <small>
+                        <p>Luego haga clic <a href="http://localhost" target="_blank">aquí</a>. Debería poder ver la ventana de Nginx.</p>
+                        <p>Detener el contenedor:</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                            docker stop web
+                    </code></pre>
+
+
 
                 </section>
 
@@ -260,6 +310,7 @@
                     </small>
 
                     <img src="./img/clase4/ipvlan.png">
+                    <small><p>La diferenciación del tráfico se realiza a nivel de la capa 3 (dirección IP) en lugar de la capa 2 (dirección MAC).</p></small>
                     <small><a href="https://docs.docker.com/engine/network/drivers/ipvlan/" target="_blank">Docker Docs: Driver IPvlan</a></small>
 
 
@@ -286,6 +337,49 @@
                     </small>
 
          
+                </section>
+
+                <section id="net_macvlan_ipvlan" data-state="no_footer">
+                    <h3>IPVlan y MacVlan</h3>
+
+                    
+<small>
+<table>
+  <thead>
+    <tr>
+      <th>Característica</th>
+      <th >MacVLAN</th>
+      <th >IPVLAN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Dirección MAC</b></td>
+      <td>Cada contenedor tiene su <b>propia</b> dirección MAC única.</td>
+      <td>Todos los contenedores <b>comparten</b> la dirección MAC del host.</td>
+    </tr>
+    <tr>
+      <td><b>Capa de red</b></td>
+      <td>Funciona principalmente en la <b>Capa 2</b> (enlace de datos).</td>
+      <td>Funciona en la <b>Capa 3</b> (red), con el modo L2 siendo una opción común.</td>
+    </tr>
+    <tr>
+      <td><b>Requisitos del switch</b></td>
+      <td>Requiere que el switch soporte el modo promiscuo.</td>
+      <td>No requiere el modo promiscuo, al tener una sola dirección MAC por puerto.</td>
+    </tr>
+    <tr>
+      <td><b>Usos principales</b></td>
+      <td>Ideal para migraciones de VMs y redes que necesitan un MAC único por host.</td>
+      <td>Ideal para evitar la saturación de la tabla de direcciones CAM en el switch y cuando hay restricciones de direcciones MAC.</td>
+    </tr>
+  </tbody>
+</table>
+</small>
+
+
+
+
                 </section>
 
                 
@@ -527,272 +621,6 @@
 
             </section>
 
-            <section>
-				<section id="volumenes" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Administrar datos en Docker</h3>
-                    <h4>Volúmenes y persistencia de datos</h4>
-				</section>
-
-                <section id="intro_mounts" data-state="no_footer">
-                    <h3>Administrar datos en Docker</h3>
-                    <small>
-                        <p>En Docker, el manejo del almacenamiento es crucial para persistir datos más allá del ciclo de vida de un contenedor. Dado que los contenedores son efímeros y todos los cambios de 
-                            archivos dentro de un contenedor se pierden cuando el contenedor se elimina, Docker ofrece varias opciones para persistir estos datos de manera segura. La Doc los llama de forma abarcativa como <em>mounts</em>.</p>
-                    </small>
-                    <img src="./img/clase4/persistence.png" width="70%">
-                </section>
-
-                <!-- <section id="claves_mounts" data-state="no_footer">
-                    <h3>Conceptos clave</h3>
-                    <small>
-                        <ul>
-                            <li><strong>Persistencia de datos:</strong> Los datos almacenados en un contenedor desaparecen cuando el contenedor es eliminado. Docker nos provee mecanismos mediante mounts que permiten que los datos sobrevivan a estos eventos.</li>
-                            <li><strong>Compartición de datos:</strong> Los mounts pueden ser compartidos entre múltiples contenedores, facilitando la comunicación y la gestión de datos compartidos.</li>
-                            <li><strong>Desacoplamiento de datos:</strong> Los mounts nos permite separar la gestión de datos de la lógica de la aplicación, facilitando el mantenimiento y escalabilidad de las aplicaciones.</li>
-                        </ul>
-                    </small>
-                </section> -->
-
-                <section id="mounts_types" data-state="no_footer">
-                    <h3>Tipos de mounts en Docker</h3>
-                    <small>
-                        <p>Docker soporta varios tipos de mounts, cada uno adecuado para diferentes casos de uso:</p>
-
-                        <ul>
-                            <li>Volumes</li>
-                            <li>Bind Mounts</li>
-                            <li>tmpfs mounts</li>
-                        </ul>
-                        
-                        </small>
-
-                        <p><img src="./img/clase4/mounts.png" width="50%"></p>
-                        
-                        <small><a href="https://docs.docker.com/engine/storage/" target="_blank">Docker Docs: Manage data in Docker</a></small>
-
-                </section>
-
-                <section id="volumes" data-state="no_footer">
-                    <h3>Volumes</h3>
-                    <small>
-                        <p>Los volúmenes son el mecanismo preferido para conservar los datos generados y utilizados por los contenedores Docker *<a href="https://docs.docker.com/engine/storage/volumes/" target="_blank">[1]</a>.</p>
-                        
-                    <ul>
-                        <li>Son gestionados completamente por Docker</li>
-                        <li>Se almacenan en una ubicación específica en el host <code>/var/lib/docker/volumes/</code></li>
-                        <li>Pueden ser creados explícitamente o al momento de crear un contenedor.</li>             
-                    </ul>
-                    
-
-                    </small>
-                    <img src="./img/clase4/volumes1.png">
-                </section>
-
-                <section id="volumes_ventajas" data-state="no_footer">
-
-                    <h3>Volumes: Ventajas</h3>
-                    <small>
-                        <ul>
-                            <li>Es mas fácil realizar copias de seguridad o migrar volúmenes respecto a otro tipo de mounts.</li>
-                            <li>Podemos administrar volúmenes utilizando los comandos de Docker CLI o la API de Docker.</li>
-                            <li>Funciona en contenedores Linux y Windows</li>
-                            <li>Los volúmenes se pueden compartir de forma más segura entre varios contenedores.</li>
-                            <li>Los volumes permiten almacenarse en hosts remotos o proveedores de nube, cifrar el contenido de los volúmenes o agregar otras funciones. (CIFS/Samba, NFS, Block devices, etc)</li>
-                            <li>Los volumes en Docker Desktop tiene una muy mejor performance en host Windows y Mac.</li>
-    
-                        </ul>
-                    </small>
-
-                    <p><small><a href="https://docs.docker.com/engine/storage/volumes/" target="_blank">Docker Docs: Volumes</a></small></p>
-    
-                </section>
-
-                <section id="bind_mounts" data-state="no_footer">
-
-                    <h3>Bind Mounts</h3>
-                    <small>
-                        <!-- <p></p> -->
-                        <ul>
-                            <li>Montan un directorio específico del host en un contenedor.</li>
-                            <li>Se definen con rutas absolutas (o relativas) del sistema de archivos del host.</li>
-                            <li>Ofrecen más flexibilidad pero menos aislamiento, ya que exponen directorios específicos del host al contenedor.</li>
-                            <li>Datos fácilmente accesible, pero menor seguridad.</li>
-                            <li>No hace falta crear volumenes, simplemente toma los datos del filesystem del host.</li>
-    
-                        </ul>
-                    </small>
-                    <img src="./img/clase4/bind_mounts.png">
-
-                    <p><small><a href="https://docs.docker.com/engine/storage/bind-mounts/" target="_blank">Docker Docs: Bind mounts</a></small></p>
-    
-                </section>
-
-                <section id="tmpfs_mounts" data-state="no_footer">
-
-                    <h3>tmpfs Mounts</h3>
-                    <small>
-                        <!-- <p></p> -->
-                        <ul>
-                            <li>Montan un sistema de archivos en memoria.</li>
-                            <li>Son útiles para datos temporales que no deben persistir entre reinicios del contenedor.</li>
-                        </ul>
-                        <p>Limitaciones:</p>
-                        <ul>
-                            <li>No es posible compartir tmpfs mounts entre contenedores</li>
-                            <li>Solo está disponible en host Linux</li>
-                            
-                        </ul>
-                    </small>
-                    <img src="./img/clase4/mounts.png" width="50%">
-
-                    <p><small><a href="https://docs.docker.com/engine/storage/tmpfs/" target="_blank">Docker Docs: tmpfs mounts</a></small></p>
-    
-                </section>
-
-                <section id="ipreguntas3" data-state="no_footer">
-                    <h2>Consultas</h2>
-                </section>
-
-            </section> <!-- Fin Sección-->
-
-            <section>
-				<section id="volumenes" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Gestión de volumenes Docker</h3>
-                    <h4>Comandos básicos</h4>
-				</section>
-
-                <section id="volume_create" data-state="no_footer">
-                    <h3>Crear volumenes</h3>
-                    <small>
-                        <p>Docker nos provee mecanismos desde la Docker CLI para gestionar volúmenes. Vamos a crear un volumen llamado "my_volume".</p>
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                        docker volume create my_volume
-                    </code></pre>
-
-                    <h4>Listar volumenes</h4>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                        docker volume ls
-                    </code></pre>
-
-                    <small>
-                        <p><a href="https://docs.docker.com/reference/cli/docker/volume/create/" target="_blank">Docker Docs: volume create</a></p>
-                        <p><a href="https://docs.docker.com/reference/cli/docker/volume/ls/" target="_blank">Docker Docs: volume ls</a></p>
-                    </small>
-
-
-                </section>
-
-                <section id="volume_mount" data-state="no_footer">
-                    <h3>Montar un volumen a contenedor</h3>
-                    <small>
-                        Vamos a montar el volumen <strong>my_volume</strong> en un contenedor.
-                    </small>
-                        <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                            docker run --rm -it -v my_volume:/home alpine sh
-                        </code></pre>
-                    <small>
-                        Ahora hagamos un cambio en el volumen y salimos del contenedor
-                    </small>
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        touch /home/mensaje.txt # Creamos un archivo vacío mensaje.txt
-                        exit # Salimos del contenedor. Se borrará --rm
-                    </code></pre>
-                    <small>Ejecutamos un contenedor completamente diferente con el mismo volumen montado.</small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                        docker run --rm -it -v my_volume:/home ubuntu bash
-                        ls -l /home
-                    </code></pre>
-
-                    <div class="fragment">
-                        <small>¿Qué ha ocurrido?<span class="fragment"> Hemos logrado persistir datos y montar el volumen en otro contenedor completamente diferente.</span></small>
-                        <small class="fragment"><p><a href="https://docs.docker.com/engine/storage/volumes/#choose-the--v-or---mount-flag" target="_blank">Docker Docs: mount</a></p></small>
-                    </div>
-                    
-                    
-                </section>
-
-                <section id="volume_rm" data-state="no_footer">
-                    <h3>eliminar volumen</h3>
-                    <small>
-                        <p>No debe haber ningún contenedor utilizando el volumen. Antes de eliminar el volumen, probablemente tengamos que eliminar los contenedores que lo tengan montado aunque no estén corriendo.</p>
-                    </small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                        docker volume rm VOLUME_NAME
-                    </code></pre>
-
-
-                    <p><small><a href="https://docs.docker.com/reference/cli/docker/volume/rm/" target="_blank">Docker Docs: volume rm</a></small></p>
-
-                    <h4>Eliminar volumenes utilizados</h4>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                        docker volume prune
-                    </code></pre>
-
-                    <p><small><a href="https://docs.docker.com/reference/cli/docker/volume/prune/" target="_blank">Docker Docs: volume prune</a></small></p>
-
-
-
-                </section>
-
-                <section id="volume_inspect" data-state="no_footer">
-
-                    <h3>Inspeccionar volumen</h3>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                        docker volume inspect VOLUME_NAME
-                    </code></pre>
-                    <small>Info brindada:</small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="json codigo-redondo" data-trim>
-                                "CreatedAt": "2024-08-23T09:49:48-03:00",
-                                "Driver": "local",
-                                "Labels": null,
-                                "Mountpoint": "/var/lib/docker/volumes/my_volume/_data",
-                                "Name": "my_volume",
-                                "Options": null,
-                                "Scope": "local"
-                    </code></pre>
-
-                    <p><small><a href="https://docs.docker.com/reference/cli/docker/volume/inspect/" target="_blank">Docker Docs: volume inspect</a></small></p>
-
-
-
-                </section>
-
-                <section id="docker_cp" data-state="no_footer">
-
-                    <h3>Copiar archivos a contenedores</h3>
-
-                    <small><p>Podemos copiar contenido de nuestro host hacia un contenedor con el comando <code>docker cp [OPTIONS] [PATH] CONTAINER:/[DESTINATION]</code></p></small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                        docker cp config.json contenedor_prueba:/mnt
-                    </code></pre>
-
-                    <small><p>O a la inversa, copiar desde el contenedor hacia el host invirtiendo los paths</p></small>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
-                        docker cp contenedor_prueba:/mnt/config.json .
-                    </code></pre>
-
-                    <small><p>Esto no es exclusivo de los volúmenes. Se pueden copiar a cualquier path del contenedor por mas que no tenga un volumen montado.</p></small>
-
-                    <p><small><a href="https://docs.docker.com/reference/cli/docker/container/cp/" target="_blank">Docker Docs: container cp</a></small></p>
-
-                </section>
-
-                <section id="ipreguntas4" data-state="no_footer">
-                    <h2>Consultas</h2>
-                </section>
-            </section> <!-- Fin sección-->
-
-
            
 
             <section id="labs_clase" data-state="no_footer">
@@ -800,10 +628,8 @@
                 <small>
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/04-redes_volumes/redes/41-introduccion.md" target="_blank">Lab 4.1</a> Introducción a redes en Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/04-redes_volumes/redes/42-containers_net.md" target="_blank">Lab 4.2</a> Conexión de Múltiples Contenedores en una Red Bridge</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/04-redes_volumes/volumes/43-volumenes_docker.md" target="_blank">Lab 4.3</a> Persistencia de datos en Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.2/labs/04-redes_volumes/volumes/44-volumenes_bkp.md" target="_blank">Lab 4.4</a> Backup y Migración de Volúmenes</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.3/labs/04-redes_volumes/redes/41-introduccion.md" target="_blank">Lab 4.1</a> Introducción a redes en Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.3/labs/04-redes_volumes/redes/42-containers_net.md" target="_blank">Lab 4.2</a> Conexión de Múltiples Contenedores en una Red Bridge</li>
                     
                 </ul>
 
