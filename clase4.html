@@ -18,15 +18,15 @@
 		<link rel="stylesheet" href="css/egg.css">
 
         <!-- CLASE AUN NO DISPONIBLE-->
-        <!-- <meta http-equiv="refresh" content="0; url=./404.html"> -->
+        <meta http-equiv="refresh" content="0; url=./404.html">
 		
 	</head>
 	<body>
 
         <!-- CLASE AUN NO DISPONIBLE-->
-        <!-- <script>
+        <script>
             window.location.href = "/404.html";
-        </script> -->
+        </script>
 
 		<div class="reveal">
 			<div class="slides">
@@ -463,6 +463,38 @@
     
                 </section>
 
+                <section id="network_internal" data-state="no_footer">
+                    <h3>Redes Internas</h3>
+                    <small>
+                        <p>Es posible crear redes internas que no tengan acceso al exterior. Esto es útil para aislar ciertos contenedores que no necesitan salir a internet.</p>
+                        <p>Para crear una red interna se usa el flag <code>--internal</code></p>    
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker network create --internal red_interna
+                    </code></pre>
+
+                    <small>
+                        <p>Tener en cuenta que, al no tener acceso a otras redes, como internet no será posible actualizar ni instalar paquetes.</p>
+                    </small>
+
+
+
+                        <p><small>
+                        <a href="https://docs.docker.com/reference/cli/docker/network/create/#internal" target="_blank">Docker Docs: networks internal</a>
+                    </small>
+                        </p>
+
+
+                    <p><small>
+                        <a href="https://docs.docker.com/reference/cli/docker/network/create/#options" target="_blank">Docker Docs: Networks Create Options</a>
+                    </small>
+                        </p>
+                
+                
+                
+                </section>
+
                 <section id="network_ls" data-state="no_footer">
 
                     <h3>Listar redes Docker</h3>
@@ -603,8 +635,9 @@
                 <small>
                 <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.3/labs/04-redes/41-introduccion.md" target="_blank">Lab 4.1</a> Introducción a redes en Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.3/labs/04-redes/42-containers_net.md" target="_blank">Lab 4.2</a> Conexión de Múltiples Contenedores en una Red Bridge</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/04-redes/41-introduccion.md" target="_blank">Lab 4.1</a> Introducción a redes en Docker</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/04-redes/42-containers_net.md" target="_blank">Lab 4.2</a> Conexión de Múltiples Contenedores en una Red Bridge</li>
+                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/04-redes/43-puertos.md" target="_blank">Lab 4.3</a> Puertos y redirecciones</li>
                     
                 </ul>
 
