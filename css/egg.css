@@ -218,8 +218,17 @@
   margin-left: 20px;
 }
 
+.custom-text2 {
+  flex: 1;
+  margin-left: 10px;
+}
+
 .custom-image img {
   max-width: 300px;
+  height: auto;
+}
+
+.custom-image2 img {
   height: auto;
 }
 
