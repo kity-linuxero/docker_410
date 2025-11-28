@@ -131,30 +131,15 @@
                     </small>
                 </section>
 
+
+
                 <section id="net_bridge" data-state="no_footer">
                     <h3>Redes Bridge</h3>
 
                     <small>
-                        Actúa como un switch virtual dentro del host y permite la comunicación entre los contenedores
-                        que están en la misma red bridge a su vez que provee aislamiento a los contenedores que están en
-                        redes bridge separadas. La red bridge por defecto arranca en <strong>172.17.0.0/16</strong> y a
-                        medida que se van creando redes <em>bridge</em> va cambiando la red incrementando el segundo
-                        octeto <strong>172.x.0.0/16</strong>
-
-                    </small>
-
-                    <img src="./img/clase4/bridge.png">
-
-                    <small><a href="https://docs.docker.com/engine/network/drivers/bridge/" target="_blank">Docker Docs:
-                            Bridge network driver</a></small>
-                </section>
-
-
-                <section id="net_bridge0" data-state="no_footer">
-                    <h3>Redes Bridge</h3>
-
-                    <small>
-                        <p>Cuando usamos una red bridge en Docker con configuración por defecto:</p>
+                        <p>Se comporta como un switch virtual dentro del host y permite la comunicación entre los
+                            contenedores que están en la misma red bridge. Cuando usamos una red bridge en Docker con
+                            configuración por defecto:</p>
                         <ul>
                             <li>Los contenedores obtienen IPs internas dentro de una subred privada (normalmente IPv4,
                                 opcional IPv6).</li>
@@ -177,6 +162,23 @@
                     </small>
 
                     <br>
+
+                    <small><a href="https://docs.docker.com/engine/network/drivers/bridge/" target="_blank">Docker Docs:
+                            Bridge network driver</a></small>
+                </section>
+
+
+                <section id="net_bridge0" data-state="no_footer">
+                    <h3>Redes Bridge</h3>
+
+                    <small>
+                        La red bridge por defecto arranca en <strong>172.17.0.0/16</strong> y a
+                        medida que se van creando redes <em>bridge</em> va cambiando la red incrementando el segundo
+                        octeto <strong>172.x.0.0/16</strong>
+
+                    </small>
+
+                    <img src="./img/clase4/bridge.png">
 
                     <small><a href="https://docs.docker.com/engine/network/drivers/bridge/" target="_blank">Docker Docs:
                             Bridge network driver</a></small>
