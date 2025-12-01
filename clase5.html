@@ -169,33 +169,7 @@
 
                 </section>
 
-                <section id="volumes_notas" data-state="no_footer">
-                    <h3>Volumes: Datos pre-existentes</h3>
-                    <small>
-                        <p>Los volumes se montan sobre un path o directorio (punto de montaje) de <a
-                                href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">Linux</a>. Ese lugar
-                            en el
-                            filesystem del
-                            contenedor puede tener datos pre-existentes o no.</p>
-                        <ul>
-                            <li>Si montamos un volumen vacío sobre un punto de montaje con datos pre-existentes, los
-                                datos se copiarán automáticamente al volumen.</li>
-                            <li>Si montamos un volumen con datos sobre un punto de con datos pre-existentes,
-                                los datos pre-existentes se "enmascaran" por los datos del volumen. (Los datos que son
-                                enmascarados no se borran).</li>
-                            <li>En Docker no hay una forma sencilla de desmontar un volumen. Si queremos acceder a esos
-                                datos que fueron "enmascarados" por el volumen, lo mejor es recrear el contenedor sin
-                                montar el volumen.</li>
 
-                            <li>Si al iniciar un contenedor especificamos un volumen que no existe, Docker lo creará
-                                automáticamente.</li>
-                        </ul>
-
-                    </small>
-                    <p><small><a href="https://docs.docker.com/engine/storage/volumes#mounting-a-volume-over-existing-data"
-                                target="_blank">Docker Docs:
-                                Mounting a volume over existing data</a></small></p>
-                </section>
 
                 <section id="bind_mounts" data-state="no_footer">
 
@@ -286,9 +260,8 @@
                 <section id="volume_mount" data-state="no_footer">
                     <h3>Montar volumenes</h3>
                     <small>
-                        <p>Para montar un volumen con el comando <strong>docker run</strong>, podemos elegir entre los
-                            flags
-                            <strong>--mount</strong> y <strong>--volume</strong>.
+                        <p>Si usamos el comando <strong>docker run</strong>, podemos elegir entre
+                            los flags <strong>--mount</strong> y <strong>--volume</strong>.
                         </p>
                     </small>
 
@@ -368,6 +341,63 @@
                     </div>
 
 
+                </section>
+
+                <section id="volumes_notas" data-state="no_footer">
+                    <h3>Volumes: Datos pre-existentes</h3>
+                    <small>
+                        <p>Los volumes se montan sobre un path o directorio (punto de montaje) de <a
+                                href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">Linux</a>. Ese lugar
+                            en el
+                            filesystem del
+                            contenedor puede tener datos pre-existentes o no.</p>
+                        <ul>
+                            <li>Si montamos un volumen vacío sobre un punto de montaje con datos pre-existentes, los
+                                datos se copiarán automáticamente al volumen.</li>
+                            <li>Si montamos un volumen con datos sobre un punto de con datos pre-existentes,
+                                los datos pre-existentes se "enmascaran" por los datos del volumen. (Los datos que son
+                                enmascarados no se borran).</li>
+                            <li>En Docker no hay una forma sencilla de desmontar un volumen. Si queremos acceder a esos
+                                datos que fueron "enmascarados" por el volumen, lo mejor es recrear el contenedor sin
+                                montar el volumen.</li>
+
+                            <li>Si al iniciar un contenedor especificamos un volumen que no existe, Docker lo creará
+                                automáticamente.</li>
+                        </ul>
+
+                    </small>
+                    <p><small><a href="https://docs.docker.com/engine/storage/volumes#mounting-a-volume-over-existing-data"
+                                target="_blank">Docker Docs:
+                                Mounting a volume over existing data</a></small></p>
+                </section>
+
+                <section id="volume_bind" data-state="no_footer">
+                    <h3>Montar bind mounts</h3>
+                    <small>
+                        <p>Podemos montar directorios del host en el contenedor.</p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker run --rm -v ./carpeta:/app -it alpine sh
+                    </code></pre>
+
+                    <small>
+                        <p>Si estamos en Windows el comando es diferente:.</p>
+                    </small>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                        docker run --rm -v "${PWD}/carpeta:/app" -it alpine sh
+                    </code></pre>
+
+                    <small>
+                        <p>En ambos casos, el directorio carpeta se monta en el contenedor en la ruta /app. Y los
+                            cambios que hagamos en la carpeta del host se verán reflejados en el contenedor.
+                        </p>
+                    </small>
+
+                    <small>
+                        <p><a href="https://docs.docker.com/get-started/workshop/06_bind_mounts/" target="_blank">Docker
+                                Docs: bind mounts</a></p>
+                    </small>
                 </section>
 
 
@@ -494,9 +524,9 @@
                 <small>
                     <ul>
 
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/05-volumes/51-volumenes_docker.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/05-volumes/51-volumenes_docker.md"
                                 target="_blank">Lab 5.1</a> Persistencia de datos en Docker</li>
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/05-volumes/52-volumenes_bkp.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/05-volumes/52-volumenes_bkp.md"
                                 target="_blank">Lab 5.2</a> Backup y Migración de Volúmenes</li>
 
                     </ul>
