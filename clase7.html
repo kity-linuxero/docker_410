@@ -1,40 +1,43 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Fundamentos contenedores Docker - CFL 410 - Clase 7</title>
-		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
-        <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/white.css">
+    <title>Fundamentos contenedores Docker - CFL 410 - Clase 7</title>
+    <!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
+    <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-		<!-- Custom CSS -->
-		<link rel="stylesheet" href="css/egg.css">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/white.css">
 
-        <!-- CLASE AUN NO DISPONIBLE-->
-        <meta http-equiv="refresh" content="0; url=./404.html">
-		
-	</head>
-	<body>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/egg.css">
 
-        <!-- CLASE AUN NO DISPONIBLE-->
-        <script>
-            window.location.href = "/404.html";
-        </script>
+    <!-- CLASE AUN NO DISPONIBLE-->
+    <meta http-equiv="refresh" content="0; url=./404.html">
 
-		<div class="reveal">
-			<div class="slides">
+</head>
+
+<body>
+
+    <!-- CLASE AUN NO DISPONIBLE-->
+    <script>
+        window.location.href = "/404.html";
+    </script>
+
+    <div class="reveal">
+        <div class="slides">
 
             <section>
 
-                <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-                    
+                <section id="inicio" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+
                     <h3>Fundamentos y usos prácticos de Docker</h3>
                     <h4>Clase 7 :<br>Docker Compose - Parte II<br>Depuración de contenedores</h4>
 
@@ -59,21 +62,28 @@
                         <a href="#/labs_clase">Laboratorios</a>
                     </p>
 
-                    <small><p><a href="?print-pdf">Exportar clase</a></p></small>
+                    <small>
+                        <p><a href="?print-pdf">Exportar clase</a></p>
+                    </small>
                 </section>
 
             </section>
 
             <section>
-                <section id="top_level_compose" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Docker Compose</h3>
+                <section id="top_level_compose" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Docker Compose</h3>
                     <h4>Parte II</h4>
-				</section>
+                </section>
 
                 <section id="top_level_compose_1" data-state="no_footer">
                     <h3>Docker compose : Parte II</h3>
                     <small>
-                    <p>Docker compose tiene un gran número de atributos que pueden configurarse. Se pueden ver todas las disponibles <strong>para servicios</strong> hasta el momento en <a href="https://docs.docker.com/reference/compose-file/services/" target="_blank">Docker Docs: Services top-level elements</a>. A continuación veremos solo algunas a modo de ejemplo.</p>
+                        <p>Docker compose tiene un gran número de atributos que pueden configurarse. Se pueden ver todas
+                            las disponibles <strong>para servicios</strong> hasta el momento en <a
+                                href="https://docs.docker.com/reference/compose-file/services/" target="_blank">Docker
+                                Docs: Services top-level elements</a>. A continuación veremos solo algunas a modo de
+                            ejemplo.</p>
 
                     </small>
 
@@ -83,7 +93,9 @@
                 <section id="container_name" data-state="no_footer">
                     <h3>container_name</h3>
                     <small>
-                        <p>De la misma manera que hacíamos con <code>docker run --name</code> podemos asignar un nombre a nuestros servicios para que no asigne el nombre por defecto establecido por Docker Compose.</p>
+                        <p>De la misma manera que hacíamos con <code>docker run --name</code> podemos asignar un nombre
+                            a nuestros servicios para que no asigne el nombre por defecto establecido por Docker
+                            Compose.</p>
                     </small>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
@@ -92,13 +104,15 @@
                             container_name: mi-contenedor-web
                   </code></pre>
 
-                  <small>
-                    <p>De esa manera podemos setear <code>mi-contenedor-web</code> como nombre. De lo contrario el nombre que se asigna es <code>[NOMBRE_CARPETA]-[NOMBRE_SERVICIO]-N</code></p>
-                  </small>
+                    <small>
+                        <p>De esa manera podemos setear <code>mi-contenedor-web</code> como nombre. De lo contrario el
+                            nombre que se asigna es <code>[NOMBRE_CARPETA]-[NOMBRE_SERVICIO]-N</code></p>
+                    </small>
 
-                  <small>
-                    <p><a href="https://docs.docker.com/reference/compose-file/services/#container_name" target="_blank">Docker Docs: container_name</a></p>
-                  </small>
+                    <small>
+                        <p><a href="https://docs.docker.com/reference/compose-file/services/#container_name"
+                                target="_blank">Docker Docs: container_name</a></p>
+                    </small>
 
 
 
@@ -107,9 +121,12 @@
                 <section id="compose_environment" data-state="no_footer">
                     <h3>Environment</h3>
                     <small>
-                        <p>El campo environment en Docker Compose permite definir variables de entorno que un contenedor utilizará durante su ejecución. </p>
+                        <p>El campo environment en Docker Compose permite definir variables de entorno que un contenedor
+                            utilizará durante su ejecución. </p>
                         <p class="sub_titulo">¿Por qué es importante?</p>
-                        <p>Las variables de entorno son una buena práctica para manejar configuraciones, como nombre de servidores que el contenedor debe establecer conexiones, puertos, contraseñas*, API keys*, etc., fuera del código fuente.</p>
+                        <p>Las variables de entorno son una buena práctica para manejar configuraciones, como nombre de
+                            servidores que el contenedor debe establecer conexiones, puertos, contraseñas*, API keys*,
+                            etc., fuera del código fuente.</p>
                     </small>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
@@ -121,15 +138,21 @@
                                 - DB_PORT=3306
                     </code></pre>
 
-                    <small><a href="https://docs.docker.com/compose/environment-variables/set-environment-variables/" target="_blank">Docker Docs: Set environment variables</a></small>
-                    <small>* En algunos casos puede ser deseable usar secretos | <a href="https://docs.docker.com/compose/use-secrets/" target="_blank">Docs: How to use secrets in Docker Compose</a></small>
+                    <small><a href="https://docs.docker.com/compose/environment-variables/set-environment-variables/"
+                            target="_blank">Docker Docs: Set environment variables</a></small>
+                    <small>* En algunos casos puede ser deseable usar secretos | <a
+                            href="https://docs.docker.com/compose/use-secrets/" target="_blank">Docs: How to use secrets
+                            in Docker Compose</a></small>
                 </section>
 
                 <section id="compose_environment_file" data-state="no_footer">
                     <h3>Environment file</h3>
                     <small>
-                        <p>Una mejor opción es tener las variables de entorno en un archivo separado del archivo compose. De manera que podríamos compartir o subir a un repositorio nuestro archivo compose sin compartir información sensible.</p>
-                        <p>Por lo general se usa un archivo <code>.env</code> pero es posible también especificarlo en el compose.</p>
+                        <p>Una mejor opción es tener las variables de entorno en un archivo separado del archivo
+                            compose. De manera que podríamos compartir o subir a un repositorio nuestro archivo compose
+                            sin compartir información sensible.</p>
+                        <p>Por lo general se usa un archivo <code>.env</code> pero es posible también especificarlo en
+                            el compose.</p>
 
                     </small>
 
@@ -139,16 +162,17 @@
                             env_file: "webapp.env"
                   </code></pre>
 
-                  <small>
-                    <p>El formato del archivo env debe ser:</p>
-                  </small>
+                    <small>
+                        <p>El formato del archivo env debe ser:</p>
+                    </small>
 
-                  <pre class="codigo_shadow" data-id="code-animation"><code class="env codigo-redondo" data-trim>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="env codigo-redondo" data-trim>
                     POSTGRES_VERSION=14
                     PG_HOST=db
                 </code></pre>
 
-                <small><a href="https://docs.docker.com/reference/compose-file/services/#env_file-format" target="_blank">Docker Docs: Env_file format</a></small>
+                    <small><a href="https://docs.docker.com/reference/compose-file/services/#env_file-format"
+                            target="_blank">Docker Docs: Env_file format</a></small>
 
 
                 </section>
@@ -156,10 +180,14 @@
                 <section id="compose_interpolation" data-state="no_footer">
                     <h3>Interpolation</h3>
                     <small>
-                        <p>Los valores en un archivo compose pueden ser seteados por variables de entorno e <em>interpoladas</em> en tiempo de ejecución.</p>
-                        <p>Los archivos compose usan una sintaxis <em>Bash-like</em>: <code>${VARIABLE}</code> y <code>$VARIABLE</code>.
-                            Supongamos que tenemos un archivo <code>.env</code> con el siguiente contenido:</p>
-                        
+                        <p>Los valores en un archivo compose pueden ser seteados por variables de entorno e
+                            <em>interpoladas</em> en tiempo de ejecución.
+                        </p>
+                        <p>Los archivos compose usan una sintaxis <em>Bash-like</em>: <code>${VARIABLE}</code> y
+                            <code>$VARIABLE</code>.
+                            Supongamos que tenemos un archivo <code>.env</code> con el siguiente contenido:
+                        </p>
+
                     </small>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="env codigo-redondo" data-trim>
@@ -173,18 +201,20 @@
                             image: "webapp:${TAG}" # webapp:v1.5
                     </code></pre>
 
-                    
+
 
                     <small>
                         <p>Docker compose puede obtener variables interpoladas desde: la shell local o archivos .env</p>
-                        <a href="https://docs.docker.com/reference/compose-file/interpolation/" target="_blank">Docker Docs: Compose Interpolation</a>
+                        <a href="https://docs.docker.com/reference/compose-file/interpolation/" target="_blank">Docker
+                            Docs: Compose Interpolation</a>
                     </small>
                 </section>
 
                 <section id="compose_healthcheck" data-state="no_footer">
                     <h3>healthcheck</h3>
                     <small>
-                        <p>El atributo <strong>healthcheck</strong> declara una comprobación que se ejecuta para determinar si los contenedores están "en buen estado" o no.</p>
+                        <p>El atributo <strong>healthcheck</strong> declara una comprobación que se ejecuta para
+                            determinar si los contenedores están "en buen estado" o no.</p>
                         <p>De la siguiente manera podríamos comprobar si un contenedor web está OK.</p>
 
                     </small>
@@ -196,12 +226,13 @@
                           timeout: 10s
                           retries: 3
                           start_period: 40s
-                          start_interval: 5s
+                          
                   </code></pre>
 
-                  <small>
-                    <a href="https://docs.docker.com/reference/compose-file/services/#healthcheck" target="_blank">Docker Docs: healthcheck</a>
-                  </small>
+                    <small>
+                        <a href="https://docs.docker.com/reference/compose-file/services/#healthcheck"
+                            target="_blank">Docker Docs: healthcheck</a>
+                    </small>
 
 
                 </section>
@@ -210,7 +241,8 @@
 
                     <h3>Depends_on</h3>
                     <small>
-                        <p>El campo <strong>depends_on</strong> define las dependencias entre servicios en Docker Compose, especificando el orden en el que se inician los servicios.</p>
+                        <p>El campo <strong>depends_on</strong> define las dependencias entre servicios en Docker
+                            Compose, especificando el orden en el que se inician los servicios.</p>
                     </small>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
@@ -225,10 +257,14 @@
                     </code></pre>
 
                     <small>
-                        <p>En este ejemplo, el servicio web depende de que el servicio db (PostgreSQL) se inicie primero. Esto asegura que la base de datos esté en marcha antes de intentar iniciar el servidor web.</p>
-                        <il><strong>Limitaciones:</strong> solo controla el orden de inicio, no garantiza que el servicio esté listo. </il>
+                        <p>En este ejemplo, el servicio web depende de que el servicio db (PostgreSQL) se inicie
+                            primero. Esto asegura que la base de datos esté en marcha antes de intentar iniciar el
+                            servidor web.</p>
+                        <il><strong>Limitaciones:</strong> solo controla el orden de inicio, no garantiza que el
+                            servicio esté listo. </il>
                         <p>
-                            <a href="https://docs.docker.com/reference/compose-file/services/#depends_on" target="_blank">Docker Docs: depends_on</a>
+                            <a href="https://docs.docker.com/reference/compose-file/services/#depends_on"
+                                target="_blank">Docker Docs: depends_on</a>
                         </p>
                     </small>
 
@@ -240,7 +276,8 @@
 
                     <h3>Depends_on healthy</h3>
                     <small>
-                        <p>La dependencia de un contenedor de otro, puede combinarse con el estado de salud de otro. Para aceptar que se inicie solo si ya el servicio se encuentra OK.</p>
+                        <p>La dependencia de un contenedor de otro, puede combinarse con el estado de salud de otro.
+                            Para aceptar que se inicie solo si ya el servicio se encuentra OK.</p>
 
                     </small>
 
@@ -259,7 +296,8 @@
                             
                   </code></pre>
 
-                  <small><a href="https://docs.docker.com/reference/compose-file/services/#long-syntax-1" target="_blank">Docker Docs: depends_on - Long syntax</a></small>
+                    <small><a href="https://docs.docker.com/reference/compose-file/services/#long-syntax-1"
+                            target="_blank">Docker Docs: depends_on - Long syntax</a></small>
 
 
                 </section>
@@ -268,7 +306,9 @@
 
                     <h3>Volumenes externos</h3>
                     <small>
-                        <p>Hasta ahora hemos visto como crear volúmenes y redes dentro del mismo archivo compose. Pero... ¿si queremos usar un volúmen o red declarada en otro compose o creada manualmente con anterioridad?</p>
+                        <p>Hasta ahora hemos visto como crear volúmenes y redes dentro del mismo archivo compose.
+                            Pero... ¿si queremos usar un volúmen o red declarada en otro compose o creada manualmente
+                            con anterioridad?</p>
                     </small>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="compose codigo-redondo" data-trim>
@@ -287,13 +327,14 @@ volumes:
                         <!-- <p>En este ejemplo, el servicio web depende de que el servicio db (PostgreSQL) se inicie primero. Esto asegura que la base de datos esté en marcha antes de intentar iniciar el servidor web.</p>
                         <il><strong>Limitaciones:</strong> solo controla el orden de inicio, no garantiza que el servicio esté listo. </il> -->
                         <p>
-                            <a href="https://docs.docker.com/reference/compose-file/volumes/#external" target="_blank">Docker Docs: volumes external</a>
+                            <a href="https://docs.docker.com/reference/compose-file/volumes/#external"
+                                target="_blank">Docker Docs: volumes external</a>
                         </p>
                     </small>
 
                 </section>
 
-                                <section id="volume_externals" data-state="no_footer">
+                <section id="volume_externals" data-state="no_footer">
 
                     <h3>Redes externas</h3>
                     <small>
@@ -321,7 +362,8 @@ networks:
                         <!-- <p>En este ejemplo, el servicio web depende de que el servicio db (PostgreSQL) se inicie primero. Esto asegura que la base de datos esté en marcha antes de intentar iniciar el servidor web.</p>
                         <il><strong>Limitaciones:</strong> solo controla el orden de inicio, no garantiza que el servicio esté listo. </il> -->
                         <p>
-                            <a href="https://docs.docker.com/reference/compose-file/networks/#external" target="_blank">Docker Docs: networks external</a>
+                            <a href="https://docs.docker.com/reference/compose-file/networks/#external"
+                                target="_blank">Docker Docs: networks external</a>
                         </p>
                     </small>
 
@@ -331,19 +373,34 @@ networks:
 
                 <section id="others" data-state="no_footer">
                     <h3>Otros atributos</h3>
-                    <small><p>Existen otros atributos que se pueden utilizar en un archivo Docker Compose, tales como:</p>
+                    <small>
+                        <p>Existen otros atributos que se pueden utilizar en un archivo Docker Compose, tales como:</p>
                         <ul>
-                            <li><strong>dns</strong>: Podemos especificar servidores DNS personalizados.<a href="https://docs.docker.com/reference/compose-file/services/#dns" target="_blank">[1]</a></li>
-                            <li><strong>devices</strong>: Permite el mapeo de dispositivos del host a los contenedores. <a href="https://docs.docker.com/reference/compose-file/services/#devices" target="_blank">[2]</a></li>
-                            <li><strong>labels</strong>: Agrega metadata a los contenedores. Puede ser usado por servicios de terceros.<a href="https://docs.docker.com/reference/compose-file/services/#labels" target="_blank">[3]</a></li>
-                            <li><strong>networks</strong>: Especifica las redes a las que se conectará el contenedor. <a href="https://docs.docker.com/reference/compose-file/services/#networks" target="_blank">[4]</a></li>
-                            <li><strong>network_mode</strong>: Define el modo de red para un contenedor. (por ejemplo, hosts) <a href="https://docs.docker.com/reference/compose-file/services/#network_mode" target="_blank">[5]</a></li>
-                            
+                            <li><strong>dns</strong>: Podemos especificar servidores DNS personalizados.<a
+                                    href="https://docs.docker.com/reference/compose-file/services/#dns"
+                                    target="_blank">[1]</a></li>
+                            <li><strong>devices</strong>: Permite el mapeo de dispositivos del host a los contenedores.
+                                <a href="https://docs.docker.com/reference/compose-file/services/#devices"
+                                    target="_blank">[2]</a>
+                            </li>
+                            <li><strong>labels</strong>: Agrega metadata a los contenedores. Puede ser usado por
+                                servicios de terceros.<a
+                                    href="https://docs.docker.com/reference/compose-file/services/#labels"
+                                    target="_blank">[3]</a></li>
+                            <li><strong>networks</strong>: Especifica las redes a las que se conectará el contenedor. <a
+                                    href="https://docs.docker.com/reference/compose-file/services/#networks"
+                                    target="_blank">[4]</a></li>
+                            <li><strong>network_mode</strong>: Define el modo de red para un contenedor. (por ejemplo,
+                                hosts) <a href="https://docs.docker.com/reference/compose-file/services/#network_mode"
+                                    target="_blank">[5]</a></li>
+
                         </ul>
 
-                        <p>Para una lista completa y detallada: <a href="https://docs.docker.com/reference/compose-file/services/" target="_blank">Compose file reference</a></p>
+                        <p>Para una lista completa y detallada: <a
+                                href="https://docs.docker.com/reference/compose-file/services/" target="_blank">Compose
+                                file reference</a></p>
                     </small>
-                    
+
                 </section>
 
                 <section id="ipreguntas2" data-state="no_footer">
@@ -354,40 +411,52 @@ networks:
 
 
             </section> <!-- Fin sección -->
-			
 
-			<section>
-				<section id="compose_" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Docker Compose</h3>
+
+            <section>
+                <section id="compose_" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Docker Compose</h3>
                     <h4>Compose Deploy Specification</h4>
-                    
-				</section>
 
-				<section id="deploy_specification" data-state="no_footer">
-					<h3>Compose Deploy Specification</h3>
-					
+                </section>
+
+                <section id="deploy_specification" data-state="no_footer">
+                    <h3>Compose Deploy Specification</h3>
+
                     <small>
-                    <p>La <a href="https://docs.docker.com/reference/compose-file/deploy/" target="_blank">Compose Deploy Specification</a> se refiere a cómo se pueden especificar configuraciones avanzadas de despliegue de servicios en un archivo <strong>compose</strong> usando la clave deploy.</p>
-                    <p>Hay multiples opciones que nos permiten administrar los recursos que tendrá nuestra aplicación y políticas de reinicio.</p>
-                    
+                        <p>La <a href="https://docs.docker.com/reference/compose-file/deploy/" target="_blank">Compose
+                                Deploy Specification</a> se refiere a cómo se pueden especificar configuraciones
+                            avanzadas de despliegue de servicios en un archivo <strong>compose</strong> usando la clave
+                            deploy.</p>
+                        <p>Hay multiples opciones que nos permiten administrar los recursos que tendrá nuestra
+                            aplicación y políticas de reinicio.</p>
+
                     </small>
                     <img src="./img/clase7/deploy1.png">
 
-				</section>
+                </section>
 
-                <section id="restart" data-state="no_footer">
+                <!-- <section id="restart" data-state="no_footer">
                     <h3>Restart policy</h3>
                     <small>
-                        
-                        <p>La restart policy, define bajo qué circunstancias un contenedor debe reiniciarse, lo que es crucial para mantener la disponibilidad y estabilidad de los servicios. A diferencia de lo visto <a href="./clase6.html#/compose_14" target="_blank">en la clase anterior</a>, la restart_policy de la deploy specification difiere levemente.</p>
+
+                        <p>La restart policy, define bajo qué circunstancias un contenedor debe reiniciarse, lo que es
+                            crucial para mantener la disponibilidad y estabilidad de los servicios. A diferencia de lo
+                            visto <a href="./clase6.html#/compose_14" target="_blank">en la clase anterior</a>, la
+                            restart_policy de la deploy specification difiere levemente.</p>
                         <p class="sub_titulo">Condiciones:</p>
                         <ul>
-                            <li><strong><code>none</code>:</strong> Los contenedores no se reinician automáticamente independientemente del estado de salida.</li>
-                            <li><strong><code>on-failure</code>:</strong> El contenedor se reinicia si sale debido a un error. El código de salida es distinto que cero.</li>
-                            <li><strong><code>any</code>:</strong> Los contenedores se reinician independientemente del estado de salida.</li>
+                            <li><strong><code>none</code>:</strong> Los contenedores no se reinician automáticamente
+                                independientemente del estado de salida.</li>
+                            <li><strong><code>on-failure</code>:</strong> El contenedor se reinicia si sale debido a un
+                                error. El código de salida es distinto que cero.</li>
+                            <li><strong><code>any</code>:</strong> Los contenedores se reinician independientemente del
+                                estado de salida.</li>
                         </ul>
 
-                        <p>Todas estas opciones pueden incluirse en el archivo compose para facilitar el deploy de la aplicación.</p>
+                        <p>Todas estas opciones pueden incluirse en el archivo compose para facilitar el deploy de la
+                            aplicación.</p>
                     </small>
 
                 </section>
@@ -395,11 +464,17 @@ networks:
                 <section id="restart_2" data-state="no_footer">
                     <h3>Restart policy p2</h3>
                     <small>
-                        <p>Utilizando las opciones de deploy, podemos especificar con mas detalle la política de reinicio.</p>
+                        <p>Utilizando las opciones de deploy, podemos especificar con mas detalle la política de
+                            reinicio.</p>
                         <ul>
-                            <li><strong><code>condition</code>:</strong> En cuál de las condiciones indicadas debe actuar.</li>
-                            <li><strong><code>delay</code>:</strong> Cuanto tiempo debe esperar entre intentos de reinicio. El valor predeterminado es 0.</li>
-                            <li><strong><code>max_attempts</code>:</strong> Este parámetro especifica el número máximo de veces que Docker intentará reiniciar un contenedor que ha fallado. Una vez que el contenedor ha fallado y se ha alcanzado el número máximo de intentos definido por max_attempts, Docker deja de intentar reiniciarlo.</li>
+                            <li><strong><code>condition</code>:</strong> En cuál de las condiciones indicadas debe
+                                actuar.</li>
+                            <li><strong><code>delay</code>:</strong> Cuanto tiempo debe esperar entre intentos de
+                                reinicio. El valor predeterminado es 0.</li>
+                            <li><strong><code>max_attempts</code>:</strong> Este parámetro especifica el número máximo
+                                de veces que Docker intentará reiniciar un contenedor que ha fallado. Una vez que el
+                                contenedor ha fallado y se ha alcanzado el número máximo de intentos definido por
+                                max_attempts, Docker deja de intentar reiniciarlo.</li>
                         </ul>
                         <p></p>
                     </small>
@@ -412,26 +487,36 @@ networks:
                             max_attempts: 3                      
                     </code></pre>
 
-                    <small><a href="https://docs.docker.com/reference/compose-file/deploy/#restart_policy" target="_blank">Docker Docs: Deploy restart_policy</a></small>
+                    <small><a href="https://docs.docker.com/reference/compose-file/deploy/#restart_policy"
+                            target="_blank">Docker Docs: Deploy restart_policy</a></small>
 
-                </section>
+                </section> -->
 
-                
+
 
                 <section id="resources_1" data-state="no_footer">
                     <h3>resources</h3>
                     <small>
 
-                    <p>Permite definir límites y reservas de recursos para los contenedores. Estos recursos generalmente incluyen CPU y memoria, asegurando que los contenedores no sobrepasen ciertos límites o que tengan una cantidad mínima de recursos garantizados. Las restricciones se puede configurar como:</p>
-                    <ul>
-                        <li><strong><code>limits</code></strong>: Define los recursos máximos que un contenedor puede utilizar.</li>
-                        <li><strong><code>reservations</code></strong>: Especifica la cantidad mínima de recursos que debe estar garantizada para el contenedor. Estos recursos son "reservados" para el contenedor y no pueden ser usados por otros contenedores.</li>
-                    </ul>
+                        <p>Permite definir límites y reservas de recursos para los contenedores. Estos recursos
+                            generalmente incluyen CPU y memoria, asegurando que los contenedores no sobrepasen ciertos
+                            límites o que tengan una cantidad mínima de recursos garantizados. Las restricciones se
+                            puede configurar como:</p>
+                        <ul>
+                            <li><strong><code>limits</code></strong>: Define los recursos máximos que un contenedor
+                                puede utilizar.</li>
+                            <li><strong><code>reservations</code></strong>: Especifica la cantidad mínima de recursos
+                                que debe estar garantizada para el contenedor. Estos recursos son "reservados" para el
+                                contenedor y no pueden ser usados por otros contenedores.</li>
+                        </ul>
 
-                    <p>Por lo general los recursos administrados son <strong>CPU</strong> y <strong>memory</strong>. El límite o reserva de CPU se hace en fracciones de CPU siendo 1 para reservar 1 CPU. En memoria, se reservan o limitan en unidades de memorias como megas, gigas, etc.</p>
+                        <p>Por lo general los recursos administrados son <strong>CPU</strong> y <strong>memory</strong>.
+                            El límite o reserva de CPU se hace en fracciones de CPU siendo 1 para reservar 1 CPU. En
+                            memoria, se reservan o limitan en unidades de memorias como megas, gigas, etc.</p>
 
-                    
-                    <a href="https://docs.docker.com/reference/compose-file/deploy/#resources" target="_blank">Docker Docs: Deploy Resources</a>
+
+                        <a href="https://docs.docker.com/reference/compose-file/deploy/#resources"
+                            target="_blank">Docker Docs: Deploy Resources</a>
                     </small>
 
                 </section>
@@ -460,11 +545,11 @@ networks:
                     </code></pre>
 
 
-                    
+
                 </section>
 
                 <section id="resources_reservations" data-state="no_footer">
-					<h3>resources: reservations</h3>
+                    <h3>resources: reservations</h3>
 
                     <small>
                         <p>Para reservar un 25% de un CPU y 256M de memoria, la configuración es:</p>
@@ -477,8 +562,8 @@ networks:
                             memory: 256M
                     </code></pre>
 
-                    
-				</section>
+
+                </section>
 
 
 
@@ -506,11 +591,13 @@ networks:
 
                     <small>
                         <br>
-                        
 
-                        Existen más capacidades de límites y reservas para contenedores: <a href="https://docs.docker.com/reference/compose-file/deploy/#resources" target="_blank">Docker docs: Deploy resources</a>
 
-                        
+                        Existen más capacidades de límites y reservas para contenedores: <a
+                            href="https://docs.docker.com/reference/compose-file/deploy/#resources"
+                            target="_blank">Docker docs: Deploy resources</a>
+
+
                     </small>
 
                 </section>
@@ -566,17 +653,20 @@ networks:
 
 
             <section>
-				<section id="debug" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Containers Debug</h3>
-                    
-				</section>
+                <section id="debug" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Containers Debug</h3>
+
+                </section>
 
                 <section id="debug_1" data-state="no_footer">
                     <h3>Containers Debug</h3>
                     <small>
-                        <p>Saber qué pasa en nuestros contenedores es crucial para que podamos hacer debug o troubleshooting de nuestras aplicaciones.</p>
-                        <p>Existen distintas técnicas para realizar debug en nuestros contenedores. Listaremos a continuación alguna de ellas:</p>
-                        
+                        <p>Saber qué pasa en nuestros contenedores es crucial para que podamos hacer debug o
+                            troubleshooting de nuestras aplicaciones.</p>
+                        <p>Existen distintas técnicas para realizar debug en nuestros contenedores. Listaremos a
+                            continuación alguna de ellas:</p>
+
                     </small>
                     <img src="./img/clase7/dead_docker.png">
                 </section>
@@ -584,26 +674,34 @@ networks:
                 <section id="container_logs" data-state="no_footer">
                     <h3>Ver logs de un contenedor</h3>
                     <small>
-                        <p>Ver los logs de un contenedor nos permite obtener información de salida generada por la aplicación que está corriendo dentro del contenedor. Podemos revisar los mensajes de error, advertencias o cualquier información que el contenedor imprima en su consola.</p>
+                        <p>Ver los logs de un contenedor nos permite obtener información de salida generada por la
+                            aplicación que está corriendo dentro del contenedor. Podemos revisar los mensajes de error,
+                            advertencias o cualquier información que el contenedor imprima en su consola.</p>
                         <p>La sintaxis es <strong><code>docker logs [OPTIONS] CONTAINER</code></strong></p>
 
-                    <p class="sub_titulo">OPTIONS:</p>
-                    
-                    <ul>
-                        <li><strong><code>--details</code></strong>: Muestra detalles adicionales provistos por los logs.</li>
-                        <li><strong><code>-f, --follow</code></strong>: Sigue el log en tiempo real.</li>
-                        <li><strong><code>-n, --tail</code></strong>: Número de líneas que se mostrará el log desde el final.</li>
-                        <li><strong><code>-t, --timestamps</code></strong>: Muestra el timestamp de los registros.</li>
-                        <li><strong><code>--since</code></strong>: Muestra los logs desde de un momento determinado. (timestamp, o relativo; 42m para 42 minutos)</li>
-                        <li><strong><code>--until</code></strong>: Muestra los logs antes de un momento determinado. (timestamp, o relativo; 42m para 42 minutos)</li>
+                        <p class="sub_titulo">OPTIONS:</p>
 
-                    </ul>
+                        <ul>
+                            <li><strong><code>--details</code></strong>: Muestra detalles adicionales provistos por los
+                                logs.</li>
+                            <li><strong><code>-f, --follow</code></strong>: Sigue el log en tiempo real.</li>
+                            <li><strong><code>-n, --tail</code></strong>: Número de líneas que se mostrará el log desde
+                                el final.</li>
+                            <li><strong><code>-t, --timestamps</code></strong>: Muestra el timestamp de los registros.
+                            </li>
+                            <li><strong><code>--since</code></strong>: Muestra los logs desde de un momento determinado.
+                                (timestamp, o relativo; 42m para 42 minutos)</li>
+                            <li><strong><code>--until</code></strong>: Muestra los logs antes de un momento determinado.
+                                (timestamp, o relativo; 42m para 42 minutos)</li>
 
-                    <a href="https://docs.docker.com/reference/cli/docker/container/logs/" target="_blank">docker container logs</a>
-                    
+                        </ul>
+
+                        <a href="https://docs.docker.com/reference/cli/docker/container/logs/" target="_blank">docker
+                            container logs</a>
+
                     </small>
 
-                    
+
 
 
                 </section>
@@ -611,7 +709,8 @@ networks:
                 <section id="container_exec" data-state="no_footer">
                     <h4>Ejecutar comandos dentro de un contenedor</h4>
                     <small>
-                        <p>El comando <code>docker exec</code> corre un nuevo comando en un contenedor que está corriendo. Se usa de la siguiente manera:</p>
+                        <p>El comando <code>docker exec</code> corre un nuevo comando en un contenedor que está
+                            corriendo. Se usa de la siguiente manera:</p>
                         <p><code><strong>docker exec [OPTIONS] CONTAINER COMMAND [ARG...]</strong></code></p>
 
                         <p class="sub_titulo">OPTIONS:</p>
@@ -625,21 +724,25 @@ networks:
                         <p class="sub_titulo">Ejemplos mas utilizados:</p>
 
                         <ul>
-                            <li><strong><code>docker exec -it CONTENEDOR bash|sh</code>:</strong> Inicia un bash o sh en modo tty interactivo</li>
+                            <li><strong><code>docker exec -it CONTENEDOR bash|sh</code>:</strong> Inicia un bash o sh en
+                                modo tty interactivo</li>
                         </ul>
-                        <a href="https://docs.docker.com/reference/cli/docker/container/exec/" target="_blank">Docker Docs: Docker container exec</a>
+                        <a href="https://docs.docker.com/reference/cli/docker/container/exec/" target="_blank">Docker
+                            Docs: Docker container exec</a>
                     </small>
 
-                    
 
-                        
+
+
 
                 </section>
 
                 <section id="stats" data-state="no_footer">
                     <h3>Estadísticas de contenedores</h3>
                     <small>
-                        <p>Para monitorear el uso de recursos (CPU, memoria, red, etc.) de un contenedor en tiempo real, podemos usar <code><strong>docker stats</strong></code>. Esto es útil para identificar problemas de rendimiento o visualizar los recursos del contenedor.</p>
+                        <p>Para monitorear el uso de recursos (CPU, memoria, red, etc.) de un contenedor en tiempo real,
+                            podemos usar <code><strong>docker stats</strong></code>. Esto es útil para identificar
+                            problemas de rendimiento o visualizar los recursos del contenedor.</p>
 
                     </small>
 
@@ -648,10 +751,12 @@ networks:
                         a857cf776355  contenedor  0.00%  544KiB / 15.51GiB    0.00%  23.5kB / 0B 8.19kB / 4.1kB
                         1e61070d0209  hola-web-1  0.00%  4.289MiB / 15.51GiB  0.03%  3.1kB / 0B  0B / 4.1kB
                     </code></pre>
-                    
+
                     <small>
-                        <p>Adicionalmente, los datos pueden ser mostrado de diversas maneras, por ejemplo en un formato json para ser consumido por una aplicación.</p>
-                        <a href="https://docs.docker.com/reference/cli/docker/container/stats/" target="_blank">Docker Docs: docker container stats</a>
+                        <p>Adicionalmente, los datos pueden ser mostrado de diversas maneras, por ejemplo en un formato
+                            json para ser consumido por una aplicación.</p>
+                        <a href="https://docs.docker.com/reference/cli/docker/container/stats/" target="_blank">Docker
+                            Docs: docker container stats</a>
                     </small>
 
                 </section>
@@ -659,11 +764,15 @@ networks:
                 <section id="inspect" data-state="no_footer">
                     <h4>Inspeccionar el estado del contenedor</h4>
                     <small>
-                        <p>Con el comando <code><strong>docker inspect</strong></code> nos permite obtener información detallada sobre la configuración y el estado de un contenedor. Puedes usarlo para verificar los volúmenes montados, las redes, variables de entorno, etc. Uso:</p>
+                        <p>Con el comando <code><strong>docker inspect</strong></code> nos permite obtener información
+                            detallada sobre la configuración y el estado de un contenedor. Puedes usarlo para verificar
+                            los volúmenes montados, las redes, variables de entorno, etc. Uso:</p>
                         <p><strong><code>docker inspect [OPTIONS] CONTAINERS</code></strong></p>
-                        <p>Por defecto devuelve un formato JSON con información del contenedor, como: ID (hash completo), restart_policy, configuración de red, mounts, limits, entre muchos otros.</p>
+                        <p>Por defecto devuelve un formato JSON con información del contenedor, como: ID (hash
+                            completo), restart_policy, configuración de red, mounts, limits, entre muchos otros.</p>
 
-                        <a href="https://docs.docker.com/reference/cli/docker/container/inspect/" target="_blank">Docker docs: docker container inspect</a>
+                        <a href="https://docs.docker.com/reference/cli/docker/container/inspect/" target="_blank">Docker
+                            docs: docker container inspect</a>
                     </small>
 
 
@@ -672,10 +781,14 @@ networks:
                 <section id="docker_debug" data-state="no_footer">
                     <h3>docker debug</h3>
                     <small>
-                        <p>La documentación lo describe como una shell en cualquier contenedor o imagen. Una alternativa a depurar con docker exec.</p>
-                        <p>Docker Debug es un comando CLI que nos ayuda a seguir las mejores prácticas manteniendo las imágenes pequeñas y seguras. Con Docker Debug, se puede depurar las imágenes mientras contienen el mínimo indispensable para ejecutar tu aplicación.</p>
+                        <p>La documentación lo describe como una shell en cualquier contenedor o imagen. Una alternativa
+                            a depurar con docker exec.</p>
+                        <p>Docker Debug es un comando CLI que nos ayuda a seguir las mejores prácticas manteniendo las
+                            imágenes pequeñas y seguras. Con Docker Debug, se puede depurar las imágenes mientras
+                            contienen el mínimo indispensable para ejecutar tu aplicación.</p>
                         <p><strong>Requiere de una suscripción PRO, Team o Business</strong>.</p>
-                        <a href="https://docs.docker.com/reference/cli/docker/debug/" target="_blank">Docker docs: docker debug</a>
+                        <a href="https://docs.docker.com/reference/cli/docker/debug/" target="_blank">Docker docs:
+                            docker debug</a>
                     </small>
 
 
@@ -692,124 +805,129 @@ networks:
             <section id="labs_clase" data-state="no_footer">
                 <h3>Actividad de práctica:</h3>
                 <small>
-                <ul>
+                    <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/07-compose-debug/71-compose2.md" target="_blank">Lab 7.1</a> Docker Compose | Parte II</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/07-compose-debug/72-compose-resources.md" target="_blank">Lab 7.2</a> Verificación de recursos</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/07-compose-debug/73-debug.md" target="_blank">Lab 7.3</a> Depuración de contenedores</li>
-                  
-                    
-                </ul>
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/07-compose-debug/71-compose2.md"
+                                target="_blank">Lab 7.1</a> Docker Compose | Parte II</li>
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/07-compose-debug/72-compose-resources.md"
+                                target="_blank">Lab 7.2</a> Verificación de recursos</li>
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.4/labs/07-compose-debug/73-debug.md"
+                                target="_blank">Lab 7.3</a> Depuración de contenedores</li>
+
+
+                    </ul>
 
                 </small>
-                
-            
-                
+
+
+
 
             </section>
 
 
 
-        <section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-			<a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
-        </section>
-						
+            <section id="fin" data-state="hide_footer" data-transition="slide"
+                data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                <a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
+            </section>
 
-					
-    </div>
-</div>
 
-<footer>
-    <!-- Logos en el footer -->
-    <div id="logos-footer" class="footer">
-        <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
-        <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
-        <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+
+        </div>
     </div>
 
-    <script type="text/javascript">
-        window.addEventListener("load", function() {
-    
-            revealDiv = document.querySelector("body div.reveal")
-            footer = document.getElementById("logos-footer");
-            revealDiv.appendChild(footer);
-    
-        } );
-    </script>
-</footer>
+    <footer>
+        <!-- Logos en el footer -->
+        <div id="logos-footer" class="footer">
+            <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
+            <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
+            <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+        </div>
 
-<script src="dist/reveal.js"></script>
-<script src="plugin/notes/notes.js"></script>
-<script src="plugin/markdown/markdown.js"></script>
-<script src="plugin/highlight/highlight.js"></script>
-<script src="plugin/zoom/zoom.js"></script>
-<script src="plugin/copycode/copycode.js"></script>
+        <script type="text/javascript">
+            window.addEventListener("load", function () {
+
+                revealDiv = document.querySelector("body div.reveal")
+                footer = document.getElementById("logos-footer");
+                revealDiv.appendChild(footer);
+
+            });
+        </script>
+    </footer>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/copycode/copycode.js"></script>
 
 
-<script>
-    // More info about initialization & config:
-    // - https://revealjs.com/initialization/
-    // - https://revealjs.com/config/
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
 
         // Para eventos personalizados. Indica que está en la presentación
 
-    Reveal.on( 'customevent', function() {
-        var element = document.getElementById("logos-footer");
-        element.style.display = "table";
-        element.style.opacity = "40%";
+        Reveal.on('customevent', function () {
+            var element = document.getElementById("logos-footer");
+            element.style.display = "table";
+            element.style.opacity = "40%";
 
-    } );
+        });
 
-    Reveal.on( 'hide_footer', function() {
-        var element = document.getElementById("logos-footer");
-        element.style.display = "table";
-        element.style.opacity = "0%";
+        Reveal.on('hide_footer', function () {
+            var element = document.getElementById("logos-footer");
+            element.style.display = "table";
+            element.style.opacity = "0%";
 
-    } );
+        });
 
-    Reveal.on( 'no_footer', function() {
-        var element = document.getElementById("logos-footer");
-        //element.style.display = "none";
-        // element.style.display = "table";
-        element.style.opacity = "15%";
-    } );
-    Reveal.initialize({
-        hash: true,
+        Reveal.on('no_footer', function () {
+            var element = document.getElementById("logos-footer");
+            //element.style.display = "none";
+            // element.style.display = "table";
+            element.style.opacity = "15%";
+        });
+        Reveal.initialize({
+            hash: true,
 
-        copycode: {
-        button: "hover",
-        display: "icons",
-        text: {
-            copy: "Copiar",
-            copied: "¡Copiado!",
-        },
-        plaintextonly: true,
-        timeout: 1000,
-        style: {
-            copybg: "gray",
-            copiedbg: "green",
-            copycolor: "black",
-            copiedcolor: "white",
-            copyborder: "",
-            copiedborder: "",
-            scale: 1,
-            offset: 0,
-            radius: 0.2
-        },
-        tooltip: true,
-        iconsvg: {
-            copy: '',
-            copied: ''
-        },
-        cssautoload: true,
-        csspath: "",
-        clipboardjspath: ""
-        },
+            copycode: {
+                button: "hover",
+                display: "icons",
+                text: {
+                    copy: "Copiar",
+                    copied: "¡Copiado!",
+                },
+                plaintextonly: true,
+                timeout: 1000,
+                style: {
+                    copybg: "gray",
+                    copiedbg: "green",
+                    copycolor: "black",
+                    copiedcolor: "white",
+                    copyborder: "",
+                    copiedborder: "",
+                    scale: 1,
+                    offset: 0,
+                    radius: 0.2
+                },
+                tooltip: true,
+                iconsvg: {
+                    copy: '',
+                    copied: ''
+                },
+                cssautoload: true,
+                csspath: "",
+                clipboardjspath: ""
+            },
 
-        // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode ]
-    });
-</script>
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode]
+        });
+    </script>
 
 </body>
+
 </html>
