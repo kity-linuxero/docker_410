@@ -1,32 +1,38 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Fundamentos contenedores Docker - CFL 410 - Clase 1</title>
-		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
-        <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/white.css">
+    <title>Fundamentos contenedores Docker - CFL 410 - Clase 1</title>
+    <!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
+    <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-		<!-- Custom CSS -->
-		<link rel="stylesheet" href="css/egg.css">
-		
-	</head>
-	<body>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/white.css">
 
-		<div class="reveal">
-			<div class="slides">
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/egg.css">
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+
+    <div class="reveal">
+        <div class="slides">
 
             <section>
 
-                <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-                    
+                <section id="inicio" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+
                     <h3>Fundamentos y usos prácticos de Docker</h3>
                     <h4>Clase 1 : Introducción a contenedores Docker</h4>
 
@@ -36,7 +42,7 @@
                     <h3>Temas de clase 1</h3>
                     <h4>Introducción a contenedores Docker</h4>
                     <small>
-                
+
                         <ul>
                             <li><a href="#/requisitos">Requisitos de inscripción</a></li>
                             <li><a href="#/intro-container">Introducción a contenedores</a></li>
@@ -47,71 +53,192 @@
                             <li><a href="#/tech_container1">Otras tecnologías de contenedores</a></li>
                             <li><a href="#/docker-install2">Instalación de Docker</a></li>
                             <li><a href="#/labs">Laboratorios de actividades prácticas</a></li>
-                            
+
 
                         </ul>
                         <p><a href="?print-pdf">Exportar clase</a></p>
 
 
                     </small>
-                    
+
                 </section>
 
             </section>
-			
 
-			<section>
-				<section id="intro" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Introducción al curso</h2>
-				</section>
 
-				<section id="intro-presentacion" data-state="no_footer">
-					<h3>Presentación</h3>
-					
-					<p>Instructor: Cristian O. Giambruni</p>
+            <section>
+                <section id="intro" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h2>Introducción al curso</h2>
+                </section>
+
+                <section id="intro-presentacion" data-state="no_footer">
+                    <h3>Presentación</h3>
+
+                    <p>Instructor: Cristian O. Giambruni</p>
                     <small>
-                    <ul>
-                        <li>APU. <a href="https://www.info.unlp.edu.ar/" target="_blank">Facultad de Informática</a>, UNLP</li>
-                        <li>Mat. <a href="https://www.cpciba.org.ar/" target="_blank">CPCIBA</a> 2402 </li>
-                        <li>Docente <a href="https://centro410laplata.edu.ar/" target="_blank">CFL 410</a>, Omar Nuñez</li>
-                        <li>Sysadmin <a href="https://www.loteria.gba.gov.ar/" target="_blank">Lotería Prov Bs.As.</a></li>
-                        <li>Programador y Sysadmin Startup</li>
-                        <li>Coordinador <a href="https://www.instagram.com/idep_informatica/profilecard/?igsh=dXh0aWE3YzlqYmwz" target="_blank">IDEP Informática</a></li>
-                        <li>Contacto: cgiambruni@gmail.com</li>
-                    </ul>
-                </small>
-                
-					
-				</section>
-
-                <!-- <section id="intro-objetivos" data-state="no_footer">
-					<h3>Objetivos del curso</h3>
-					
-					<small>
                         <ul>
-                            <li>Introducir concepto general de contenedores.</li>
-                            <li>Introducir al uso de Docker para conteinerización.</li>
-                            <li>Entender conceptos de contenedores, ventajas y desventajas.</li>
-                            <li>Aprender a conteinerizar aplicaciones</li>
-                            <li>Aprender la utilidad de la portabilidad de aplicaciones y rápido despliegue</li>
-                            <li>Está orientado a: desarrolladores, administradores de sistemas, entusiastas IT, home labbers.</li>
-                            
+                            <li>APU. <a href="https://www.info.unlp.edu.ar/" target="_blank">Facultad de
+                                    Informática</a>, UNLP</li>
+                            <li>Mat. <a href="https://www.cpciba.org.ar/" target="_blank">CPCIBA</a> 2402 </li>
+                            <li>Docente <a href="https://centro410laplata.edu.ar/" target="_blank">CFL 410</a>, Omar
+                                Nuñez</li>
+                            <li>Sysadmin <a href="https://www.loteria.gba.gov.ar/" target="_blank">Lotería Prov
+                                    Bs.As.</a></li>
+                            <li>Programador y Sysadmin Startup</li>
+                            <li>Coordinador <a
+                                    href="https://www.instagram.com/idep_informatica/profilecard/?igsh=dXh0aWE3YzlqYmwz"
+                                    target="_blank">IDEP Informática</a></li>
+                            <li>Contacto: cgiambruni@gmail.com</li>
                         </ul>
                     </small>
-                  
-				</section> -->
+
+
+                </section>
+
+                <section id="intro-cfl410" data-state="no_footer">
+                    <h3>Centro de Formación Laboral 410</h3>
+
+                    <div class="custom-container">
+                        <div class="custom-text">
+                            <small>
+                                <p>El <strong>Centro de Formación Laboral N° 410 "Omar Núñez"</strong> es una
+                                    institución de
+                                    Formación Profesional que funciona en la ciudad de La Plata en el marco de un
+                                    <strong>convenio con la Asociación Trabajadores del Estado (ATE)</strong>
+                                </p>
+                                <p>El CFL 410 es uno de los cinco Centro de Formación Laboral conveniados con ATE,
+                                    orientados a
+                                    brindar capacitación técnica gratuita (no arancelada) para trabajadoras y
+                                    trabajadores, en
+                                    articulación con el sistema público de formación profesional.</p>
+                            </small>
+
+                        </div>
+
+                        <div class="custom-image">
+                            <img src="img/logos/cfl_logo.png">
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </section>
+
+                <section id="intro-cfl4102" data-state="no_footer">
+                    <h3>Centro de Formación Laboral 410</h3>
+
+                    <small>
+                        <p>
+                            Los cursos dictados en este centro cuentan con <strong>certificación oficial</strong>,
+                            expedida por la
+                            <strong>Dirección General de Cultura y Educación (DGCyE) de la Provincia de Buenos
+                                Aires</strong>, lo que garantiza su
+                            validez formal y reconocimiento institucional.
+                        </p>
+                        <p>
+                            Contacto:
+                        <ul>
+                            <li>📍 Calle 7 N° 1429, e/61 y 62</li>
+                            <li>📞​ 0221 484-6318</li>
+                            <li>📧 cfl410@gmail.com</li>
+                            <li>🌐 <a href="https://centro410laplata.edu.ar/"
+                                    target="_blank">centro410laplata.edu.ar</a></li>
+                        </ul>
+                        </p>
+                    </small>
+
+                </section>
+
+
+                <section id="intro-idepinformatica" data-state="no_footer">
+                    <h3>IDEP Informática</h3>
+
+                    <div class="custom-container">
+                        <div class="custom-text">
+                            <small>
+                                <p>
+                                    El curso fue pensado, diseñado y trabajado desde el espacio de <strong>IDEP
+                                        Informática</strong>, un
+                                    ámbito específico del <strong>Instituto de Estudios sobre Estado y Participación
+                                        (IDEP)</strong> de la
+                                    <strong>Asociación Trabajadores del Estado (ATE)</strong> PBA.
+                                </p>
+                                <p> Desde ese espacio:
+                                <ul>
+                                    <li>Piensan y diseñan cursos y capacitaciones técnicas,</li>
+                                    <li>organizan charlas y actividades de actualización,</li>
+                                    <li>analizan los cambios tecnológicos que impactan en el trabajo informático</li>
+                                    <li>y se aporta a la discusión paritaria del sector informático estatal, vinculando
+                                        formación,
+                                        funciones y condiciones laborales.
+                                    </li>
+                                </ul>
+
+                                </p>
+                            </small>
+
+                        </div>
+
+                        <div class="custom-image">
+                            <img src="img/logos/IDEPInformaticaLogo-full.png" width="70%">
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </section>
+
+                <section id="intro-contacto-idep" data-state="no_footer">
+                    <h3>Contacto y redes IDEP/IDEP Informática</h3>
+
+                    <small>
+                        <p>
+                            Los cursos dictados en este centro cuentan con <strong>certificación oficial</strong>,
+                            expedida por la
+                            <strong>Dirección General de Cultura y Educación (DGCyE) de la Provincia de Buenos
+                                Aires</strong>, lo que garantiza su
+                            validez formal y reconocimiento institucional.
+                        </p>
+                        <p>
+                            IDEP - ATE Provincia Buenos Aires
+                        <ul>
+                            <li><i class="fa-brands fa-instagram"></i> Instagram: @ideppba</li>
+                            <li><i class="fa-brands fa-youtube"></i> YouTube: @ideppba</li>
+                            <li><i class="fa-regular fa-envelope-open"></i> Email: idep@atepba.org.ar</li>
+
+                        </ul>
+                        </p>
+
+                        <p>
+                            IDEP Informática
+                        <ul>
+                            <li><i class="fa-brands fa-instagram"></i> Instagram: @idep_informatica</li>
+
+                        </ul>
+                        </p>
+                    </small>
+
+                </section>
 
 
 
                 <section id="organizacion" data-state="no_footer">
                     <h3>Organización del curso</h3>
                     <small>
-                    <ul>
-                        <li>Apuntes de clases teóricas: <a href="https://docker.idepba.com.ar/">docker.idepba.com.ar/</a></li>
-                        <li>Entre uno y tres laboratorios luego de la explicación teórica</li>
-                        <li>Trabajo final entregable a final de curso</li>
-                        <li>Notificaciones mediante grupo WhatsApp</li>
-                    </ul>
+                        <ul>
+                            <li>Apuntes de clases teóricas: <a
+                                    href="https://docker.idepba.com.ar/">docker.idepba.com.ar/</a></li>
+                            <li>Entre uno y tres laboratorios luego de la explicación teórica</li>
+                            <li>Trabajo final entregable a final de curso</li>
+                            <li>Notificaciones mediante grupo WhatsApp</li>
+                        </ul>
                     </small>
                 </section>
 
@@ -128,7 +255,7 @@
                             <li>Composes útiles</li>
                         </ul>
                     </small>
-                
+
                 </section>
 
                 <section id="requisitos" data-state="no_footer">
@@ -136,18 +263,38 @@
                     <p><small>Requisitos para la inscripción formal en el CFL 410</small></p>
                     <small>
                         <ul>
-                            <li>Dos fotocopias  del DNI</li>
-                            <li>Certificado de estudios secundarios o superior</li>
-                            <li>Constancia de CUIL (en caso que el CUIL no esté en el DNI)</li>
-                            <li>Formulario: <a href="./files/FormularioInscripcion.pdf" download>Solicitud de inscripción - Año lectivo 2025</a></li>
-                            <li>Inscripción en la <a href="https://cursosipfl.trabajo.gba.gob.ar" target="_blank">plataforma del IPFL</a>
-                            <ul>
-                                <li>-Operadora/or en Contenedores Docker- - N° <strong>35625</strong></li>
-                                <li>Centro 410 - La Plata | ATE</li>
+                            <ul>En papel impreso:
+                                <li>Dos fotocopias del DNI</li>
+                                <li>Certificado de estudios secundarios o superior</li>
+                                <li>Constancia de CUIL (en caso que el CUIL no esté en el DNI)</li>
+                                <li>Formulario: <a href="./files/FormularioInscripcion.pdf" download>Solicitud de
+                                        inscripción - Año lectivo 2026</a></li>
+
+
                             </ul>
+                            <br>
+
+                            <li>Inscripción en la <a href="https://cursosipfl.trabajo.gba.gob.ar"
+                                    target="_blank">plataforma del IPFL</a>
+                                <ul>
+                                    <li>-Operadora/or en Contenedores Docker- - N° <strong>44983</strong></li>
+                                    <li>Centro 410 - La Plata | ATE</li>
+                                    <li><strong>Importante:</strong> Hay que registrarse previamente en la plataforma
+                                        del IPFL</li>
+                                </ul>
                             </li>
 
                         </ul>
+
+
+                        <p>
+                            <strong>IMPORTANTE:</strong>
+                            Toda esta documentación es solicidada por el <a
+                                href="https://cursosipfl.trabajo.gba.gob.ar/" target="_blank">Instituto Provincial de
+                                Formación Laboral (IPFL)</a>
+                            y es fundamental para la obtención del certificado de
+                            aprobación del curso.
+                        </p>
                     </small>
 
                 </section>
@@ -159,19 +306,25 @@
 
             <section>
 
-                <section id="objetivos_clase_title" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Objetivos de la clase</h2>
-				</section>
+                <section id="objetivos_clase_title" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h2>Objetivos de la clase</h2>
+                </section>
 
-                <section id="objetivos_clase_title" data-state="no_footer">
+                <section id="objetivos_clase" data-state="no_footer">
                     <h2>Objetivos clase de hoy</h2>
-
-                    <ul>
-                        <li>Comprender el concepto de contenedor.</li>
-                        <li>Identificar las ventajas de utilizar contenedores en comparación con otras tecnologías de virtualización.</li>
-                        <li>Instalar Docker y crear un contenedor básico.</li>
-                        
-                    </ul>
+                    <small>
+                        <ul>
+                            <li>Comprender el concepto de contenedor y su arquitectura básica.</li>
+                            <li>Diferenciar entre máquinas virtuales y contenedores.</li>
+                            <li>Conocer el estándar OCI (Open Container Initiative) y el ecosistema (Docker, Podman,
+                                LXC).
+                            </li>
+                            <li>Identificar las ventajas de portabilidad, consistencia y eficiencia.</li>
+                            <li>Diferenciar entre imágenes y contenedores.</li>
+                            <li>Instalar Docker y ejecutar un primer contenedor básico.</li>
+                        </ul>
+                    </small>
                 </section>
 
 
@@ -179,137 +332,234 @@
 
 
             <section>
-				<section id="intro-container_t" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Introducción a contenedores</h2>
-				</section>
+                <section id="intro-container_t" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h2>Introducción a contenedores</h2>
+                </section>
 
                 <section id="intro-container" data-state="no_footer">
                     <h3>Contenedor</h3>
-                    
-                    <p><small>En informática, un contenedor o container, es una unidad ligera y <em>portátil</em> de software que <em>empaqueta</em> una aplicación y <em>todas sus dependencias</em>, permitiendo que se ejecute de manera consistente en <strong>cualquier entorno</strong>.</small>
-                    <!-- <div class="fade-img">
+
+                    <p><small>En informática, un contenedor o container, es una unidad ligera y <em>portátil</em> de
+                            software que <em>empaqueta</em> una aplicación y <em>todas sus dependencias</em>,
+                            permitiendo que se ejecute de manera consistente en <strong>cualquier
+                                entorno</strong>.</small>
+                        <!-- <div class="fade-img">
                     <img src="img/clase1/ships.webp" width="450" >
                     </div> -->
-                    <img src="img/clase1/docker-explained-1.png" width="750"></p>
-                    
-                    <p class="fragment"><small><strong>¿Por qué usar contenedores? </strong>. Principalmente, para portar nuestra aplicación y ejecutarla de manera consistente, ya sea en nuestra PC o en cualquier entorno de desarrollo. Además, permiten realizar despliegues de forma rápida y segura.</small></p>
-                    <p class="fragment"><small>Puede ser una posible solución, al típico problema de <strong><em>EN MI MÁQUINA FUNCIONA</em></strong>.</small></p>    
+                        <img src="img/clase1/docker-explained-1.png" width="750">
+                    </p>
+
+                    <p class="fragment"><small><strong>¿Por qué usar contenedores? </strong>. Principalmente, para
+                            portar nuestra aplicación y ejecutarla de manera consistente, ya sea en nuestra PC o en
+                            cualquier entorno de desarrollo. Además, permiten realizar despliegues de forma rápida y
+                            segura. Ahorro de recursos</small></p>
+                    <p class="fragment"><small>Puede ser una posible solución, al típico problema de <strong><em>EN MI
+                                    MÁQUINA FUNCIONA</em></strong>.</small></p>
                 </section>
 
                 <section id="intro-container2" data-state="no_footer">
                     <h3>Un poco de historia</h3>
 
-                    <p><small>En los años 1960-1970, IBM introdujo la virtualización en los mainframes, lo que permitió ejecutar múltiples sistemas operativos en una sola máquina física.</small></p>
-                    <p><small>En 1992, el programador finlandés <a href="https://es.wikipedia.org/wiki/Linus_Torvalds" target="_blank">Linus Torvalds</a> publicó bajo licencia <a href="https://es.wikipedia.org/wiki/GNU_General_Public_License" target="_blank">GNU GPL</a> la versión 0.12 del kernel de Linux. Desde entonces, Linux se considera <strong>software libre</strong>.</small></p>
-                    <p><small>En 2008 surgieron los <a href="https://es.wikipedia.org/wiki/LXC" target="_blank">LinuX Containers</a> , también conocidos por su acrónimo <strong>LXC</strong>. Utilizando características como <em>cgroups</em> y <em>namespaces</em> que ya estaban disponibles a partir de la versión 2.6.29 del kernel de Linux, LXC permite desarrollar una tecnología de virtualización a nivel de sistema operativo. LXC permite que una máquina que ejecuta Linux corra múltiples instancias de espacios de usuario aislados, dando origen al término <em>contenedor</em>.</small></p>
-                    <p><small>En 2013 se liberó <strong><a href="https://es.wikipedia.org/wiki/Docker_(software)" target="_blank">Docker</a></strong> como código abierto, inicialmente basado en LXC. Pero al año siguiente, con el lanzamiento de la versión 0.9 de Docker, dejó de utilizar LXC para usar su propio motor llamado libcontainer, escrito en Go.</small></p>
-                    <p><small>Desde entonces, Docker ha crecido en popularidad, convirtiéndose en uno de los proyectos con más estrellas en GitHub, más forks y con miles de colaboradores.</small></p>
-    
+                    <p><small>En los años 1960-1970, IBM introdujo la virtualización en los mainframes, lo que permitió
+                            ejecutar múltiples sistemas operativos en una sola máquina física.</small></p>
+                    <p><small>En 1992, el programador finlandés <a href="https://es.wikipedia.org/wiki/Linus_Torvalds"
+                                target="_blank">Linus Torvalds</a> publicó bajo licencia <a
+                                href="https://es.wikipedia.org/wiki/GNU_General_Public_License" target="_blank">GNU
+                                GPL</a> la versión 0.12 del kernel de Linux. Desde entonces, Linux se considera
+                            <strong>software libre</strong>.</small></p>
+                    <p><small>En 2008 surgieron los <a href="https://es.wikipedia.org/wiki/LXC" target="_blank">LinuX
+                                Containers</a> , también conocidos por su acrónimo <strong>LXC</strong>. Utilizando
+                            características como <em>cgroups</em> y <em>namespaces</em> que ya estaban disponibles a
+                            partir de la versión 2.6.29 del kernel de Linux, LXC permite desarrollar una tecnología de
+                            virtualización a nivel de sistema operativo. LXC permite que una máquina que ejecuta Linux
+                            corra múltiples instancias de espacios de usuario aislados, dando origen al término
+                            <em>contenedor</em>.</small></p>
+                    <p><small>En 2013 se liberó <strong><a href="https://es.wikipedia.org/wiki/Docker_(software)"
+                                    target="_blank">Docker</a></strong> como código abierto, inicialmente basado en LXC.
+                            Pero al año siguiente, con el lanzamiento de la versión 0.9 de Docker, dejó de utilizar LXC
+                            para usar su propio motor llamado libcontainer, escrito en Go.</small></p>
+                    <p><small>Desde entonces, Docker ha crecido en popularidad, convirtiéndose en uno de los proyectos
+                            con más estrellas en GitHub, más forks y con miles de colaboradores.</small></p>
+
+                </section>
+
+                <section id="intro-oci" data-state="no_footer">
+                    <h3>Open Container Initiative (OCI)</h3>
+                    <p><small>En 2015, Docker y otros líderes de la industria fundaron la <strong>OCI</strong> bajo la
+                            tutela de la Linux Foundation. Su objetivo es crear estándares abiertos para la tecnología
+                            de contenedores.</small></p>
+
+                    <div class="custom-container">
+                        <div class="custom-text">
+                            <small>
+                                <ul>Principales especificaciones:
+                                    <li><strong><a href="https://github.com/opencontainers/runtime-spec"
+                                                target="_blank">Runtime Spec</a>:</strong> Define cómo se debe ejecutar
+                                        un contenedor (por ejemplo, <em>runc</em>).</li>
+                                    <li><strong><a href="https://github.com/opencontainers/image-spec"
+                                                target="_blank">Image Spec</a>:</strong> Define el formato de la imagen
+                                        de contenedor.</li>
+                                    <li><strong><a href="https://github.com/opencontainers/distribution-spec"
+                                                target="_blank">Distribution Spec</a>:</strong> Define cómo se deben
+                                        distribuir las imágenes.</li>
+                                </ul>
+                                <p>Esto garantiza que un contenedor creado con Docker pueda ejecutarse en cualquier otro
+                                    runtime compatible (como Podman o Kubernetes) sin modificaciones.</p>
+                                <p>Recientemente, aprovechando el estandar OCI se ha implementado su deployment nativo
+                                    en
+                                    <a href="https://www.proxmox.com/en/about/company-details/press-releases/proxmox-virtual-environment-9-1"
+                                        target="_blank">Proxmox Virtual Envieronment 9.1</a> para así correr un OCI
+                                    sobre
+                                    un contenedor LXC.
+                                </p>
+                            </small>
+                        </div>
+                        <div class="custom-image">
+                            <img src="https://opencontainers.org/img/logos/OCI-logo.svg" width="200"
+                                style="background: white; padding: 10px; border-radius: 10px;">
+                        </div>
+                    </div>
                 </section>
 
                 <section id="intro-vm" data-state="no_footer">
                     <h3>Máquinas virtuales</h3>
-                    <p><small>A menudo, al introducir el concepto de <em>contenedor</em>, surge la confusión sobre si se trata de un tipo de <em>máquina virtual</em>. Repasemos los conceptos de máquina virtual:</small></p>
-                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático completo</strong> (a nivel hardware), permitiendo ejecutar un sistema operativo y aplicaciones como si fueran una computadora física, utilizando recursos compartidos del hardware del host. </small></p>
-                    <p><small>Cada máquina virtual requiere la asignación de recursos como procesador, disco, memoria, red, etc., y un <strong>sistema operativo</strong>. Para gestionar estas tareas se necesita un hipervisor.</small></p>
+                    <p><small>A menudo, al introducir el concepto de <em>contenedor</em>, surge la confusión sobre si se
+                            trata de un tipo de <em>máquina virtual</em>. Repasemos los conceptos de máquina
+                            virtual:</small></p>
+                    <p><small>Una máquina virtual (VM) es un entorno aislado que emula un sistema <strong>informático
+                                completo</strong> (a nivel hardware), permitiendo ejecutar un sistema operativo y
+                            aplicaciones como si fueran una computadora física, utilizando recursos compartidos del
+                            hardware del host. </small></p>
+                    <p><small>Cada máquina virtual requiere la asignación de recursos como procesador, disco, memoria,
+                            red, etc., y un <strong>sistema operativo</strong>. Para gestionar estas tareas se necesita
+                            un hipervisor.</small></p>
                     <small>
                         <ul>Algunos hypervisores de los mas conocidos:
                             <li>VMware vShere/ESXi</li>
                             <li>Hyper-V</li>
                             <li><a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a></li>
-                            <li><a href="https://www.proxmox.com/en/proxmox-virtual-environment/overview" target="_blank">Proxmox VE</a> (KVM)</li>
+                            <li><a href="https://www.proxmox.com/en/proxmox-virtual-environment/overview"
+                                    target="_blank">Proxmox VE</a> (KVM)</li>
                         </ul>
                     </small>
                 </section>
 
                 <section id="intro-vm2" data-state="no_footer">
                     <h3>Arquitectura Máquinas virtuales</h3>
-                    <p><small>Cada máquina virtual requiere un sistema operativo completo (kernel, utilidades del sistema, interfaz de usuario, etc) para funcionar.</small>
+                    <p><small>Cada máquina virtual requiere un sistema operativo completo (kernel, utilidades del
+                            sistema, interfaz de usuario, etc) para funcionar.</small>
                         <img src="img/clase1/vm.svg">
-                        <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande, se debe instalar y mantener un SO completo por cada VM. <em>A menudo, el SO consume más recursos que la propia aplicación</em>.</small>
+                        <small>Esto implica que, para correr solo una aplicación o parte de una aplicación mas grande,
+                            se debe instalar y mantener un SO completo por cada VM. <em>A menudo, el SO consume más
+                                recursos que la propia aplicación</em>.</small>
                     </p>
                 </section>
 
                 <section id="intro-container1" data-state="no_footer">
                     <h3>Arquitectura Contenedores</h3>
-                    <p><small>Cada container, <strong>utiliza el kernel</strong> del sistema operativo del host. Solo contienen las aplicaciones y sus dependencias necesarias para funcionar.</small>
-                    <img src="img/clase1/container.svg">
-                    
-                    <small>Los contenedores se aíslan a nivel de proceso, utilizando características del kernel del host para su funcionamiento. Es posible que entre contenedores compartan dependencias y sistemas de archivos si es necesario.
-                        Además, podemos limitar el uso de CPU y memoria para cada contenedor, de manera similar a una máquina virtual.</small>
-                        <small>Debido a su eficiencia, la arquitectura de contenedores se considera una forma de <em>virtualización liviana</em>.</small>
+                    <p><small>Cada container, <strong>utiliza el kernel</strong> del sistema operativo del host. Solo
+                            contienen las aplicaciones y sus dependencias necesarias para funcionar.</small>
+                        <img src="img/clase1/container.svg">
+
+                        <small>Los contenedores se aíslan a nivel de proceso, utilizando características del kernel del
+                            host para su funcionamiento. Es posible que entre contenedores compartan dependencias y
+                            sistemas de archivos si es necesario.
+                            Además, podemos limitar el uso de CPU y memoria para cada contenedor, de manera similar a
+                            una máquina virtual.</small>
+                        <small>Debido a su eficiencia, la arquitectura de contenedores se considera una forma de
+                            <em>virtualización liviana</em>.</small>
                     </p>
                 </section>
 
                 <section id="intro-vm-vs-container" data-state="no_footer">
                     <h2>Containers vs. VM</h2>
-                    
+
                     <small>
 
-                      <table><thead>
-                        <tr>
-                          <th>Caracteristica</th>
-                          <th>VM</th>
-                          <th>Container</th>
-                        </tr></thead>
-                      <tbody>
-                        <tr>
-                          <td>Aislamiento</td>
-                          <td>Completo (a nivel hw)</td>
-                          <td>Liviano (proceso)</td>
-                        </tr>
-                        <tr>
-                          <td>Recursos</td>
-                          <td>Mas uso de recursos</td>
-                          <td>Menos uso de recursos</td>
-                        </tr>
-                        <tr>
-                          <td>Arranque</td>
-                          <td>Lento</td>
-                          <td>Rapido</td>
-                        </tr>
-                        <tr>
-                          <td>SO</td>
-                          <td>Multiples SO</td>
-                          <td>Mismo kernel host</td>
-                        </tr>
-                        <tr>
-                          <td>Portabilidad</td>
-                          <td>Limitada, depende del hipervisor</td>
-                          <td>Alta, ejecutable en cualquier entorno</td>
-                        </tr>
-                        <tr>
-                          <td>Seguridad</td>
-                          <td>Fuerte aislamiento de seguridad</td>
-                          <td>Aislamiento a nivel de proceso</td>
-                        </tr>
-                      </tbody>
-                      </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Caracteristica</th>
+                                    <th>VM</th>
+                                    <th>Container</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Aislamiento</td>
+                                    <td>Completo (a nivel hw)</td>
+                                    <td>Liviano (proceso)</td>
+                                </tr>
+                                <tr>
+                                    <td>Recursos</td>
+                                    <td>Mas uso de recursos</td>
+                                    <td>Menos uso de recursos</td>
+                                </tr>
+                                <tr>
+                                    <td>Arranque</td>
+                                    <td>Lento</td>
+                                    <td>Rapido</td>
+                                </tr>
+                                <tr>
+                                    <td>SO</td>
+                                    <td>Multiples SO</td>
+                                    <td>Mismo kernel host</td>
+                                </tr>
+                                <tr>
+                                    <td>Portabilidad</td>
+                                    <td>Limitada, depende del hipervisor</td>
+                                    <td>Alta, ejecutable en cualquier entorno</td>
+                                </tr>
+                                <tr>
+                                    <td>Seguridad</td>
+                                    <td>Fuerte aislamiento de seguridad</td>
+                                    <td>Aislamiento a nivel de proceso</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
 
-                      
+
                     </small>
-                    <p><small>Esto no significa que las máquinas virtuales sean obsoletas en comparación con los contenedores. En algunas situaciones, el uso de contenedores no será posible. Por ejemplo, cuando se necesitan diferentes sistemas operativos para cada aplicación.</small></p>
-                    
-                    
+                    <p><small>Esto no significa que las máquinas virtuales sean obsoletas en comparación con los
+                            contenedores. En algunas situaciones, el uso de contenedores no será posible. Por ejemplo,
+                            cuando se necesitan diferentes sistemas operativos para cada aplicación.</small></p>
+
+
                 </section>
 
                 <section id="intro-usos" data-state="no_footer">
                     <h3>Casos de usos de contenedores</h3>
-                    
+
                     <small>
-                    <ul>
-                        <li><strong>Desarrollo de microservicios:</strong> Adecuados para arquitecturas de microservicios donde cada componente de la aplicación se despliega de manera independiente.</li>
-                        <li><strong>Integración Continua y Despliegue Continuo:</strong> Facilitan la creación de pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
-                        <li><strong>Containerización de aplicaciones</strong>: Se puede modernizar la infraestructura de aplicaciones no pensadas para contenedores. La conteinerización ayuda a la portabilidad y automatización de despliegues.</li>
-                        <li><strong>Despliegue sencillo de aplicaciones</strong>: Con solo copiar y pegar una instrucción o un archivo de texto es posible tener aplicaciones complejas deployadas para ambientes de prueba rápidamente.</li>
-                    
+                        <ul>
+                            <li><strong>Desarrollo de microservicios:</strong> Adecuados para arquitecturas de
+                                microservicios donde cada componente de la aplicación se despliega de manera
+                                independiente.</li>
+                            <li><strong>Integración Continua y Despliegue Continuo:</strong> Facilitan la creación de
+                                pipelines de CI/CD, permitiendo despliegues rápidos y frecuentes.</li>
+                            <li><strong>Containerización de aplicaciones</strong>: Se puede modernizar la
+                                infraestructura de aplicaciones no pensadas para contenedores. La conteinerización ayuda
+                                a la portabilidad y automatización de despliegues.</li>
+                            <li><strong>Despliegue sencillo de aplicaciones</strong>: Con solo copiar y pegar una
+                                instrucción o un archivo de texto es posible tener aplicaciones complejas deployadas
+                                para ambientes de prueba rápidamente.</li>
 
-                    </ul>
 
-                    <p class="fragment">Existen varias tecnologías que utilizan contenedores, entre ellas: <a href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a href="https://canonical.com/lxd" target="_blank">LXD</a>, <a href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>,  <a href="https://podman.io/" target="_blank">Podman</a>. Además, hay herramientas de orquestación y gestión de contenedores como <a href="https://docs.docker.com/engine/swarm/" target="_blank">Docker Swarm</a>, <a href="https://kubernetes.io/es/" target="_blank">Kubernetes</a>, <a href="https://okd.io/" target="_blank">OKD</a>.</p>
+                        </ul>
+
+                        <p class="fragment">Existen varias tecnologías que utilizan contenedores, entre ellas: <a
+                                href="https://linuxcontainers.org/" target="_blank">LXC</a>, <a
+                                href="https://linuxcontainers.org/incus/introduction/" target="_blank">Incus</a>, <a
+                                href="https://canonical.com/lxd" target="_blank">LXD</a>, <a
+                                href="https://www.docker.com/" target="_blank"><strong>Docker</strong></a>, <a
+                                href="https://podman.io/" target="_blank">Podman</a>. Además, hay herramientas de
+                            orquestación y gestión de contenedores como <a href="https://docs.docker.com/engine/swarm/"
+                                target="_blank">Docker Swarm</a>, <a href="https://kubernetes.io/es/"
+                                target="_blank">Kubernetes</a>, <a href="https://okd.io/" target="_blank">OKD</a>.</p>
                     </small>
-                    
+
                 </section>
 
 
@@ -321,16 +571,21 @@
             </section>
 
             <section>
-				<section id="intro-docker" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Introducción a Docker</h2>
-				</section>
+                <section id="intro-docker" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h2>Introducción a Docker</h2>
+                </section>
 
                 <section id="docker1" data-state="no_footer">
                     <h3>¿Qué es Docker?</h3>
-                    <p><small>Docker es una plataforma de código abierto que facilita la creación, despliegue y ejecución de aplicaciones dentro de contenedores. Docker permite a los desarrolladores empaquetar una aplicación con todas sus dependencias en un contenedor, asegurando que la aplicación se ejecute de manera consistente en cualquier entorno.</small></p>
+                    <p><small>Docker es una plataforma de código abierto que facilita la creación, despliegue y
+                            ejecución de aplicaciones dentro de contenedores. Docker permite a los desarrolladores
+                            empaquetar una aplicación con todas sus dependencias en un contenedor, asegurando que la
+                            aplicación se ejecute de manera consistente en cualquier entorno.</small></p>
                     <img src="img/clase1/docker.png" width="350px">
 
-                    <p><small>Docker, es hoy en día la tecnología de contenedores mas utilizada y más popular.</small></p>
+                    <p><small>Docker, es hoy en día la tecnología de contenedores mas utilizada y más popular.</small>
+                    </p>
 
 
                 </section>
@@ -340,11 +595,16 @@
                     <h3>¿Por qué Docker?</h3>
                     <small>
                         <ul>
-                            <li><strong>Comunidad:</strong> Existe una gran comunidad aportando tanto al desarrollo de Docker como <em>imágenes</em> Docker. Hay numerosos foros, tutoriales y cursos en línea disponibles.</li>
-                            <li><strong>Facilidad de uso:</strong> Ofrece una interfaz de usuario sencilla y comandos intuitivos. Diversas herramientas gráficas.</li>
-                            <li><strong>Soporte empresarial:</strong> Muchas empresas ofrecen soporte y soluciones basadas en Docker para entorno empresariales.</li>
+                            <li><strong>Comunidad:</strong> Existe una gran comunidad aportando tanto al desarrollo de
+                                Docker como <em>imágenes</em> Docker. Hay numerosos foros, tutoriales y cursos en línea
+                                disponibles.</li>
+                            <li><strong>Facilidad de uso:</strong> Ofrece una interfaz de usuario sencilla y comandos
+                                intuitivos. Diversas herramientas gráficas.</li>
+                            <li><strong>Soporte empresarial:</strong> Muchas empresas ofrecen soporte y soluciones
+                                basadas en Docker para entorno empresariales.</li>
                             <li><strong>Licencia:</strong> Docker no requiere una licencia para su uso.</li>
-                            <li><strong>Compatibilidad:</strong> Docker es compatible con diversas plataformas, sistemas operativos y arquitecturas, lo que facilita su instalación e implementación.</li>
+                            <li><strong>Compatibilidad:</strong> Docker es compatible con diversas plataformas, sistemas
+                                operativos y arquitecturas, lo que facilita su instalación e implementación.</li>
                         </ul>
                     </small>
                     <!-- <p><small>A continuación veremos conceptos básicos que reforzaremos a lo largo del curso</small></p> -->
@@ -355,36 +615,41 @@
                     <h4>Componentes principales de Docker</h4>
 
                     <div class="custom-container">
-                        
+
                         <div class="custom-text">
-           
+
                             <small>
-                                <strong>Docker engine:</strong> Docker engine actúa como una aplicación cliente-servidor con:
-                             
+                                <strong>Docker engine:</strong> Docker engine actúa como una aplicación cliente-servidor
+                                con:
+
                                 <!-- <li><strong>Docker engine:</strong> El motor de Docker es la parte central de Docker, que permite a los usuarios crear, ejecutar y gestionar contenedores mediante la <a href="https://docs.docker.com/reference/api/engine/" target="_blank">Docker Engine API</a>.</li> -->
-                                
-                                    <ul>
-                                        <li><strong><a href="https://docs.docker.com/reference/cli/dockerd/" target="_blank">Docker Daemon</a></strong>: Llamado <code>dockerd</code> es el daemon o servicio de Docker.</li>
-                                        <li><strong><a href="https://docs.docker.com/reference/api/engine/" target="_blank">Docker API</a> </strong> Es una api REST que permite la interacción entre la cli con el Docker engine.</li>
-                                        <li><strong>Interfaz de usuario:</strong>
-                                            <ul>
-                                                <li><strong><a href="https://www.docker.com/products/cli/" target="_blank">Docker CLI</a>:</strong> Es la línea de comandos de Docker. <a href="https://docs.docker.com/get-started/docker_cheatsheet.pdf" target="_blank">CLI Cheat Sheet</a>.</li>
-                                                <li><strong><a href="https://www.docker.com/products/docker-desktop/" target="_blank">Docker Desktop</a>:</strong> Es una app <em>todo-en-uno</em> que proporciona una interfaz gráfica y un entorno completo para trabajar con Docker. En Windows y MacOS incluye una VM liviana basada en Linux. Existen alternativas como <a href="https://rancherdesktop.io/" target="_blank">Rancher Desktop</a>.</li>
-                                            </ul>
-                                        
-                                        </li>
-                                    </ul>
-                                
-                                
-                                <!-- <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son <em>inmutables</em> pero pueden versionar para hacer cambios.</li>
-                                <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones.</li>
-                                <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li> -->
 
-                                
+                                <ul>
+                                    <li><strong><a href="https://docs.docker.com/reference/cli/dockerd/"
+                                                target="_blank">Docker Daemon</a></strong>: Llamado <code>dockerd</code>
+                                        es el daemon o servicio de Docker.</li>
+                                    <li><strong><a href="https://docs.docker.com/reference/api/engine/"
+                                                target="_blank">Docker API</a> </strong> Es una api REST que permite la
+                                        interacción entre la cli con el Docker engine.</li>
+                                    <li><strong>Interfaz de usuario:</strong>
+                                        <ul>
+                                            <li><strong><a href="https://www.docker.com/products/cli/"
+                                                        target="_blank">Docker CLI</a>:</strong> Es la línea de comandos
+                                                de Docker. <a
+                                                    href="https://docs.docker.com/get-started/docker_cheatsheet.pdf"
+                                                    target="_blank">CLI Cheat Sheet</a>.</li>
+                                            <li><strong><a href="https://www.docker.com/products/docker-desktop/"
+                                                        target="_blank">Docker Desktop</a>:</strong> Es una app
+                                                <em>todo-en-uno</em> que proporciona una interfaz gráfica y un entorno
+                                                completo para trabajar con Docker. En Windows y MacOS incluye una VM
+                                                liviana basada en Linux. Existen alternativas como <a
+                                                    href="https://rancherdesktop.io/" target="_blank">Rancher
+                                                    Desktop</a>.
+                                            </li>
+                                        </ul>
 
-                                
-                                
-                            
+                                    </li>
+                                </ul>
                             </small>
                         </div>
 
@@ -393,7 +658,7 @@
                     </div>
                     <img src="./img/clase1/schema1.png" width="300">
 
-                        
+
 
 
                 </section>
@@ -402,9 +667,17 @@
                     <h4>Otros componentes de Docker</h4>
                     <small>
                         <ul>
-                            <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define qué software y configuraciones incluye el contenedor. Las imágenes son <em>inmutables</em> pero pueden versionar para hacer cambios.</li>
-                            <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones.</li>
-                            <li><strong>Registry:</strong> También conocida como <strong><a href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un registro o repositorio de imágenes de contenedores públicas y privadas.  Los desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para compartir las suyas propias.</li>
+                            <li><strong>Images:</strong> Una imagen Docker es una plantilla de solo lectura que define
+                                qué software y configuraciones incluye el contenedor. Las imágenes son
+                                <em>inmutables</em> pero pueden versionar para hacer cambios.
+                            </li>
+                            <li><strong>Containers:</strong> Un contenedor Docker es una instancia en ejecución de una
+                                imagen. Los contenedores son entornos aislados donde se ejecutan aplicaciones.</li>
+                            <li><strong>Registry:</strong> También conocida como <strong><a
+                                        href="https://hub.docker.com/" target="_blank">DockerHub</a></strong> es un
+                                registro o repositorio de imágenes de contenedores públicas y privadas. Los
+                                desarrolladores pueden usar Docker Hub para buscar y descargar imágenes, así como para
+                                compartir las suyas propias.</li>
                         </ul>
                     </small>
 
@@ -412,54 +685,31 @@
 
                 </section>
 
-                <!-- <section id="docker2-1" data-state="no_footer">
-
-                    <h3>Como funciona Docker</h3>
-                    <small>
-                        <ul>
-                            <li><strong>Construcción de imágenes:</strong>
-                                <ul>
-                                    <li>Las imágenes se construyen a partir de un archivo llamado <em>Dockerfile</em>, que contiene instrucciones sobre cómo crear la imagen.</li>
-                                    <li>Un Dockerfile especifica <em>la base de la imagen</em>, las dependencias necesarias, el código de la aplicación y las configuraciones.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Gestión de imágenes:</strong>
-                                <ul>
-                                    <li>Una vez construidas, las imágenes se almacenan en un registro (como Docker Hub).</li>
-                                    <li>Las imágenes pueden ser descargadas (pulled) desde el registro al host Docker para su uso.</li>
-                                    <li>Las imágenes también se pueden guardar en archivos si no se desea subir a un registro.</li>
-                                </ul>
-                            </li>
-
-                            <li><strong>Ejecución de Contenedores:</strong>
-                                <ul>
-                                    <li>Los contenedores se crean a partir de imágenes.</li>
-                                    <li>Docker utiliza el Docker Engine para gestionar la ejecución de contenedores, asegurando que cada contenedor se ejecute de manera aislada y eficiente.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </small>
-                    
-
-                </section> -->
 
                 <section id="docker2-2" data-state="no_footer">
 
                     <h3>Ventajas de Docker</h3>
                     <small>
-                        <ul> 
-                            <li><strong>Consistencia:</strong> Garantiza que la aplicación se ejecute de la misma manera en todos los entornos.</li>
-                            <li><strong>Despliegue Rápido:</strong> Permite la creación y destrucción rápida de contenedores, lo que acelera el ciclo de desarrollo y despliegue.</li>
-                            <li><strong>Facilidad de Integración:</strong> Compatible con diversas herramientas y servicios, lo que facilita la integración en flujos de trabajo de CI/CD.</li>
+                        <ul>
+                            <li><strong>Consistencia:</strong> Garantiza que la aplicación se ejecute de la misma manera
+                                en todos los entornos.</li>
+                            <li><strong>Despliegue Rápido:</strong> Permite la creación y destrucción rápida de
+                                contenedores, lo que acelera el ciclo de desarrollo y despliegue.</li>
+                            <li><strong>Facilidad de Integración:</strong> Compatible con diversas herramientas y
+                                servicios, lo que facilita la integración en flujos de trabajo de CI/CD.</li>
                         </ul>
                     </small>
                     <small>
                         <p>
-                        Docker ha transformado la forma en que las aplicaciones se desarrollan, despliegan y gestionan. 
-                        Ofrece una solución robusta y eficiente para la virtualización a nivel de sistema operativo, permitiendo 
-                        a los desarrolladores y equipos de operaciones trabajar de manera más ágil y efectiva. Con una comprensión clara de los componentes y beneficios de Docker, 
-                        estaremos listos para sumergirnos en la parte práctica y experimentar de primera mano cómo Docker puede simplificar y mejorar nuestros flujos de trabajo.
-                    </p>
+                            Docker ha transformado la forma en que las aplicaciones se desarrollan, despliegan y
+                            gestionan.
+                            Ofrece una solución robusta y eficiente para la virtualización a nivel de sistema operativo,
+                            permitiendo
+                            a los desarrolladores y equipos de operaciones trabajar de manera más ágil y efectiva. Con
+                            una comprensión clara de los componentes y beneficios de Docker,
+                            estaremos listos para sumergirnos en la parte práctica y experimentar de primera mano cómo
+                            Docker puede simplificar y mejorar nuestros flujos de trabajo.
+                        </p>
                     </small>
 
                 </section>
@@ -473,30 +723,43 @@
 
             <section>
 
-                <section id="tech_container" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Tecnologías de contenedores</h2>
-				</section>
+                <section id="tech_container" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h2>Tecnologías de contenedores</h2>
+                </section>
 
 
                 <section id="tech_container1" data-state="no_footer">
                     <h4>Otras tecnologías de contenedores</h4>
-                    <p><small>Docker es actualmente el sistema de gestión de contenedores más popular, pero no el único.</small></p>
+                    <p><small>Docker es actualmente el sistema de gestión de contenedores más popular, pero no el
+                            único.</small></p>
                     <img src="img/clase1/drawio.png">
                 </section>
 
                 <section id="tech_container2" data-state="no_footer">
                     <h3>LXC (LinuX Containers)</h3>
-                    <p><small>El objetivo de LXC es crear un entorno lo más parecido posible a una instalación estándar de Linux pero sin la necesidad de un kernel independiente. <a href="https://linuxcontainers.org/lxc/introduction/#features" target="_blank">[1]</a> </small></p>
+                    <p><small>El objetivo de LXC es crear un entorno lo más parecido posible a una instalación estándar
+                            de Linux pero sin la necesidad de un kernel independiente. <a
+                                href="https://linuxcontainers.org/lxc/introduction/#features" target="_blank">[1]</a>
+                        </small></p>
 
                     <div class="custom-container">
                         <div class="custom-text">
                             <small>
-                            <ul>
-                                <li>Está basado en la <em>liblxc</em> <a href="https://linuxcontainers.org/lxc/introduction/#components" target="_blank">[2]</a></li>
-                                <li>La versión 5.0 tiene soporte hasta Junio del 2027 <a href="https://linuxcontainers.org/lxc/introduction/#extended-support" target="_blank">[3]</a></li>
-                                <li>Muy utilizada en entornos de virtualización Proxmox VE <a href="https://pve.proxmox.com/wiki/Linux_Container" target="_blank">[4]</a>. ProxmoxVE ofrece una manera fácil e intuitiva de manejar containers LXC, casi como si de una máquina virtual se tratara; asignando recursos como CPU, memoria, etc.</li>
-                                
-                            </ul>
+                                <ul>
+                                    <li>Está basado en la <em>liblxc</em> <a
+                                            href="https://linuxcontainers.org/lxc/introduction/#components"
+                                            target="_blank">[2]</a></li>
+                                    <li>La versión 6.0 LTS tiene soporte hasta Junio del 2029 <a
+                                            href="https://linuxcontainers.org/lxc/introduction/#extended-support"
+                                            target="_blank">[3]</a> (y la 5.0 hasta 2027)</li>
+                                    <li>Muy utilizada en entornos de virtualización Proxmox VE <a
+                                            href="https://pve.proxmox.com/wiki/Linux_Container" target="_blank">[4]</a>.
+                                        ProxmoxVE ofrece una manera fácil e intuitiva de manejar containers LXC, casi
+                                        como si de una máquina virtual se tratara; asignando recursos como CPU, memoria,
+                                        etc.</li>
+
+                                </ul>
                             </small>
 
                         </div>
@@ -509,23 +772,31 @@
 
                     </div>
 
-                    
+
                 </section>
 
                 <section id="tech_container3" data-state="no_footer">
                     <h3>Podman</h3>
-                    <p><small>Podman es una herramienta nativa de Linux, de código abierto y sin daemon, diseñada para facilitar la búsqueda, construcción, compartición y despliegue de aplicaciones utilizando contenedores.<a href="https://docs.podman.io/en/latest/index.html" target="_blank">[1]</a></small></p>
+                    <p><small>Podman es una herramienta nativa de Linux, de código abierto y sin daemon, diseñada para
+                            facilitar la búsqueda, construcción, compartición y despliegue de aplicaciones utilizando
+                            contenedores.<a href="https://docs.podman.io/en/latest/index.html"
+                                target="_blank">[1]</a></small></p>
 
                     <div class="custom-container">
                         <div class="custom-text">
                             <small>
-                            <ul>
-                                <li><strong>Daemonless:</strong> No requiere de un daemon centralizado como Docker, lo que mejora la seguridad al no necesitar ejecutarse con permisos de root y brinda un entorno más ligero.</li>
-                                <li><strong>Compatibilidad con Docker:</strong> Es compatible con Docker. Casi todos los comandos son idénticos y también es compatible a nivel de imágenes.</li>
-                                <li><strong>Ecosistema:</strong> Tiene un ecosistema más reducido en comparación con Docker y no es tan popular..</li>
-                                <li><strong>Open source:</strong> Código abierto. Licencia Apache</li>
-                                <li><strong>GUI:</strong> Cuenta con una aplicación de escritorio llamada <a href="https://podman-desktop.io/" target="_blank">Podman Desktop</a></li>
-                            </ul>
+                                <ul>
+                                    <li><strong>Daemonless:</strong> No requiere de un daemon centralizado como Docker,
+                                        lo que mejora la seguridad al no necesitar ejecutarse con permisos de root y
+                                        brinda un entorno más ligero.</li>
+                                    <li><strong>Compatibilidad con Docker:</strong> Es compatible con Docker. Casi todos
+                                        los comandos son idénticos y también es compatible a nivel de imágenes.</li>
+                                    <li><strong>Ecosistema:</strong> Tiene un ecosistema más reducido en comparación con
+                                        Docker y no es tan popular..</li>
+                                    <li><strong>Open source:</strong> Código abierto. Licencia Apache</li>
+                                    <li><strong>GUI:</strong> Cuenta con una aplicación de escritorio llamada <a
+                                            href="https://podman-desktop.io/" target="_blank">Podman Desktop</a></li>
+                                </ul>
                             </small>
 
                         </div>
@@ -538,76 +809,98 @@
 
                     </div>
 
-                    
+
                 </section>
             </section>
 
             <section>
-				<section id="docker-install" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Instalación de Docker</h2>
-				</section>
+                <section id="docker-install" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h2>Instalación de Docker</h2>
+                </section>
 
 
                 <section id="docker-install2" data-state="no_footer">
                     <h3>Instalación de Docker</h3>
                     <small>
-                            <p>Docker está disponible para las plataformas mas populares; Windows, GNU/Linux y MacOS.</p>
+                        <p>Docker está disponible para las plataformas mas populares; Windows, GNU/Linux y MacOS.</p>
 
+                        <ul>
+                            <li><strong>Docker Desktop:</strong> La aplicación oficial de Docker. Es una interface de
+                                usuario gráfica. A su vez contiene el Docker engine.
+                            </li>
                             <ul>
-                                <li><strong>Docker Desktop:</strong> La aplicación oficial de Docker. Es una interface de usuario gráfica. A su vez contiene el Docker engine.
-                                </li>
+                                <li><a href="https://docs.docker.com/desktop/install/windows-install/"
+                                        target="_blank">Docker Desktop para Windows</a> (Mínimo Win 10/11 Home o Pro
+                                    21H2 / WSL version 1.1.3.0)</li>
+                                <li><a href="https://docs.docker.com/desktop/install/linux-install/"
+                                        target="_blank">Docker Desktop para GNU/Linux</a></li>
+                                <li><a href="https://docs.docker.com/desktop/install/mac-install/"
+                                        target="_blank">Docker Desktop para MacOS</a></li>
+
+                            </ul>
+                            <li><strong>Docker engine:</strong> También llamado Docker-CE. Es el motor de docker. Lo
+                                básico para que Docker funcione.
                                 <ul>
-                                    <li><a href="https://docs.docker.com/desktop/install/windows-install/" target="_blank">Docker Desktop para Windows</a> (Minimo Win 10 Home o Pro 21H2 / WSL version 1.1.3.0)</li>
-                                    <li><a href="https://docs.docker.com/desktop/install/linux-install/" target="_blank">Docker Desktop para GNU/Linux</a></li>
-                                    <li><a href="https://docs.docker.com/desktop/install/mac-install/" target="_blank">Docker Desktop para MacOS</a></li>
+                                    <li><a href="https://docs.docker.com/engine/install/" target="_blank">Docker Engine
+                                            Linux</a></li>
+                                    <li><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank">Docker
+                                            Engine Ubuntu</a></li>
+                                    <li><a href="https://docs.docker.com/engine/install/debian/" target="_blank">Docker
+                                            Engine Debian</a></li>
+                                    <li><a href="https://docs.docker.com/engine/install/centos/" target="_blank">Docker
+                                            Engine CentOS</a></li>
+
 
                                 </ul>
-                                <li><strong>Docker engine:</strong> También llamado Docker-CE. Es el motor de docker. Lo básico para que Docker funcione. 
-                                    <ul>
-                                        <li><a href="https://docs.docker.com/engine/install/" target="_blank">Docker Engine Linux</a></li>
-                                        <li><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank">Docker Engine Ubuntu</a></li>
-                                        <li><a href="https://docs.docker.com/engine/install/debian/" target="_blank">Docker Engine Debian</a></li>
-                                        <li><a href="https://docs.docker.com/engine/install/centos/" target="_blank">Docker Engine CentOS</a></li>
+
+                            </li>
+                        </ul>
+
+                        <p>En el curso veremos el uso de <strong><a href="https://docs.docker.com/reference/cli/docker/"
+                                    target="_blank">Docker CLI</a></strong>, ya que no siempre podemos contar con una
+                            interface gráfica, ejemplo cuando se corre en servidores.</p>
 
 
-                                    </ul>
-                                    
-                                </li>
-                            </ul>
 
-                            <p>En el curso veremos el uso de <strong><a href="https://docs.docker.com/reference/cli/docker/" target="_blank">Docker CLI</a></strong>, ya que no siempre podemos contar con una interface gráfica, ejemplo cuando se corre en servidores.</p>
-                    
-                    
-                    
-                    
+
                     </small>
 
                 </section>
 
                 <section id="docker-install_10" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Una vez descargado el instalador, al instalar se verán las siguientes pantallas:</p></small>
+                    <small>
+                        <p>Una vez descargado el instalador, al instalar se verán las siguientes pantallas:</p>
+                    </small>
                     <img src="img/clase1/Docker_install.png" width="60%" height="60%">
 
                 </section>
 
                 <section id="docker-install_11" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Debemos aceptar los términos.</p></small>
+                    <small>
+                        <p>Debemos aceptar los términos.</p>
+                    </small>
                     <img src="img/clase1/Docker_install2.png" class="screenshot-borde" width="80%" height="80%">
 
                 </section>
 
                 <section id="docker-install_12" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Elegimos una opción.</p></small>
+                    <small>
+                        <p>Elegimos una opción.</p>
+                    </small>
                     <img src="img/clase1/Docker_install3.png" class="screenshot-borde">
 
                 </section>
 
                 <section id="docker-install_13" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small>
+                    <small>
+                        <p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para
+                            descargar las imágenes.</p>
+                    </small>
                     <img src="img/clase1/Docker_install4.png">
 
                 </section>
@@ -615,7 +908,7 @@
                 <section id="docker-install_14" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
                     <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
-                    <img src="img/clase1/Docker_install5.png"  width="50%" height="50%">
+                    <img src="img/clase1/Docker_install5.png" width="50%" height="50%">
 
                 </section>
 
@@ -624,7 +917,7 @@
                     <!-- <small><p>Podemos continuar sin iniciar sesión ni registrarnos. Pero luego nos pedirá la sesión para descargar las imágenes.</p></small> -->
                     <img src="img/clase1/Docker_install6.png" width="65%" height="65%" class="screenshot-borde">
                     <small>Es importante arrancar el Docker Engine antes de usar Docker. Sino dará un error:</small>
-                    
+
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         DesktopLinuxEngine: The system cannot find the file specified.
                     </code></pre>
@@ -641,13 +934,16 @@
 
                 <section id="docker-install_17" data-state="no_footer">
                     <h4>Instalando DOcker Desktop en Windows</h4>
-                    <small><p>Una vez instalado y corriendo. Es posible ejecutar comandos docker desde una consola de PowerShell (PS).</p></small>
-                    
+                    <small>
+                        <p>Una vez instalado y corriendo. Es posible ejecutar comandos docker desde una consola de
+                            PowerShell (PS).</p>
+                    </small>
+
                     <small>Para consultar la versión instalada ejecutamos:</small>
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker --version
                     </code></pre>
-                    
+
                     <img src="img/clase1/Docker_install8.png">
 
 
@@ -663,55 +959,31 @@
                     <img src="img/clase1/Docker_install9.png" width="75%" height="75%">
 
 
-                    
+
 
                 </section>
 
                 <section id="docker-install_19" data-state="no_footer">
                     <h4>Ejecutando nuestro primer contenedor</h4>
-                    <small><p>Vista desde Docker Desktop. Containers:</p></small>
-                    
-                    <img src="img/clase1/Docker_install10.png" class="screenshot-borde" width="100%" height="100%">
-                    
-
-                </section>
-
-                <section id="docker-install_19" data-state="no_footer">
-                    <h4>Ejecutando nuestro primer contenedor</h4>
-                    <small><p>Vista desde Docker Desktop. Images:</p></small>
-                    
-                    <img src="img/clase1/Docker_install11.png" class="screenshot-borde" width="100%" height="100%">
-                    
-                </section>
-
-                <!-- <section id="docker-install_20" data-state="no_footer">
-                    <h4>Ejecutamos un contenedor Ubuntu</h4>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker run -it ubuntu bash
-                    </code></pre>
-
-                    
-                    <img src="img/clase1/docker_ubuntu1.png" >
-
-
-                    
-                </section>
-
-                <section id="docker-install_21" data-state="no_footer">
-                    <h4>Ejecutamos un contenedor Ubuntu</h4>
-                    <small>¿Qué pasa si volvemos a ejecutar un contenedor Ubuntu?</small>
-                    
-                    <img src="img/clase1/docker_ubuntu2.png" width="100%" height="100%">
                     <small>
-                        <ul>
-                            <li class="fragment">No fue necesario volver a descargar la imágen.</li>
-                            <li class="fragment">El contenedor NO es el mismo que se ejecutó la vez anterior.</li>
-
-                        </ul>
+                        <p>Vista desde Docker Desktop. Containers:</p>
                     </small>
-                    
-                </section> -->
+
+                    <img src="img/clase1/Docker_install10.png" class="screenshot-borde" width="100%" height="100%">
+
+
+                </section>
+
+                <section id="docker-install_20" data-state="no_footer">
+                    <h4>Ejecutando nuestro primer contenedor</h4>
+                    <small>
+                        <p>Vista desde Docker Desktop. Images:</p>
+                    </small>
+
+                    <img src="img/clase1/Docker_install11.png" class="screenshot-borde" width="100%" height="100%">
+
+                </section>
+
 
                 <section id="ipreguntas3" data-state="no_footer">
                     <h2>Consultas</h2>
@@ -720,13 +992,16 @@
             </section>
 
             <section>
-                <section id="docker-no-install" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h2>Probando Docker sin instalar</h2>
-				</section>
+                <section id="docker-no-install" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h2>Probando Docker sin instalar</h2>
+                </section>
 
                 <section id="play-with-docker" data-state="no_footer">
                     <h3>Probando Docker sin instalar</h3>
-                    <small>Podemos usar y probar Docker sin instalarlo usando un navegador web desde el sitio <a href="https://labs.play-with-docker.com" target="_blank">PlayWithDocker</a>. Es necesario iniciar sesión. Luego tendremos 4 horas para poder probar.</small>
+                    <small>Podemos usar y probar Docker sin instalarlo usando un navegador web desde el sitio <a
+                            href="https://labs.play-with-docker.com" target="_blank">PlayWithDocker</a>. Es necesario
+                        iniciar sesión. Luego tendremos 4 horas para poder probar.</small>
                     <img src="img/clase1/play_with_docker.png" class="screenshot-borde">
 
                 </section>
@@ -735,135 +1010,140 @@
 
 
 
-            
+
 
             <section id="labs" data-state="no_footer">
                 <h3>Laboratorios de actividad práctica</h3>
 
                 <small>
-                
-                <p>En estos laboratorios aprenderemos a instalar Docker y daremos los primeros pasos con una terminal de Docker y la terminal de bash sobre un GNU/Linux Ubuntu.</p>
-            
-                <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/01-introduccion/instalacion.md" target="_blank">Lab 1.1</a> - Instalación de Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/01-introduccion/primeros-comandos.md" target="_blank">Lab 1.2</a> - Primeros contenedores y comandos Linux</li>
+                    <p>En estos laboratorios aprenderemos a instalar Docker y daremos los primeros pasos con una
+                        terminal de Docker y la terminal de bash sobre un GNU/Linux Ubuntu.</p>
 
-                </ul>
+                    <ul>
+
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/01-introduccion/instalacion.md"
+                                target="_blank">Lab 1.1</a> - Instalación de Docker</li>
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/01-introduccion/primeros-comandos.md"
+                                target="_blank">Lab 1.2</a> - Primeros contenedores y comandos Linux</li>
+
+                    </ul>
                 </small>
 
-                
-                
-            
-                
+
+
+
+
 
             </section>
 
-        </section>
+            </section>
 
-        <section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-				
-            <a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
-            
+            <section id="fin" data-state="hide_footer" data-transition="slide"
+                data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
 
-        </section>
-						
+                <a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
 
-					
-    </div>
-</div>
 
-<footer>
-    <!-- Logos en el footer -->
-    <div id="logos-footer" class="footer">
-        <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
-        <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
-        <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+            </section>
+
+
+
+        </div>
     </div>
 
-    <script type="text/javascript">
-        window.addEventListener("load", function() {
-    
-            revealDiv = document.querySelector("body div.reveal")
-            footer = document.getElementById("logos-footer");
-            revealDiv.appendChild(footer);
-    
-        } );
-    </script>
-</footer>
+    <footer>
+        <!-- Logos en el footer -->
+        <div id="logos-footer" class="footer">
+            <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
+            <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
+            <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+        </div>
 
-<script src="dist/reveal.js"></script>
-<script src="plugin/notes/notes.js"></script>
-<script src="plugin/markdown/markdown.js"></script>
-<script src="plugin/highlight/highlight.js"></script>
-<script src="plugin/zoom/zoom.js"></script>
-<script src="plugin/copycode/copycode.js"></script>
+        <script type="text/javascript">
+            window.addEventListener("load", function () {
+
+                revealDiv = document.querySelector("body div.reveal")
+                footer = document.getElementById("logos-footer");
+                revealDiv.appendChild(footer);
+
+            });
+        </script>
+    </footer>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/copycode/copycode.js"></script>
 
 
-<script>
-    // More info about initialization & config:
-    // - https://revealjs.com/initialization/
-    // - https://revealjs.com/config/
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
 
         // Para eventos personalizados. Indica que está en la presentación
 
-    Reveal.on( 'customevent', function() {
-        var element = document.getElementById("logos-footer");
-        element.style.display = "table";
-        element.style.opacity = "40%";
+        Reveal.on('customevent', function () {
+            var element = document.getElementById("logos-footer");
+            element.style.display = "table";
+            element.style.opacity = "40%";
 
-    } );
+        });
 
-    Reveal.on( 'hide_footer', function() {
-        var element = document.getElementById("logos-footer");
-        element.style.display = "table";
-        element.style.opacity = "0%";
+        Reveal.on('hide_footer', function () {
+            var element = document.getElementById("logos-footer");
+            element.style.display = "table";
+            element.style.opacity = "0%";
 
-    } );
+        });
 
-    Reveal.on( 'no_footer', function() {
-        var element = document.getElementById("logos-footer");
-        //element.style.display = "none";
-        // element.style.display = "table";
-        element.style.opacity = "15%";
-    } );
-    Reveal.initialize({
-        hash: true,
+        Reveal.on('no_footer', function () {
+            var element = document.getElementById("logos-footer");
+            //element.style.display = "none";
+            // element.style.display = "table";
+            element.style.opacity = "15%";
+        });
+        Reveal.initialize({
+            hash: true,
 
-        copycode: {
-        button: "hover",
-        display: "icons",
-        text: {
-            copy: "Copiar",
-            copied: "¡Copiado!",
-        },
-        plaintextonly: true,
-        timeout: 1000,
-        style: {
-            copybg: "gray",
-            copiedbg: "green",
-            copycolor: "black",
-            copiedcolor: "white",
-            copyborder: "",
-            copiedborder: "",
-            scale: 1,
-            offset: 0,
-            radius: 0.2
-        },
-        tooltip: true,
-        iconsvg: {
-            copy: '',
-            copied: ''
-        },
-        cssautoload: true,
-        csspath: "",
-        clipboardjspath: ""
-        },
+            copycode: {
+                button: "hover",
+                display: "icons",
+                text: {
+                    copy: "Copiar",
+                    copied: "¡Copiado!",
+                },
+                plaintextonly: true,
+                timeout: 1000,
+                style: {
+                    copybg: "gray",
+                    copiedbg: "green",
+                    copycolor: "black",
+                    copiedcolor: "white",
+                    copyborder: "",
+                    copiedborder: "",
+                    scale: 1,
+                    offset: 0,
+                    radius: 0.2
+                },
+                tooltip: true,
+                iconsvg: {
+                    copy: '',
+                    copied: ''
+                },
+                cssautoload: true,
+                csspath: "",
+                clipboardjspath: ""
+            },
 
-        // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode ]
-    });
-</script>
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode]
+        });
+    </script>
 
 </body>
+
 </html>
