@@ -1,40 +1,43 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Fundamentos contenedores Docker - CFL 410 - Clase 3</title>
-		<!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
-        <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/white.css">
+    <title>Fundamentos contenedores Docker - CFL 410 - Clase 3</title>
+    <!-- <link rel="icon" type="image/x-icon" href="/img/logos/IDEPInformaticaLogo.png"> -->
+    <link rel="icon" type="image/x-icon" href="/img/logos/page.png">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-		<!-- Custom CSS -->
-		<link rel="stylesheet" href="css/egg.css">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/white.css">
 
-        <!-- CLASE AUN NO DISPONIBLE-->
-        <!-- <meta http-equiv="refresh" content="0; url=./404.html"> -->
-		
-	</head>
-	<body>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/egg.css">
 
-        <!-- CLASE AUN NO DISPONIBLE-->
-        <!-- <script>
-            window.location.href = "/404.html";
-        </script> -->
+    <!-- CLASE AUN NO DISPONIBLE-->
+    <meta http-equiv="refresh" content="0; url=./404.html">
 
-		<div class="reveal">
-			<div class="slides">
+</head>
+
+<body>
+
+    <!-- CLASE AUN NO DISPONIBLE-->
+    <script>
+        window.location.href = "/404.html";
+    </script>
+
+    <div class="reveal">
+        <div class="slides">
 
             <section>
 
-                <section id="inicio" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-                    
+                <section id="inicio" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+
                     <h3>Fundamentos y usos prácticos de Docker</h3>
                     <h4>Clase 3 : Uso de Dockerfile</h4>
 
@@ -44,81 +47,100 @@
                     <h3>Temas de clase 3</h3>
                     <h4>Uso de Dockerfile</h4>
                     <small>
-                
+
                         <ul>
                             <li><a href="#/dockerfile_def">Introducción a Dockerfile</a></li>
                             <li><a href="#/dockerfile_instrucciones1">Estructura Básica de un Dockerfile</a></li>
                             <li><a href="#/dockerfile_capas">Capas en Dockerfile</a></li>
                             <li><a href="#/docker_build2">Construcción de Imágenes</a></li>
-                            <li><a href="#/dockerfile_buenas_practicas">Buenas Prácticas al Escribir un Dockerfile</a></li>
+                            <li><a href="#/dockerfile_buenas_practicas">Buenas Prácticas al Escribir un Dockerfile</a>
+                            </li>
                             <li><a href="#/multi-stage-1">Multi-stage Builds</a></li>
                             <li><a href="#/labs_clase">Laboratorios</a></li>
-                            
+
 
                         </ul>
 
                         <p><a href="?print-pdf">Exportar clase</a></p>
 
                     </small>
-                    
+
                 </section>
 
             </section>
-			
 
-			<section>
-				<section id="dockerfile1" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Uso de Dockerfile:</h3>
+
+            <section>
+                <section id="dockerfile1" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Uso de Dockerfile:</h3>
                     <h4>Conceptos de Dockerfile</h4>
-				</section>
+                </section>
 
-				<section id="dockerfile_def" data-state="no_footer">
-					<h3>¿Qué es un Dockerfile?</h3>
-					
+                <section id="dockerfile_def" data-state="no_footer">
+                    <h3>¿Qué es un Dockerfile?</h3>
+
                     <small>
-                    <p>Un Dockerfile es un archivo de texto plano, llamado (por lo general) simplemente <strong>Dockerfile</strong> que contiene una serie de instrucciones que se ejecutan de manera secuencial <strong>para construir una imagen de Docker</strong>. Cada línea del Dockerfile corresponde a una instrucción específica que define cómo se debe configurar el entorno del contenedor que se creará a partir de la imagen.</p>
-                   
-                    <img src="img/clase3/dockerfile.png">
-                    
-                    
-                    
+                        <p>Un Dockerfile es un archivo de texto plano, llamado (por lo general) simplemente
+                            <strong>Dockerfile</strong> que contiene una serie de instrucciones que se ejecutan de
+                            manera secuencial <strong>para construir una imagen de Docker</strong>. Cada línea del
+                            Dockerfile corresponde a una instrucción específica que define cómo se debe configurar el
+                            entorno del contenedor que se creará a partir de la imagen.</p>
+
+                        <img src="img/clase3/dockerfile.png">
+
+
+
                     </small>
 
-				</section>
+                </section>
 
-                
+
 
                 <section id="dockerfile_proposito" data-state="no_footer">
                     <h3>Propósito del Dockerfile</h3>
                     <small>
-                    <ul>
-                        <li><strong>Automatización:</strong> Dockerfile permite automatizar la construcción de imágenes, lo que es esencial para asegurar la consistencia entre los distintos entornos. Una vez que el Dockerfile está definido, cualquiera puede generar la misma imagen simplemente "buildeando" el Dockerfile mediante un comando.</li>
-                        <li><strong>Portabilidad:</strong> Con Dockerfile, podemos empaquetar la aplicación junto con todas sus dependencias en un proceso automatizado, garantizando que funcionará de la misma manera en cualquier sistema que soporte Docker y por lo tanto ayuda a hacer el entorno de desarrollo reproducible. También, al generar con un proceso automatizado la imágen, evitamos el uso intensivo de las registry para almacenar imágenes.</li>
-                    </ul>
-                    
+                        <ul>
+                            <li><strong>Automatización:</strong> Dockerfile permite automatizar la construcción de
+                                imágenes, lo que es esencial para asegurar la consistencia entre los distintos entornos.
+                                Una vez que el Dockerfile está definido, cualquiera puede generar la misma imagen
+                                simplemente "buildeando" el Dockerfile mediante un comando.</li>
+                            <li><strong>Portabilidad:</strong> Con Dockerfile, podemos empaquetar la aplicación junto
+                                con todas sus dependencias en un proceso automatizado, garantizando que funcionará de la
+                                misma manera en cualquier sistema que soporte Docker y por lo tanto ayuda a hacer el
+                                entorno de desarrollo reproducible. También, al generar con un proceso automatizado la
+                                imágen, evitamos el uso intensivo de las registry para almacenar imágenes.</li>
+                        </ul>
+
                     </small>
-                    <p><small>Dockerfile es una parte fundamental del ecosistema Docker. Junto con Docker Hub y las imágenes preexistentes, proporciona las herramientas necesarias para la construcción y despliegue de aplicaciones en contenedores. </small></p>
+                    <p><small>Dockerfile es una parte fundamental del ecosistema Docker. Junto con Docker Hub y las
+                            imágenes preexistentes, proporciona las herramientas necesarias para la construcción y
+                            despliegue de aplicaciones en contenedores. </small></p>
                 </section>
 
                 <section id="dockerfile_ventajas" data-state="no_footer">
-					<h3>Ventajas de Dockerfile</h3>
+                    <h3>Ventajas de Dockerfile</h3>
 
                     <small>
                         <ul>
-                            <li><strong>Consistencia:</strong> Un Dockerfile asegura que el entorno en el que se ejecuta tu aplicación es siempre el mismo, independientemente de dónde se despliegue. </li>
-                            <li><strong>Versionado:</strong> Los Dockerfiles, al ser archivos de texto plano, pueden versionarse y almacenarse en sistemas de control de versiones como Git.</li>
-                            <li><strong>Eficiencia:</strong> A través de la reutilización de capas y la minimización de dependencias, las imágenes pueden ser construidas rápidamente y con un uso mínimo de recursos.</li>
+                            <li><strong>Consistencia:</strong> Un Dockerfile asegura que el entorno en el que se ejecuta
+                                tu aplicación es siempre el mismo, independientemente de dónde se despliegue. </li>
+                            <li><strong>Versionado:</strong> Los Dockerfiles, al ser archivos de texto plano, pueden
+                                versionarse y almacenarse en sistemas de control de versiones como Git.</li>
+                            <li><strong>Eficiencia:</strong> A través de la reutilización de capas y la minimización de
+                                dependencias, las imágenes pueden ser construidas rápidamente y con un uso mínimo de
+                                recursos.</li>
                             <!-- <li><strong>Escalabilidad:*</strong> Al definir cómo se construye una imagen, puedes escalar fácilmente tu aplicación en diferentes entornos y con diferentes configuraciones sin cambiar el código base.</li> -->
                         </ul>
-                        
-                    </small>
-                    
 
-				</section>
+                    </small>
+
+
+                </section>
 
                 <section id="dockerfile_example1" data-state="no_footer">
                     <h3>Ejemplo de dockerfile</h3>
-                    
+
                     <small>
                         <p>Con este archivo Dockerfile podríamos correr una app simple escrita en Nodejs.</p>
                     </small>
@@ -141,14 +163,16 @@
 
 
                     <small>
-                    
-                    <p>Un Dockerfile se compone por instrucciones (FROM, COPY, etc). Cada línea formará <em>una capa</em> de la imágen docker. <a href="./files/node-app.zip" download>Descargar ejemplo</a></p>
 
-                    
+                        <p>Un Dockerfile se compone por instrucciones (FROM, COPY, etc). Cada línea formará <em>una
+                                capa</em> de la imágen docker. <a href="./files/node-app.zip" download>Descargar
+                                ejemplo</a></p>
 
-                </small>
 
-                    
+
+                    </small>
+
+
 
 
 
@@ -205,17 +229,21 @@
                 <section id="dockerfile_instrucciones1" data-state="no_footer">
                     <h3>Dockerfile: estructura básica</h3>
                     <small>
-                        <p>Un Dockerfile se compone de varias <em>instrucciones</em> que se ejecutan en secuencia para construir una imagen de Docker. A continuación, las mas comunes:</p>
+                        <p>Un Dockerfile se compone de varias <em>instrucciones</em> que se ejecutan en secuencia para
+                            construir una imagen de Docker. A continuación, las mas comunes:</p>
                     </small>
 
                     <small>
 
                         <ul>
-                            <li><strong><a href="https://docs.docker.com/reference/dockerfile/#from" target="_blank">FROM:</a></strong> Define la <em>imágen base</em> a partir de la cual se construirá la nueva imagen. Esta es siempre la primera instrucción en un Dockerfile y es obligatoria.</li>
+                            <li><strong><a href="https://docs.docker.com/reference/dockerfile/#from"
+                                        target="_blank">FROM:</a></strong> Define la <em>imágen base</em> a partir de la
+                                cual se construirá la nueva imagen. Esta es siempre la primera instrucción en un
+                                Dockerfile y es obligatoria.</li>
                         </ul>
                     </small>
 
-                            <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                                 # Ejemplo de FROM
                                 FROM ubuntu:24.04
                             </code></pre>
@@ -223,16 +251,19 @@
                     <small>
 
                         <ul>
-                            <li><strong><a href="https://docs.docker.com/reference/dockerfile/#workdir" target="_blank">WORKDIR:</a></strong> Establece el directorio de trabajo dentro de la imágen. Todas las instrucciones posteriores que utilicen rutas relativas se basarán en este directorio.
+                            <li><strong><a href="https://docs.docker.com/reference/dockerfile/#workdir"
+                                        target="_blank">WORKDIR:</a></strong> Establece el directorio de trabajo dentro
+                                de la imágen. Todas las instrucciones posteriores que utilicen rutas relativas se
+                                basarán en este directorio.
 
 
-                            
+
                             </li>
 
 
                         </ul>
                     </small>
-                        <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                             # Ejemplo de WORKDIR
                             WORKDIR /usr/src/app
                         </code></pre>
@@ -241,48 +272,54 @@
 
                     <small>
                         <p>Continúa...</p>
-                        <p><a href="https://docs.docker.com/build/building/base-images/" target="_blank">Docker Docs: Base images</a></p>
+                        <p><a href="https://docs.docker.com/build/building/base-images/" target="_blank">Docker Docs:
+                                Base images</a></p>
 
                     </small>
-                    
+
                 </section>
 
                 <section id="dockerfile_instrucciones2" data-state="no_footer">
 
                     <h3>Dockerfile: estructura básica</h3>
 
-                <small>
+                    <small>
 
-                    <ul>
+                        <ul>
 
-                        <li><a href="https://docs.docker.com/reference/dockerfile/#run" target="_blank"><strong>RUN:</strong></a> Ejecuta un comando durante la construcción de la imagen. Es comúnmente utilizado para instalar paquetes, configurar el entorno, o realizar cualquier otra tarea necesaria para preparar la imágen para su uso.
-                        
+                            <li><a href="https://docs.docker.com/reference/dockerfile/#run"
+                                    target="_blank"><strong>RUN:</strong></a> Ejecuta un comando durante la construcción
+                                de la imagen. Es comúnmente utilizado para instalar paquetes, configurar el entorno, o
+                                realizar cualquier otra tarea necesaria para preparar la imágen para su uso.
 
-                        
-                        </li>
 
-                    </ul>
-                </small>
-                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+
+                            </li>
+
+                        </ul>
+                    </small>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                     # Ejemplo de RUN
                     RUN apt-get update
                     RUN apt-get install -y curl
                 </code></pre>
 
-                <small>
-                    <ul>
-                        <li><a href="https://docs.docker.com/reference/dockerfile/#env" target="_blank"><strong>ENV:</strong></a> Establece variables de entorno. Estas variables pueden ser utilizadas por la aplicación en ejecución.</li>
-                    </ul>
-                </small>
+                    <small>
+                        <ul>
+                            <li><a href="https://docs.docker.com/reference/dockerfile/#env"
+                                    target="_blank"><strong>ENV:</strong></a> Establece variables de entorno. Estas
+                                variables pueden ser utilizadas por la aplicación en ejecución.</li>
+                        </ul>
+                    </small>
 
-                <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                     # Ejemplo de ENV
                     ENV NODE_ENV=production
                 </code></pre>
 
-                <p>
-                    <small>Continúa...</small>
-                </p>
+                    <p>
+                        <small>Continúa...</small>
+                    </p>
 
 
 
@@ -293,59 +330,77 @@
                 <section id="dockerfile_instrucciones3" data-state="no_footer">
                     <h3>Dockerfile: estructura básica</h3>
 
-                        
-                        <ul>
-                            <small>
-                            <li><strong>COPY y ADD:</strong> Ambas instrucciones se utilizan para copiar archivos desde el host a la imágen, pero con algunas diferencias:
+
+                    <ul>
+                        <small>
+                            <li><strong>COPY y ADD:</strong> Ambas instrucciones se utilizan para copiar archivos desde
+                                el host a la imágen, pero con algunas diferencias:
                                 <ul>
-                                    <li><a href="https://docs.docker.com/reference/dockerfile/#copy" target="_blank"><strong>COPY:</strong></a> Copia archivos o directorios desde el sistema de archivos del host a la imágen.</li>
-                                    <li><a href="https://docs.docker.com/reference/dockerfile/#add" target="_blank"><strong>ADD:</strong></a> Es similar a COPY, pero también puede descomprimir archivos y obtener archivos desde una URL remota, por ejemplo un repositorio Git.</li>
+                                    <li><a href="https://docs.docker.com/reference/dockerfile/#copy"
+                                            target="_blank"><strong>COPY:</strong></a> Copia archivos o directorios
+                                        desde el sistema de archivos del host a la imágen.</li>
+                                    <li><a href="https://docs.docker.com/reference/dockerfile/#add"
+                                            target="_blank"><strong>ADD:</strong></a> Es similar a COPY, pero también
+                                        puede descomprimir archivos y obtener archivos desde una URL remota, por ejemplo
+                                        un repositorio Git.</li>
                                 </ul>
 
 
                             </li>
                         </small>
-                        </ul>
+                    </ul>
 
-                        <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                         COPY . /usr/src/app
                         ADD https://ejemplo.com/archivo.tar.gz /usr/src/app/
                         </code></pre>
 
-                        <ul>
-                            
+                    <ul>
 
-                        <small><li><a href="https://docs.docker.com/reference/dockerfile/#cmd" target="_blank"><strong>CMD:</strong></a> Especifica el comando por defecto que se ejecutará cuando se inicie un contenedor creado a partir de la imagen.
 
-                            <ul>
-                                <li>Los parámetros son separados por comas.</li>
-                                <li>Si se proporcionan argumentos en el <code>docker run</code>, estos <em>sobrescriben</em> el CMD.</li>
-                            </ul>
-                        
-                        
-                        </li>
-                        </ul></small>
+                        <small>
+                            <li><a href="https://docs.docker.com/reference/dockerfile/#cmd"
+                                    target="_blank"><strong>CMD:</strong></a> Especifica el comando por defecto que se
+                                ejecutará cuando se inicie un contenedor creado a partir de la imagen.
 
-                            <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
+                                <ul>
+                                    <li>Los parámetros son separados por comas.</li>
+                                    <li>Si se proporcionan argumentos en el <code>docker run</code>, estos
+                                        <em>sobrescriben</em> el CMD.</li>
+                                </ul>
+
+
+                            </li>
+                    </ul></small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                                 CMD ["node", "app.js"]                               
                             </code></pre>
-                            <small>
-                            <ul>
-                            <li><a href="https://docs.docker.com/reference/dockerfile/#entrypoint" target="_blank"><strong>ENTRYPOINT</strong></a>: Similar a CMD pero NO es sobrescrito por los argumentos pasados a <code>docker run</code>, sino que los parámetros se anexan como argumentos.</li>
+                    <small>
+                        <ul>
+                            <li><a href="https://docs.docker.com/reference/dockerfile/#entrypoint"
+                                    target="_blank"><strong>ENTRYPOINT</strong></a>: Similar a CMD pero NO es
+                                sobrescrito por los argumentos pasados a <code>docker run</code>, sino que los
+                                parámetros se anexan como argumentos.</li>
                         </ul>
-                        </small>
-
-                        </ul>
-                        <small>
-                        <p>Listado completo de instrucciones en <a href="https://docs.docker.com/reference/dockerfile/" target="_blank">Dockerfile reference</a>.</p>
                     </small>
-         
+
+                    </ul>
+                    <small>
+                        <p>Listado completo de instrucciones en <a href="https://docs.docker.com/reference/dockerfile/"
+                                target="_blank">Dockerfile reference</a>.</p>
+                    </small>
+
                 </section>
 
                 <section id="dockerfile_capas" data-state="no_footer">
                     <h3>Capas de Dockerfile</h3>
                     <small>
-                        <p>Las capas de imágenes de Docker desempeñan un papel fundamental en la optimización de los procesos de buildeo de imágenes, donde cada instrucción en un Dockerfile representa una capa distinta dentro de la imagen. Comprender cómo funcionan estas capas y su impacto en el almacenamiento en caché de Docker puede mejorar significativamente la eficiencia de la construcción de imágenes de Docker.</p>
+                        <p>Las capas de imágenes de Docker desempeñan un papel fundamental en la optimización de los
+                            procesos de buildeo de imágenes, donde cada instrucción en un Dockerfile representa una capa
+                            distinta dentro de la imagen. Comprender cómo funcionan estas capas y su impacto en el
+                            almacenamiento en caché de Docker puede mejorar significativamente la eficiencia de la
+                            construcción de imágenes de Docker.</p>
                     </small>
 
                     <img src="./img/clase3/dockerfile-layers.png">
@@ -353,7 +408,7 @@
 
                 </section>
 
-                
+
 
 
 
@@ -366,14 +421,19 @@
                 <section id="docker_cache" data-state="no_footer">
                     <h3>Build Cache</h3>
                     <small>
-                        <p>Docker utiliza un sistema de caché para acelerar la construcción de imágenes. Si una capa no ha cambiado, Docker reutiliza la capa en lugar de reconstruirla. Esto hace que el orden de las instrucciones sea muy importante; cambios en las primeras instrucciones pueden invalidar la caché de todas las capas siguientes.</p>
-                        
-                    
+                        <p>Docker utiliza un sistema de caché para acelerar la construcción de imágenes. Si una capa no
+                            ha cambiado, Docker reutiliza la capa en lugar de reconstruirla. Esto hace que el orden de
+                            las instrucciones sea muy importante; cambios en las primeras instrucciones pueden invalidar
+                            la caché de todas las capas siguientes.</p>
+
+
                     </small>
 
                     <img src="./img/clase3/dockerfile-change-cache.png">
 
-                    <small><a href="https://docs.docker.com/build/cache/" target="_blank">Docker Docs: Build Cache</a> | <a href="https://docs.docker.com/build/cache/invalidation/" target="_blank">Docker Docs: Build Cache Invalidation</a></small>
+                    <small><a href="https://docs.docker.com/build/cache/" target="_blank">Docker Docs: Build Cache</a> |
+                        <a href="https://docs.docker.com/build/cache/invalidation/" target="_blank">Docker Docs: Build
+                            Cache Invalidation</a></small>
 
 
 
@@ -382,7 +442,10 @@
                 <section id="dockerfile_optimizacion_capas" data-state="no_footer">
                     <h3>Optimización de la build cache:</h3>
 
-                    <small>Las imágenes de Docker se construyen en <strong>capas</strong>, donde cada instrucción en el Dockerfile crea una nueva capa. Para optimizar la construcción de imágenes y reducir su tamaño, es importante agrupar las instrucciones RUN y minimizar las capas innecesarias. Por ejemplo:</small>
+                    <small>Las imágenes de Docker se construyen en <strong>capas</strong>, donde cada instrucción en el
+                        Dockerfile crea una nueva capa. Para optimizar la construcción de imágenes y reducir su tamaño,
+                        es importante agrupar las instrucciones RUN y minimizar las capas innecesarias. Por
+                        ejemplo:</small>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
                         RUN apt-get update
@@ -396,11 +459,14 @@
                         RUN apt-get update && apt-get install -y curl vim
                     </code></pre>
 
-                    <small>Tener en cuenta que NO siempre es mejor u optimizar reducir la cantidad de capas. Hay diversas formas de optimizar la caché de construcción de Docker, puede ver un listado mas completo en la doc al pie de la presentación:
+                    <small>Tener en cuenta que NO siempre es mejor u optimizar reducir la cantidad de capas. Hay
+                        diversas formas de optimizar la caché de construcción de Docker, puede ver un listado mas
+                        completo en la doc al pie de la presentación:
 
-                    <p><a href="https://docs.docker.com/build/cache/optimize/" target="_blank">Docker Docs: Optimize Cache</a> </p>
+                        <p><a href="https://docs.docker.com/build/cache/optimize/" target="_blank">Docker Docs: Optimize
+                                Cache</a> </p>
 
-                </small>
+                    </small>
 
                 </section>
 
@@ -418,36 +484,42 @@
 
 
             <section>
-				<section id="docker_build" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Construyendo imágenes</h3>
+                <section id="docker_build" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Construyendo imágenes</h3>
                     <h4>Comandos básicos</h4>
-				</section>
+                </section>
 
                 <section id="docker_build2" data-state="no_footer">
                     <h3>Construcción de imágenes</h3>
-                    
+
                     <small>
-                        <p>La construcción de imágenes es un proceso clave en el uso de Docker, ya que las imágenes son el punto de partida para crear y ejecutar contenedores. </p>
+                        <p>La construcción de imágenes es un proceso clave en el uso de Docker, ya que las imágenes son
+                            el punto de partida para crear y ejecutar contenedores. </p>
                     </small>
 
-                    <small>El comando principal utilizado para construir imágenes en Docker es <code>docker build</code>. Este comando lee las instrucciones de un Dockerfile y produce una imagen a partir de ellas.</small>
+                    <small>El comando principal utilizado para construir imágenes en Docker es
+                        <code>docker build</code>. Este comando lee las instrucciones de un Dockerfile y produce una
+                        imagen a partir de ellas.</small>
                     <p>
-                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                             docker build [OPTIONS] PATH
                         </code></pre>
                     </p>
-                <small>
-                    <p>
-                    <ul>
-                                                <li><code>OPTIONS</code>: Opciones adicionales que pueden personalizar el proceso de construcción.</li>
+                    <small>
+                        <p>
+                        <ul>
+                            <li><code>OPTIONS</code>: Opciones adicionales que pueden personalizar el proceso de
+                                construcción.</li>
 
-                        <li><code>PATH</code>: La ubicación del contexto de construcción, es decir, el directorio donde se encuentra el Dockerfile y los archivos necesarios para la construcción.</li>
-                    </ul>
-                </p>
-                
-                </small>
-                <img src="./img/clase3/dockerfile-build-image.png">             
-    
+                            <li><code>PATH</code>: La ubicación del contexto de construcción, es decir, el directorio
+                                donde se encuentra el Dockerfile y los archivos necesarios para la construcción.</li>
+                        </ul>
+                        </p>
+
+                    </small>
+                    <img src="./img/clase3/dockerfile-build-image.png">
+
                 </section>
 
 
@@ -455,7 +527,8 @@
                     <h3>Construcción de imágenes</h3>
 
 
-                    <p><small>Supongamos que tenemos un Dockerfile en el directorio actual y queremos construir una imagen llamada <code>mi-app</code>.</small></p>
+                    <p><small>Supongamos que tenemos un Dockerfile en el directorio actual y queremos construir una
+                            imagen llamada <code>mi-app</code>.</small></p>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker build -t mi-app .
@@ -463,57 +536,72 @@
 
                     <small>
                         <ul>
-                            <li><code><strong>-t mi-app</strong></code>: asigna un nombre y una etiqueta (tag) a la imagen creada.</li>
-                            <li><code><strong>.</strong></code>: indica que el contexto de construcción <strong>(context build)</strong> es el directorio actual.</li>
+                            <li><code><strong>-t mi-app</strong></code>: asigna un nombre y una etiqueta (tag) a la
+                                imagen creada.</li>
+                            <li><code><strong>.</strong></code>: indica que el contexto de construcción <strong>(context
+                                    build)</strong> es el directorio actual.</li>
                         </ul>
                     </small>
 
-                    <p><small>Al construir imágenes, es buena práctica usar etiquetas para versionarlas. Esto facilita la gestión y despliegue de diferentes versiones de tu aplicación. Una mejor opción sería:</small></p>
+                    <p><small>Al construir imágenes, es buena práctica usar etiquetas para versionarlas. Esto facilita
+                            la gestión y despliegue de diferentes versiones de tu aplicación. Una mejor opción
+                            sería:</small></p>
 
                     <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                         docker build -t mi-app:v0.1 .
                         docker build -t mi-app:latest .
                     </code></pre>
                     <small>
-                        <p>Desde la versión <a href="https://docs.docker.com/engine/deprecated/#legacy-builder-fallback" target="_blank">23</a> de Docker se marcó a build como función deprecada y será reemplazado por <a href="https://docs.docker.com/go/buildx/" target="_blank">BuildKit</a>. Por eso, cuando usamos el comando <code>build</code> nos sale un warning.</p>
+                        <p>Desde la versión <a href="https://docs.docker.com/engine/deprecated/#legacy-builder-fallback"
+                                target="_blank">23</a> de Docker se marcó a build como función deprecada y será
+                            reemplazado por <a href="https://docs.docker.com/go/buildx/" target="_blank">BuildKit</a>.
+                            Por eso, cuando usamos el comando <code>build</code> nos sale un warning.</p>
                     </small>
 
-                    <small><p><a href="https://docs.docker.com/build/concepts/context/" target="_blank">Docker Docs: Build context</a></p></small>
+                    <small>
+                        <p><a href="https://docs.docker.com/build/concepts/context/" target="_blank">Docker Docs: Build
+                                context</a></p>
+                    </small>
 
 
 
-    
+
                 </section>
 
                 <section id="docker_build4" data-state="no_footer">
 
                     <h3>Opciones comunes de docker build</h3>
 
-                    
-                        <ul>
-                            <small><li><code>-f ARCHIVO</code>: Especifica un Dockerfile diferente al dockerfile estándar.</li></small>
-                                
-                                <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+
+                    <ul>
+                        <small>
+                            <li><code>-f ARCHIVO</code>: Especifica un Dockerfile diferente al dockerfile estándar.</li>
+                        </small>
+
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                                     docker build -f Dockerfile.dev -t mi-app-dev .
                                 </code></pre>
-                            
-                            
 
-                            <small><li><code>--no-cache</code>: Evita el uso de la caché en la construcción de la imagen. Útil cuando necesitas asegurarte de que todas las capas se reconstruyan desde cero.</li></small>
 
-                                <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
+
+                        <small>
+                            <li><code>--no-cache</code>: Evita el uso de la caché en la construcción de la imagen. Útil
+                                cuando necesitas asegurarte de que todas las capas se reconstruyan desde cero.</li>
+                        </small>
+
+                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
                                     docker build --no-cache -t mi-aplicacion:v0.1 .
                                 </code></pre>
 
 
-                            
-                            
-                            
-                        </ul>
 
-                        <small>
 
-                        </small>
+
+                    </ul>
+
+                    <small>
+
+                    </small>
 
 
                 </section>
@@ -522,23 +610,50 @@
                     <h3>Recomendaciones</h3>
                     <small>
                         <ul>
-                            <li><strong>Evitar instrucciones redundantes:</strong> Es importante no duplicar instrucciones o comandos que no sean necesarios, lo que podría llevar a la creación de capas adicionales e innecesarias.</li>
-                            <li><strong>Utilizar la imágen correcta:</strong> Al elegir una imagen, hay que asegurarse que esté creada a partir de una fuente confiable. Imágenes <a href="https://hub.docker.com/search?image_filter=official" target="_blank">oficiales</a>, <a href="https://hub.docker.com/search?image_filter=store" target="_blank">verificadas</a> o <a href="https://hub.docker.com/search?image_filter=open_source">sponsoreadas por Docker OpenSource</a>. <a href="https://docs.docker.com/build/building/best-practices/#choose-the-right-base-image" target="_blank">[1]</a></li>
-                            <li><strong>Usar imágenes ya construidas con las dependencias incluídas:</strong> Siempre que sea posible, usar imágenes que tengan los paquetes y dependencias necesarios.</li>
-                            <li><strong>No incluir en las imágenes información sensible:</strong> Evita incluir secretos, contraseñas o claves privadas directamente en el Dockerfile. Utiliza variables de entorno o archivos de configuración que puedan ser montados en el contenedor en tiempo de ejecución.</li>
-                            <li><strong>Minimizar los archivos copiados al contenedor:</strong> Es muy útil el uso del archivo <a href="https://docs.docker.com/build/building/best-practices/#exclude-with-dockerignore" target="_blank"><code>.dockerignore</code></a> . Similar al <em>.gitignore</em> que evita que se copien dichos archivos o directorios al contenedor. <a href="https://docs.docker.com/build/building/best-practices/#exclude-with-dockerignore" target="_blank">[2]</a></li>
-                            <li><strong>Uso de multi-stage builds</strong>: Usa la técnica de construcción en múltiples etapas para crear imágenes más ligeras. La primera etapa se utiliza para compilar la aplicación, y la última etapa solo contiene los artefactos necesarios para ejecutar la aplicación. <a href="https://docs.docker.com/build/building/best-practices/#use-multi-stage-builds" target="_blank">[3]</a></li>
+                            <li><strong>Evitar instrucciones redundantes:</strong> Es importante no duplicar
+                                instrucciones o comandos que no sean necesarios, lo que podría llevar a la creación de
+                                capas adicionales e innecesarias.</li>
+                            <li><strong>Utilizar la imágen correcta:</strong> Al elegir una imagen, hay que asegurarse
+                                que esté creada a partir de una fuente confiable. Imágenes <a
+                                    href="https://hub.docker.com/search?image_filter=official"
+                                    target="_blank">oficiales</a>, <a
+                                    href="https://hub.docker.com/search?image_filter=store"
+                                    target="_blank">verificadas</a> o <a
+                                    href="https://hub.docker.com/search?image_filter=open_source">sponsoreadas por
+                                    Docker OpenSource</a>. <a
+                                    href="https://docs.docker.com/build/building/best-practices/#choose-the-right-base-image"
+                                    target="_blank">[1]</a></li>
+                            <li><strong>Usar imágenes ya construidas con las dependencias incluídas:</strong> Siempre
+                                que sea posible, usar imágenes que tengan los paquetes y dependencias necesarios.</li>
+                            <li><strong>No incluir en las imágenes información sensible:</strong> Evita incluir
+                                secretos, contraseñas o claves privadas directamente en el Dockerfile. Utiliza variables
+                                de entorno o archivos de configuración que puedan ser montados en el contenedor en
+                                tiempo de ejecución.</li>
+                            <li><strong>Minimizar los archivos copiados al contenedor:</strong> Es muy útil el uso del
+                                archivo <a
+                                    href="https://docs.docker.com/build/building/best-practices/#exclude-with-dockerignore"
+                                    target="_blank"><code>.dockerignore</code></a> . Similar al <em>.gitignore</em> que
+                                evita que se copien dichos archivos o directorios al contenedor. <a
+                                    href="https://docs.docker.com/build/building/best-practices/#exclude-with-dockerignore"
+                                    target="_blank">[2]</a></li>
+                            <li><strong>Uso de multi-stage builds</strong>: Usa la técnica de construcción en múltiples
+                                etapas para crear imágenes más ligeras. La primera etapa se utiliza para compilar la
+                                aplicación, y la última etapa solo contiene los artefactos necesarios para ejecutar la
+                                aplicación. <a
+                                    href="https://docs.docker.com/build/building/best-practices/#use-multi-stage-builds"
+                                    target="_blank">[3]</a></li>
                         </ul>
 
-                        <p><a href="https://docs.docker.com/build/building/best-practices/" target="_blank">Docker Docs: Building best practices</a></p>
-                        
-                    
+                        <p><a href="https://docs.docker.com/build/building/best-practices/" target="_blank">Docker Docs:
+                                Building best practices</a></p>
+
+
                     </small>
 
 
 
                 </section>
-              
+
 
                 <section id="ipreguntas2" data-state="no_footer">
                     <h2>Consultas</h2>
@@ -547,34 +662,42 @@
             </section>
 
             <section>
-				<section id="multi-stage" data-state="customevent" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<h3>Multi-stage builds</h3>
-				</section>
+                <section id="multi-stage" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Multi-stage builds</h3>
+                </section>
 
                 <section id="multi-stage-1" data-state="no_footer">
                     <h3>Multi-stage builds</h3>
                     <small>
-                        Las Multi-stage builds es una técnica que permite construir imágenes más pequeñas y eficientes al separar las etapas de construcción y ejecución. Esto es particularmente útil cuando el entorno de compilación requiere herramientas adicionales que no son necesarias en el entorno de ejecución, ayudando a reducir el tamaño final de la imagen y a minimizar su superficie de ataque. Utilizando multi-stage builds podemos intercambiar archivos entre una imágen a otra.
-                        
+                        Las Multi-stage builds es una técnica que permite construir imágenes más pequeñas y eficientes
+                        al separar las etapas de construcción y ejecución. Esto es particularmente útil cuando el
+                        entorno de compilación requiere herramientas adicionales que no son necesarias en el entorno de
+                        ejecución, ayudando a reducir el tamaño final de la imagen y a minimizar su superficie de
+                        ataque. Utilizando multi-stage builds podemos intercambiar archivos entre una imágen a otra.
+
                     </small>
 
                     <img src="./img/clase3/multitage-2.png" width="90%">
 
-                    
+
 
                 </section>
 
                 <section id="multi-stage-2" data-state="no_footer">
                     <h3>Multi-stage builds</h3>
                     <small>
-                        En la práctica, veremos un Dockerfile con mas de una instrucción <strong>FROM</strong>. Es posible nombrar internamente las etapas con la palabra <strong>AS</strong>. 
+                        En la práctica, veremos un Dockerfile con mas de una instrucción <strong>FROM</strong>. Es
+                        posible nombrar internamente las etapas con la palabra <strong>AS</strong>.
                     </small>
                     <small>
-                        Una técnica que se suele hacer es, utilizar una imágen con mas herramientas para la primer etapa de compilación y luego para levantar el contenedor para ejecución utilizar una imágen mas liviana, basada por ejemplo en Alpine Linux.
+                        Una técnica que se suele hacer es, utilizar una imágen con mas herramientas para la primer etapa
+                        de compilación y luego para levantar el contenedor para ejecución utilizar una imágen mas
+                        liviana, basada por ejemplo en Alpine Linux.
                     </small>
 
                     <img src="./img/clase3/multistage.png" width="50%">
-                    
+
 
 
                 </section>
@@ -605,7 +728,8 @@
                     <small><a href="./files/node-app.zip" download>Descargar ejemplo</a> | </small>
 
 
-                    <small><a href="https://docs.docker.com/build/building/multi-stage/" target="_blank">Docker Docs: Multi-stage</a> </small>
+                    <small><a href="https://docs.docker.com/build/building/multi-stage/" target="_blank">Docker Docs:
+                            Multi-stage</a> </small>
 
 
 
@@ -618,133 +742,139 @@
 
 
             </section>
-           
+
 
             <section id="labs_clase" data-state="no_footer">
                 <h3>Actividad de práctica:</h3>
                 <small>
-                <ul>
+                    <ul>
 
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/03-dockerfiles/31-holamundo/README.md" target="_blank">Lab 3.1</a> Nuestro primer Dockerfile: Hola Docker</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/03-dockerfiles/32-cow/README.md" target="_blank">Lab 3.2</a> Dockerizando una app Python: Una vaca te saluda</li>
-                    <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/03-dockerfiles/33-best-page/README.md" target="_blank">Lab 3.3</a> Dockerizando una web estática: La mejor página del mundo</li>
-                    
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/03-dockerfiles/31-holamundo/README.md"
+                                target="_blank">Lab 3.1</a> Nuestro primer Dockerfile: Hola Docker</li>
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/03-dockerfiles/32-cow/README.md"
+                                target="_blank">Lab 3.2</a> Dockerizando una app Python: Una vaca te saluda</li>
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/03-dockerfiles/33-best-page/README.md"
+                                target="_blank">Lab 3.3</a> Dockerizando una web estática: La mejor página del mundo
+                        </li>
 
-                    
-                </ul>
+
+
+                    </ul>
 
                 </small>
-                
-            
-                
+
+
+
 
             </section>
 
-        </section>
+            </section>
 
-        <section id="fin" data-state="hide_footer" data-transition="slide" data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-				
-            <a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
-            
+            <section id="fin" data-state="hide_footer" data-transition="slide"
+                data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
 
-        </section>
-						
+                <a href="index.html"><img src="img/logos/idep_logo.png" width="40%" height="40%"></a>
 
-					
-    </div>
-</div>
 
-<footer>
-    <!-- Logos en el footer -->
-    <div id="logos-footer" class="footer">
-        <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
-        <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
-        <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+            </section>
+
+
+
+        </div>
     </div>
 
-    <script type="text/javascript">
-        window.addEventListener("load", function() {
-    
-            revealDiv = document.querySelector("body div.reveal")
-            footer = document.getElementById("logos-footer");
-            revealDiv.appendChild(footer);
-    
-        } );
-    </script>
-</footer>
+    <footer>
+        <!-- Logos en el footer -->
+        <div id="logos-footer" class="footer">
+            <span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
+            <span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
+            <span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
+        </div>
 
-<script src="dist/reveal.js"></script>
-<script src="plugin/notes/notes.js"></script>
-<script src="plugin/markdown/markdown.js"></script>
-<script src="plugin/highlight/highlight.js"></script>
-<script src="plugin/zoom/zoom.js"></script>
-<script src="plugin/copycode/copycode.js"></script>
+        <script type="text/javascript">
+            window.addEventListener("load", function () {
+
+                revealDiv = document.querySelector("body div.reveal")
+                footer = document.getElementById("logos-footer");
+                revealDiv.appendChild(footer);
+
+            });
+        </script>
+    </footer>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/copycode/copycode.js"></script>
 
 
-<script>
-    // More info about initialization & config:
-    // - https://revealjs.com/initialization/
-    // - https://revealjs.com/config/
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
 
         // Para eventos personalizados. Indica que está en la presentación
 
-    Reveal.on( 'customevent', function() {
-        var element = document.getElementById("logos-footer");
-        element.style.display = "table";
-        element.style.opacity = "40%";
+        Reveal.on('customevent', function () {
+            var element = document.getElementById("logos-footer");
+            element.style.display = "table";
+            element.style.opacity = "40%";
 
-    } );
+        });
 
-    Reveal.on( 'hide_footer', function() {
-        var element = document.getElementById("logos-footer");
-        element.style.display = "table";
-        element.style.opacity = "0%";
+        Reveal.on('hide_footer', function () {
+            var element = document.getElementById("logos-footer");
+            element.style.display = "table";
+            element.style.opacity = "0%";
 
-    } );
+        });
 
-    Reveal.on( 'no_footer', function() {
-        var element = document.getElementById("logos-footer");
-        //element.style.display = "none";
-        // element.style.display = "table";
-        element.style.opacity = "15%";
-    } );
-    Reveal.initialize({
-        hash: true,
+        Reveal.on('no_footer', function () {
+            var element = document.getElementById("logos-footer");
+            //element.style.display = "none";
+            // element.style.display = "table";
+            element.style.opacity = "15%";
+        });
+        Reveal.initialize({
+            hash: true,
 
-        copycode: {
-        button: "hover",
-        display: "icons",
-        text: {
-            copy: "Copiar",
-            copied: "¡Copiado!",
-        },
-        plaintextonly: true,
-        timeout: 1000,
-        style: {
-            copybg: "gray",
-            copiedbg: "green",
-            copycolor: "black",
-            copiedcolor: "white",
-            copyborder: "",
-            copiedborder: "",
-            scale: 1,
-            offset: 0,
-            radius: 0.2
-        },
-        tooltip: true,
-        iconsvg: {
-            copy: '',
-            copied: ''
-        },
-        cssautoload: true,
-        csspath: "",
-        clipboardjspath: ""
-        },
+            copycode: {
+                button: "hover",
+                display: "icons",
+                text: {
+                    copy: "Copiar",
+                    copied: "¡Copiado!",
+                },
+                plaintextonly: true,
+                timeout: 1000,
+                style: {
+                    copybg: "gray",
+                    copiedbg: "green",
+                    copycolor: "black",
+                    copiedcolor: "white",
+                    copyborder: "",
+                    copiedborder: "",
+                    scale: 1,
+                    offset: 0,
+                    radius: 0.2
+                },
+                tooltip: true,
+                iconsvg: {
+                    copy: '',
+                    copied: ''
+                },
+                cssautoload: true,
+                csspath: "",
+                clipboardjspath: ""
+            },
 
-        // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode ]
-    });
-</script>
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode]
+        });
+    </script>
 
 </body>
+
 </html>
