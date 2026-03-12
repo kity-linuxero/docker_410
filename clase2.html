@@ -104,7 +104,7 @@
 
                         <!-- <p>Una imágen de Docker es una plantilla <strong>inmutable</strong> que contiene <em>todo lo necesario para ejecutar un contenedor</em>. Esto puede incluir el código de la aplicación, bibliotecas, dependencias, y el entorno de ejecución necesario. Las imágenes se crean a partir <strong>Dockerfiles</strong>, que son archivos de texto con instrucciones específicas para construir una imagen.</p> -->
                         <p>Una imagen de Docker es una plantilla de solo lectura que incluye todos los archivos,
-                            binarios, bibliotecas y configuraciones para ejecutar un contenedor. Por lo tanto, podría
+                            binarios y configuraciones para ejecutar un contenedor. Por lo tanto, podría
                             decirse que un contenedor de Docker es una imágen de Docker instanciada (en ejecución, que
                             estuvo en ejecución o lista para estarlo).</p>
                         <p>Hoy en día, el formato de estas imágenes sigue el estándar <strong>OCI Image Spec</strong>,
@@ -123,13 +123,14 @@
 
 
                         <!-- <img src="img/clase2/diagram.png"> -->
+                        <!-- <img src="./img/clase2/docker-image.png" width="60%"> -->
 
                     </small>
 
-                    <img src="./img/clase2/docker-image.png" width="70%">
+
 
                     <small>
-
+                        <br>
 
                         <a href="https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/"
                             target="_blank">Ref: Docker Docs, what is an image</a>
@@ -185,11 +186,15 @@
                         <p>Además, es posible configurar registros privados, lo que nos permite gestionar nuestras
                             imágenes de Docker de manera segura dentro de nuestra organización.</p>
 
+                        <img src="./img/clase2/docker-image.png" width="60%">
+
                         <p><a href="https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-registry/"
                                 target="_blank">Docker Docs: What is a registry</a></p>
 
 
                     </small>
+
+
 
                 </section>
 
@@ -307,96 +312,6 @@
 
 
 
-                <!-- <section id="docker_status" data-state="no_footer">
-                    <h3>Estados de un contenedor Docker</h3>
-           
-                    <small>
-                    <ul> 
-                        <li><strong>Created:</strong> El contenedor se ha creado pero no está en ejecución.</li>
-                        <li><strong>Running:</strong> El contenedor está en ejecución, también puede aparecer como Up seguido por el tiempo que hace que está ejecutándose.</li>
-                        <li><strong>Restarting:</strong> El contenedor se está reiniciando. Esto puede suceder si el contenedor está configurado para reiniciarse automáticamente en ciertos casos, como después de un fallo o bien por indicación del programador.</li>
-                        <li><strong>Removing:</strong> El contenedor está en proceso de ser eliminado.</li>
-                        <li><strong>Paused:</strong> El contenedor está pausado; no ejecuta procesos pero sigue accesible.</li>
-                        <li><strong>Exited:</strong> El contenedor ha terminado su ejecución con un código de salida. Un código 0 indica que finalizó correctamente.</li>
-                        <li><strong>Dead:</strong> El contenedor no puede ser gestionado por Docker debido a un fallo grave.</li>
-
-                        
-                    </ul>
-                    
-                    </small>
-                    <p><small><a href="https://docs.docker.com/reference/cli/docker/container/ls/#status" target="_blank">Ref Docker Docs Status</a></small></p>
-                </section> -->
-
-
-
-
-
-
-
-                <!-- <section id="life_cycle" data-state="no_footer">
-                    <h3>Ciclo de vida de contenedores</h3>
-                    <small><p>Este ciclo de vida permite gestionar de forma efectiva la creación, ejecución y eliminación de contenedores.</p></small>
-                    <img src="img/clase2/cycle.png">
-                    <small class="fragment">Cada etapa del ciclo de vida se asocia a un comando que provocará el cambio de un estado a otro.</small>
-
-
-                </section> -->
-
-                <!-- <section id="images_container" data-state="no_footer">
-					<h3>Crear un contenedor a partir de una imáge</h3>
-                    <small>
-                        <a href="clase1.html#/docker-install_18" target="_blank">En la clase anterior</a> ejecutamos el contenedor <em>hello-world</em>. ¿Qué ha pasado cuando lo ejecutamos?:
-                        <ul>
-                            <li>1. El cliente Docker se conecta con el Docker daemon</li>
-                            <li>2. El Docker daemon descarga la imágen (si no se encuentra descargada) "hello-world" desde la registry (DockerHub)</li>
-                            <li>3. El Docker daemon crea un nuevo contenedor partiendo desde la imágen descargada y la ejecución de la imágen produce un texto que se muestra en pantalla.</li>
-                            <li>4. El contenedor termina su ejecución y finaliza con un estado <em>Exit (0)</em></li>
-                        </ul>
-                    </small>
-				</section> -->
-
-
-
-                <!-- PARA LA PRÓXIMA CLASE, MEJOR -->
-
-                <!-- <section id="images_container" data-state="no_footer">
-
-                    <h3>Imágenes y Dockerfile</h3>
-
-                    <small>
-                        <p>Un <code>Dockerfile</code> es un archivo de texto que contiene una serie de instrucciones que Docker utiliza para construir una imagen de Docker. Es la receta que define todo lo necesario para configurar y ejecutar una aplicación dentro de un contenedor.</p>
-                    </small>
-                        <h4>Archivo Dockerfile de ejemplo:</h4>
-
-                        <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                            FROM ubuntu:latest
-                            RUN apt-get update && apt-get install -y nginx
-                            COPY index.html /var/www/html/
-                            CMD ["nginx", "-g", "daemon off;"]
-                            EXPOSE 80
-                        </code></pre>
-
-                        <small class="fragment"><p>A continuación analizaremos los componentes de un Dockerfile</p></small>
-
-                </section>
-
-                <section id="dockerfile" data-state="no_footer">
-                    <h3>Estructura de un Dockerfile</h3>
-                    <small>
-                        <p></p>
-                        <ul>
-                            <li><strong><code>FROM</code>:</strong> Las imágenes arrancan siempre con el FROM. Es la base de la imágen. Por lo general indica la imágen de un sistema operativo o de una aplicación. Es una buena práctica usar una imágen ya pre-armada con todas las dependencias y no armarla a partir del SO si no es necesario.</li>
-                            <li><strong><code>RUN</code>:</strong> Ejecuta comandos en el contenedor durante la construcción de la imagen del FROM.</li>
-                            <li><strong><code>COPY/ADD</code>:</strong> Copia archivos y directorios desde el sistema de archivos del host al sistema de archivos del contenedor.</li>
-                            <li><strong><code>CMD/ENTRYPOINT</code>:</strong> Define el comando predeterminado que se ejecutará cuando se inicie un contenedor a partir de la imagen.</li>
-                            <li><strong><code>EXPOSE</code>:</strong> Indica el puerto en el que la aplicación dentro del contenedor estará escuchando.</li>
-
-                        </ul>
-
-                        <p>Consultar la <a href="https://docs.docker.com/reference/dockerfile/" target="_blank">referencia <code>Dockerfile</code></a> para ver todos los comandos disponibles.</p>
-                    </small>
-
-                </section> -->
 
                 <section id="ipreguntas1" data-state="no_footer">
                     <h2>Consultas</h2>
@@ -426,7 +341,7 @@
                             <li>De una misma imagen, se pueden crear múltiples contenedores que pueden ejecutarse
                                 simultáneamente.</li>
                             <li>Por defecto, los contenedores <strong>No son persistentes</strong> y la info guardada
-                                dentro de ellos se pierde al finalizar la ejecución.</li>
+                                dentro de ellos se pierde al eliminarse el contenedor.</li>
                             <li>Durante su ciclo de vida, los contenedores pasan por diferentes
                                 <strong>estados</strong>.
                             </li>
@@ -471,22 +386,6 @@
                         </p>
 
                     </small>
-
-
-
-                    <!-- <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker run [opciones] [imagen] [comando]
-                    </code></pre>
-                    <p>Ejemplos</p>
-
-                    <pre class="codigo_shadow" data-id="code-animation"><code class="bash codigo-redondo" data-trim>
-                        docker run hello-world      # Iniciará el hello-world de Docker
-                        docker run -it ubuntu bash  # Iniciará una bash interactiva
-                    </code></pre> -->
-
-
-
-
 
 
 
