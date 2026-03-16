@@ -557,6 +557,8 @@
                         <p>Desde la versión <a href="https://docs.docker.com/engine/deprecated/#legacy-builder-fallback"
                                 target="_blank">23</a> de Docker se marcó a build como función deprecada y fue
                             reemplazado por <a href="https://docs.docker.com/go/buildx/" target="_blank">BuildKit</a>.
+                            En algunas versiones de Docker puede salir un warning que indica eso.
+                        </p>
 
                     </small>
 
@@ -568,6 +570,30 @@
 
 
 
+                </section>
+
+                <section id="docker_buildx" data-state="no_footer">
+
+                    <h3>Buildx</h3>
+                    <small>
+                        <p>Desde la versión 19.03 de Docker está disponible <code>docker buildx</code> que permite
+                            construir imágenes de Docker de manera más eficiente y con mayor flexibilidad.</p>
+
+                        <p>Y, como se mencionó antes, desde la versión 23 <code>docker buildx</code> reemplazó a build.
+                        </p>
+
+                        <p>Entre las principales mejoras de Buildx es que podemos buildear imágenes para diferentes
+                            arquitecturas
+                            (multi-architecture images). Por ejemplo, podemos buildear una imagen para amd64 y otra para
+                            arm64 desde una computadora amd64.
+                        </p>
+                    </small>
+
+                    <small>
+                        <p><a href="https://docs.docker.com/build/concepts/overview/#buildx" target="_blank">Docker
+                                Docs:
+                                Buildx</a></p>
+                    </small>
                 </section>
 
                 <section id="docker_build4" data-state="no_footer">
@@ -604,29 +630,7 @@
 
                 </section>
 
-                <section id="docker_buildx" data-state="no_footer">
 
-                    <h3>Buildx</h3>
-                    <small>
-                        <p>Desde la versión 19.03 de Docker está disponible <code>docker buildx</code> que permite
-                            construir imágenes de Docker de manera más eficiente y con mayor flexibilidad.</p>
-
-                        <p>Y, como se mencionó antes, desde la versión 23 <code>docker buildx</code> reemplazó a build.
-                        </p>
-
-                        <p>Entre las principales mejoras de Buildx es que podemos buildear imágenes para diferentes
-                            arquitecturas
-                            (multi-architecture images). Por ejemplo, podemos buildear una imagen para amd64 y otra para
-                            arm64 desde una computadora amd64.
-                        </p>
-                    </small>
-
-                    <small>
-                        <p><a href="https://docs.docker.com/build/concepts/overview/#buildx" target="_blank">Docker
-                                Docs:
-                                Buildx</a></p>
-                    </small>
-                </section>
 
 
                 <section id="dockerfile_buenas_practicas" data-state="no_footer">
