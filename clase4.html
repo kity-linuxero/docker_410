@@ -50,8 +50,9 @@
                     <small>
 
                         <ul>
-                            <li><a href="#/networking_1">Introducción a redes en Docker</a></li>
+                            <li><a href="#/networking_docker_1">Introducción a redes en Docker</a></li>
                             <li><a href="#/ipv4_ip_mask">Conceptos básicos de IPv4</a></li>
+                            <li><a href="#/ipv4_puertos">Puertos y protocolos TCP/UDP</a></li>
                             <li><a href="#/net_bridge">Redes bridge</a></li>
                             <li><a href="#/net_bridge1">Puertos y redirecciones</a></li>
                             <li><a href="#/gestion_network1">Gestión de redes</a></li>
@@ -86,25 +87,22 @@
             <section>
                 <section id="networking" data-state="customevent" data-transition="slide"
                     data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-                    <h3>Introducción a redes en Docker</h3>
+                    <h3>Cuestiones básicas de redes</h3>
 
                 </section>
 
                 <section id="networking_1" data-state="no_footer">
-                    <h3>Redes en Docker</h3>
+                    <h3>Protocolo TCP/IP</h3>
 
                     <small>
-                        <p>Docker proporciona un sistema de redes virtuales que permite conectar contenedores entre sí,
-                            al host, y con el mundo exterior. Al utilizar Docker, es esencial comprender cómo funcionan
-                            las redes dentro de su ecosistema, ya que esto impacta directamente en la conectividad, la
-                            seguridad, y el comportamiento de las aplicaciones distribuidas.</p>
+                        <p>El protocolo TCP/IP es un conjunto de protocolos que se utilizan para la comunicación en
+                            redes de computadoras. Es el protocolo estándar utilizado en Internet.</p>
 
-                        <img src="img/clase4/network1.png" width="90%">
+                        <p>El modelo TCP/IP se divide en cuatro capas:</p>
 
 
-                        <p><a href="https://docs.docker.com/engine/network/" target="_blank">Docker Docs: Networking
-                                Overview</a> </p>
                     </small>
+                    <img src="./img/clase4/tcp_ip_capas.png" width="60%">
 
                 </section>
 
@@ -117,8 +115,54 @@
                                 IPv4 se forma por 4 números del 0 al 255 (ej. <code>192.168.1.10</code>).</li><br>
                             <li><strong>Máscara de subred:</strong> Define qué porción de la IP identifica a la red y
                                 cuál al dispositivo (host). Ejemplos: <code>255.255.255.0</code> o en notación CIDR
-                                <code>/24</code>.</li>
+                                <code>/24</code>.
+                            </li>
                         </ul>
+                    </small>
+                </section>
+
+                <section id="ipv4_redes_privadas" data-state="no_footer">
+                    <h3>Conceptos básicos de IPv4</h3>
+                    <h4>Redes privadas</h4>
+                    <small>
+                        <p>Las redes privadas son rangos de direcciones IP que no son enrutables en Internet y se
+                            utilizan
+
+                        <table
+                            style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif; text-align: left;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2; border-bottom: 2px solid #ddd;">
+                                    <th style="padding: 12px; border: 1px solid #ddd;">Clase</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">Rango de Direcciones</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">Máscara (CIDR)</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd;">Máscara (Decimal)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><b>Clase A</b></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">10.0.0.0 – 10.255.255.255</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">/8</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">255.0.0.0</td>
+                                </tr>
+                                <tr style="background-color: #fafafa;">
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><b>Clase B</b></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">172.16.0.0 – 172.31.255.255</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">/12</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">255.240.0.0</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><b>Clase C</b></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">192.168.0.0 – 192.168.255.255
+                                    </td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">/16</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">255.255.0.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>Por defecto, Docker usará las redes a partir de la <code>172.17.0.0/16</code></p>
+
                     </small>
                 </section>
 
@@ -137,7 +181,98 @@
                     </small>
                 </section>
 
-                <section id="dockerfile_proposito" data-state="no_footer">
+                <section id="ipv4_gw_dns" data-state="no_footer">
+                    <h3>Conceptos básicos de IPv4</h3>
+                    <small>
+                        <p>Cosas a tener en cuenta:</p>
+                        <ul>
+                            <li>En una misma subred, no debe haber dos host con la misma dirección IP.</li>
+                            <li>Si un host no tiene configurado su gateway, no podrá salir de esa red.</li>
+                            <li>Si un host no tiene configurado su DNS, no podrá resolver nombres de dominio.</li>
+                            <li>La dirección IP del gateway suele ser la primera o la última dirección IP de la subred.
+                            </li>
+                            <li>La dirección IP de la subred es la primera dirección IP de la subred.</li>
+                            <li>La última dirección IP de la subred es la dirección de broadcast.</li>
+                            <li>La dirección IP del gateway debe estar en la misma subred que los hosts.</li>
+
+                        </ul>
+                    </small>
+                </section>
+
+                <section id="ipv4_puertos" data-state="no_footer">
+                    <h3>Conceptos básicos de redes</h3>
+                    <h4>Puertos</h4>
+                    <small>
+                        <ul>
+                            <li><strong>¿Qué es un puerto?:</strong> Es un canal lógico asignado a un servicio o
+                                aplicación específica dentro de una computadora para dirigir correctamente el tráfico de
+                                red.</li>
+                            <br>
+                            <li><strong>Analogía:</strong> Si la dirección IP es la dirección física de un edificio, el
+                                número de puerto es el número de departamento al que debe entregarse el mensaje.</li>
+                            <br>
+                            <li>Existen 65.535 puertos en total. Algunos de los más conocidos son el puerto 80 (HTTP)
+                                para páginas web, el 443 (HTTPS) para tráfico seguro, o el 22 (SSH).</li>
+                        </ul>
+
+                    </small>
+                </section>
+
+                <section id="ipv4_tcp_udp" data-state="no_footer">
+                    <h3>Conceptos básicos de redes</h3>
+                    <h4>Protocolos TCP y UDP</h4>
+                    <small>
+                        <p>Son los protocolos principales que definen cómo se transportan los datos:</p>
+                        <ul>
+                            <li><strong>TCP (Transmission Control Protocol):</strong> Orientado a conexión y altamente
+                                confiable. Garantiza que los datos lleguen íntegros, sin errores y en el orden correcto.
+                                Ideal para la web, correos electrónicos o transferencia de archivos.</li>
+                            <br>
+                            <li><strong>UDP (User Datagram Protocol):</strong> Envía los datos rápidamente sin
+                                conectarse previamente o verificar la entrega de paquetes. Al prescindir de estos
+                                controles, es mucho más veloz y ligero. Ideal para transmisión de video en vivo
+                                (streaming), VoIP o consultas DNS.</li>
+                        </ul>
+                        <p>Un mismo número de puerto, puede ser TCP o UDP. Por lo tanto, un mismo host puede tener
+                            dos servicios distintos corriendo en el mismo puerto, uno usando TCP y otro usando UDP. Por
+                            ejemplo 443/tcp y 443/udp.
+                        </p>
+                    </small>
+                </section>
+
+                <section id="ipreguntas0" data-state="no_footer">
+                    <h2>Consultas</h2>
+                </section>
+
+            </section>
+
+            <section>
+
+                <section id="networking_docker" data-state="customevent" data-transition="slide"
+                    data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
+                    <h3>Introducción a redes en Docker</h3>
+
+                </section>
+
+                <section id="networking_docker_1" data-state="no_footer">
+                    <h3>Redes en Docker</h3>
+
+                    <small>
+                        <p>Docker proporciona un sistema de redes virtuales que permite conectar contenedores entre sí,
+                            al host, y con el mundo exterior. Al utilizar Docker, es esencial comprender cómo funcionan
+                            las redes dentro de su ecosistema, ya que esto impacta directamente en la conectividad, la
+                            seguridad, y el comportamiento de las aplicaciones distribuidas.</p>
+
+                        <img src="img/clase4/network1.png" width="90%">
+
+
+                        <p><a href="https://docs.docker.com/engine/network/" target="_blank">Docker Docs: Networking
+                                Overview</a> </p>
+                    </small>
+
+                </section>
+
+                <section id="networking_docker_2" data-state="no_footer">
                     <h3>Network Drivers</h3>
                     <small>
                         <p>El subsistema de redes de Docker utiliza un conjunto de <em>drivers</em> para proveer de
@@ -799,11 +934,11 @@
                 <small>
                     <ul>
 
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/04-redes/41-introduccion.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/04-redes/41-introduccion.md"
                                 target="_blank">Lab 4.1</a> Introducción a redes en Docker</li>
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/04-redes/42-containers_net.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/04-redes/42-containers_net.md"
                                 target="_blank">Lab 4.2</a> Conexión de Múltiples Contenedores en una Red Bridge</li>
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.5/labs/04-redes/43-puertos.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/04-redes/43-puertos.md"
                                 target="_blank">Lab 4.3</a> Puertos y redirecciones</li>
 
                     </ul>
