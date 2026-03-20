@@ -158,6 +158,12 @@
                                     <td style="padding: 10px; border: 1px solid #ddd;">/16</td>
                                     <td style="padding: 10px; border: 1px solid #ddd;">255.255.0.0</td>
                                 </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd;"><b>Loopback</b></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">127.0.0.0 – 127.255.255.255</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">/8</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd;">255.0.0.0</td>
+                                </tr>
                             </tbody>
                         </table>
 
@@ -186,14 +192,23 @@
                     <small>
                         <p>Cosas a tener en cuenta:</p>
                         <ul>
-                            <li>En una misma subred, no debe haber dos host con la misma dirección IP.</li>
+                            <li>A un dispositivo de red, se lo suele llamar <strong>host</strong>.</li>
+                            <li>En una misma red, no debe haber dos host con la misma dirección IP. Conflicto de
+                                direcciones IP.</li>
                             <li>Si un host no tiene configurado su gateway, no podrá salir de esa red.</li>
-                            <li>Si un host no tiene configurado su DNS, no podrá resolver nombres de dominio.</li>
+
                             <li>La dirección IP del gateway suele ser la primera o la última dirección IP de la subred.
                             </li>
-                            <li>La dirección IP de la subred es la primera dirección IP de la subred.</li>
-                            <li>La última dirección IP de la subred es la dirección de broadcast.</li>
+                            <li>La dirección IP de la subred es la primera dirección IP de la red. Por ejemplo
+                                <code>192.168.0.0</code>
+                            </li>
+                            <li>La última dirección IP de la subred es la dirección de broadcast. Por ejemplo
+                                <code>192.168.0.255</code>
+                            </li>
                             <li>La dirección IP del gateway debe estar en la misma subred que los hosts.</li>
+                            <li>Si un host no tiene configurado su DNS, no podrá resolver nombres de dominio. No es
+                                necesario que esté en la misma red.</li>
+                            <li>Un mismo host puede tener mas de una dirección IP. Incluso en diferentes subredes.</li>
 
                         </ul>
                     </small>
@@ -211,8 +226,10 @@
                             <li><strong>Analogía:</strong> Si la dirección IP es la dirección física de un edificio, el
                                 número de puerto es el número de departamento al que debe entregarse el mensaje.</li>
                             <br>
-                            <li>Existen 65.535 puertos en total. Algunos de los más conocidos son el puerto 80 (HTTP)
-                                para páginas web, el 443 (HTTPS) para tráfico seguro, o el 22 (SSH).</li>
+                            <li>Existen <strong>65.535</strong> números de puertos en total. Algunos de los más
+                                conocidos son el
+                                puerto 80/tcp (HTTP) para páginas web, el 443 (HTTPS) para tráfico web seguro, o el
+                                22/tcp (SSH).</li>
                         </ul>
 
                     </small>
