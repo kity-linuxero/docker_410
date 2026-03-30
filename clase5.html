@@ -309,6 +309,24 @@
                     </small>
                 </section>
 
+                <section id="volume_mount11" data-state="no_footer">
+                    <h3>¿<code>--volume</code> o <code>--mount</code>?</h3>
+                    <small>
+                        <p>La documentación oficial de Docker recomienda usar <code>--mount</code> en lugar de
+                            <code>--volume</code>.
+                        </p>
+                        <p>La principal diferencia entre <code>--mount</code> y <code>--volume</code> es que
+                            <code>--mount</code> es más explícito y legible.
+                        </p>
+                        <p>Pero para ambientes de prueba y de aprendizaje, <code>--volume</code> es adecuado por su
+                            simplicidad.</p>
+
+                        <p><a href="https://docs.docker.com/engine/storage/volumes/#syntax" target="_blank">Docker Docs:
+                                syntax</a></p>
+                    </small>
+
+                </section>
+
                 <section id="volume_mount2" data-state="no_footer">
                     <h3>Montar volumenes en contenedores</h3>
                     <small>
@@ -398,6 +416,42 @@
                         <p><a href="https://docs.docker.com/get-started/workshop/06_bind_mounts/" target="_blank">Docker
                                 Docs: bind mounts</a></p>
                     </small>
+                </section>
+
+                <section id="volume_bind1" data-state="no_footer">
+                    <h3>Bind mounts, volumes y mount</h3>
+                    <small>
+                        <p>Hay una diferencia clave cuando vamos a montar un bind mount utilizando <code>--volume</code>
+                            que al usar <code>--mount</code>.</p>
+
+                        <p>Si montamos un directorio con -v, y el directorio en el host no existe, Docker lo creará.
+                            En cambio, si usamos --mount, Docker no creará el directorio en el host y dará un mensaje de
+                            error: "bind source path does not exist:".
+                        </p>
+                    </small>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                            docker run --rm --mount type=bind,src=$(pwd)/dir,dst=/app -it alpine sh
+                        </code></pre>
+
+                    <pre class="codigo_shadow" data-id="code-animation"><code class="docker codigo-redondo" data-trim>
+                            docker run --rm -v ./dir:/app -it alpine sh
+                        </code></pre>
+
+                    <small>
+
+                        <p>Cuando ejecutamos la segunda opción vemos que se ha creado una carpeta. En los sistemas
+                            Linux, se ha creado una carpeta con el owner <code>root:root</code> lo que puede ser
+                            problemático para accederlo después.</p>
+                        <p>Otra observación, es que cuando usamos <code>--mount</code>, es necesario escribir el path
+                            absoluto. Podemos usar pwd para abrebiar parte del path.
+                        </p>
+
+
+
+
+                    </small>
+
                 </section>
 
 
@@ -526,9 +580,9 @@
 
                         <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/05-volumes/51-volumenes_docker.md"
                                 target="_blank">Lab 5.1</a> Persistencia de datos en Docker</li>
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6labs/05-volumes/52-volumenes_bkp.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/05-volumes/52-volumenes_bkp.md"
                                 target="_blank">Lab 5.2</a> Backup y Migración de Volúmenes</li>
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6labs/05-volumes/53-cifs.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/05-volumes/53-cifs.md"
                                 target="_blank">Lab 5.3</a> Volumenes SMB/CIFS</li>
 
                     </ul>
