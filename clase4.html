@@ -19,16 +19,16 @@
     <link rel="stylesheet" href="css/egg.css">
 
     <!-- CLASE AUN NO DISPONIBLE-->
-    <meta http-equiv="refresh" content="0; url=./404.html">
+    <!-- <meta http-equiv="refresh" content="0; url=./404.html"> -->
 
 </head>
 
 <body>
 
     <!-- CLASE AUN NO DISPONIBLE-->
-    <script>
+    <!-- <script>
         window.location.href = "/404.html";
-    </script>
+    </script> -->
 
     <div class="reveal">
         <div class="slides">
@@ -50,7 +50,10 @@
                     <small>
 
                         <ul>
+                            <li><a href="#/networking">Cuestiones básicas de redes (OSI/TCP-IP)</a></li>
                             <li><a href="#/networking_docker_1">Introducción a redes en Docker</a></li>
+                            <li><a href="#/ipv4_mac">Dirección MAC</a></li>
+                            <li><a href="#/ipv4_protocolo">¿Qué es el protocolo IP?</a></li>
                             <li><a href="#/ipv4_ip_mask">Conceptos básicos de IPv4</a></li>
                             <li><a href="#/ipv4_puertos">Puertos y protocolos TCP/UDP</a></li>
                             <li><a href="#/net_bridge">Redes bridge</a></li>
@@ -92,22 +95,90 @@
                 </section>
 
                 <section id="networking_1" data-state="no_footer">
-                    <h3>Protocolo TCP/IP</h3>
+                    <h3>Modelo OSI</h3>
 
                     <small>
-                        <p>El protocolo TCP/IP es un conjunto de protocolos que se utilizan para la comunicación en
-                            redes de computadoras. Es el protocolo estándar utilizado en Internet.</p>
+                        <p>El modelo OSI (Open Systems Interconnection) es un marco conceptual que estandariza las
+                            funciones de un sistema de telecomunicaciones en siete capas.</p>
 
-                        <p>El modelo TCP/IP se divide en cuatro capas:</p>
+                        <p>Aunque en la práctica el protocolo estándar de Internet es TCP/IP, el modelo OSI es
+                            fundamental para entender cómo se estructuran y comunican las redes de forma teórica.</p>
 
 
                     </small>
-                    <img src="./img/clase4/tcp_ip_capas.png" width="60%">
+                    <img src="./img/clase4/osi.png" width="70%">
 
                 </section>
 
+                <section id="networking_2" data-state="no_footer">
+                    <h3>Modelo TCP/IP</h3>
+
+                    <small>
+                        <p>A diferencia del modelo OSI (teórico), el modelo <strong>TCP/IP</strong> es el modelo
+                            práctico utilizado en el mundo real y es la base de funcionamiento de Internet.</p>
+
+                        <p>Simplifica las 7 capas de OSI en <strong>4 capas</strong> fundamentales:</p>
+                        <ul>
+                            <li><strong>Aplicación:</strong> (HTTP, FTP, DNS...)</li>
+                            <li><strong>Transporte:</strong> (TCP, UDP)</li>
+                            <li><strong>Internet:</strong> (IP)</li>
+                            <li><strong>Acceso a Red:</strong> (Ethernet, WiFi)</li>
+                        </ul>
+
+                    </small>
+                    <img src="./img/clase4/tcp_ip_capas.png" width="50%">
+
+
+                </section>
+
+                <section id="ipv4_mac" data-state="no_footer">
+                    <h3>Conceptos básicos de redes</h3>
+                    <h4>Dirección MAC</h4>
+                    <small>
+                        <ul>
+                            <li><strong>Dirección MAC (Media Access Control):</strong> Es el identificador físico único
+                                asignado por el fabricante a cada tarjeta o interfaz de red. Se representa con 12
+                                dígitos hexadecimales (ej. <code>00:1A:2B:3C:4D:5E</code>).</li>
+
+                            <br>
+                            <li>En una red local, los equipos usan el protocolo <strong>ARP</strong> (Address Resolution
+                                Protocol) para "preguntar" qué dirección MAC corresponde a una IP y así poder entregar
+                                los datos correctamente. El protocolo ARP se encuentra en la capa 2 del modelo OSI.</li>
+                        </ul>
+                    </small>
+                </section>
+
+                <section id="ipv4_protocolo" data-state="no_footer">
+                    <h3>Conceptos básicos de redes</h3>
+                    <h4>¿Qué es el protocolo IP?</h4>
+                    <small>
+                        <p>El <strong>Protocolo de Internet (IP)</strong> es el conjunto de reglas que permite la
+                            comunicación en red. Su función principal es el <strong>direccionamiento</strong> y
+                            <strong>enrutamiento</strong> de datos.
+                        </p>
+                        <ul>
+                            <li><strong>Direccionamiento:</strong> Asigna una etiqueta numérica (IP) a cada dispositivo
+                                para que pueda ser identificado de forma única.</li>
+                            <br>
+                            <li><strong>Enrutamiento:</strong> Determina el camino que deben seguir los datos (paquetes)
+                                desde el origen hasta el destino a través de diferentes redes.</li>
+                            <br>
+                            <li><strong>Encapsulamiento (Fragmentación): </strong> Divide los datos en paquetes o
+                                datagramas más pequeños para enviarlos de manera eficiente y los vuelve a ensamblar en
+                                el destino.
+                            </li>
+                            <br>
+                            <li><strong>Sin conexión (No fiable):</strong> Trata cada paquete de forma independiente y
+                                no garantiza su entrega ordenada o completa, dejando esa tarea a protocolos superiores
+                                como TCP.</li>
+                        </ul>
+                        <br>
+                        <p>Es el protocolo fundamental de la <strong>Capa 3 (Red)</strong> del modelo OSI.</p>
+                    </small>
+                </section>
+
                 <section id="ipv4_ip_mask" data-state="no_footer">
-                    <h3>Conceptos básicos de IPv4</h3>
+                    <h3>Conceptos básicos de IP (Ipv4)</h3>
                     <h4>IP y Máscara de subred</h4>
                     <small>
                         <ul>
@@ -118,6 +189,10 @@
                                 <code>/24</code>.
                             </li>
                         </ul>
+                        <p><code>255.255.255.0</code></p>
+                        <p>En binario: <code>11111111.11111111.11111111.0</code></p>
+                        <p>Los 24 primeros bits son para la red, los últimos 8 para los hosts</p>
+
                     </small>
                 </section>
 
@@ -126,7 +201,7 @@
                     <h4>Redes privadas</h4>
                     <small>
                         <p>Las redes privadas son rangos de direcciones IP que no son enrutables en Internet y se
-                            utilizan
+                            utilizan para redes locales.
 
                         <table
                             style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif; text-align: left;">
@@ -172,17 +247,23 @@
                     </small>
                 </section>
 
+
+
                 <section id="ipv4_gw_dns" data-state="no_footer">
-                    <h3>Conceptos básicos de IPv4</h3>
+                    <h3>Conceptos básicos de redes</h3>
                     <h4>Gateway y DNS</h4>
                     <small>
                         <ul>
                             <li><strong>Gateway (Puerta de enlace):</strong> Es el equipo (habitualmente un router) que
                                 conecta y enruta el tráfico entre nuestra red local y otras redes, como Internet.</li>
                             <br>
+                            <li><strong>Tabla de ruteo:</strong> Contiene la información necesaria para enrutar el
+                                tráfico entre redes.</li>
+                            <br>
                             <li><strong>DNS (Domain Name System):</strong> Sistema encargado de traducir nombres
                                 legibles por humanos (ej. <code>www.docker.com</code>) en direcciones IP, para que las
-                                computadoras puedan conectarse.</li>
+                                computadoras puedan conectarse. El DNS es un servicio, y, por lo tanto lo ubicamos en la
+                                capa 7 (Aplicación).</li>
                         </ul>
                     </small>
                 </section>
@@ -213,6 +294,8 @@
                         </ul>
                     </small>
                 </section>
+
+
 
                 <section id="ipv4_puertos" data-state="no_footer">
                     <h3>Conceptos básicos de redes</h3>
@@ -254,6 +337,7 @@
                             dos servicios distintos corriendo en el mismo puerto, uno usando TCP y otro usando UDP. Por
                             ejemplo 443/tcp y 443/udp.
                         </p>
+                        <p>Los protocolos TCP/UDP se ubican en la capa 4 (Transporte).</p>
                     </small>
                 </section>
 
@@ -313,16 +397,42 @@
 
 
 
+
+
+
+                <section id="net_bridge0" data-state="no_footer">
+                    <h3>Redes Bridge</h3>
+
+                    <small>
+
+                        Se comporta como un switch virtual dentro del host. Permite la comunicación saliente de los
+                        contenedores y entre los contenedores que están en la misma red bridge.
+                        <br>
+                        La red bridge por defecto arranca en <strong>172.17.0.0/16</strong> y a
+                        medida que se van creando redes <em>bridge</em> va cambiando la red incrementando el segundo
+                        octeto <strong>172.x.0.0/16</strong>
+
+                    </small>
+
+                    <img src="./img/clase4/bridge.png">
+
+                    <small><a href="https://docs.docker.com/engine/network/drivers/bridge/" target="_blank">Docker Docs:
+                            Bridge network driver</a></small>
+                </section>
+
                 <section id="net_bridge" data-state="no_footer">
                     <h3>Redes Bridge</h3>
 
                     <small>
-                        <p>Se comporta como un switch virtual dentro del host y permite la comunicación entre los
-                            contenedores que están en la misma red bridge. Cuando usamos una red bridge en Docker con
+                        <p> Cuando usamos una
+                            red bridge en Docker con
                             configuración por defecto:</p>
                         <ul>
-                            <li>Los contenedores obtienen IPs internas dentro de una subred privada (normalmente IPv4,
+                            <li>Los contenedores obtienen IPs internas dentro de una mismasubred privada (normalmente
+                                IPv4,
                                 opcional IPv6).</li>
+                            <li>Es posible crear redes bridge personalizadas (custom bridge) y asignarles rangos de IP
+                                privados de manera explícita.</li>
                             <li>Los contenedores pueden comunicarse libremente entre sí si están en la misma red
                                 bridge.
                             </li>
@@ -342,23 +452,7 @@
                     </small>
 
                     <br>
-
-                    <small><a href="https://docs.docker.com/engine/network/drivers/bridge/" target="_blank">Docker Docs:
-                            Bridge network driver</a></small>
-                </section>
-
-
-                <section id="net_bridge0" data-state="no_footer">
-                    <h3>Redes Bridge</h3>
-
-                    <small>
-                        La red bridge por defecto arranca en <strong>172.17.0.0/16</strong> y a
-                        medida que se van creando redes <em>bridge</em> va cambiando la red incrementando el segundo
-                        octeto <strong>172.x.0.0/16</strong>
-
-                    </small>
-
-                    <img src="./img/clase4/bridge.png">
+                    <br>
 
                     <small><a href="https://docs.docker.com/engine/network/drivers/bridge/" target="_blank">Docker Docs:
                             Bridge network driver</a></small>
@@ -377,15 +471,6 @@
                             como la inclusión de un <strong>DNS interno</strong> automático que permite <em>resolver la
                                 IP interna de un contenedor</em> utilizando su nombre.</p>
                     </small>
-
-                    <!-- <pre class="codigo_shadow" data-id="code-animation"><code class="Dockerfile codigo-redondo" data-trim>
-                        docker network ls
-                        
-                        NETWORK ID     NAME      DRIVER    SCOPE
-                        cfd3f0bf25fc   bridge    bridge    local
-                        abd3e7e42462   host      host      local
-                        c1d27506736c   none      null      local
-                    </code></pre> -->
 
                     <small>
                         <p>
@@ -420,9 +505,10 @@
                             docker run -d -p 8080:80 docker/welcome-to-docker
                         </code></pre>
                     <small>
-                        <p>Estas redirecciones se utilizan principalmente cuando estamos trabajando sobre redes
+                        <p>Estas redirecciones se utilizan cuando estamos trabajando sobre redes
                             <strong>bridge</strong>.
                         </p>
+                        <p>IMPORTANTE: No se puede repetir el número del puerto del Host (P_HOST).</p>
 
                         <a href="https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/"
                             target="_blank">Docker docs: Publishing and exposing ports</a>
@@ -432,6 +518,26 @@
 
                 </section>
 
+                <section id="resumen_bridge_practico" data-state="no_footer">
+                    <h3>Resumen: Redes Bridge</h3>
+
+                    <small>
+                        <ul>
+                            <li><strong>Aislamiento:</strong> Switch virtual interno. Los contenedores están
+                                aislados del exterior por defecto.</li>
+                            <li><strong>Conectividad:</strong> Salida a internet vía NAT (usa la IP del host).
+                            </li>
+                            <li><strong>Publicación:</strong> Uso obligatorio de
+                                <code>-p puerto_host:puerto_container</code> para acceso externo.
+                            </li>
+                            <li><strong>Redes Custom:</strong> ¡Recomendado! Incluyen <b>DNS interno</b>
+                                (resolución por nombre de contenedor).</li>
+                            <li><strong>Rango IP:</strong> Comienza en <code>172.17.0.0/16</code> y escala por
+                                cada red nueva.</li>
+                        </ul>
+                    </small>
+
+                </section>
 
 
                 <section id="net_host1" data-state="no_footer">
@@ -951,11 +1057,11 @@
                 <small>
                     <ul>
 
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/04-redes/41-introduccion.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.7/labs/04-redes/41-introduccion.md"
                                 target="_blank">Lab 4.1</a> Introducción a redes en Docker</li>
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/04-redes/42-containers_net.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.7/labs/04-redes/42-containers_net.md"
                                 target="_blank">Lab 4.2</a> Conexión de Múltiples Contenedores en una Red Bridge</li>
-                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.6/labs/04-redes/43-puertos.md"
+                        <li><a href="https://github.com/kity-linuxero/docker_410_practicas/blob/v1.7/labs/04-redes/43-puertos.md"
                                 target="_blank">Lab 4.3</a> Puertos y redirecciones</li>
 
                     </ul>
