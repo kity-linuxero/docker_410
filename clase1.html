@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
 
 
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/multiplex/client.js"></script>
-
+    <!-- Multiplex -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal-multiplex@1.0.0/client.js"></script>
 
 </head>
 
@@ -874,6 +875,13 @@
         Reveal.initialize({
             hash: true,
 
+            // Multiplex
+            multiplex: {
+                secret: null,            // NULO para los alumnos
+                id: '5080998addacfea14909ada11713828df57dce31046fceac71993235207611dd',  // Mismo 'id' que en master
+                url: 'https://tokens.idepba.com.ar'
+            },
+
             copycode: {
                 button: "hover",
                 display: "icons",
@@ -908,14 +916,6 @@
             plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, CopyCode]
         });
 
-        Reveal.initialize({
-            plugins: [RevealMarkdown, RevealMultiplex],
-            multiplex: {
-                secret: null,            // NULO para los alumnos
-                id: '5080998addacfea14909ada11713828df57dce31046fceac71993235207611dd',  // Mismo 'id' que en master
-                url: 'https://tokens.idepba.com.ar'
-            }
-        });
     </script>
 
 </body>
