@@ -225,6 +225,18 @@
 		Reveal.initialize({
 			hash: true,
 
+			// Multiplex
+			multiplex: {
+				secret: null,            // NULO para los alumnos
+				id: '34333e135a702d32463abe2af50eebc331810bbd3191a7428ef34c8bbe5a48b1',  // Mismo 'id' que en master
+				url: 'https://tokens.idepba.com.ar'
+			},
+
+			dependencies: [
+				{ src: 'https://cdn.socket.io/4.7.5/socket.io.min.js' },
+				{ src: 'plugin/multiplex/client.js', async: true }
+			],
+
 			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
