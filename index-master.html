@@ -227,14 +227,14 @@
 
 			// Multiplex
 			multiplex: {
-				secret: '71a0ea40c2a0892883cf44e37be2e325', // token 'secret' generado en el paso 2
-				id: '34333e135a702d32463abe2af50eebc331810bbd3191a7428ef34c8bbe5a48b1',  // token 'id' generado en el paso 2
+				secret: 'nanana', // token 'secret' generado en el paso 2
+				id: 'nanana',  // token 'id' generado en el paso 2
 				url: 'https://tokens.idepba.com.ar' // Tu URL de Render
 			},
 
 			dependencies: [
-				{ src: 'https://multiplex.up.railway.app/socket.io/socket.io.js', async: true },
-				{ src: 'https://multiplex.up.railway.app/client.js', async: true }
+				{ src: 'https://cdn.socket.io/4.7.5/socket.io.min.js' },
+				{ src: 'https://tokens.idepba.com.ar/master.js', async: true }
 			],
 
 			// Learn about plugins: https://revealjs.com/plugins/
