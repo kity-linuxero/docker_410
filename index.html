@@ -1,248 +1,556 @@
 <!doctype html>
-<html>
+<html lang="es">
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<title>Fundamentos contenedores Docker - CFL 410</title>
-	<!-- <link rel="icon" type="image/x-icon" href="/img/logos/cfl_logo.png"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gracias - Docker CFL 410</title>
+	<meta name="description" content="Página de agradecimiento del curso de Fundamentos de Docker - CFL 410">
 	<link rel="icon" type="image/x-icon" href="/img/logos/page.png">
+	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+	<style>
+		/* ===== RESET & BASE ===== */
+		*,
+		*::before,
+		*::after {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-	<link rel="stylesheet" href="dist/reset.css">
-	<link rel="stylesheet" href="dist/reveal.css">
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			font-family: 'Outfit', sans-serif;
+			cursor: default;
+		}
 
-	<link rel="stylesheet" href="dist/theme/white.css">
+		/* ===== BACKGROUND ===== */
+		body {
+			background: radial-gradient(ellipse at 50% 30%, #ffffff 0%, #dcffdc 60%, #b8f0b8 100%);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			position: relative;
+		}
 
-	<!-- Theme used for syntax highlighted code -->
-	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="css/egg.css">
+		/* ===== TITLE ===== */
+		.title-container {
+			margin-top: 8vh;
+			text-align: center;
+			z-index: 10;
+			user-select: none;
+			animation: fadeInDown 1.2s ease-out;
+		}
 
-	<!-- Redirección -->
-	<!-- <meta http-equiv="refresh" content="0; url=https://docker.centro410laplata.edu.ar"> -->
+		.title-container h1 {
+			font-size: clamp(3rem, 8vw, 7rem);
+			font-weight: 800;
+			background: linear-gradient(135deg, #3a9e3a 0%, #5cb85c 40%, #2d8e2d 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			letter-spacing: -2px;
+			filter: drop-shadow(0 4px 12px rgba(92, 184, 92, 0.3));
+			animation: titlePulse 4s ease-in-out infinite;
+		}
 
+		.title-container .subtitle {
+			font-size: clamp(0.9rem, 2vw, 1.4rem);
+			font-weight: 300;
+			color: #5a8a5a;
+			margin-top: 8px;
+			opacity: 0.8;
+			letter-spacing: 4px;
+			text-transform: uppercase;
+			animation: fadeInUp 1.5s ease-out 0.4s both;
+		}
+
+		/* ===== DOCKER WHALE ===== */
+		#whale-container {
+			position: fixed;
+			left: 0;
+			top: 0;
+			z-index: 20;
+			pointer-events: none;
+			filter: drop-shadow(0 6px 18px rgba(0, 100, 180, 0.3));
+		}
+
+		.whale-img {
+			width: 180px;
+			height: auto;
+			display: block;
+		}
+
+		/* ===== WATER / OCEAN ===== */
+		.ocean {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 40vh;
+			z-index: 5;
+			overflow: hidden;
+		}
+
+		.ocean-fill {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 72%;
+			background: linear-gradient(180deg,
+					rgba(92, 184, 92, 0.12) 0%,
+					rgba(92, 184, 92, 0.30) 25%,
+					rgba(60, 160, 90, 0.45) 55%,
+					rgba(45, 142, 45, 0.60) 100%);
+			backdrop-filter: blur(2px);
+		}
+
+		/* SVG wave styling */
+		.wave-svg {
+			position: absolute;
+			left: -10%;
+			width: 220%;
+			bottom: 60%;
+		}
+
+		.wave-svg-1 {
+			animation: waveSvgMove 7s ease-in-out infinite alternate;
+			opacity: 0.7;
+		}
+
+		.wave-svg-2 {
+			animation: waveSvgMove 9s ease-in-out infinite alternate-reverse;
+			opacity: 0.5;
+			bottom: 65%;
+		}
+
+		.wave-svg-3 {
+			animation: waveSvgMove 11s ease-in-out infinite alternate;
+			opacity: 0.35;
+			bottom: 58%;
+		}
+
+		@keyframes waveSvgMove {
+			0% {
+				transform: translateX(0%);
+			}
+
+			100% {
+				transform: translateX(-50%);
+			}
+		}
+
+		/* ===== WATER SURFACE LINE ===== */
+		.water-surface {
+			position: fixed;
+			bottom: 40vh;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			z-index: 4;
+			background: linear-gradient(90deg,
+					transparent 0%,
+					rgba(92, 184, 92, 0.15) 20%,
+					rgba(92, 184, 92, 0.25) 50%,
+					rgba(92, 184, 92, 0.15) 80%,
+					transparent 100%);
+		}
+
+		/* ===== BUBBLES ===== */
+		.bubbles-container {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 40vh;
+			pointer-events: none;
+			z-index: 6;
+			overflow: hidden;
+		}
+
+		.bubble {
+			position: absolute;
+			bottom: -20px;
+			border-radius: 50%;
+			background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(92, 184, 92, 0.15));
+			border: 1px solid rgba(255, 255, 255, 0.4);
+			animation: bubbleRise linear infinite;
+			opacity: 0;
+		}
+
+		@keyframes bubbleRise {
+			0% {
+				transform: translateX(0) scale(0.4);
+				opacity: 0;
+			}
+
+			10% {
+				opacity: 0.7;
+			}
+
+			50% {
+				opacity: 0.5;
+			}
+
+			100% {
+				transform: translateX(calc(var(--drift))) translateY(-40vh) scale(1);
+				opacity: 0;
+			}
+		}
+
+		/* ===== SPARKLES ===== */
+		.sparkle {
+			position: fixed;
+			width: 4px;
+			height: 4px;
+			border-radius: 50%;
+			background: rgba(92, 184, 92, 0.6);
+			pointer-events: none;
+			z-index: 3;
+			animation: sparkleFade 2s ease-out forwards;
+		}
+
+		@keyframes sparkleFade {
+			0% {
+				transform: scale(0);
+				opacity: 1;
+			}
+
+			50% {
+				transform: scale(1.5);
+				opacity: 0.6;
+			}
+
+			100% {
+				transform: scale(0);
+				opacity: 0;
+			}
+		}
+
+		/* ===== RIPPLES ===== */
+		.ripple {
+			position: fixed;
+			pointer-events: none;
+			z-index: 21;
+			opacity: 0;
+			animation: rippleAnim 2s ease-out forwards;
+		}
+
+		@keyframes rippleAnim {
+			0% {
+				opacity: 0.5;
+				transform: scaleX(0.3) scaleY(0.5);
+			}
+
+			100% {
+				opacity: 0;
+				transform: scaleX(1.5) scaleY(0.8);
+			}
+		}
+
+		/* ===== FOOTER ===== */
+		.page-footer {
+			position: fixed;
+			bottom: 12px;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 40px;
+			z-index: 15;
+			opacity: 0.3;
+			transition: opacity 0.3s ease;
+		}
+
+		.page-footer:hover {
+			opacity: 0.6;
+		}
+
+		.page-footer img {
+			height: 72px;
+			width: auto;
+			filter: grayscale(30%);
+		}
+
+		/* ===== ANIMATIONS ===== */
+		@keyframes fadeInDown {
+			from {
+				opacity: 0;
+				transform: translateY(-40px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+
+			to {
+				opacity: 0.8;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes titlePulse {
+
+			0%,
+			100% {
+				filter: drop-shadow(0 4px 12px rgba(92, 184, 92, 0.3));
+			}
+
+			50% {
+				filter: drop-shadow(0 4px 20px rgba(92, 184, 92, 0.55));
+			}
+		}
+
+		/* ===== RESPONSIVE ===== */
+		@media (max-width: 600px) {
+			.whale-img {
+				width: 110px;
+			}
+
+			.page-footer img {
+				height: 48px;
+			}
+
+			.page-footer {
+				gap: 20px;
+			}
+
+			.title-container {
+				margin-top: 6vh;
+			}
+		}
+	</style>
 </head>
 
 <body>
-	<!-- Redirección -->
-	<!-- <script>
-            window.location.href = "https://docker.centro410laplata.edu.ar";
-        </script> -->
 
-	<!-- The EGG -->
-	<div id="myModal" class="modalj">
-
-		<!-- EGG content -->
-		<div class="modal-content">
-			<div class="modal-header">
-				<span class="close">&times;</span>
-				<h2>¡Aviso!</h2>
-			</div>
-			<div class="modal-body">
-				<!-- <p>¡Felicitaciones!</p> -->
-
-				<img src="./img/image.jpeg" width="100%">
-
-				<!-- <pre style="font-family: monospace">(^_^)</pre>  -->
-
-
-			</div>
-		</div>
+	<!-- ===== TITLE ===== -->
+	<div class="title-container">
+		<h1>Gracias</h1>
+		<p class="subtitle">Fundamentos y usos prácticos de de Docker · CFL 410</p>
 	</div>
 
+	<!-- ===== WATER SURFACE ===== -->
+	<!-- <div class="water-surface"></div> -->
 
-
-	<div class="reveal">
-		<div class="slides">
-
-			<section>
-
-				<section data-state="customevent" data-transition="slide"
-					data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-					<!-- <h3>Centro de formación laboral 410</h3> -->
-
-					<h3>Fundamentos y usos prácticos de Docker</h3>
-
-
-				</section>
-
-				<section id="indice" data-state="no_footer">
-					<h3>Índice de clases teóricas</h3>
-
-					<small>
-
-						<table>
-
-							<tr>
-								<td><a href="clase0.html">Introducción</a></td>
-								<td>Presentación del curso. Requisitos de inscripción y aprobación.</td>
-							</tr>
-							<tr>
-								<td><a href="clase1.html">Clase 1</a></td>
-								<td>Introducción a contenedores y Docker</td>
-							</tr>
-
-							<tr>
-								<!-- <td><a href="clase2.html" class="disabled">Clase 2</a></td> -->
-								<td><a href="clase2.html">Clase 2</a></td>
-								<td>Conceptos básicos de imágenes Docker</td>
-							</tr>
-
-							<tr>
-								<!-- <td><a href="clase3.html" class="disabled">Clase 3</a></td> -->
-								<td><a href="clase3.html">Clase 3</a></td>
-								<td>Dockerfile</td>
-							</tr>
-
-							<tr>
-								<!-- <td><a href="clase4.html" class="disabled">Clase 4</a></td> -->
-								<td><a href="clase4.html">Clase 4</a></td>
-								<td>Gestión de redes</td>
-							</tr>
-
-
-							<tr>
-								<!-- <td><a href="clase5.html" class="disabled">Clase 5</a></td> -->
-								<td><a href="clase5.html">Clase 5</a></td>
-								<td>Volúmenes y persistencia</td>
-							</tr>
-
-							<tr>
-								<!-- <td><a href="clase6.html" class="disabled">Clase 6</a></td> -->
-
-								<td><a href="clase6.html">Clase 6</a></td>
-								<td>Docker Compose</td>
-							</tr>
-
-							<tr>
-								<!-- <td><a href="clase7.html" class="disabled">Clase 7</a></td> -->
-								<td><a href="clase7.html">Clase 7</a></td>
-								<td>Docker Compose Parte II | Depuración de contenedores.</td>
-							</tr>
-
-							<!-- <tr>
-								<td><a href="clase8.html" class="disabled">Clase 8</a></td>
-								
-								<td>Composes Geniales</td>
-							</tr> -->
-						</table>
-					</small>
-
-					<hr>
-
-					<h4>Sección práctica</h4>
-					<small>
-						<a href="https://github.com/kity-linuxero/docker_410_practicas/tree/v1.8?tab=readme-ov-file#gu%C3%ADa-de-laboratorios-curso-fundamentos-de-docker"
-							target="_blank">Guía de Laboratorios</a>
-
-					</small>
-					<h4>Trabajo final</h4>
-					<small>
-
-						<a href="https://github.com/kity-linuxero/docker-integradora" target="_blank">Trabajo final
-							entregable</a>
-					</small>
-
-
-
-
-
-				</section>
-
-				<section id="fin" data-state="hide_footer" data-transition="slide"
-					data-background-gradient="radial-gradient(#ffffff, #dcffdc)" data-background-size="contain">
-
-					<img src="img/logos/idep_logo.png" width="40%" height="40%">
-
-
-				</section>
-
-			</section>
-
-
-			</section>
-		</div>
-
-
+	<!-- ===== DOCKER WHALE ===== -->
+	<div id="whale-container">
+		<img class="whale-img" src="img/ballena.webp" alt="Docker Whale">
 	</div>
 
-	<footer>
-		<!-- Logos en el footer -->
-		<div id="logos-footer" class="footer">
-			<span class="element"><img src="img/logos/cfl_logo.png" class="foot-image"></span>
-			<span class="element"><img src="img/logos/IDEPInformaticaLogo.png" class="foot-image-idep-info"></span>
-			<span class="element"><img src="img/logos/ate_logo.svg" class="foot-image"></span>
-		</div>
+	<!-- ===== OCEAN ===== -->
+	<div class="ocean" id="ocean">
+		<!-- SVG Wave Layer 1 -->
+		<svg class="wave-svg wave-svg-1" viewBox="0 0 2400 60" preserveAspectRatio="none">
+			<path d="M0 30 Q150 0 300 30 T600 30 T900 30 T1200 30 T1500 30 T1800 30 T2100 30 T2400 30 V60 H0 Z"
+				fill="rgba(92,184,92,0.2)" />
+		</svg>
+		<!-- SVG Wave Layer 2 -->
+		<svg class="wave-svg wave-svg-2" viewBox="0 0 2400 60" preserveAspectRatio="none">
+			<path d="M0 35 Q200 10 400 35 T800 35 T1200 35 T1600 35 T2000 35 T2400 35 V60 H0 Z"
+				fill="rgba(60,160,90,0.18)" />
+		</svg>
+		<!-- SVG Wave Layer 3 -->
+		<svg class="wave-svg wave-svg-3" viewBox="0 0 2400 60" preserveAspectRatio="none">
+			<path
+				d="M0 25 Q100 5 200 25 T400 25 T600 25 T800 25 T1000 25 T1200 25 T1400 25 T1600 25 T1800 25 T2000 25 T2200 25 T2400 25 V60 H0 Z"
+				fill="rgba(45,142,45,0.12)" />
+		</svg>
 
-		<script type="text/javascript">
-			window.addEventListener("load", function () {
+		<!-- Water fill -->
+		<div class="ocean-fill"></div>
+	</div>
 
-				revealDiv = document.querySelector("body div.reveal")
-				footer = document.getElementById("logos-footer");
-				revealDiv.appendChild(footer);
+	<!-- ===== BUBBLES ===== -->
+	<div class="bubbles-container" id="bubbles-container"></div>
 
-			});
-		</script>
-	</footer>
-
-	<script src="dist/reveal.js"></script>
-	<script src="plugin/notes/notes.js"></script>
-	<script src="plugin/markdown/markdown.js"></script>
-	<script src="plugin/highlight/highlight.js"></script>
-
-	<script src="js/egg.js"></script>
-
+	<!-- ===== FOOTER ===== -->
+	<div class="page-footer">
+		<img src="img/logos/cfl_logo.png" alt="CFL Logo">
+		<img src="img/logos/IDEPInformaticaLogo.png" alt="IDEP Informática">
+		<img src="img/logos/ate_logo.svg" alt="ATE Logo">
+	</div>
 
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
+		// ===== CONSTANTS =====
+		const WHALE_WIDTH = 180;
+		const WHALE_HEIGHT = 180; // image is ~square
+		const OCEAN_HEIGHT_RATIO = 0.40; // 40vh
+		const BOB_AMPLITUDE = 5;
 
+		// ===== WHALE FOLLOWS MOUSE (clamped to water) =====
+		const whaleContainer = document.getElementById('whale-container');
+		const whaleImg = whaleContainer.querySelector('.whale-img');
 
-		// Para eventos personalizados. Indica que está en la presentación
-		Reveal.on('customevent', function () {
-			var element = document.getElementById("logos-footer");
-			element.style.display = "table";
-			element.style.opacity = "40%";
+		// Start from exact center of the screen
+		let mouseX = window.innerWidth / 2;
+		let mouseY = window.innerHeight / 2;
+		let whaleX = window.innerWidth / 2;
+		let whaleY = window.innerHeight / 2;
+		let lastWhaleX = whaleX;
+		let prevDirection = -1; // -1 = facing right (image naturally faces left), 1 = facing left
+		let bobPhase = 0;
 
+		// Calculate the water surface Y position
+		function getWaterSurfaceY() {
+			return window.innerHeight * (1 - OCEAN_HEIGHT_RATIO);
+		}
+
+		document.addEventListener('mousemove', (e) => {
+			mouseX = e.clientX;
+			mouseY = e.clientY;
 		});
 
-		Reveal.on('hide_footer', function () {
-			var element = document.getElementById("logos-footer");
-			element.style.display = "table";
-			element.style.opacity = "0%";
+		// Touch support
+		document.addEventListener('touchmove', (e) => {
+			e.preventDefault();
+			mouseX = e.touches[0].clientX;
+			mouseY = e.touches[0].clientY;
+		}, { passive: false });
 
+		function animateWhale() {
+			const ease = 0.035; // smooth, gentle follow
+
+			// Clamp target Y so whale stays fully in the water
+			// minY: water surface + half whale height + bob amplitude (so top edge never exits water)
+			const waterY = getWaterSurfaceY();
+			const minY = waterY + (WHALE_HEIGHT / 2) + BOB_AMPLITUDE + 5;
+			const maxY = window.innerHeight - (WHALE_HEIGHT / 2) - 10;
+			const clampedMouseY = Math.max(minY, Math.min(maxY, mouseY));
+
+			// Clamp X within screen bounds
+			const clampedMouseX = Math.max(WHALE_WIDTH / 2, Math.min(window.innerWidth - WHALE_WIDTH / 2, mouseX));
+
+			const dx = clampedMouseX - whaleX;
+			const dy = clampedMouseY - whaleY;
+
+			whaleX += dx * ease;
+			whaleY += dy * ease;
+
+			// Hard clamp actual position (safety net)
+			whaleY = Math.max(minY, Math.min(maxY, whaleY));
+
+			// Determine facing direction
+			const moveDx = whaleX - lastWhaleX;
+			if (Math.abs(moveDx) > 0.2) {
+				prevDirection = moveDx > 0 ? -1 : 1;
+			}
+
+			// Gentle tilt based on movement
+			const tilt = Math.max(-10, Math.min(10, moveDx * 0.4));
+
+			// Natural bobbing (stays within bounds because minY accounts for amplitude)
+			bobPhase += 0.022;
+			const bob = Math.sin(bobPhase) * BOB_AMPLITUDE;
+
+			// Position whale (centered on its position)
+			const offsetX = whaleX - WHALE_WIDTH / 2;
+			const offsetY = whaleY - WHALE_HEIGHT / 2 + bob;
+
+			whaleContainer.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+			whaleImg.style.transform = `scaleX(${prevDirection}) rotate(${tilt * prevDirection}deg)`;
+
+			lastWhaleX = whaleX;
+			requestAnimationFrame(animateWhale);
+		}
+
+		animateWhale();
+
+		// ===== RIPPLE EFFECT =====
+		let rippleTimer = 0;
+		function createRipple() {
+			rippleTimer++;
+			if (rippleTimer % 60 !== 0) return;
+
+			const ripple = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+			ripple.classList.add('ripple');
+			ripple.setAttribute('width', '120');
+			ripple.setAttribute('height', '30');
+			ripple.setAttribute('viewBox', '0 0 120 30');
+			ripple.innerHTML = `
+				<ellipse cx="60" cy="15" rx="55" ry="10" fill="none" 
+					stroke="rgba(92,184,92,0.3)" stroke-width="1.5"/>
+			`;
+			ripple.style.left = (whaleX - 60) + 'px';
+			ripple.style.top = (whaleY + WHALE_HEIGHT / 4) + 'px';
+			document.body.appendChild(ripple);
+
+			setTimeout(() => ripple.remove(), 2000);
+		}
+
+		// Hook into animation loop
+		const origAnimate = animateWhale;
+		(function rippleLoop() {
+			createRipple();
+			requestAnimationFrame(rippleLoop);
+		})();
+
+		// ===== BUBBLES =====
+		const bubblesContainer = document.getElementById('bubbles-container');
+
+		function createBubble() {
+			const bubble = document.createElement('div');
+			bubble.classList.add('bubble');
+
+			const size = Math.random() * 12 + 4;
+			const left = Math.random() * 100;
+			const duration = Math.random() * 5 + 4;
+			const drift = (Math.random() - 0.5) * 60;
+
+			bubble.style.width = size + 'px';
+			bubble.style.height = size + 'px';
+			bubble.style.left = left + '%';
+			bubble.style.bottom = '0';
+			bubble.style.animationDuration = duration + 's';
+			bubble.style.setProperty('--drift', drift + 'px');
+			bubble.style.animationDelay = Math.random() * 2 + 's';
+
+			bubblesContainer.appendChild(bubble);
+
+			setTimeout(() => {
+				bubble.remove();
+			}, (duration + 3) * 1000);
+		}
+
+		// Generate bubbles
+		setInterval(createBubble, 700);
+		for (let i = 0; i < 6; i++) {
+			setTimeout(createBubble, i * 250);
+		}
+
+		// ===== SPARKLES ON MOUSE MOVE =====
+		let sparkleThrottle = 0;
+		document.addEventListener('mousemove', (e) => {
+			sparkleThrottle++;
+			if (sparkleThrottle % 6 !== 0) return;
+
+			// Only create sparkles in the water area
+			if (e.clientY < getWaterSurfaceY()) return;
+
+			const sparkle = document.createElement('div');
+			sparkle.classList.add('sparkle');
+			sparkle.style.left = (e.clientX + (Math.random() - 0.5) * 30) + 'px';
+			sparkle.style.top = (e.clientY + (Math.random() - 0.5) * 30) + 'px';
+			sparkle.style.width = (Math.random() * 4 + 2) + 'px';
+			sparkle.style.height = sparkle.style.width;
+			document.body.appendChild(sparkle);
+
+			setTimeout(() => sparkle.remove(), 2000);
 		});
-
-		Reveal.on('no_footer', function () {
-			var element = document.getElementById("logos-footer");
-			//element.style.display = "none";
-			// element.style.display = "table";
-			element.style.opacity = "15%";
-		});
-
-		Reveal.initialize({
-			hash: true,
-
-			// Multiplex
-			multiplex: {
-				secret: null,            // NULO para los alumnos
-				id: 'nanana',  // Mismo 'id' que en master
-				url: 'https://tokens.idepba.com.ar'
-			},
-
-			dependencies: [
-				{ src: 'https://cdn.socket.io/4.7.5/socket.io.min.js' },
-				{ src: 'https://tokens.idepba.com.ar/client.js', async: true }
-			],
-
-			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
-		});
-
-		julio_egg(); // Easter egg!
-
 	</script>
 
 </body>
